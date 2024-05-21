@@ -1,0 +1,95 @@
+{% include 'sections__pdp-simple-grid' %}
+
+{% schema %}
+{
+	"name": "Natural Affiliate Grid",
+	"max_blocks": 3,
+	"settings": [
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle Section On/Off",
+			"default": true
+		},
+		{
+			"type": "color",
+			"id": "background-color",
+			"label": "Background Color",
+			"default": "#F7F7F7"
+		},
+		{
+			"type": "color",
+			"id": "text-color",
+			"label": "Text Color",
+			"default": "#FFFFFF"
+		},
+		{
+			"type": "select",
+			"id": "padding-top",
+			"label": "Padding Top",
+			"options": [
+				{
+					"value": "pt--small",
+					"label": "Small"
+				},
+				{
+					"value": "pt--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pt--large",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"type": "select",
+			"id": "padding-bottom",
+			"label": "Padding Bottom",
+			"options": [
+				{
+					"value": "pb--small",
+					"label": "Small"
+				},
+				{
+					"value": "pb--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pb--large",
+					"label": "Large"
+				}
+			]
+		}
+	],
+	"blocks": [
+		{
+			"type": "text",
+			"name": "Column",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image",
+					"info": "Upload at 400 x 400"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "description",
+					"label": "Description"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

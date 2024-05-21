@@ -1,0 +1,68 @@
+{% assign href_product = request.path | split: 'review-' %}
+{% assign href_product = href_product[1] | downcase %}
+
+{% assign productData = all_products[href_product] %}
+
+{% assign has_any_background = false %}
+
+{% for block in section.blocks %}
+  {% if block.settings.row_color.size > 0 %}
+    {% assign has_any_background = true %}
+    {% break %}
+  {% endif %}
+{% endfor %}
+
+<div class="staggered_section__wrapper cs-large-padding {% if has_any_background == true %}has-inner-background{% endif %}" data-section-id="{{ section.id }}" data-section-type="staggered_section__wrapper" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+  <!-- firmness exception -->
+  {% if section.settings.section_heading.size > 0 or section.settings.section_description.size > 0 %}
+    <div class="column-grid-heading {{section.settings.section_heading_alignment}}" style="color: {{section.settings.section_heading_color}}">
+      <h2>{{section.settings.section_heading}}</h2>
+
+      {% if section.settings.section_description.size > 0 %}
+      <p>{{section.settings.section_description}}</p>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+  	<div class="staggered_block {% if block.settings.row_color.size > 0 %}has-background{% endif %}" style="flex-direction: {{ block.settings.orientation }}; background-color: {{block.settings.row_color}};">
+
+    {% if block.settings.media_link.size > 0 %}
+        <div class="staggered_media">
+
+        {% if block.settings.media == 'image' %}
+          <img class="staggered_media-image lazyload" data-src="{{ block.settings.media_link }}" alt="{{ block.settings.fallbackImageText }}">
+        {% elsif block.settings.media == 'youtube_video' %}
+          <iframe class="staggered-detail__img-image lazyload" src="https://www.youtube.com/embed/{{ block.settings.media_link }}" frameborder="0" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+        {% else %}
+          <span class="staggered_video">
+            <video poster="{{ block.settings.poster_img }}" autoplay loop playsinline muted aria-hidden="true">
+              <source src="{{ block.settings.media_link }}" type='video/mp4'/>
+              <img class="lazyload" src="{{ block.settings.poster_img }}" title="Video not supported by browser." alt="{{ block.settings.fallbackImageText }}">
+            </video>
+          </span>      
+        {% endif %}
+        </div>
+    {% endif %}
+
+    <div class="staggered_text_content {% if block.settings.orientation == 'row-reverse' %} positionLeft {% else %} positionRight {% endif %}">
+
+      {% if block.settings.topic_header.size > 0 %}
+      	  <h2 class="staggered_block_heading" style="color: {{ block.settings.topic_header_color}};">{{ block.settings.topic_header }}</h2>
+      {% endif %}
+
+      {% if block.settings.detail_description.size > 0 %}
+          <div class="staggered_block_detail_text" style="color: {{ block.settings.detail_description_text_color }};">{{ block.settings.detail_description }}</div>
+      {% endif %}
+
+      {% if block.settings.detail_misc_text.size > 0 %}
+      	  <p class="staggered_block_flag" style="color: {{ block.settings.misc_text_color }};"><i class="mdi mdi-check" style="color:#444;"></i> {{ block.settings.detail_misc_text }}</p>
+      {% endif %}
+
+      <div class="closing-cta__cta" data-id="learn-more">
+        <a class="btn btn-white shadow" href="{{ productData.url }}" style="color: #2e577c;">SEE THE {{ productData.title | remove: 'Bear' }}</a>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>

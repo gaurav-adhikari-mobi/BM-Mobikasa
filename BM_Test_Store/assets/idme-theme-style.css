@@ -1,0 +1,28 @@
+.idme {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.idme-shopify {
+  border: 1px solid #b7b7b7;
+  border-radius: 10px;
+  padding: 20px;
+  float: right;
+}
+
+.idme-btn-affinity {
+  color: #757575;
+  font-family: "Open Sans", Helvetica, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: left;
+  width: 300px;
+}
+
+.idme-btn-unify {
+  float: left;
+}
+
+#cart-notification .idme-btn-affinity {
+  width: 100%;
+}

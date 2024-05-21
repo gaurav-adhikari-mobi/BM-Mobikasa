@@ -1,0 +1,61 @@
+{% include 'product-details' %}
+{% section 'pro-pdp-icon-grid' %}
+{% section 'section-publications-2' %}
+{% section 'simple-grid--pro' %}
+{% section 'pdp-imageblockcontent-pro' %}
+
+{% comment %}
+  {% section 'comp-pdp-bear-pro' %}
+{% endcomment %}
+
+{% section 'staggered-content--bear-pro-2' %}
+{% section 'staggered-content--bear-pro-3' %}
+{% section 'staggered-content--bear-pro' %}
+
+{% section 'yotpo-pdp-pro-gallery' %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">{{ product.title }} Reviews</h2>
+    <div class="yotpo-widget-instance" data-yotpo-instance-id="544318" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" | prepend: "https:" | replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-price="{{ product.price | divided_by: 100.00 }}" data-yotpo-currency="{{ shop.currency }}" data-yotpo-description="{{ product.description | escape }}"></div>
+  </div>
+</section>
+
+{% section 'staggered-firmness-pro' %}
+{% section 'pro-slideshow-reviews' %}
+{% section 'pdp-financing-blocks' %}
+{% section 'pdp-accordion-pro' %}
+{% section 'life-style-grid' %}
+{% section 'pro-faq-component' %}
+
+{% include 'schema' %}
+<style>
+    td{
+      width: 50%;
+    }
+    .cs-fcompare-table tr td:nth-child(2) {
+      display: none;
+  }
+      .cs-fcompare-table tr td:nth-child(5) {
+      display: none;
+  }
+    .cs-fcompare-table tr td:nth-of-type(2) {
+      background-color: #fff;
+  }
+      @media only screen and (max-width: 768px) {
+    .cs-info-box {
+     display: flex;
+    }
+      .cs-fcompare-table tr td:nth-of-type(1) {
+      width: 30%;
+  }
+      .cs-fcompare-table tr td {
+      width: 35%;
+  }
+      .cs-fcompare-table tr{
+        display: flex;
+      }
+      .cs-fcompare-table{
+        min-width: auto;
+      }
+  }
+</style>

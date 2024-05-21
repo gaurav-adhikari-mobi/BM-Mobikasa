@@ -1,0 +1,16 @@
+{% include 'product-details' %}
+{% section 'pro-topper-pdp-icon-grid' %}
+{% section 'pro-topper-product-details' %}
+{% section 'staggered-content--pro-topper' %}
+{% section 'pro-topper-faq-component' %}
+{% section 'pro-topper-standard-content' %}
+{% section 'pdp-accordion-pro-topper' %}
+{% section 'pro-topper-standard-content-1' %}
+
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Pro Topper Reviews</h2>
+	<div class="yotpo-widget-instance" data-yotpo-instance-id="544320" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div></div>
+</section>
+
+{% include 'schema' %}

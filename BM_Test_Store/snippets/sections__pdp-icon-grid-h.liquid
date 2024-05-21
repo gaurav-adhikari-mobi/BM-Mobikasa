@@ -1,0 +1,32 @@
+{% if section.settings.toggle %}
+<section class="icongrid cs-has-columns" data-section-id="{{ section.id }}" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+  	{% if product.description.size > 0 %}
+  	<div class="icongrid-row icongrid-wrap">
+        <div class="boh_description" style="display:none">{{ product.metafields.bo_hybrid_des.bear_original_hybrid.value }}</div>
+       <div class="bof_description" style="display:none">{{product.description}}</div>
+         <div class="icongrid-description" id="for_replace_id">{{product.description}}</div>
+    {% endif %}
+        <div class="icongrid-wrap">
+            <ul class="icongrid-list">
+                {% for block in section.blocks %}
+                    <li class="icongrid-item">
+                        {% if block.settings.icon-svg == blank %}
+                            {% assign icon-image = block.settings.icon | img_url %}
+                        {% else %}
+                            {% assign icon-image = block.settings.icon-svg | file_url %}
+                        {% endif %}
+                        <img data-src="{{ icon-image }}" class="lazyload icongrid-item__image {{ block.settings.icon-size }}" alt="{{ block.settings.icon-alt }}">
+                        <p class="icongrid-item__text">{{ block.settings.text }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+
+      	{% if section.settings.highlighted_text.size > 0 %}
+      	<div class="highlighted-text">{{section.settings.highlighted_text}}</div>
+      	{% endif %}
+  	{% if product.description.size > 0 %}
+  	</div>
+    {% endif %}
+</section>
+{% endif %}

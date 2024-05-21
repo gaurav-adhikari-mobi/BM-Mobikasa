@@ -1,0 +1,531 @@
+
+{% include 'frequent-products' %}
+{% comment %}
+{% include 'frequent-extra-products' %}
+{% endcomment %}
+{% style %}
+  .product-description__wrap .timer__container .cs-countdown-progress {
+    display:none;
+  }
+  .product-description__wrap .timer__container {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      gap: 20px;
+  }
+  @media screen and (max-width: 860px) {
+   .product-description__wrap .timer__container {
+      justify-content: center;  
+    } 
+  }
+{% endstyle %}
+<div class="cs-sticky-choose">
+    <div class="cs-sticky-price-wrapper">
+        Pay Now 
+
+        <span class="cs-sticky-price-new">
+			<span class="currency">$</span><span class="cs-sticky-discount"></span>
+        </span>
+
+        <span class="cs-sticky-price-old">
+			<span class="currency">$</span><span class="cs-sticky-total"></span>
+        </span>
+    </div>
+
+  	<div class="cs-sticky-price-variants">
+
+      	<div class="cs-sticky-price-dropdown">
+      	</div>
+      	<div class="cs-sticky-price-button"></div>
+  	</div>
+</div>
+
+<section class="product">
+  	<section class="product-slider">
+      {% include 'product-grid-item-images' %}
+	</section>
+
+	<section class="product-box">
+		<div class="product-box__wrap">
+            {% if product.handle contains 'adjustable-bed-deal' %}
+                <h1 class="f1">Adjustable Bed Deal<span class="f2"></span> </h1>
+            {% elsif product.handle contains 'topper' %}
+            <h1 class="f1">Pro <span class="f2">{{ product.title | replace: 'Pro ', '' }}</span> </h1>
+            {% elsif product.handle contains 'cloud' %}
+            <h1 class="f1">Cloud <span class="f2">{{ product.title | replace: 'Cloud ', '' }}</span> </h1>
+            {% elsif product.handle contains 'weighted' %}
+            <h1 class="f1">Weighted <span class="f2">{{ product.title | replace: 'Weighted ', '' }}</span> </h1>
+            {% elsif product.handle == 'bear-platform-bed' %}
+            <h1 class="f1">Platform <span class="f2">{{ product.title | replace: 'Platform ', '' }}</span> </h1>
+             {% elsif product.handle == 'summit-platform-bed' %}
+            <h1 class="f1"><span class="f2">{{ product.title}}</span> </h1>
+            {% elsif product.handle contains 'contour' %}
+            <h1 class="f1">Contour <span class="f2">{{ product.title | replace: 'Contour ', '' }}</span> </h1>
+            {% elsif product.handle contains 'universal' %}
+            <h1 class="f1">Universal <span class="f2">{{ product.title | replace: 'Universal ', '' }}</span> </h1>
+            {% elsif product.handle contains 'white-glove' %}
+            <h1 class="f1"><span class="f2">{{ product.title | replace: 'Universal ', '' }}</span> </h1>
+            {% elsif product.handle contains 'terry-mattress-protector' %}
+            <h1 class="f1">Terry <span class="f2">{{ product.title | replace: 'Terry ', '' }}</span> </h1>
+            {% elsif product.handle contains 'pro-hybrid-mattress' %}
+            <h1 class="f1"><span class="f2">{{ product.title | replace: '2019 ', '' }}</span> </h1>
+ {% elsif product.handle contains 'elite-hybrid-mattress' or 'star-hybrid-mattress' %}
+   <h1 class="f1"><span class="f2">{{ product.title | replace: '2019 ', '' }}</span> </h1>
+          
+            {% else %}
+            <h1 class="f1">Bear <span class="f2">{{ product.title | replace: 'Bear ', '' }}</span> </h1>
+            {% endif %}
+
+          	{% if product.id == 4826388955241 or product.id == 6820507484265 or product.id == 7089581031529 %}
+          	{% else %}
+              <div class="product-reviews">
+                 
+                 <div class="yotpo-widget-instance" data-yotpo-instance-id="544319" data-yotpo-product-id="{{product.id}}" data-yotpo-cart-product-id="{{item.product.id}}" data-yotpo-section-id="{{template.name}}"></div>
+               {% comment %}
+                <div class="yotpo bottomLine"
+                  data-appkey="yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d"
+                  data-domain="{{ shop.permanent_domain | escape }}"
+                  data-product-id="{{ product.id }}"
+                  data-product-models="{{ product.id }}"
+                  data-name="{{ product.title | escape }}"
+                  data-url="{{ shop.url }}{{ product.url }}"
+                  data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                  data-description="{{ product.description | escape }}"
+                  data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                </div>
+                {% endcomment %}
+              </div>
+          	{% endif %}
+{% if product.handle == 'bear-natural-mattress' %}
+  <span class="natural-tag"><span class="natural-b">NEW</span> Latex Hybrid Mattress</span>
+  {% endif %}
+          	<div class="product-description">
+				<div class="product-description__wrap">
+
+					{% if product.available == true %}
+                      {% if product.handle == 'bear-pillow' or product.handle == 'bear-mattress-protector' %}
+                        {% else %}
+						{% section 'product-discount-code' %}
+                        {% endif %}
+                  
+                        {% if product.metafields.product.sale_text.size > 0 %}
+                            <div class="link-wrapper"><a href="{{product.metafields.product.sale_link}}">{{product.metafields.product.sale_text}}</a></div>
+                        {% endif %}
+					{% endif %}
+
+                    {% if product.description.size > 0 %}
+                    	<div class="product-content">{{product.description}}</div>
+                    {% endif %}
+				</div>
+			</div>
+
+
+            <div class="price-block">
+               <span class="cs-price-loader">
+                <i class="mdi mdi-loading mdi-spin"></i>
+              </span>
+               <div class="price-block-inner cs-price-loading">
+              {% assign currencyISO = product.selected_or_first_available_variant.price | money_with_currency | slice: -3, 3 %}
+              
+              {% assign variant_position = 0 %}
+              {% assign specific_variant = product.metafields.product.pdp_specific_variant %}
+
+              {% if specific_variant %}
+              {% assign variant_position = specific_variant %}
+              {% endif %}
+
+              {% assign cs_price = product.variants[variant_position].price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+              {% assign cs_compare_price = product.variants[variant_position].compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+              {% assign elDiscount = cs_compare_price | minus: cs_price %}
+              {% assign elDiscountText = 'off' %}
+
+              {% assign cs_has_discount = false %}
+
+              {% assign sale_products = settings.sale_products %}
+
+              {% if sale_products contains product.handle %}
+              	{% assign cs_has_discount = false %}
+              {% else %}
+              	{% assign cs_has_discount = true %}
+              {% endif %}
+
+              {% if settings.percentage_enable == true and cs_has_discount == true %}
+              
+                {% if cs_price >= settings.discount_min_value_1 %}
+
+              	  {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+                  	{% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                  {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+                  	{% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                  {% elsif cs_price >= settings.discount_min_value_3 %}
+
+					{% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                  {% endif %}
+              	{% endif %}
+
+                {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+                {% assign elDiscountText = 'off with code' %}
+
+                {% assign cs_compare_price = cs_price %}
+                {% assign cs_price = cs_price | minus: elDiscount %}
+
+              {% endif %}
+
+              {% if settings.tier_enable == true and cs_has_discount == true %}
+
+                {% if cs_price >= settings.min_value_1 %}
+
+                  {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+                      {% assign elDiscount = settings.coupon_amount_1 %}
+
+                  {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+                      {% assign elDiscount = settings.coupon_amount_2 %}
+
+                  {% elsif cs_price >= settings.min_value_3 %}
+
+                    {% assign elDiscount = settings.coupon_amount_3 %}
+                    {% assign elDiscountText = 'off with code' %}
+                  {% endif %}
+
+                  {% assign cs_compare_price = cs_price %}
+                  {% assign cs_price = cs_price | minus: elDiscount %}
+                {% endif %}
+              {% endif %}
+
+              <div class="price-info">
+                
+                  <div class="price-head">Pay Now</div>
+                
+
+                <div class="title-after-price">
+                  <div class="discount-price">
+                    <span class="currency-symbol">$</span>
+                    <span id="discount-price">{{ cs_price }}</span>
+                    <span class="last">{{ currencyISO }}</span>
+                  </div>
+
+                  <div class="total-price {% if cs_compare_price > 0 %}{% else %}_hide{% endif %}">
+                    <span class="was hidden">WAS</span>
+                    <span class="currency-symbol">$</span>
+                    <span id="total-price">{{ cs_compare_price }}</span>
+					<span class="total-discount-text" data-uw-rm-sr=""> ${{elDiscount | ceil}} {{elDiscountText}}</span>
+                    <span class="total-discount-text-new" data-uw-rm-sr=""></span>
+                  </div>
+                </div>
+                    <a class="price-details-link" href="javascript:void(0)">Price Details</a>
+              </div>
+
+              <div class="finance-info" style=" {% if currencyISO == 'CAD' %}display: none;{% endif %} ">
+                <div class="price-head">As low as</div>
+
+                <div class="affirm-block">
+                  <div class="product-finance">
+                    <div class="affirm-as-low-as" data-page-type="product" data-amount="{{ product.selected_or_first_available_variant.price }}" data-affirm-type="logo" data-learnmore-show="false">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            {% if product.handle contains 'white-glove' or product.handle == 'elite-hybrid-mattress' or product.handle == 'star-hybrid-mattress' or product.handle == 'pro-hybrid-mattress' or product.handle == 'bear-original-mattress' or product.handle == "bear-cub-kids-mattress" or product.handle == "bear-trundle-mattress" or product.handle == 'bear-trek-rv-mattress' or product.handle == 'adjustable-flex-bed' or product.handle == 'bear-platform-bed' %}
+            {% else %}
+            
+              <div class="product-splitit-wrapper">
+              <div class="product-splitit-content">
+                  {% form 'product', product %}
+                    {{ form | payment_terms }}
+                  {% endform %}
+                  {% comment %}
+                  <img class="lazyload" src="//cdn.shopify.com/s/files/1/0661/5815/files/splitit-logo.png" /> <span class="product-splitit-text">Monthly payments using your credit card at 0% interest. <a class="product-splitit-link" href="#">Learn More</a></span>
+                 {% endcomment %}
+              </div>
+              </div>
+    
+            {% endif %}
+
+            <div class="product-tiles" data-tiles="{{ product.variants.size }}">
+
+              {% assign slection_class = false %}
+ {% if product.variants.size > 1 %}
+    {% assign slection_class = true %}
+    
+    {% for option in product.options %}
+      {% if option contains 'Size' %}
+        <label for="cs-option-selection-{{ forloop.index0 }}">
+          Choose Mattress Size
+              <span class="size-guide-link">Product Specs</span>
+        </label>
+      {% elsif option contains 'Firmness' %}
+    <label for="cs-option-selection-{{forloop.index0}}">
+                      Choose Comfort Level
+                    <span class="firmness-guide-link">Firmness Guide</span>
+              		</label>
+         {% else %}
+     <label for="cs-option-selection-{{forloop.index0}}">
+       {% if product.handle == 'pro-hybrid-mattress' %}
+         Add Celliant Pillow Top Cover
+       {% else %}
+                   Add Celliant Infused Cover
+         {% endif %}
+                      	<span class="firmness-guide-linkk">
+                         
+                 View Details
+                          </span>
+                    </label>
+       
+      {% endif %}
+  
+      <select id="cs-option-selection-{{ forloop.index0 }}" class="single-option-selector single-option-{{ option | downcase }}" name="cs-option-{{ option | downcase }}">
+        {% capture option_index %}option{{ forloop.index }}{% endcapture %}
+        {% assign option_values = product.variants | map: option_index | uniq %}
+        
+        {% for choice in option_values %}
+          <option value="{{ choice }}">{{ choice }}</option>
+        {% endfor %}
+      </select>
+    {% endfor %}
+  {% endif %}
+  <label for="dropdownMattressSize" {% if slection_class == true %}style="display: none;"{% endif %}>
+                {% if product.handle contains 'protector' or product.handle contains 'frame' or product.handle contains 'foundation' or product.handle contains 'bedding' or product.handle contains 'adjustable' or product.handle contains 'pillow' or product.handle contains 'bear-encasement' %}
+                <span style="flex:1;">Choose a Size</span>
+                {% elsif product.handle contains 'white-glove' %}
+                <span style="flex:1;">Choose Service</span>
+                 {% elsif product.handle contains 'chevron-platform-bed' %}
+                <span style="flex:1;">Chose Size and Color</span>
+                {% elsif product.handle contains 'weighted' %}
+                <span style="flex:1;">Choose a Color</span>
+                 {% elsif product.handle contains 'chevron-platform-bed' %}
+                   <span style="flex:1;">Chose Mattress Size and Color</span>
+                {% else %}
+                <span style="flex:1;">Choose Mattress Size</span>
+                {% endif %}
+
+                {% if product.handle contains 'white-glove' %}
+                {% else %}
+                	<span class="size-guide-link">Product Specs</span>
+                {% endif %}
+              </label>
+
+              {% assign cs_has_discount = false %}
+
+              {% assign sale_products = settings.sale_products %}
+
+              {% if sale_products contains product.handle %}
+              	{% assign cs_has_discount = false %}
+              {% else %}
+              	{% assign cs_has_discount = true %}
+              {% endif %}
+
+              {% assign variant_position = 0 %}
+              {% assign specific_variant = product.metafields.product.pdp_specific_variant %}
+
+              {% if specific_variant %}
+              {% assign variant_position = specific_variant %}
+              {% endif %}
+
+              <select data-selection="{{variant_position}}" id="dropdownMattressSize" class="product-dropdown__list" {% if slection_class == true %}style="display: none;"{% endif %}>
+                {% for variant in product.variants %}
+
+                {% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+                {% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+				{% assign elDiscount = cs_compare_price | minus: cs_price %}
+				{% assign elDiscountText = 'off' %}
+
+                {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+                  {% if cs_price >= settings.discount_min_value_1 %}
+
+                    {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+                      {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                    {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+                      {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                    {% elsif cs_price >= settings.discount_min_value_3 %}
+
+                      {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+                {% comment %}
+                  {% assign elDiscountText = 'off with code' %}
+{% endcomment %}
+                  {% assign cs_compare_price = cs_price %}
+                  {% assign cs_price = cs_price | minus: elDiscount %}
+
+                {% endif %}
+
+                {% if settings.tier_enable == true and cs_has_discount == true %}
+
+                {% if cs_price >= settings.min_value_1 %}
+
+                {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+                {% assign elDiscount = settings.coupon_amount_1 %}
+
+                {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+                {% assign elDiscount = settings.coupon_amount_2 %}
+
+                {% elsif cs_price >= settings.min_value_3 %}
+
+                {% assign elDiscount = settings.coupon_amount_3 %}
+				{% assign elDiscountText = 'off with code' %}
+                {% endif %}
+
+                {% assign cs_compare_price = cs_price %}
+                {% assign cs_price = cs_price | minus: elDiscount %}
+                {% endif %}
+                {% endif %}
+
+                {% assign haspillow = variant.metafields.variant.attached_product_2 %}
+                {% assign hasinformation = '' %}
+                {% assign hasthumbnail = variant.metafields.variant.thumbnail %}
+
+                <option class="" 
+                        value="{{ variant.id }}" 
+                        data-variant="{{ variant.title }}"
+                        data-price="{{cs_price}}"
+                        data-information="{{hasinformation}}"
+                        data-attached="{{haspillow}}"
+                        data-thumbnail="{{hasthumbnail}}"
+                        data-old-price="{{cs_compare_price}}"
+                        data-discount-text="{% if elDiscount > 0 %} ${{elDiscount | ceil}} {{elDiscountText}}{% endif %}"
+                        {% if variant.available %}{% else %}disabled{% endif %}
+                        data-title="{{ variant.title | escape }}">{{ variant.title }}{% if variant.available %}{% else %} - SOLD OUT{% endif %}
+                </option>
+                {% endfor %}
+              </select>
+{% if product.handle == 'elite-hybrid-mattress' or
+      product.handle == 'star-hybrid-mattress' or
+      product.handle == 'pro-hybrid-mattress' or
+      product.handle == 'bear-original-mattress' or
+      product.handle == 'bear-cub-kids-mattress' or
+      product.handle == 'bear-trundle-mattress' or
+      product.handle == 'bear-trek-rv-mattress' %}
+  {% include 'add-on-product-buy' %}
+{% endif %}
+{% if product.handle == 'adjustable-bed-deal' %}
+  {% else %}
+   {% include 'bonus-products' %}
+  <div class="frequent-products" style="display: none;">
+                {% if product.handle == 'adjustable-bed-deal' %}
+                   <h3 class="switch_heading">Choose Your Mattress</h3>
+  {% else %}
+    <h3 class="switch_heading">{{product.metafields.product.addon_heading}}</h3>
+  {% endif %}
+               
+
+                <div class="check-found hhhh"></div>
+              </div>
+  {% endif %}
+
+              
+              
+              <label class="check-mattress-only">
+                <span>Mattress Only</span>
+                <input type="checkbox" class="check-mattress-only-checkbox mdi" name="mattress-only" />
+				<div class="check-mattress-only-additional"></div>
+              </label>
+            </div>
+{% if product.handle != 'elite-hybrid-mattress' and
+      product.handle != 'star-hybrid-mattress' and
+      product.handle != 'pro-hybrid-mattress' and
+      product.handle != 'bear-original-mattress' and
+      product.handle != 'bear-cub-kids-mattress' and
+      product.handle != 'bear-trundle-mattress' and
+      product.handle != 'bear-trek-rv-mattress' %}
+  {% include 'add-on-product-buy' %}
+{% endif %}
+
+{% if product.handle == 'elite-hybrid-mattress' or
+      product.handle == 'star-hybrid-mattress' or
+      product.handle == 'pro-hybrid-mattress' or
+      product.handle == 'bear-original-mattress' or
+      product.handle == 'bear-cub-kids-mattress' or
+      product.handle == 'bear-trundle-mattress' or
+      product.handle == 'bear-trek-rv-mattress' %}
+   <div id="extend-offer"></div>
+  	{% if product.handle contains 'white-glove' %}
+    {% else %}
+    
+
+      {% if product.metafields.product.pdp_tooltip_line != blank %}
+          <p class="shipping-info"><span class="shipping-line" data-content="{{product.metafields.product.pdp_tooltip_text}}">{{product.metafields.product.pdp_tooltip_line}}</span></p>
+      {% else %}
+          {% if settings.pdp_tooltip_line != blank %}
+              <p class="shipping-info"><span class="shipping-line" data-title="{{settings.pdp_tooltip_title}}" data-content="{{settings.pdp_tooltip_text}}">{{settings.pdp_tooltip_line}}</span></p>
+          {% endif %}
+      {% endif %}
+
+      {% if product.metafields.product.information != blank %}
+		<div class="cs-product-information {{information_class}}">{{ product.metafields.product.information }}</div>
+      {% endif %}
+    {% endif %}
+    {% comment %}
+	<!-- Extend -- Load product integration script -->
+    {% render 'extend-product-integration' %}
+    <!-- Extend -- End Extend code -->
+  {% endcomment %}
+{% endif %}
+
+
+          
+
+          </div>
+	</section>
+</section>
+<script type="text/javascript">
+
+  {% if has_youtube == true %}
+
+        var tag = document.createElement('script');
+        tag.src = "//www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player = [];
+
+        function onYouTubePlayerAPIReady() {
+
+           if($('.product-slider__slide.video-youtube').length > 0) {
+              $('.product-slider__slide.video-youtube').each(function(i) {
+                  var iframeEl = $(this).find('iframe').attr('id');
+                  player[i] = new YT.Player(iframeEl);
+              });
+           }
+        }
+  {% endif %}
+  
+  $(document).ready(function(){
+	var currencyCode = $("#in-context-paypal-metadata").attr("data-currency");
+    $(".discount-price .last").text(currencyCode);
+  });
+  
+</script>
+{% if product.handle == 'adjustable-bed-deal' %}
+ <style>
+   .product-tiles-check:checked::before {
+    content: ""!important;
+}
+   .add-on-row .product-tiles-check{
+     height: 19.2px;
+     width: 19.2px;
+   }
+ </style>
+ <!-- <script>
+$(document).ready(function() {
+    setTimeout(function() {
+        $(".check-found .add-on-row:first .product-tiles-check").click();
+    }, 4000); // 2000 milliseconds = 2 seconds
+});
+ </script> -->
+  {% endif %}

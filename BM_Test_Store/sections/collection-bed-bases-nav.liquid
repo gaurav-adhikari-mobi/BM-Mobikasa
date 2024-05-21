@@ -1,0 +1,116 @@
+{% if section.settings.link.size > 0 %}
+  <a class="mnav-item__link" href="{{section.settings.link}}">{{section.settings.menu_name}}</a>
+{% else %}
+  <h3 class="mnav-item__link dropdown">
+    <button aria-expanded="false" aria-controls="content-bear" id="header-bear">{{section.settings.menu_name}}</button>
+  </h3>
+
+  <div id="content-bear" role="region" aria-labelledby="header-bear" class="mnav-item__dropdown">
+    <div class="mnav-item__dropdown_inner">
+      {% for block in section.blocks %}
+
+          {% case block.type %}
+
+              {% when "heading" %}
+              <h5 class="mnav-item__heading">{{ block.settings.title }}</h5>
+
+              {% when "product_detail" %}
+              <div class="mnav-item__product">
+                  <a class="mnav-item__product_link" href="{{block.settings.product_link}}">
+                      <img class="mnav-product-image lazyload" data-src="{{block.settings.product_image | img_url: '85x' }}" />
+
+                      <div class="mnav-product-detail">
+                          <h5>{{block.settings.title}}</h5>
+                          <p>{{block.settings.product_quality}}</p>
+                      </div>
+                  </a>
+              </div>
+
+              {% when "nav_item" %}
+              <div class="mnav-item__list {% if block.settings.nav_link_all == true %}mnav-item__list_all{% endif %}">
+                  <a class="mnav-item__target" href="{{block.settings.nav_link}}">{{block.settings.title}}</a>
+              </div>
+          {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Bed Bases",
+    "settings": [
+      {
+        "type": "text",
+        "id": "menu_name",
+        "label": "Menu Name"
+      },
+      {
+        "type": "text",
+        "id": "link",
+        "label": "Link",
+        "info": "Enter link to make it simple link"
+      }
+	],
+	"blocks": [{
+        "type": "heading",
+        "name": "Heading",
+          "settings": [
+              {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Heading"
+              }
+          ]
+        },
+		{
+        "type": "nav_item",
+        "name": "Nav item",
+          "settings": [
+              {
+                  "type": "checkbox",
+                  "id": "nav_link_all",
+                  "label": "Bold",
+				  "default": false
+              },
+              {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Nav Item"
+              },
+              {
+                  "type": "url",
+                  "id": "nav_link",
+                  "label": "Nav Link"
+              }
+          ]
+        },
+		{
+        "type": "product_detail",
+        "name": "Product detail",
+          "settings": [
+              {
+                  "type": "image_picker",
+                  "id": "product_image",
+                  "label": "Product Image"
+              },
+              {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Product Title"
+              },
+              {
+                  "type": "url",
+                  "id": "product_link",
+                  "label": "Product Link"
+              },
+              {
+                  "type": "text",
+                  "id": "product_quality",
+                  "label": "Product Quality"
+              }
+          ]
+        }
+	]
+  }
+{% endschema %}

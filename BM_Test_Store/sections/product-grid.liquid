@@ -1,0 +1,94 @@
+<!-- /sections/index-pageliquid -->
+{% include 'sections__product-grid' %}
+
+
+{% schema %}
+{
+  "name": "Product Grid",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type":"text",
+      "id": "header",
+      "label": "Header text"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Product Grid",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "product_name_image",
+          "label": "Product Name Image"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Product Description"
+        },
+        {
+          "type": "color",
+          "id": "description_text_color",
+          "label": "Product Description Text Color"
+        },
+        {
+          "type": "url",
+          "id": "product_link",
+          "label": "Product Link"
+        },
+        {
+          "type": "text",
+          "id": "button_text",
+          "label": "Button Text"
+        },
+        {
+          "type": "color",
+          "id": "button-background-color",
+          "label": "Background Color"
+        },
+        {
+          "type": "color",
+          "id": "button-text-color",
+          "label": "Text Color"
+        },
+        {
+          "type": "color",
+          "id": "button-border-color",
+          "label": "Border Color"
+        },
+        {
+          "type": "checkbox",
+          "id": "use-shadow",
+          "label": "Use Shadow?",
+          "default": false
+        }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Product Grid",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

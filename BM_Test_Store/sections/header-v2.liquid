@@ -1,0 +1,243 @@
+<div class="header__wrapper p-{{ section.settings.promobar }}" data-section-id="{{ section.id }}" data-section-type="header">
+  <header class="site-header">
+    
+	{% if settings.counter_enable == true %}
+		<div id="pxu_cst" class="cs-mp-bar-position"></div>
+    {% endif %}
+
+    {% if settings.promobar_enable == true %}
+    <div id="pxu_cst"></div>
+      <div style="{% if settings.promo_text_color.size > 0 %}color: {{settings.promo_text_color}};{% endif %}
+                  {% if settings.promo_background_color.size > 0 %}background-color: {{settings.promo_background_color}};{% endif %}
+                  {% if settings.promo_gradient_color.size > 0 %}background: linear-gradient(120deg, {{settings.promo_background_color}} 0%,{{settings.promo_gradient_color}} 70%);{% endif %}"
+           class="toppromobar promo-bar--">
+        <div class="hideTop desktopbar">{{ settings.promobar-textarea-desktop }}</div>
+        <div class="hideTop mobilebar">{{ settings.promobar-textarea-mobile }}</div>
+      </div>
+	{% endif %}
+    
+    <div id="bearmenubar" >
+      <div class="header-wrap">
+        <div class="header-toggle">
+          <button type="button" class="header-toggle__button">
+            <p>
+              <span class="__first"></span>
+              <span class="__middle"></span>
+              <span class="__last"></span>
+            </p>
+          </button>
+        </div>
+        <div class="header-logo">
+          <a href="/" title="Bear Mattress Home Page" itemprop="url">
+            <img class="lazyload" data-src="{{ 'header-logo.svg' | asset_url }}" alt="Bear Mattress Logo">
+          </a>
+        </div>
+        <nav class="header-nav chacha">
+          <ul class="header-nav__list">
+            {% for block in section.blocks %}
+            {% assign menu-name =  block.settings.navbar-name | handle %}
+            <li class="header-nav__item {% if menu-name == 'products'%}product-ddl{% endif %}{% if block.settings.navbar-dropdown %} dropdown{% endif %}" data-dropdown="{{ block.settings.navbar-name | handle }}">
+              <a href="{{ block.settings.navbar-link }}" class="header-nav__item-link">
+                <span>{{ block.settings.navbar-name }}</span>
+              </a>
+              {% if block.settings.navbar-dropdown %}
+              <div class="dnav dropdown__subnav">
+                <ul class="dnav-wrap">
+                  {% for link in linklists[block.settings.dropdown-menu].links %} 
+                  	<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+              {% endif %}
+              
+              {% comment %}{% if block.settings.navbar-dropdown %}
+              <nav class="dnav">
+                {% comment %}<div class="dnav-overlay"></div>{% endcomment %}
+                <div class="dnav-wrap">
+                  {% if block.settings.navbar-dropdown %}
+                  <section class="dnav-dropdown {{ block.settings.navbar-name | handle }}" data-dropdown="{{ block.settings.navbar-name | handle }}">
+                    <div class="dnav-dropdown__wrap clearfix">
+                      <ul class="dnav-dropdown__list {{ menu-name }} {% if menu-name == 'products'%}dnav-products-grid{% else %}full-width{% endif %}">                          
+                        {% for link in linklists[block.settings.dropdown-menu].links %} 
+                        {% if menu-name == 'products'%}
+                        {% if forloop.last == false %} 
+                        <li class="dnav-dropdown__item">
+                          <a href="{{ link.url }}" class="dnav-dropdown__item-link">
+                            {% assign ddimage = link.object.handle | append: '.png' %}
+                            <img data-src="{{ ddimage | asset_url }}" class="dnav-dropdown__item-image lazyload">										
+                            {% if link.type == 'product_link' %}
+                            {% assign ddlabel-image = link.object.handle | append: '--logo.png' %}
+                            <img data-src="{{ ddlabel-image | asset_url }}" class="dnav-dropdown__item-image-label lazyload">
+                            {% else %}
+                            <span class="title">{{ link.title }}</span>
+                            {% endif %}
+                          </a>
+</li>
+                        {% endif %}
+                        {% else %}
+                        <li class="dnav-dropdown__item">
+                          <a href="{{ link.url }}" class="dnav-dropdown__item-link">										
+                            {% if link.type == 'product_link' %}
+                            {% assign ddlabel-image = link.object.handle | append: '--logo.png' %}
+                            <img data-src="{{ ddlabel-image | asset_url }}" class="dnav-dropdown__item-image-label lazyload">
+                            {% else %}
+                            <span class="title">{{ link.title }}</span>
+                            {% endif %}
+                            {% assign ddimage = link.object.handle | append: '.png' %}
+                            <img data-src="{{ ddimage | asset_url }}" class="dnav-dropdown__item-image lazyload">
+                          </a>
+</li>
+                        {% endif %}
+                        {% endfor %}
+
+                        {% if menu-name == 'products'%}
+                        {% for link in linklists[block.settings.dropdown-menu].links %} 
+                        {% if forloop.last%} 
+                        <li class="dnav-dropdown__item bundle-item">
+                          <a href="{{ link.url }}" class="dnav-dropdown__item-link">	
+                            {% assign ddimage = link.object.handle | append: '.png' %}
+                            <p class="bundle-offer-text">{{ section.settings.dropdown-bundle-offer }}</p>
+                            <img data-src="{{ ddimage | asset_url }}" class="dnav-dropdown__item-image lazyload">									
+                            {% if link.type == 'product_link' %}
+                            {% assign ddlabel-image = link.object.handle | append: '--logo.png' %}
+                            <img data-src="{{ ddlabel-image | asset_url }}" class="dnav-dropdown__item-image-label lazyload">
+                            {% else %}
+                            <span class="title">{{ link.title }}</span>
+                            {% endif %}
+                          </a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                        {% endif %}
+                      </ul>
+                      {% if menu-name == 'products'%}
+                      <ul class="dnav-dropdown__list bundle-product">                          
+                        {% for link in linklists[block.settings.dropdown-menu].links %} 
+                        {% if forloop.last%} 
+                        <li class="dnav-dropdown__item">
+                          <a href="{{ link.url }}" class="dnav-dropdown__item-link">										
+                            {% if link.type == 'product_link' %}
+                            {% assign ddlabel-image = link.object.handle | append: '--logo.png' %}
+                            <img data-src="{{ ddlabel-image | asset_url }}" class="dnav-dropdown__item-image-label lazyload">
+                            {% else %}
+                            <span class="title">{{ link.title }}</span>
+                            {% endif %}
+                            {% assign ddimage = link.object.handle | append: '.png' %}
+                            <img data-src="{{ ddimage | asset_url }}" class="dnav-dropdown__item-image lazyload">
+                            <p class="bundle-offer-text">{{ section.settings.dropdown-bundle-offer }}</p>
+                          </a>
+                        </li>
+                        {% endif %}
+                        {% endfor %}
+                      </ul>
+                      {% endif %}
+                    </div>
+                  </section>
+                  {% endif %}
+                </div>
+              </nav>
+              {% endif %}{% endcomment %}
+            </li>
+            {% endfor %}
+          </ul>
+        </nav>
+        <nav class="header-subnav">
+          <a href="tel:+18443110035" class="header-subnav__link _tel"><span><img width="16px" class="lazyload" data-src="{{ 'call.svg' | asset_url }}" /></span> 844-311-0035</a>
+          <a href="/cart" class="CartToggle">
+            {% comment %}
+            <span class="CartToggleOverlay"></span>
+            {% endcomment %}
+            <span class="cartCount {% if cart.item_count < 1 %} hidden-count {% endif %}">{{ cart.item_count }}</span>
+            <img class="lazyload" data-src="{{ 'cs-cart.svg' | asset_url }}" class="cart-icon">
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+  <!-- unless/endunless logic removes promobar from Sale page -->
+  
+<!--   {% unless page.title == 'Sale' %}
+  <section class="promobar">
+    <div class="promobar-wrap promobar-asset">
+      <p>{{ section.settings.promobar-text }}</p>
+    </div>
+  </section>
+  {% endunless %} -->
+</div>
+
+<style>
+  .toppromobar a {
+    color: {{settings.promo_link_color}};
+  }
+</style>
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+        {
+          "type": "header",
+          "content": "Promo Bar"
+        },
+        {
+          "type": "select",
+          "id": "promobar",
+          "label": "Promo Bar Display",
+            "options": [
+              {
+              "value": "show--top",
+              "label": "Above Nav Bar"
+              },
+              {
+              "value": "hide",
+              "label": "None"
+              }
+            ]
+        }
+
+	],
+    "blocks" : [
+        {
+        "type": "text",
+        "name": "Nav Item",
+          "settings": [
+              {
+              "type": "header",
+              "content": "Nav Bar"
+              },
+              {
+              "type": "text",
+              "id": "navbar-name",
+              "label": "Name"
+              },
+              {
+              "type": "text",
+              "id": "navbar-link",
+              "label": "Link"
+              },
+              {
+              "type": "header",
+              "content": "Dropdown Options"
+              },
+              {
+              "type": "checkbox",
+              "id": "navbar-dropdown",
+              "label": "Toggle On\/Off Dropdown"
+              },
+              {
+              "type": "link_list",
+              "id": "dropdown-menu",
+              "label": "Dropdown Menu"
+              }
+          ]
+        }
+    ],
+    "presets": [
+        {
+        "name": "Header",
+        "category": "Text"
+        }
+    ]
+}
+
+{% endschema %}

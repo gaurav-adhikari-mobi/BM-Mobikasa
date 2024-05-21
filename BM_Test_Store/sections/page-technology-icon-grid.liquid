@@ -1,0 +1,100 @@
+{% include 'sections__icon-grid_contact' %}
+
+{% schema %}
+{
+  "name": "Icon Grid",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Toggle Section On/Off",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    },
+	{
+      "type": "select",
+      "id": "icon_width",
+      "options": [
+        { "value": "cs-small", "label": "Small"},
+        { "value": "cs-large", "label": "Large"},
+        { "value": "cs-xlarge", "label": "Extra Large"}
+      ],
+      "default": "cs-large",
+      "label": "Icon width"
+    },
+	{
+      "type": "select",
+      "id": "grid_width",
+      "options": [
+        { "value": "cs-small", "label": "Small"},
+        { "value": "cs-large", "label": "Large"}
+      ],
+      "default": "cs-small",
+      "label": "Grid width"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description"
+    },
+    {
+      "type": "textarea",
+      "id": "section_footnote",
+      "label": "Footnote"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Grid Item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "checkbox",
+          "id": "desktop_toggle",
+          "label": "Hide on desktop",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "mobile_toggle",
+          "label": "Hide on mobile",
+          "default": false
+        },
+        {
+          "type": "checkbox",
+          "id": "circle_toggle",
+          "label": "Show circle",
+          "default": false
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
+          "type": "textarea",
+          "id": "message",
+          "label": "Image Label"
+        }
+      ]
+  }]
+}
+{% endschema %}

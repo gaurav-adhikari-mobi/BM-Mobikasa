@@ -1,0 +1,195 @@
+
+
+
+
+
+{% assign information_class = '' %}
+
+{% if product.id == 6820507484265 or product.id == 3653284495465 or product.id == 28907569166 or product.id == 6714393100393 or product.id == 6626577481833 or product.id == 4570306609257  or product.id == 8213956099 or product.id == 8784730307 %}
+  {% assign information_class = 'cs-product-closeout' %}
+{% endif %}
+
+{% if product.available == true %}
+	{% assign button_text = 'ADD TO CART' %}
+
+    {% if product.metafields.product.button_text != blank %}
+        {% assign button_text = product.metafields.product.button_text %}
+    {% endif %}
+      {% render 'shipping-info' %}
+	<div class="product-buy">
+      	<button type="button" class="product-buy__button_add_on btn shadow btn-green cs-btn-full">{{ button_text }} <span class="inline-loader"><i class="mdi mdi-loading mdi-spin"></i></span></button>
+        <button type="button" class="new-product-buy__button_add_on btn shadow btn-green cs-btn-full">{{ button_text }} <span class="inline-loader"><i class="mdi mdi-loading mdi-spin"></i></span></button>
+    </div>
+
+
+
+
+
+
+  {% if product.handle != 'elite-hybrid-mattress' and
+      product.handle != 'star-hybrid-mattress' and
+      product.handle != 'pro-hybrid-mattress' and
+      product.handle != 'bear-original-mattress' and
+      product.handle != 'bear-cub-kids-mattress' and
+      product.handle != 'bear-trundle-mattress' and
+      product.handle != 'bear-trek-rv-mattress' %}
+
+	{% if product.handle contains 'white-glove' %}
+    {% else %}
+      {% if product.handle == 'adjustable-bed-deal' %}
+       <div class="custom-static" style="display: block;">
+  <h3 class="cs-bonus-heading">Free Accessories Included</h3>
+  <div class="">
+ <div class="cs-bonus-box">
+
+               <a href="javascript:void(0);" class="cs-bonus-title" data-prod-list="" data-prod-img="//www.bearmattress.com/cdn/shop/files/pdp-gwp-bundle-9_400x.jpg?v=1701455111" data-prod-desc="What’s Included
+
+
+Twin, Twin XL, Full or Queen:&nbsp;2 Queen&nbsp;Cirrus Cloud Pillows, 1 Fitted Sheet, 1 Flat Sheet,&nbsp;2 Pillowcases, plus 1 super soft Terry Mattress Protector.
+
+King or Cal King:&nbsp;2 King  Cirrus Cloud&nbsp;Pillows, 1 Fitted Sheet, 1 Flat Sheet,&nbsp;2 King Pillowcases. Plus, 1 super soft Terry Mattress Protector.
+
+Split King:  2 Queen&nbsp;Cirrus Cloud&nbsp;Pillows, 2 Twin XL Fitted Sheets, 1 King Flat Sheet,&nbsp;2&nbsp;Queen Pillowcases. Plus, 2 Twin XL super soft Terry Mattress Protectors.
+
+
+Bear Sleep Bundle value by size: Twin-$265, Twin XL-$300, Full-$300, Queen-$320, King-$400, Cal King-$400, Split King-$500. While supplies last.
+" data-html="Bear Sleep Bundle" data-fheading="Bear Sleep Bundle" data-fdescription="Get two huggable Pillows, a feathery light and smooth Sheet Set, and a super soft Mattress Protector.">Bear Sleep Bundle</a>
+            <div class="cs-bonus-itemm">
+
+              <div class="cs-bonus-feature">
+
+              <img class="cs-bonus-image" src="//www.bearmattress.com/cdn/shop/files/pdp-gwp-bundle-9_400x.jpg?v=1701455111" data-uw-rm-alt-original="" alt="Bear Sleep Bundle" data-uw-rm-alt="CT">
+              </div>
+
+              <label class="cs-bonus-detailss">
+
+                <input class="cs-bonus-input" type="radio"  name="bselection" checked=""">
+
+                <div class="cs-bonus-variantt">
+
+                  <span class="cs-bonus--variant">Queen</span>
+                  
+                    
+                      <strong class="cs-bonus--price">FREE</strong>
+                      <span class="cs-bonus-price">$320</span>
+
+                      <label class="el_price_bundle">
+                        <span class="price-new">FREE</span>
+                        <span class="price-old">$320</span>
+                      </label>
+                    
+                </div>
+<div class="cs-bonus-include">Includes 2 Pillows, 1 Sheet Set, and 1 Mattress Protector</div>
+                
+              </label>
+            </div>
+          </div>
+      		
+      
+      
+    </div>
+</div>
+  {% else %}
+   
+  {% endif %}
+   
+      <!-- {% if product.metafields.product.delivery_info != blank %}
+          <p class="delivery-info"><strong>{{product.metafields.product.delivery_info}}</strong></p>
+      {% else %}
+          {% if settings.delivery_text != blank %}
+              <p class="delivery-info">{{settings.delivery_text}}</p>
+          {% endif %}
+      {% endif %} -->
+
+      {% if product.metafields.product.pdp_tooltip_line != blank %}
+          <p class="shipping-info"><span class="shipping-line" data-content="{{product.metafields.product.pdp_tooltip_text}}">{{product.metafields.product.pdp_tooltip_line}}</span></p>
+      {% else %}
+          {% if settings.pdp_tooltip_line != blank %}
+              <p class="shipping-info"><span class="shipping-line" data-title="{{settings.pdp_tooltip_title}}" data-content="{{settings.pdp_tooltip_text}}">{{settings.pdp_tooltip_line}}</span></p>
+          {% endif %}
+      {% endif %}
+
+      {% if product.metafields.product.information != blank %}
+		<div class="cs-product-information {{information_class}}">{{ product.metafields.product.information }}</div>
+      {% endif %}
+    {% endif %}
+    
+
+{% endif %}
+
+
+
+
+
+    
+{% else %}
+    <div class="product-buy">
+        <button type="button" class="product-buy__button_add_on btn cs-btn-full disabled" disabled="disabled">SOLD OUT</button>
+    </div>
+{% endif %}
+<style>
+  .custom-static{
+        margin: 0 0 25px;
+    padding: 20px;
+    text-align: left;
+    background-color: #F4F8FF;
+    border: 2px solid #2F7DF8;
+    border-radius: 5px;
+  }
+  .custom-static .cs-bonus-heading {
+    font-size: 1rem;
+    color: #3B82FF;
+    margin: 0 0 10px;
+}
+  .custom-static .cs-bonus-title {
+    font-size: 15px;
+    color: #0C324C;
+    text-decoration: underline;
+    font-family: apercu,Helvetica,Arial,sans-serif;
+}
+  .custom-static .cs-bonus-itemm {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 120px 1fr;
+    font-size: 0.875rem;
+    color: #2A2A2A;
+}
+  .custom-static .cs-bonus-feature img {
+    width: 100%;
+    margin: 5px 0 0;
+    border-radius: 5px;
+}
+   .custom-static label {
+    font-size: 1rem;
+    line-height: normal;
+    text-align: left;
+    color: rgba(0, 0, 0, 0.87);
+    margin: 10px 0px 5px;
+}
+  .custom-static .cs-bonus-detailss {
+    position: relative;
+    font-weight: 400;
+    padding: 0 40px 0 20px;
+    cursor: pointer;
+}
+ .custom-static .cs-bonus-input {
+    position: absolute;
+    width: 1.2rem;
+    height: 1.2rem;
+    color: #2e577c;
+    top: 50%;
+    bottom: 0;
+    right: 0;
+    z-index: 1;
+    transform: translate(0, -50%);
+}
+  .custom-static .cs-bonus-variantt{
+        margin: 0 0 8px;
+  }
+  .custom-static .cs-bonus--price {
+    color: #3B82FF;
+}
+  .custom-static .cs-bonus-price {
+    text-decoration: line-through;
+}
+</style>

@@ -1,0 +1,18 @@
+{% if section.settings.toggle %}
+	<section class="simplegrid {{ section.settings.padding-top }} {{ section.settings.padding-bottom }}" data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background-color }}; color: {{ section.settings.text-color }};">
+		<h2 class="simplegrid-title">{{ section.settings.title }}</h2>
+		<div class="simplegrid-wrap">
+			<ul class="simplegrid-list">
+				{% for block in section.blocks %}
+					<li class="simplegrid-item">
+						<div class="simplegrid-item__wrap">
+							<img data-src="{{ block.settings.image | img_url: '300x' }}" class="simplegrid-item__image lazyload">
+							<h2 class="simplegrid-item__title">{{ block.settings.title }}</h2>
+							<p class="simplegrid-item__text">{{ block.settings.description }}</p>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+{% endif %}

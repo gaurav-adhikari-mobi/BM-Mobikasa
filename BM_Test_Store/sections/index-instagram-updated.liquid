@@ -1,0 +1,36 @@
+{% if section.settings.gallery_id.size > 0 %}
+<div class="homepage-instagram" data-section-id="{{ section.id }}" data-section-type="instagram">
+  {% unless section.settings.title == '' %}
+    <h1 class="">{{section.settings.title}}</h1>
+  {% endunless %}
+
+  <div class="cs-yotpo-gallery">
+    <div class="yotpo yotpo-pictures-widget" data-gallery-id="{{section.settings.gallery_id}}"></div>
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Instagram updated",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Instagram"
+    },
+	{
+      "type": "text",
+      "id": "gallery_id",
+	  "label": "Gallery ID"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram updated",
+      "category": "Social"
+    }
+  ]
+}
+{% endschema %}

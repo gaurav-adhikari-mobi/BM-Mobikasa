@@ -1,0 +1,74 @@
+<div class="lifestyle-grid lifestyle-desktop-section" data-section-id="{{ section.id }}" data-section-type="lifestyle-grid" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+  <h1 class="lifestyle-grid__header">{{ section.settings.header }}</h1>
+  <div class="lifestyle-grid__lifestyle-wrapper">
+    {% for block in section.blocks %}
+      <div class="lifestyle-grid__img-wrapper">
+        <img class="lifestyle-grid__img lazyload" alt="{{ block.settings.main_image_alt }}" data-src="{{ block.settings.main_image | img_url: 'master' }}">
+        <p class="lifestyle-grid__title">{{ block.settings.title }}</p>
+        <p class="lifestyle-grid__text">{{ block.settings.text }}</p>
+      </div>
+    {% endfor %}
+  </div>
+  
+  {% if section.settings.highlighted_text.size > 0 %}
+  	<div class="highlighted-text">{{section.settings.highlighted_text}}</div>
+  {% endif %}
+</div>
+
+
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    sessionStorage.setItem('reloadNeeded', counter);
+    var counter;
+    
+    if($(window).width() >=768){
+      $('.lifestyle-grid.lifestyle-desktop-section').css('background-image','url({{section.settings.desktop_background_image | img_url: 'master'}})');
+    }else{
+      $('.lifestyle-grid.lifestyle-desktop-section').css('background-image','url({{section.settings.mobile_background_image | img_url: 'master' }})');
+    }
+    
+    $(window).resize( function(){
+      if($(window).width() >=768){ 
+        $('.lifestyle-grid.lifestyle-desktop-section').css('background-image','url({{section.settings.desktop_background_image | img_url: 'master'}})');
+        counter = 0;
+        sessionStorage.setItem('reloadNeeded', counter);
+      }else{
+        $('.lifestyle-grid.lifestyle-desktop-section').css('background-image','url({{section.settings.mobile_background_image | img_url: 'master' }})');
+        counter = counter + 1;
+        sessionStorage.setItem('reloadNeeded', counter);
+    
+        if( sessionStorage.getItem('reloadNeeded') == 1){
+            location.reload();
+        }
+      }
+    });
+    
+    if($('.lifestyle-desktop-section .lifestyle-grid__lifestyle-wrapper').length > 0) {
+      
+      var lifestyleSlider = $('.lifestyle-desktop-section .lifestyle-grid__lifestyle-wrapper');
+      lifestyleSlider.slick({        
+        responsive: [
+          {
+            breakpoint: 9999,
+            settings: "unslick"
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              centerMode: false,
+              infinite: false,
+              dots: true,
+              variableWidth: false,
+              arrows: true,
+              nextArrow: '<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button" aria-disabled="false"><i class="mdi mdi-chevron-right"></i></button>',
+              prevArrow: '<button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button" aria-disabled="false"><i class="mdi mdi-chevron-left"></i></button>'
+            }
+          }
+        ]
+      });
+  	}
+  });
+</script>

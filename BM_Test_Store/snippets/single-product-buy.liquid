@@ -1,0 +1,19 @@
+{% if product.available == true %}
+    <div class="product-buy">
+        <button type="button" class="product-buy__button btn btn-green shadow cs-btn-full">ADD TO CART <span class="inline-loader"><i class="mdi mdi-loading mdi-spin"></i></span></button>
+    </div>
+
+    {% if settings.delivery_text != blank %}
+        <div class="highlight-shipping">{{settings.delivery_text}}</div>
+    {% endif %}
+
+	<div class="cs-product-information"></div>
+
+    {% if settings.pdp_tooltip_line.size > 0 %}
+    	<p class="shipping-info"><span class="shipping-line" data-content="{{settings.pdp_tooltip_text}}">{{settings.pdp_tooltip_line}}</span></p>
+    {% endif %}
+{% else %}
+    <div class="product-buy">
+      <button type="button" class="product-buy__button btn cs-btn-full disabled" disabled="disabled">SOLD OUT</button>
+    </div>
+{% endif %}

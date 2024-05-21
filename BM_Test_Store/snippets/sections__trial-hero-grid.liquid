@@ -1,0 +1,88 @@
+<div class="trial-grid trial-desktop-section" data-section-id="{{ section.id }}" data-section-type="trail-hero-grid" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+  <h1 class="trial-grid__header">{{ section.settings.header }}</h1>
+  <div class="trial-grid__trial-wrapper">
+    {% for block in section.blocks %}
+      <div class="trial-grid__img-wrapper">
+        <i class="trial-grid__icon mdi {{ block.settings.main_icon }}"></i>
+        <p class="trial-grid__text">{{ block.settings.text }}</p>
+      </div>
+    {% endfor %}
+    <img class="trial-grid__img lazyload" alt="{{ section.settings.desktop_overlay_image_alt }}" data-src="{{ section.settings.desktop_overlay_image | img_url: 'master' }}">
+  </div>
+  
+  {% if section.settings.highlighted_text.size > 0 %}
+  	<div class="highlighted-text">{{section.settings.highlighted_text}}</div>
+  {% endif %}
+</div>
+
+<style type="text/css">
+ .trial-desktop-section:before{
+   	content: '';
+   	width:100%;
+    height: 640px;
+  	background-image: url('{{section.settings.desktop_background_image | img_url: 'master' }}');
+    position: absolute;
+    left:0;
+    top:0;
+    z-index: -1;  
+    background-repeat: no-repeat;
+  	background-position: top left;
+  	background-size: cover;
+  }
+  @media screen and (max-width: 767px){
+    .trial-desktop-section:before{
+      background-image: url('{{section.settings.mobile_background_image | img_url: 'master' }}');    
+    }
+  }
+</style>
+<script type="text/javascript">
+  $(document).ready(function(){
+    sessionStorage.setItem('reloadNeeded', counter);
+    var counter;
+        
+    $(window).resize( function(){
+      if($(window).width() > 767){
+        counter = 0;
+        if( sessionStorage.getItem('reloadNeeded') == 'NaN'){
+            location.reload();
+        }
+        sessionStorage.setItem('reloadNeeded', counter);
+      }else{
+        counter = counter + 1;
+        sessionStorage.setItem('reloadNeeded', counter);
+    
+        if( sessionStorage.getItem('reloadNeeded') == 1){
+            location.reload();
+        }
+      }
+    });
+    
+    if($('.trial-desktop-section .trial-grid__trial-wrapper').length > 0) {
+      
+      var trialSlider = $('.trial-desktop-section .trial-grid__trial-wrapper');
+      trialSlider.slick({        
+        responsive: [
+          {
+            breakpoint: 9999,
+            settings: "unslick"
+          },
+          {
+            breakpoint: 768,
+            settings: {
+              slide: '.trial-grid__img-wrapper',
+              infinite: false,
+              dots: true,
+              centerMode: false,
+              slidesToShow: 1,
+              slidesToScroll: 1,
+              variableWidth: false,
+              arrows: true,
+              nextArrow: '<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button" aria-disabled="false"><i class="mdi mdi-chevron-right"></i></button>',
+              prevArrow: '<button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button" aria-disabled="false"><i class="mdi mdi-chevron-left"></i></button>'
+            }
+          }
+        ]
+      });
+  	}
+  });
+</script>

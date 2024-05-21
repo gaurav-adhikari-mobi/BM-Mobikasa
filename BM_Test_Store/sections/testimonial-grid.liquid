@@ -1,0 +1,62 @@
+{% include "sections__testimonial-grid" %}
+
+
+{% schema %}
+{
+  "name": "Testimonial Grid",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type":"text",
+      "id": "header",
+      "label": "Header text"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+		{
+          "type": "text",
+          "id": "main_image_Alt",
+          "label": "Alt Text"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Testimonial Text"
+        },
+        {
+          "type": "text",
+          "id": "author",
+          "label": "Testimonial Author"
+        }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Testimonial Grid",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

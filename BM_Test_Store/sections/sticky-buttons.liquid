@@ -1,0 +1,47 @@
+{% include 'sections__sticky-buttons' %}
+
+{% schema %}
+{
+	"name": "Sticky Buttons",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Section Options"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle On\/Off Sticky Buttons"
+		}
+	],
+	"blocks": [
+		{
+			"type": "text",
+			"name": "Button",
+			"settings": [
+				{
+					"type": "text",
+					"id": "icon",
+					"label": "Icon File",
+					"info": "Copy + paste svg CDN url from the `Files` admin."
+				},
+				{
+					"type": "text",
+					"id": "button-text",
+					"label": "Button Text"
+				},
+				{
+					"type": "text",
+					"id": "button-url",
+					"label": "Button URL"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Sticky Buttons",
+			"category": "Text"
+		}
+	]
+}{% endschema %}

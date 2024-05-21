@@ -1,0 +1,30 @@
+<div class="column-grid-wrapper" data-section-id="{{ section.id }}" data-section-type="content-grid" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+
+  <div class="column-grid-inner">
+    <div class="column-grid-heading">
+      <h2 class="cs-{{section.settings.section_heading_alignment}}">{{section.settings.section_heading}}</h2>
+
+      {% if section.settings.section_description.size > 0 %}
+      	<p class="cs-{{section.settings.section_heading_alignment}}">{{section.settings.section_description}}</p>
+      {% endif %}
+    </div>
+
+    <div class="column-grid-content">
+      {% for block in section.blocks %}
+        <div class="grid-column cs-{{section.settings.box_alignment}}">
+          <h3>{{ block.settings.title }}</h3>
+          {% if block.settings.box_title.size > 0 %}
+          	<a href="{{ block.settings.box_title_link }}">{{ block.settings.box_title }}</a>
+          {% endif %}
+          <div>{{ block.settings.box_address }}</div>
+        </div>
+      {% endfor %}
+	</div>
+    
+    {% if section.settings.bottom_text.size > 0 %}
+      <div class="column-grid-link cs-text-center">
+        <a href="{{ section.settings.bottom_link }}">{{ section.settings.bottom_text }}</a>
+      </div>
+    {% endif %}
+  </div>
+</div>

@@ -1,0 +1,39 @@
+{% include 'pdp-imageblockcontent' %}
+
+{% schema %}
+  {
+    "name": "Image Content Block",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "featured_bm_image",
+        "label": "Featured Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "tab_image",
+        "label": "Tablet Featured Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "mob_image",
+        "label": "Mobile Featured Image"
+      },
+      {
+        "type": "textarea",
+        "id": "textarea_measurement_bm",
+        "label": "Featured List"
+      },
+      {
+        "type": "text",
+        "id": "bottom_text",
+        "label": "Bottom text"
+      },
+      {
+        "type": "text",
+        "id": "bottom_link",
+        "label": "Bottom link"
+      }
+	]
+  }
+{% endschema %}

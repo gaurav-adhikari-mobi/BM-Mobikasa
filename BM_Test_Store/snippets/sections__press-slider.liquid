@@ -1,0 +1,28 @@
+{%- assign header_color = section.settings.text-color -%}
+{%- unless section.settings.header-text-color == blank -%}
+  {%- assign header_color = section.settings.heading-text-color -%}
+{%- endunless -%}
+
+<div class="press-slider desktop" data-section-id="{{ section.id }}" data-section-type="press-slider" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};" data-module="press">
+  <h1 class="press-slider__header" style="color: {{ section.settings.header-text-color }};">{{ section.settings.header }}</h1>
+  <div class="press-slider__testimonials-wrapper" style="background-color: {{ section.settings.background-color }};">
+    {% for block in section.blocks %}
+    <div class="press-slider__text-wrapper {% if forloop.first %} active {% endif %}" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+      <p class="press-slider__text" style="color: {{ block.settings.press-text-color }};">{{ block.settings.text }}</p>
+    </div>
+    {% endfor %}
+    <div class="press-slider__publication-wrapper" style="background-color: {{ section.settings.logo-background-color }};">
+      {% for block in section.blocks %}
+      <div class="press-slider__logo-wrapper {% if forloop.first %} active {% endif %}" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+      <div class="press-slider__arrow {% if forloop.first %} active {% endif %}" style="background-color: {{ section.settings.background-color }};" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+      </div>
+      <div class="press-slider__publication-logo {% if forloop.first %} active {% endif %}" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+        <img class="press-slider__publication-logo-img lazyload" data-src="{{ block.settings.publication-logo | img_url: 'master' }}">
+        <img class="press-slider__publication-logo-img-hover lazyload" data-src="{{ block.settings.publication-logo-color | img_url: 'master' }}">
+        
+      </div>
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

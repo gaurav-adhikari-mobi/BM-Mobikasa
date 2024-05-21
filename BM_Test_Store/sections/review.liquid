@@ -1,0 +1,104 @@
+{% include 'sections__review' %}
+
+{% schema %}
+{
+	"name": "Review",
+	"max_blocks": 6,
+	"settings": [
+		{
+			"type": "header",
+			"content": "Toggles"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle Section On\/Off"
+		},
+		{
+			"type": "checkbox",
+			"id": "carousel_toggle",
+			"label": "Toggle Review Carousel"
+		},
+		{
+			"type": "checkbox",
+			"id": "featured_toggle",
+			"label": "Toggle Featured Review"
+		},
+		{
+			"type": "header",
+			"content": "Featured Review"
+		},
+		{
+			"type": "color",
+			"id": "background-color",
+			"label": "Background Color",
+			"default": "#7b7b81"
+		},
+		{
+			"type": "color",
+			"id": "text-color",
+			"label": "Text Color",
+			"default": "#ffffff"
+		},
+		{
+			"type": "select",
+			"id": "padding-top",
+			"label": "Padding Top",
+			"options": [
+				{
+					"value": "pt--small",
+					"label": "Small"
+				},
+				{
+					"value": "pt--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pt--large",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"type": "select",
+			"id": "padding-bottom",
+			"label": "Padding Bottom",
+			"options": [
+				{
+					"value": "pb--small",
+					"label": "Small"
+				},
+				{
+					"value": "pb--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pb--large",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"type": "image_picker",
+			"id": "background-image",
+			"label": "Background Image"
+		},
+		{
+			"type": "text",
+			"id": "quote",
+			"label": "Review Quote"
+		},
+		{
+			"type": "text",
+			"id": "author",
+			"label": "Review Author"
+		}
+	],
+	"blocks": [],
+	"presets": [
+		{
+			"name": "Review",
+			"category": "Text"
+		}
+	]
+}{% endschema %}

@@ -1,0 +1,62 @@
+<div class="trustpoints-wrapper">
+  <div class="trustpoints-slider">
+    {% for block in section.blocks %}
+      {% case block.type %}
+
+      {% when 'slide' %}
+        <div class="trustpoints-item" style="color: {{section.settings.text_color}}">
+          <img class="lazyload" data-src="{{ block.settings.icon_image | img_url: '64x' }}" width="{{block.settings.icon_width}}" height="{{block.settings.icon_width}}" />
+          <span data-heading="{{ block.settings.popup_heading }}">{{ block.settings.title }}</span>
+          <div class="trustpoints-content">{{ block.settings.popup_content }}</div>
+        </div>
+
+      {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+	"name": "Trustpoints",
+	"settings": [
+        {
+            "type": "color",
+            "id": "text_color",
+            "label": "Text Color"
+        }
+	],
+	"blocks": [
+		{
+			"type": "slide",
+			"name": "Slide",
+			"settings": [
+                {
+                    "type": "image_picker",
+                    "id": "icon_image",
+                    "label": "Icon"
+                },
+				{
+					"type": "text",
+					"id": "icon_width",
+					"label": "Icon Width"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "popup_heading",
+					"label": "Popup Heading"
+				},
+				{
+					"type": "textarea",
+					"id": "popup_content",
+					"label": "Popup Content"
+				}
+			]
+		}
+	]
+}
+{% endschema %}

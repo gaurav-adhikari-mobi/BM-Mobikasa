@@ -1,0 +1,251 @@
+<!-- /sections/feature-details-block.liquid -->
+<div class="feature-detail-blocks clearfix" data-section-id="{{ section.id }}" data-section-type="feature-details-blocks" style="background-color: {{section.settings.background-color}};">
+  <div class="fd-header">
+    <h2 style="color: {{ section.settings.section_header_color }};">{{ section.settings.section_header }}</h2>
+  </div>
+  <div>
+  {% for block in section.blocks %}
+  	<div class="fd-block fd-{{ block.id }}" style="background: {{ block.settings.content_background_color }}">
+      <h2 class="content__title">{{ block.settings.section_header }}</h2>
+      <span class="content__caption">{{ block.settings.section_caption }}</span>
+      <img class="content__image lazyload" data-src="{{ block.settings.section_image | img_url: 'master' }}" />
+      <ul class="feature__list">
+        {% for i in (1..8) %}
+        	{% assign enableFeatList = 'enable_feature_list_' | append: i %}
+            {% assign imageFeatList = 'feature_list_image_' | append: i %}
+            {% assign textFeatList = 'feature_list_' | append: i %}
+        	{% if block.settings[enableFeatList] == true %}
+              <li><img class="lazyload" data-src="{{ block.settings[imageFeatList] | img_url: 'master' }}"/><p>{{ block.settings[textFeatList] }}</p></li>
+            {% endif %}
+        {% endfor %}
+        
+      </ul>
+      <a class="content__cta-link btn {% if block.settings.section_cta_use_shadow %}shadow{% endif %}" 
+         href="{{ block.settings.section_cta_link }}" 
+         style="{% if block.settings.section_cta_background_color != blank %}background: {{ block.settings.section_cta_background_color }};{% endif %} 
+                {% if block.settings.section_cta_color != blank %}color: {{ block.settings.section_cta_color }};{% endif %}  
+                {% if block.settings.section_cta_border_color != blank %}border: 1px solid {{ block.settings.section_cta_border_color }};{% endif %}">
+        {{ block.settings.section_cta_text }}
+      </a>
+    </div>
+  {% endfor %}  
+  </div>
+</div>
+{% schema %}
+{
+	"name": "Feature Details Blocks",	
+	"settings": [
+		{
+			"type": "text",
+			"id": "section_header",
+			"label": "Section Header"
+		},
+		{
+			"type": "color",
+			"id": "section_header_color",
+			"label": "Section Header Color"
+		},
+		{
+			"type": "color",
+			"id": "background_color",
+			"label": "Background Color"
+		}
+	],
+	"blocks": [{
+      "type": "text",
+      "name": "Feature Details Block",
+      "settings": [
+		{
+			"type": "color",
+			"id": "section_background_color",
+			"label": "Background Color"
+		},
+		{
+			"type": "color",
+			"id": "section_mobile_background_color",
+			"label": "For Mobile: Background Color"
+		},
+		{
+			"type": "color",
+			"id": "section_color",
+			"label": "Text Color"
+		},
+		{
+			"type" : "text",
+			"id": "section_header",
+			"label" : "Section Header"
+		},
+		{
+			"type" : "text",
+			"id": "section_caption",
+			"label" : "Section Caption"
+		},        
+        {
+            "type": "image_picker",
+            "id": "section_image",
+            "label": "Section Image"
+        },
+		{
+            "type": "checkbox",
+            "id": "enable_feature_list_1",
+            "label": "Enable Feature List 1"
+        },
+		{
+            "type": "image_picker",
+            "id": "feature_list_image_1",
+            "label": "Feature List Image 1"
+        },
+		{
+            "type": "text",
+            "id": "feature_list_1",
+            "label": "Feature List 1"
+        },
+		{
+            "type": "checkbox",
+            "id": "enable_feature_list_2",
+            "label": "Enable Feature List 2"
+        },
+        {
+            "type": "image_picker",
+            "id": "feature_list_image_2",
+            "label": "Feature List Image 2"
+        },
+        {
+            "type": "text",
+            "id": "feature_list_2",
+            "label": "Feature List 2"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_feature_list_3",
+            "label": "Enable Feature List 3"
+        },
+        {
+            "type": "image_picker",
+            "id": "feature_list_image_3",
+            "label": "Feature List Image 3"
+        },
+        {
+            "type": "text",
+            "id": "feature_list_3",
+            "label": "Feature List 3"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_feature_list_4",
+            "label": "Enable Feature List 4"
+        },
+        {
+            "type": "image_picker",
+            "id": "feature_list_image_4",
+            "label": "Feature List Image 4"
+        },
+        {
+            "type": "text",
+            "id": "feature_list_4",
+            "label": "Feature List 4"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_feature_list_5",
+            "label": "Enable Feature List 5"
+        },
+        {
+            "type": "image_picker",
+            "id": "feature_list_image_5",
+            "label": "Feature List Image 5"
+        },
+        {
+            "type": "text",
+            "id": "feature_list_5",
+            "label": "Feature List 5"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_feature_list_6",
+            "label": "Enable Feature List 6"
+        },
+        {
+            "type": "image_picker",
+            "id": "feature_list_image_6",
+            "label": "Feature List Image 6"
+        },
+        {
+            "type": "text",
+            "id": "feature_list_6",
+            "label": "Feature List 6"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_feature_list_7",
+            "label": "Enable Feature List 7"
+        },
+        {
+            "type": "image_picker",
+            "id": "feature_list_image_7",
+            "label": "Feature List Image 7"
+        },
+        {
+            "type": "text",
+            "id": "feature_list_7",
+            "label": "Feature List 7"
+        },
+        {
+            "type": "checkbox",
+            "id": "enable_feature_list_8",
+            "label": "Enable Feature List 8"
+        },
+        {
+            "type": "image_picker",
+            "id": "feature_list_image_8",
+            "label": "Feature List Image 8"
+        },
+        {
+            "type": "text",
+            "id": "feature_list_8",
+            "label": "Feature List 8"
+        },
+		{
+            "type": "text",
+            "id": "section_cta_text",
+            "label": "CTA Text"
+        },
+        {
+            "type": "url",
+            "id": "section_cta_link",
+            "label": "CTA Link"
+        },
+        {
+            "type": "color",
+            "id": "section_cta_background_color",
+            "label": "CTA Background Color"
+        },
+        {
+            "type": "color",
+            "id": "section_cta_color",
+            "label": "CTA Text Color"
+        },
+        {
+            "type": "color",
+            "id": "section_cta_border_color",
+            "label": "CTA Border color"
+        },
+        {
+            "type": "checkbox",
+            "id": "section_cta_use_shadow",
+            "label": "CTA : Use Shadow?",
+            "default": false
+        }
+      ]      
+  }],
+	"presets": [
+		{
+			"name": "Feature Details Blocks",
+			"category": "Custom Sections"
+		}
+	]
+}{% endschema %}
+
+
+{% javascript %}
+{% endjavascript %}

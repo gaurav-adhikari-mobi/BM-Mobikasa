@@ -1,0 +1,86 @@
+{% include 'sections__column-grid' %}
+
+{% schema %}
+{
+  "name": "Column Grid",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description"
+    },
+	{
+      "type": "select",
+      "id": "section_heading_alignment",
+      "options": [
+        { "value": "text-left", "label": "Left"},
+        { "value": "text-center", "label": "Center"}
+      ],
+      "default": "text-left",
+      "label": "Alignment"
+    },
+    {
+      "type": "select",
+      "id": "box_alignment",
+      "options": [
+        { "value": "text-left", "label": "Left"},
+        { "value": "text-center", "label": "Center"}
+      ],
+      "default": "text-left",
+      "label": "Box Alignment"
+    },
+    {
+      "type": "text",
+      "id": "bottom_text",
+      "label": "Bottom text"
+    },
+    {
+      "type": "text",
+      "id": "bottom_link",
+      "label": "Bottom link"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Grid Item",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Box Heading"
+        },
+        {
+          "type": "text",
+          "id": "box_title",
+          "label": "Box Title"
+        },
+        {
+          "type": "text",
+          "id": "box_title_link",
+          "label": "Box Title Link"
+        },
+        {
+          "type": "textarea",
+          "id": "box_address",
+          "label": "Box Address"
+        }
+      ]
+  }]
+}
+{% endschema %}

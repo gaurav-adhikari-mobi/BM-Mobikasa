@@ -1,0 +1,127 @@
+<div class="cart-addon-section" style="display: none;">
+<h2 class="add-on-heading">Complete Your Bed Setup</h2>
+{% for cartitem in cart.items %}
+{% if cartitem.product_id == 381450171 or cartitem.product_id == 6989665763433 or cartitem.product_id == 6790983286889 or cartitem.product_id == 6993928126569  or cartitem.product_id == 6948906336361 or cartitem.product_id == 7089581031529%}
+{% assign product_id_to_compare = cartitem.product_id %}
+{% assign product_variant_array = cartitem.title | split: '- ' %}
+{% assign product_variant = product_variant_array[1] | split: '/' | first | strip | prepend: '[' | append: ']' %}
+{% break %}
+{% endif %}
+{% endfor %}
+
+{% assign cart_variants = cart.items | map: 'variant_id' | uniq %}
+{% assign is_mattress = false %}
+{% assign is_bundle = false %}
+
+{% if product_id_to_compare == 381450171 or product_id_to_compare == 6989665763433 or product_id_to_compare == 6790983286889 or product_id_to_compare == 6993928126569 or product_id_to_compare == 6948906336361 or product_id_to_compare == 7089581031529%}
+{% assign is_mattress = true %}
+{% assign is_bundle = false %}
+{% endif %}
+
+{% if product_id_to_compare == 10340464782 or product_id_to_compare == 148842217486 %}
+{% assign is_mattress = false %}
+{% assign is_bundle = true %}
+{% endif %}
+
+<div class="addon-wrapper">
+  <div class="addon-related" style="display: flex;flex-wrap: wrap;">
+    {% assign req_accessories = "" %}
+
+    {% if is_mattress == true %}
+   {% assign req_accessories = "bear-pro-topper,bear-pillow,summit-platform-bed,bear-foundation,bear-mattress-protector,bear-sheets,adjustable-flex-bed" | split: ',' %}
+     {% endif %}
+
+    {% if is_bundle == true %}
+    {% assign req_accessories = "bear-foundation,bear-bed-frame" | split: ',' %}
+    {% endif %}
+
+    {% if is_mattress == true or is_bundle == true %}
+    {% for product_handle in req_accessories %}
+
+    {% assign is_exception = false %}
+    {% assign product = all_products[product_handle] %}
+
+    {% for variant in product.variants %}
+    {% assign variant_addon_size = variant.metafields.addon.size_variant %}
+    {%  assign print_default = true  %}
+
+    {% for matchvariant in cart_variants  %}
+    {%  assign cvariant = matchvariant | plus: 0  %}
+
+     
+    {% if variant.id == cvariant %}
+    {%  assign print_default = false  %}
+    {% break %}
+    {% endif %}
+    {% endfor %}
+
+    {% if variant.available == false %}
+    {%  assign print_default = false  %}
+    {% endif %}
+
+    {% if print_default == true %}
+    {% if variant_addon_size contains product_variant %}
+ 
+	{% assign title_divided = product.title | upcase | split: ' ' %}
+
+	{% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+	{% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+    {% assign cs_has_discount = false %}
+    
+    {% assign sale_products = settings.sale_products %}
+
+    {% if sale_products contains product.handle %}
+	    {% assign cs_has_discount = true %}
+    {% endif %}
+
+    {% if sale_products.size < 1 %}
+    	{% assign cs_has_discount = true %}
+    {% endif %}
+
+    {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+        {% assign discountValue = settings.discount_percentage | plus: 0 %}
+        {% assign discountCode = settings.discount_code %}
+        {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+
+        {% assign cs_compare_price = cs_price %}
+        {% assign cs_price = cs_price | minus: elDiscount %}
+    {% endif %}
+
+    <div class="addon-item" data-id={{product.id}}>
+
+      <img class="addon-feature lazyload" data-src="https://cdn.shopify.com/s/files/1/0661/5815/{{product.featured_image}}" />
+      
+      <div class="f1">
+        {% if product.title == 'Summit Platform Bed with Headboard' %}
+          SUMMIT PLATFORM BED
+          {% elsif product.title == 'Adjustable Flex Bed' %}
+          ADJUSTABLE FLEX BED
+          {% else %}
+         <span style="margin-right: 5px;"> {{title_divided[0]}}</span><span class="f2">{{title_divided[1]}} </span>
+          {% endif %}
+      
+      
+     </div>
+      
+      <div class="addon-description">{{ product.metafields.addon.description }}</div>
+      
+      <div class="addon-variant">{{ variant.title }} - ${{ cs_price }} 
+
+        {% if cs_compare_price > 0 %}
+        	<span class="addon-old-price">${{ cs_compare_price }}</span>
+      	{% endif %}
+      </div>
+
+      <button class="btn btn-blue shadow addon-cart" data-variant="{{ variant.title }}" data-variant_id="{{variant.id}}" type="submit">ADD TO CART
+        <span class="inline-loader"><i class="mdi mdi-loading mdi-spin"></i></span>
+      </button>
+    </div>
+    {% endif %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+    {% endif %}
+  </div>
+</div>
+</div>

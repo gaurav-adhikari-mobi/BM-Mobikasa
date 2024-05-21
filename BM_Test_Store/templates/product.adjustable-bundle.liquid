@@ -1,0 +1,135 @@
+{% include 'product-details' %}
+
+{% section 'flex-pdp-icon-grid' %}
+
+{% section 'simple-grid-elite-hybrid' %}
+
+{% section 'flex-section-publications' %}
+
+{% section 'pdp-imageblockcontent-flex' %}
+
+{% section 'flex-standard-content' %}
+
+{% section 'flex-product-details' %}
+{% section 'yotpo-pdp-hybrid-gallery' %}
+
+{% section 'flex-bundle-faq-component' %}
+
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Adjustable Base Reviews</h2>
+		<div class="yotpo-widget-instance" data-yotpo-instance-id="544318" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" | prepend: "https:" | replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-price="{{ product.price | divided_by: 100.00 }}" data-yotpo-currency="{{ shop.currency }}" data-yotpo-description="{{ product.description | escape }}"></div>
+	</div>
+</section>
+
+{% section 'pdp-accordion-flex-bundle' %}
+
+{% include 'schema' %}
+<script>
+  $(document).ready(function() {
+  $("#dropdownMattressSize").on("change", function() {
+    // Get the selected value of the dropdown
+    const selectedValue = $(this).val();
+
+    // Get the element to change and the price elements
+    const variantElement = $(".cs-bonus--variant");
+    const queenPrice = $(".cs-bonus-price");
+    const descPrice = $(".cs-bonus-include");
+    // Clear the text inside the variantElement
+    variantElement.text("");
+     descPrice.text("");
+
+    if (selectedValue === "40803514581097") {
+      variantElement.text("Queen");
+      descPrice.text("Includes 2 Pillows, 1 Sheet Set, and 1 Mattress Protector");
+      queenPrice.text("$320");
+    } else if (selectedValue === "40803514613865") {
+      variantElement.text("King");
+      queenPrice.text("$400");
+      descPrice.text("Includes 2 Pillows, 1 Sheet Set, and 1 Mattress Protector");
+    } else if (selectedValue === "40803514646633") {
+      variantElement.text("Split King");
+      queenPrice.text("$500");
+      descPrice.text("Includes 2 Pillows, 2 Sheet Sets, and 2 Mattress Protector");
+    }
+  });
+});
+</script>
+{% if product.handle == 'adjustable-bed-deal' %}
+  <style>
+    .product-splitit-wrapper{
+      display: none;
+    }
+    .cs-bonus-include{
+          line-height: 22px;
+    }
+     .hhhh{
+          display: flex;
+    flex-direction: column-reverse;
+    }
+   
+  </style>
+    <script>
+      $('.product-buy button').append('<span class="frequentXtotal">(2 ITEMS)</span>');
+function updateDiscountPrice() {
+    // Get the dropdown element by its ID
+    var dropdown = document.getElementById("dropdownMattressSize");
+
+    // Get the selected option text content
+    var selectedOptionText = dropdown.options[dropdown.selectedIndex].textContent;
+
+    // Log the selected option text content to the console
+    console.log("Selected Option:", selectedOptionText);
+
+    // Check if there is a checked input in the add-on row
+    const checkedAddonRow = document.querySelector('.add-on-row input:checked');
+
+    // Check if there is a checked input
+    if (checkedAddonRow) {
+        const priceNewSpan = checkedAddonRow.closest('.add-on-row').querySelector('.price-new');
+        const priceValue = parseInt(priceNewSpan.innerText.replace('+ $', ''), 10);
+        const priceNewSpann = checkedAddonRow.closest('.add-on-row').querySelector('.price-old');
+        const priceValuen = parseInt(priceNewSpann.innerText.replace('$', ''), 10);
+        const priceDifference = priceValuen - priceValue;
+        var discountPrice = 0;
+        var discountPricen = 0;
+        if (selectedOptionText === "Queen") {
+            discountPrice = 699 + priceValue;
+          discountPricen = 1398 + priceValuen;
+          discountPricene = 699 + priceDifference;
+        } else if (selectedOptionText === "King") {
+            discountPrice = 999 + priceValue;
+          discountPricen = 1998 + priceValuen;
+          discountPricene = 999 + priceDifference;
+        } else if (selectedOptionText === "Split King") {
+            discountPrice = 1399 + priceValue;
+          discountPricen = 2798 + priceValuen;
+          discountPricene = 1399 + priceDifference;
+        }
+
+        // Log the updated discount price to the console
+        console.log("Updated Discount Price:", discountPrice);
+
+        // Update the content of the span with id "discount-price"
+        document.getElementById('discount-price').innerText = discountPrice;
+       document.getElementById('total-price').innerText = discountPricen;
+     document.querySelector('.total-discount-text').innerHTML = `$${discountPricene} off`;
+    }
+}
+
+// Run the function every second (1000 milliseconds)
+setInterval(updateDiscountPrice, 10);
+
+    
+  </script>
+  {% endif %}
+   {% if product.handle == 'adjustable-bed-deal' %}
+  <style>
+    .frequent-products .price_bundle{
+      display: none!important;
+    }
+    .modal-content .close-text{
+      display: none!important;
+    }
+  </style>
+     {% endif %}

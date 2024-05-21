@@ -1,0 +1,497 @@
+{% assign grid_class = "grid--one-whole" %}
+{% assign block_count = section.blocks.size %}
+
+{% if block_count == 2 %}
+{% assign grid_class = "grid--one-half" %}
+{% endif %}
+
+{% if block_count == 4 %}
+{% assign grid_class = "grid--one-half" %}
+{% endif %}
+
+<div class="content-grid-wrapper {{grid_class}}" style="background-color: {{section.settings.section_background_color}}">
+  	{% if section.settings.section_title.size > 0 %}
+	<h2 class="title" style="color: {{section.settings.section_title_color}}">{{section.settings.section_title}}</h2>
+  	{% endif %}
+
+  	<div class="content-grid-inner gggg">
+        {% for block in section.blocks %}
+            {% if block.type == 'griddata' %}
+      			<div class="cs-content-grid-item">
+                  	{% if block.settings.grid_video.size > 0 %}
+                      <a class="cs-content-grid-item-inner has-video" data-fancybox href="{{block.settings.grid_video}}">
+                          <img class="cs-content-grid-feature has-images-variant" alt="{{block.settings.grid_image_alt}}" data-desktop="{{ block.settings.grid_image | img_url: '1400x' }}" data-ipad="{{ block.settings.grid_image_ipad | img_url: '1024x' }}" data-mobile="{{ block.settings.grid_image_mobile | img_url: '750x' }}" />
+
+                          {% if section.settings.grid_overlay_option == true %}
+                          	<div class="cs-content-grid-gradient"></div>
+                          {% endif %}
+
+                          <div class="cs-content-grid-details" style="color: {{section.settings.grid_color}}">
+
+                            <div class="cs-content-grid-left">
+                              
+                              {% if block.settings.grid_review.size > 0 %}
+                              	{{block.settings.grid_review}}
+                              {% endif %}
+                              
+                              {% if block.settings.grid_title.size > 0 %}
+                              	<h3 class="cs-content-grid-title" style="color: {{block.settings.grid_title_text_cl}}">{{block.settings.grid_title}}</h3>
+                              {% endif %}
+
+                              {% if block.settings.grid_description.size > 0 %}
+                              	<p class="cs-content-grid-description">{{block.settings.grid_description}}</p>
+                              {% endif %}
+                            </div>
+                            <div class="button_wrapper">
+                            {% if block.settings.grid_button_text != blank %}
+                            <div class="cs-content-grid-right">
+                              <span class="btn shadow btn-grid">{{block.settings.grid_button_text}}</span>
+                            </div>
+                            {% endif %}
+                            
+                             {% if block.settings.grid_button_text_n != blank %}
+                            <div class="cs-content-grid-right-next">
+                              <a class="btn shadow btn-grid" href="{{block.settings.grid_button_link_n}}">{{block.settings.grid_button_text_n}}</a>
+                            </div>
+                            {% endif %}
+                            </div>
+                          </div>
+                      </a>
+                  	{% else %}
+                      <div class="cs-content-grid-item-inner">
+                          <img class="cs-content-grid-feature has-images-variant" alt="{{block.settings.grid_image_alt}}" data-desktop="{{ block.settings.grid_image | img_url: '1400x' }}" data-ipad="{{ block.settings.grid_image_ipad | img_url: '1024x' }}" data-mobile="{{ block.settings.grid_image_mobile | img_url: '750x' }}" />
+
+                          {% if section.settings.grid_overlay_option == true %}
+                              <div class="cs-content-grid-gradient"></div>
+                          {% endif %}
+
+                          <div class="cs-content-grid-details" style="color: {{section.settings.grid_color}}">
+                              <div class="cs-content-grid-left">
+                                {% if grid_class == "grid--one-whole" %}
+                                
+                                 {% if block.settings.grid_title.size > 0 %}
+                                      <h3 class="cs-content-grid-title grid--one-whole-title" style="background-color:{{ block.settings.grid_title_bg }};color: {{block.settings.grid_title_text_cl}}">{{block.settings.grid_title}}</h3>
+                                  {% endif %}
+                                <div class="grid--one-whole-review">
+                                 {% if block.settings.grid_review.size > 0 %}
+                              	  {{block.settings.grid_review}}
+                                  {% endif %}
+                                </div>                          
+                                {% else %}
+                                <div class="grid--one-whole-none-review">
+                                  {% if block.settings.grid_review.size > 0 %}
+                              	  {{block.settings.grid_review}}
+                                  {% endif %}
+                                </div>
+                                  {% if block.settings.grid_title.size > 0 %}
+                                      <h3 class="cs-content-grid-title grid--one-whole-title-none" style="background-color:{{ block.settings.grid_title_bg }};color: {{block.settings.grid_title_text_cl}};">{{block.settings.grid_title}}</h3>
+                                  {% endif %}
+                                
+                                {% endif %}
+                                  {% if block.settings.grid_description.size > 0 %}
+                                      <p class="cs-content-grid-description">{{block.settings.grid_description}}</p>
+                                  {% endif %}
+                              </div>
+                            <div class="button_wrapper">
+                            {% if block.settings.grid_button_text != blank %}
+                            <div class="cs-content-grid-right">
+                              <a class="btn shadow btn-grid" href="{{block.settings.grid_button_link}}">{{block.settings.grid_button_text}}</a>
+                            </div>
+                            {% endif %}
+                            
+                             {% if block.settings.grid_button_text_n != blank %}
+                            <div class="cs-content-grid-right-next desktop-grid-right-next">
+                              <a class="btn shadow btn-grid" href="{{block.settings.grid_button_link_n}}">{{block.settings.grid_button_text_n}}</a>
+                            </div>
+                            {% endif %}
+                            </div>
+                          </div>
+                      </div>
+                  	{% endif %}
+                  	{% if block.settings.grid_button_text != blank %}
+                    <div class="mobile-cta-wrapper">
+						<a class="btn shadow btn-grid" {% if block.settings.grid_video.size > 0 %}data-fancybox{% endif %} href="{{block.settings.grid_button_link}}">{{block.settings.grid_button_text}}</a>
+                    </div>
+                  	{% endif %}
+                  
+                    {% if block.settings.grid_button_text_n != blank %}
+                    <div class="cs-content-grid-right-next mobile-cta-wrapper-right-next">
+                      <a class="btn shadow btn-grid" href="{{block.settings.grid_button_link_n}}">{{block.settings.grid_button_text_n}}</a>
+                    </div>
+                    {% endif %}
+      			</div>
+            {% endif %}
+        {% endfor %}
+  	</div>
+
+    {% if section.settings.grid_bottom_button.size > 0 %}
+      <div class="content-grid-bottom-button">
+        <a class="btn shadow" href="{{ section.settings.grid_bottom_link }}">{{ section.settings.grid_bottom_button }}</a>
+      </div>
+  	{% endif %}
+  
+      {% if section.settings.grid_button_text_b.size > 0 %}
+      <div class="content-grid-bottom-button-bittom">
+        <a class="btn-shadow-b" href="{{ section.settings.grid_button_link_b }}">{{ section.settings.grid_button_text_b }}</a>
+      </div>
+  	{% endif %}
+  
+  
+</div>
+
+
+
+<style>
+  	#shopify-section-{{section.id}} .content-grid-wrapper {
+      	width: 100%;
+      	font-size: 16px;
+      	padding: 64px 0;
+    }
+  
+	#shopify-section-{{section.id}} .title {
+      	text-align: center;
+      	letter-spacing: normal;
+      	text-transform: initial;
+      	font-size: 2.25rem;
+      	line-height: 2rem;
+      	font-family: "apercubold", sans-serif;
+      	margin: 0 0 60px;
+      	padding: 0 1rem;
+    }
+
+	#shopify-section-{{section.id}} .content-grid-inner {
+      	display: grid;
+      	width: 100%;
+      	max-width: 1360px;
+      	font-size: 0;
+      	padding: 0 1rem;
+      	margin: 0 auto;
+      	text-align: left;
+    }
+
+	#shopify-section-{{section.id}} .grid--one-half .content-grid-inner {
+        grid-template-columns: 1fr 1fr;
+        grid-column-gap: 2.2rem;
+        grid-row-gap: 2.2rem;
+    }
+
+  	#shopify-section-{{section.id}} .cs-content-grid-item {
+      	display: inline-block;
+      	width: 100%;
+      	vertical-align: top;
+    }
+
+  	#shopify-section-{{section.id}} .cs-content-grid-item-inner {
+      	display: block;
+      	position: relative;
+/*       	height: 448px; */
+      	background-color: #e0e0e0;
+      	background-position: center center;
+      	background-size: cover;
+    }
+
+  	#shopify-section-{{section.id}} .has-video {
+        cursor: pointer;
+    }
+
+  	#shopify-section-{{section.id}} .has-video:before {
+        content: "\F40A";
+        font: normal normal normal 24px/1 "Material Design Icons";
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        color: #ffffff;
+        font-size: 50px;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        opacity: 0.7;
+        background-color: #000000;
+        border-radius: 40px;
+        padding: 10px;
+    }
+
+  	#shopify-section-{{section.id}} .cs-content-grid-left {
+      	font-size: 16px;
+        margin: 0 0 1rem;
+    }
+
+  	#shopify-section-{{section.id}} .grid--one-half .cs-content-grid-left {
+		display: inline-block;
+      	width: 100%;
+      	margin: 0;
+      	vertical-align: bottom;
+       margin: 0 0 15px;
+    }
+
+  	#shopify-section-{{section.id}} .grid--one-half .cs-content-grid-right {
+      	display: inline-block;
+/*       	width: 100%; */
+      	text-align: left;
+      	vertical-align: bottom;
+    }
+
+	#shopify-section-{{section.id}} .cs-content-grid-details {
+      	position: absolute;
+      	bottom: 0;
+      	left: 0;
+      	right: 0;
+      	font-size: 0;
+      	padding: 24px;
+    }
+
+  	#shopify-section-{{section.id}} .cs-content-grid-gradient {
+      	position: absolute;
+      	width: 100%;
+      	height: 50%;
+      	bottom: 0;
+      	left: 0;
+      	right: 0;
+        background: -webkit-linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 54%);
+        background: -moz-linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 54%);
+        background: -o-linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 54%);
+        background: linear-gradient(rgba(0,0,0,0) 0%, rgba(0,0,0,0.5) 54%);
+    }
+
+  	#shopify-section-{{section.id}} .btn-grid {
+      	color: #13507A;
+      	background-color: #ffffff;
+      	color: {{section.settings.grid_button_text_color}};
+      	background-color: {{section.settings.grid_button_background_color}};
+    }
+  
+  	#shopify-section-{{section.id}} .btn-grid:hover,
+  	#shopify-section-{{section.id}} .btn-grid:focus {
+      	color: #13507A;
+      	background-color: #ffffff;
+      	color: #0C324C;
+      	background-color: #ffffff;
+    }
+  
+    #shopify-section-{{section.id}} .cs-content-grid-item img {
+        display: block;
+        width: 100%;
+    height: 400px;
+        object-fit: cover;
+    }
+
+  #shopify-section-{{section.id}} .cs-content-grid-title {
+    color: inherit;
+    margin: 0 0 8px;
+    text-transform: uppercase;
+    width: fit-content;
+    padding: 5px;
+    font-size:12px;
+  }
+
+    #shopify-section-{{section.id}} .cs-content-grid-description {
+		color: inherit;
+      	font-size: 1rem;
+/*       	font-weight: 600; */
+/*      	line-height: 32px;*/
+      	margin: 0;
+    }
+
+  	#shopify-section-{{section.id}} .mobile-cta-wrapper {
+      	display: none;
+    }
+  #shopify-section-{{section.id}} .mobile-cta-wrapper-right-next {
+      	display: none;
+    }
+
+  	#shopify-section-{{section.id}} .content-grid-bottom-button {
+      	padding: 45px 0 0 0;
+      	text-align: center;
+    }
+
+#shopify-section-{{section.id}} .content-grid-bottom-button .btn {
+      color: {{ section.settings.grid_bottom_color }};
+      background-color: {{ section.settings.grid_bottom_background_color }};
+    }
+     #shopify-section-{{section.id}} .button_wrapper {
+        display: flex;
+    }
+
+ #shopify-section-{{section.id}} .cs-content-grid-description span {
+          display: block;
+          line-height: 1.5;
+      }
+ #shopify-section-{{section.id}} .grid--one-half .cs-content-grid-right .btn.shadow.btn-grid {
+    min-width: 160px;
+    }
+  
+  
+#shopify-section-{{section.id}} .cs-content-grid-right-next .btn.shadow.btn-grid {
+      background: none !important;
+      box-shadow: none;
+      color: white;
+      text-transform: none;
+    text-decoration: underline !important;
+    }
+#shopify-section-{{section.id}} .content-grid-wrapper.grid--one-whole .content-grid-inner {
+    max-width: 100%;
+    padding: 0px !important;
+ }
+#shopify-section-{{section.id}} .content-grid-bottom-button-bittom {
+    margin-top: 35px;
+    text-align: center;
+    font-size: 18px;
+    text-decoration: underline;
+}
+  .grid--one-whole-none-review {
+    width: fit-content;
+/*     padding: 0 5px; */
+    margin-bottom: 10px;
+  }
+  #shopify-section-{{section.id}} .content-grid-bottom-button-bittom .btn-shadow-b{
+    color:#13507A;
+    font-size: 1rem;
+    font-family: "apercubold", sans-serif;
+    font-style: normal;
+    font-stretch: normal;
+  }
+<!--- verion 1 -->
+ #shopify-section-{{section.id}} {
+    display: none;
+}
+<!--- verion 2 full width-->
+ #shopify-section-{{section.id}} {
+    display: none;
+}
+  
+#shopify-section-{{section.id}} {
+    display: none;
+} 
+ 
+  #shopify-section-165476946080f3c773 .cs-content-grid-details {
+    max-width: 500px;
+}
+#shopify-section-165476946080f3c773 .content-grid-wrapper {
+    padding: 2.2rem 0;
+}  
+#shopify-section-16547697686f088cff .content-grid-wrapper {
+    padding: 0px;
+}  
+#shopify-section-165476946080f3c773 .cs-content-grid-description {
+    color: rgb(255, 255, 255);
+}
+<!--- verion 2 full width-->  
+  	@media screen and (max-width: 1200px) {
+        #shopify-section-{{section.id}} .title {
+            margin: 0 0 35px;
+        }
+    }
+
+  	@media screen and (max-width: 1024px) {
+      #shopify-section-1654767552e0307b45 .grid--one-half .cs-content-grid-left {
+        margin: 0 0 0px;
+        padding-bottom: 0;
+      }
+      #shopify-section-1654767552e0307b45 .cs-content-grid-right-next .btn.shadow.btn-grid {
+        padding-left: 25px;
+      }
+      	#shopify-section-{{section.id}} .content-grid-wrapper {
+            width: 100%;
+            font-size: 16px;
+        }
+      
+        #shopify-section-{{section.id}} .cs-content-grid-details {
+            bottom: 0;
+            padding: 0;
+          	background: none;
+        }
+
+		#shopify-section-{{section.id}} .cs-content-grid-left {
+            padding: 24px;
+          	margin: 0;
+        }
+
+      	#shopify-section-{{section.id}} .grid--one-half .cs-content-grid-left {
+            display: block;
+            width: 100%;
+        }
+      
+        #shopify-section-{{section.id}} .cs-content-grid-right {
+			display: none;
+        }
+
+		#shopify-section-{{section.id}} .grid--one-half .cs-content-grid-right {
+            display: none;
+        }
+      
+      	#shopify-section-{{section.id}} .mobile-cta-wrapper {
+          	display: block;
+          	padding: 32px 0 0 0;
+        }
+
+        #shopify-section-{{section.id}} .cs-content-grid-item-inner {
+/* 			height: 352px; */
+          
+        }
+      #shopify-section-165476946080f3c773 .mobile-cta-wrapper {
+            display: block;
+            padding: 32px 0px 0 18px;
+        }
+      #shopify-section-165476946080f3c773 .cs-content-grid-left {
+        padding: 15px;
+      }
+    }
+  
+  	@media screen and (max-width: 767px) {
+        #shopify-section-165476946080f3c773 .cs-content-grid-details {
+              max-width: 100%;
+          }
+      
+        #shopify-section-{{section.id}} .content-grid-inner {
+            display: block;
+        }
+      
+        #shopify-section-{{section.id}} .title {
+            font-size: 1.6875rem;
+            font-family: "apercubold", sans-serif;
+        }
+
+      	#shopify-section-{{section.id}} .grid--one-half .content-grid-inner {
+            grid-template-columns: auto;
+        }
+
+      	#shopify-section-{{section.id}} .grid--one-half .cs-content-grid-item {
+          	margin: 0 0 48px;
+        }
+
+      	#shopify-section-{{section.id}} .grid--one-half .cs-content-grid-item:last-of-type {
+          	margin: 0;
+        }
+
+      	#shopify-section-{{section.id}} .cs-content-grid-item-inner {
+/*           	height: 328px; */
+/*           	height: 100%; */
+        }
+      
+        #shopify-section-{{section.id}} .cs-content-grid-details {
+            text-align: center;
+        }
+
+        #shopify-section-{{section.id}} .mobile-cta-wrapper {
+          	text-align: center;
+            padding: 24px 0 0 0;
+        }
+         #shopify-section-{{section.id}} .mobile-cta-wrapper-right-next {
+          	display: block;
+           text-align: center;
+        }
+        #shopify-section-{{section.id}} .cs-content-grid-title {
+            margin: 0 auto;
+          }
+        #shopify-section-{{section.id}} .desktop-grid-right-next {
+           display:none;
+        }
+       #shopify-section-{{section.id}} .mobile-cta-wrapper-right-next .btn.shadow.btn-grid{
+         color: #13507A !important;
+         
+       }
+      #shopify-section-{{section.id}} .grid--one-whole-none-review {
+          margin: 0 auto;
+      }
+    }
+</style>

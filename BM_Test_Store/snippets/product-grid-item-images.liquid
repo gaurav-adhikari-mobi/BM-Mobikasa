@@ -1,0 +1,64 @@
+<div class="product-slider__wrap">
+
+  {% assign has_youtube = false %}
+  {% assign counter_youtube = 0 %}
+
+  {% for media in product.media %}
+    {% case media.media_type %}
+    {% when 'image' %}
+    {% if media.alt contains 'youtube' %}
+    {% assign has_youtube = true %}
+    {% assign counter_youtube = counter_youtube | plus: 1 %}
+    <div class="product-slider__slide{% if forloop.first %} active{% endif %} video-youtube">
+      <img style="visibility: hidden; opacity: 0;" src="{{ media | img_url: '1440x' }}">
+      <iframe id="youtube_video_{{counter_youtube}}" src="{{ media.alt }}?enablejsapi=1&html5=1&mute=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    </div>
+    {% elsif media.alt contains 'separateimage' %}
+    <div class="product-slider__slide{% if forloop.first %} active{% endif %}">
+      <img data-src="{{media.alt | remove: 'separateimage-' | file_img_url: '1440x' }}" class="lazyload">
+    </div>
+    {% else %}
+    <div class="product-slider__slide{% if forloop.first %} active{% endif %}">
+      <img data-src="{{media | img_url: '1440x' }}" class="lazyload">
+    </div>
+    {% endif %}
+    {% when 'video' %}
+    <div class="product-slider__slide{% if forloop.first %} active{% endif %} video-internal" data-media-id="{{ media.id }}">
+      {{ media | video_tag: controls: true, muted: true, disablePictureInPicture: true, controlslist: 'nodownload' }}
+      <img style="visibility: hidden; opacity: 0;" src="{{media | img_url: '1440x' }}" data-src="{{media | img_url: '1440x' }}" class="video-banner">
+    </div>
+    {% when 'external_video' %}
+    {% assign has_youtube = true %}
+    {% assign counter_youtube = counter_youtube | plus: 1 %}
+    <div class="product-slider__slide{% if forloop.first %} active{% endif %} video-youtube">
+      <img style="visibility: hidden; opacity: 0;" src="{{ media | img_url: '1440x' }}">
+      <iframe id="youtube_video_{{counter_youtube}}" src="https://www.youtube.com/embed/{{ media.external_id }}?enablejsapi=1&html5=1&mute=1" frameborder="0" allow="autoplay" allowfullscreen></iframe>
+    </div>
+    {% endcase %}
+  {% endfor %}
+</div>
+
+<div class="product-slider__controls">
+  {% for media in product.media %}
+    {% case media.media_type %}
+    {% when 'image' %}
+    {% if media.alt contains 'youtube' %}
+    <div class="product-slider__controls-thumb product-slider__controls-{{forloop.index}} {% if forloop.first %} active{% endif %} has-video" style="background-image: url({{ media | img_url: '72x' }});" alt="{{ media.alt | escape }}">
+      <img src="{{ 'cs_icon_play.png' | asset_img_url: '50x' }}" />
+    </div>
+  	{% elsif media.alt contains 'separateimage' %}
+    <div class="product-slider__controls-thumb product-slider__controls-{{forloop.index}} {% if forloop.first %} active{% endif %}" style="background-image: url({{ media.alt | remove: 'separateimage-' | file_img_url: '72x' }});"></div>
+    {% else %}
+    <div class="product-slider__controls-thumb product-slider__controls-{{forloop.index}} {% if forloop.first %} active{% endif %}" style="background-image: url({{ media | img_url: '72x' }});" alt="{{ media.alt | escape }}"></div>
+    {% endif %}
+    {% when 'video' %}
+    <div class="product-slider__controls-thumb product-slider__controls-{{forloop.index}} {% if forloop.first %} active{% endif %} has-video" style="background-image: url({{ media | img_url: '72x' }});" alt="{{ media.alt | escape }}">
+      <img src="{{ 'cs_icon_play.png' | asset_img_url: '50x' }}" />
+    </div>
+    {% when 'external_video' %}
+    <div class="product-slider__controls-thumb product-slider__controls-{{forloop.index}} {% if forloop.first %} active{% endif %} has-youtube" style="background-image: url({{ media | img_url: '72x' }});" data-index="{{forloop.index}}" alt="Video">
+      <img src="{{ 'cs_icon_play.png' | asset_img_url: '50x' }}" />
+    </div>
+    {% endcase %}
+  {% endfor %}
+</div>

@@ -1,0 +1,126 @@
+<section class="product">
+  	<section class="product-slider">
+      {% include 'product-grid-item-images' %}
+	</section>
+
+	<div class="product-box">
+		<div class="product-box__wrap">
+            {% if product.handle contains 'recycling' %}
+            	<h1 class="f1">Recycling <span class="f2">{{ product.title | replace: 'Recycling ', '' }}</span> </h1>
+          	{% elsif product.handle contains 'removal' %}
+            	<h1 class="f1">Removal <span class="f2">{{ product.title | replace: 'Removal ', '' }}</span> </h1>
+          	{% else %}
+            	<h1 class="f1"><span class="f2">{{ product.title }}</span></h1>
+            {% endif %}
+
+          	<div class="product-reviews">
+              <div class="yotpo bottomLine"
+				data-appkey="yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d"
+				data-domain="{{ shop.permanent_domain | escape }}"
+				data-product-id="{{ product.id }}"
+				data-product-models="{{ product.id }}"
+				data-name="{{ product.title | escape }}"
+				data-url="{{ shop.url }}{{ product.url }}"
+				data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+				data-description="{{ product.description | escape }}"
+				data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+              </div>
+			</div>
+
+          	<div class="product-description">
+				<div class="product-description__wrap">
+
+					{% if product.available == true %}
+						{% section 'product-discount-code' %}
+
+                        {% if product.metafields.product.sale_text.size > 0 %}
+                            <div class="link-wrapper"><a href="{{product.metafields.product.sale_link}}">{{product.metafields.product.sale_text}}</a></div>
+                        {% endif %}
+					{% endif %}
+
+                    {% if product.description.size > 0 %}
+                    	<div class="product-content">{{product.description}}</div>
+                    {% endif %}
+				</div>
+			</div>
+
+            {% if product.available == true %}
+
+              <div class="price-block">
+
+                  <div class="price-info">
+                    <div class="price-head">Pay Now</div>
+                    <div class="title-after-price">
+                      <div class="discount-price"><span class="currency-symbol">$</span><span id="discount-price">{{ product.selected_variant.price | money_without_currency | replace: '.00', '' }}</span><span class="last"></span></div>
+                      <div class="total-price _hide"><span class="was {% if product.handle contains 'bear-original-mattress' or product.handle contains 'bear-hybrid' or product.handle contains 'bear-pro' %}hidden{% else %}hidden{% endif %}">WAS</span> <span class="currency-symbol">$</span><span id="total-price">{{ product.selected_or_first_available_variant.compare_at_price | money_without_currency | replace: '.00', '' | plus: 0  }}</span></div>
+                    </div>
+                  </div>
+                </div>
+
+              <div class="product-tiles" data-tiles="{{ product.variants.size }}">
+
+                {% assign variant_position = 0 %}
+                {% assign specific_variant = product.metafields.product.pdp_specific_variant %}
+
+                {% if specific_variant %}
+                {% assign variant_position = specific_variant %}
+                {% endif %}
+
+                <select data-selection="{{variant_position}}" id="dropdownMattressSize" class="product-dropdown__list">
+                  {% for variant in product.variants %}
+
+                  {% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+                  {% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+
+                  {% assign haspillow = variant.metafields.variant.attached_product %}
+                  {% assign hasinformation = '' %}
+
+                  <option class="" 
+                          value="{{ variant.id }}" 
+                          data-variant="{{ variant.title }}"
+                          data-price="{{cs_price}}"
+                          data-information="{{hasinformation}}"
+                          data-attached="{{haspillow}}"
+                          data-old-price="{{cs_compare_price}}"
+                          data-discount-text="{% if elDiscount > 0 %} (${{elDiscount}} off with code){% endif %}"
+                          {% if variant.available %}{% else %}disabled{% endif %}
+                          data-title="{{ variant.title | escape }}">{{ variant.title }}{% if variant.available %}{% else %} - SOLD OUT{% endif %}
+                  </option>
+                  {% endfor %}
+                </select>
+              </div>
+          	{% endif %}
+
+            {% include 'add-on-product-buy' %}
+          </div>
+	</div>
+</section>
+
+<script type="text/javascript">
+
+  {% if has_youtube == true %}
+
+        var tag = document.createElement('script');
+        tag.src = "//www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player = [];
+
+        function onYouTubePlayerAPIReady() {
+
+           if($('.product-slider__slide.video-youtube').length > 0) {
+              $('.product-slider__slide.video-youtube').each(function(i) {
+                  var iframeEl = $(this).find('iframe').attr('id');
+                  player[i] = new YT.Player(iframeEl);
+              });
+           }
+        }
+  {% endif %}
+  
+  $(document).ready(function(){
+	var currencyCode = $("#in-context-paypal-metadata").attr("data-currency");
+    $(".discount-price .last").text(currencyCode);
+  });
+  
+</script>

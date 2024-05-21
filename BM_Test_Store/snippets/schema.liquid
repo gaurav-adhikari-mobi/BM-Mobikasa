@@ -1,0 +1,43 @@
+{% assign featured_image = product.featured_image | product_img_url: 'master' %}
+
+{% if product.metafields.product.featured_image != blank %}
+  {% assign featured_image = product.metafields.product.featured_image %}
+{% endif %}
+{% assign lowestVariantPrice = product.price_min | money_without_currency | replace: ',', '' %}
+{% assign highestVariantPrice = product.price_max | money_without_currency | replace: ',', '' %}
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org/",
+    "@type": "Product",
+    "name": "{{product.title}}",
+    "image": "https:{{featured_image}}",
+    "sku": [{{ skulist }}],
+    "gtin14": [{{ barcodelist }}],
+    "description": "{{ page_description }}",
+    "itemCondition": "http://schema.org/NewCondition",
+    "brand": {
+      "name": "Bear Mattress"
+    },
+    {% if product.metafields.yotpo.reviews_count and product.metafields.yotpo.reviews_count != "0" %}
+
+   "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "{{ product.metafields.yotpo.reviews_average }}",
+        "reviewCount": "{{ product.metafields.yotpo.reviews_count }}"
+      },
+    {% endif %}
+    "offers": {
+      "@type": "AggregateOffer",
+      "priceCurrency": "{{ currencyISO }}",
+      "price": "{{ product.selected_or_first_available_variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 }}",
+      "lowPrice": "{{ lowestVariantPrice }}",
+      "highPrice": "{{ highestVariantPrice }}",
+      "offerCount": "{{ product.variants.size }}",
+      "availability": "http://schema.org/InStock",
+      "seller": {
+        "@type": "Organization",
+        "name": "Bear Mattress"
+      }
+    }
+  }
+</script>

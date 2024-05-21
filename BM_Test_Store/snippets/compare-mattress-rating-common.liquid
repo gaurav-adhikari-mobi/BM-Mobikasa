@@ -1,0 +1,76 @@
+{% assign cs_hybrid = all_products['star-hybrid-mattress'] %}
+{% assign cs_pro = all_products['pro-hybrid-mattress'] %}
+{% assign cs_mattress = all_products['bear-original-mattress'] %}
+{% assign cs_elite = all_products['elite-hybrid-mattress'] %}
+
+<div class="cs-rating-wrapper" style="background-color: {{ section.settings.section_color }}">
+  	<div class="cs-rating-inner">
+        <div class="cs-rating-common">
+            <div class="cs-rating-content">
+                <h2>{{ section.settings.section_heading }}</h2>
+                <p>{{ section.settings.section_description }}</p>
+              	{% if section.settings.section_link.size > 0 %}
+              		<a href="{{ section.settings.section_link }}">{{ section.settings.section_link_text }}</a>
+              	{% endif %}
+            </div>
+            <div class="cs-rating-image">
+                <img src="{{ section.settings.rating_image | img_url: 'master' }}" />
+            </div>
+        </div>
+      
+        {% if section.settings.column_heading_1.size > 0 %}
+          <div class="cs-rating-separate">
+              {% if section.settings.column_heading_4 != blank %}
+              <div class="cs-rating-details cs-rating-hybrid">
+                <h3>{{ section.settings.column_heading_4 }}</h3>
+                <a class="cs-compare-tag" href="{{cs_elite.url}}" style="background-color: {{cs_elite.metafields.product.banner_color}}">{{cs_elite.metafields.product.banner_text}}</a>
+                <img src="{{ section.settings.column_image_4 | img_url: 'master' }}" />
+                {{ section.settings.column_list_4 }}
+              </div>
+              {% endif %}
+              {% if section.settings.column_heading_1 != blank %}
+              <div class="cs-rating-details cs-rating-hybrid">
+                <h3>{{ section.settings.column_heading_1 }}</h3>
+                <a class="cs-compare-tag" href="{{cs_hybrid.url}}" style="background-color: {{cs_hybrid.metafields.product.banner_color}}">{{cs_hybrid.metafields.product.banner_text}}</a>
+                <img src="{{ section.settings.column_image_1 | img_url: 'master' }}" />
+                {{ section.settings.column_list_1 }}
+              </div>
+              {% endif %}
+              {% if section.settings.column_heading_2 != blank %}
+              <div class="cs-rating-details cs-rating-pro">
+                <h3>{{ section.settings.column_heading_2 }}</h3>
+                <a class="cs-compare-tag" href="{{cs_pro.url}}" style="background-color: {{cs_pro.metafields.product.banner_color}}">{{cs_pro.metafields.product.banner_text}}</a>
+                <img src="{{ section.settings.column_image_2 | img_url: 'master' }}" />
+                {{ section.settings.column_list_2 }}
+              </div>
+              {% endif %}
+              {% if section.settings.column_heading_3 != blank %}
+              <div class="cs-rating-details cs-rating-mattress">
+                <h3>{{ section.settings.column_heading_3 }}</h3>
+                <a class="cs-compare-tag" href="{{cs_mattress.url}}" style="background-color: {{cs_mattress.metafields.product.banner_color}}">{{cs_mattress.metafields.product.banner_text}}</a>
+                <img src="{{ section.settings.column_image_3 | img_url: 'master' }}" />
+                {{ section.settings.column_list_3 }}
+              </div>
+              {% endif %}
+              {% if section.settings.column_heading_5 != blank %}
+              <div class="cs-rating-details cs-rating-pro">
+                  <h3>{{ section.settings.column_heading_5 }}</h3>
+                  <a class="cs-compare-tag" href="{{cs_pro.url}}" style="background-color: {{cs_pro.metafields.product.banner_color}}">{{cs_pro.metafields.product.banner_text}}</a>
+                  <img src="{{ section.settings.column_image_5 | img_url: 'master' }}" />
+                  {{ section.settings.column_list_5 }}
+              </div>
+              {% endif %}
+              {% if section.settings.column_heading_6 != blank %}
+              <div class="cs-rating-details cs-rating-mattress">
+                <h3>{{ section.settings.column_heading_6 }}</h3>
+                <a class="cs-compare-tag" href="{{cs_mattress.url}}" style="background-color: {{cs_mattress.metafields.product.banner_color}}">{{cs_mattress.metafields.product.banner_text}}</a>
+                <img src="{{ section.settings.column_image_6 | img_url: 'master' }}" />
+                {{ section.settings.column_list_6 }}
+              </div>
+              {% endif %}
+          </div>
+        {% endif %}
+
+      	<div class="cs-rating-notice">{{ section.settings.bottom_text }}</div>
+  	</div>
+</div>

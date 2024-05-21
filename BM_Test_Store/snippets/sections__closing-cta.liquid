@@ -1,0 +1,60 @@
+{% if section.settings.toggle %}
+  <div class="closing-cta {{ section.settings.padding-top }} {{ section.settings.padding-bottom }} {% if section.settings.desktop_only == true %}cs-hide-mobile{% endif %} {% if section.settings.mobile_only == true %}cs-hide-desktop{% endif %}" data-section-id="{{ section.id }}" data-section-type="closing-cta" style="background-color: {{section.settings.background-color}}; {% if section.settings.background-image.size %}background-image: url({{ section.settings.background-image | img_url: 'master' }}); background-repeat: {{ section.settings.background-repeat }} {% endif %}">
+    {% if page.handle == 'warranties' %}
+    	<h1 class="closing-cta__header" style="color: {{ section.settings.heading-text-color }};">{{ page.title }}</h1>
+    {% else %}
+    	{% if section.settings.section_header != blank %}<h1 class="closing-cta__header" style="color: {{ section.settings.heading-text-color }};">{{ section.settings.section_header }}</h1>{% endif %}
+    {% endif %}
+    {% if section.settings.image_pos_toggle %}
+    	{% if section.settings.section_rich_text != blank %}<div class="closing-cta__text {{section.settings.section_rich_text_alignment}}" style="color: {{ section.settings.text-color }};">{{ section.settings.section_rich_text }}</div>{% endif %}
+        {% if section.settings.text-content != blank %}<div class="hero-description" style="color: {{ section.settings.text-color-}};">{{ section.settings.text-content }}</div>{% endif %}
+        {% if section.settings.review_content != blank %}	<div class="cs-vwo-reviews-count">{{ section.settings.review_content }}</div>{% endif %}
+    	{% if section.settings.section_image.size %}<a href="{% if section.settings.section_link != blank %}{{ section.settings.section_link }}{% else %}javascript:void(0);{% endif %}" class="closing-cta__image below desktop__img {{ section.settings.image_width }}">
+   		 	<img data-src="{{ section.settings.section_image | img_url: 'master' }}" class="lazyload"/></a>
+    	{% endif %}
+    	{% if section.settings.section_image_mobile.size %}<a href="{% if section.settings.section_link != blank %}{{ section.settings.section_link }}{% else %}javascript:void(0);{% endif %}" class="closing-cta__image below mobile__img {{ section.settings.image_width }}">
+    		<img data-src="{{ section.settings.section_image_mobile | img_url: 'master' }}" class="lazyload"/></a>
+    	{% endif %}
+    {% else %}
+    	{% if section.settings.section_image.size %}<a href="{% if section.settings.section_link != blank %}{{ section.settings.section_link }}{% else %}javascript:void(0);{% endif %}" class="closing-cta__image desktop__img {{ section.settings.image_width }}">
+    		<img data-src="{{ section.settings.section_image | img_url: 'master' }}" class="lazyload"/></a>
+    	{% endif %}
+    	{% if section.settings.section_image_mobile.size %}<a href="{% if section.settings.section_link != blank %}{{ section.settings.section_link }}{% else %}javascript:void(0);{% endif %}" class="closing-cta__image mobile__img {{ section.settings.image_width }}">
+    		<img data-src="{{ section.settings.section_image_mobile | img_url: 'master' }}" class="lazyload"/></a>
+    	{% endif %}
+    	{% if section.settings.section_rich_text != blank %}<div class="closing-cta__text {{section.settings.section_rich_text_alignment}}" style="color: {{ section.settings.text-color }};">{{ section.settings.section_rich_text }}</div>{% endif %}
+        {% if section.settings.text-content != blank %}<div class="hero-description" style="color: {{ section.settings.text-color-}};">{{ section.settings.text-content }}</div>{% endif %}
+        {% if section.settings.review_content != blank %}<div class="cs-vwo-reviews-count">{{ section.settings.review_content }}</div>{% endif %}
+    {% endif %}    
+    {% unless section.blocks == empty %}
+
+      {% for block in section.blocks %}
+          {% if page.title == "Financing"%}
+          <a class="btn {% if block.settings.use-shadow %}shadow{% endif %}" {% if block.settings.new_tab %}target="_blank"{% endif %} href="{{ block.settings.cta_link }}" style="color: {{ block.settings.button-text-color }}; background-color: {{ block.settings.button-background-color }} !important; border-color: {{block.settings.button-border-color}};" data-id="{{ block.settings.cta_text | handle }}">{{ block.settings.cta_text }}</a>
+          {% else %}
+          <a class="btn {% if block.settings.use-shadow %}shadow{% endif %}" {% if block.settings.new_tab %}target="_blank"{% endif %} href="{{ block.settings.cta_link }}" style="color: {{ block.settings.button-text-color }}; background-color: {{ block.settings.button-background-color }} !important; border-color: {{block.settings.button-border-color}};" data-id="{{ block.settings.cta_text | handle }}">{{ block.settings.cta_text }}</a>
+          {% endif %}
+      {% endfor %}
+    
+    {% if section.settings.highlighted_text.size > 0 %}
+    <div class="fine-print dark">{{section.settings.highlighted_text}}</div>
+    {% endif %}
+
+    {% endunless %}
+    {% if section.settings.section_image_mobile.size %}
+    <style type="text/css">
+      div[data-section-id="{{ section.id }}"] .closing-cta__image.mobile__img{
+      	display: none;
+      }
+      @media screen and (max-width: 767px){
+      	div[data-section-id="{{ section.id }}"] .closing-cta__image.desktop__img{
+          	display: none;
+        }
+        div[data-section-id="{{ section.id }}"] .closing-cta__image.mobile__img{
+        	display: block;
+        }
+      }
+    </style>
+    {% endif %}
+  </div>
+{% endif %}

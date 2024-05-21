@@ -1,0 +1,76 @@
+{% include "sections__lifestyle-grid" %}
+
+{% schema %}
+  {
+    "name": "Lifestyle Trial Grid",
+	"max_blocks": 3,
+    "settings": [
+		{
+          "type": "color",
+          "id": "background-color",
+          "label": "Background Color"
+        },
+        {
+          "type": "color",
+          "id": "text-color",
+          "label": "Text Color"
+        },
+        {
+          "type":"text",
+          "id": "header",
+          "label": "Header text"
+        },
+		{
+          "type": "image_picker",
+          "id": "desktop_background_image",
+          "label": "Desktop Background Image"
+        },
+		{
+          "type": "image_picker",
+          "id": "mobile_background_image",
+          "label": "Mobile Background Image"
+        },
+		{
+          "type": "text",
+          "id": "highlighted_text",
+          "label": "Footnote Text"
+		}
+	],
+	"blocks" : [{
+      "type": "text",
+      "name": "Grid",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+		{
+          "type": "text",
+          "id": "main_image_alt",
+          "label": "Main Image Alt Text"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Grid Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Grid Text"
+        }
+      ]
+  }]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

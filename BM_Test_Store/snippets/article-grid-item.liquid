@@ -1,0 +1,16 @@
+<div class="grid__item {{ blog_grid }}">
+  <a class="blog__link" href="{{ article.url }}">
+    <div class="blog__article blog__article--card{% if article.image %} blog__article--image{% endif %}"{% if article.image %} style="background-image: url('{{ article.image | img_url: 'x600' }}');"{% endif %}>
+      <div class="rte blog__article__content equalHeightColumn">
+        <h3 class="h3 blog__article__title">{{ article.title }}</h3>
+        {% unless article.image %}
+            {% if article.excerpt == blank %}
+              {{ article.content | strip_html | truncate: 200 }}
+            {% else %}
+              {{ article.excerpt | strip_html | truncate: 200 }}
+            {% endif %}
+        {% endunless %}
+      </div>
+    </div>
+  </a>
+</div>

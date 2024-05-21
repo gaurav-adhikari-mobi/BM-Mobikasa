@@ -1,0 +1,36 @@
+{% if section.settings.toggle %}
+<a id="sizes"></a>
+<section class="msize {{ section.settings.padding-top }} {{ section.settings.padding-bottom }}" data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background-color }}; color: {{ section.settings.text-color }};" data-module="msize">
+	<h2 class="msize-title">{{ section.settings.title }}</h2>
+	<ul class="msize-options">
+		{% for block in section.blocks %}
+			<li class="msize-options__item {% if block.settings.title == product.selected_or_first_available_variant.option1 %}active{% endif %}" data-tab="{{ block.settings.title | handle }}" data-title="{{ block.settings.title | escape }}" data-id="{{ block.settings.title | handle }}" style="color: {{ section.settings.variant-title-color }};">
+				<span>{{ block.settings.title }}</span>
+			</li>
+			<style>
+				.msize-options__item.active[data-id="{{ block.settings.title | handle }}"] {
+					border: 2px solid {{ section.settings.variant-title-active-outline-color }};
+				}
+			</style>
+		{% endfor %}
+	</ul>
+	<div class="msize-overlay right">
+		<div class="msize-overlay__gradient" style="background: -webkit-gradient(linear, left top, right top, from({{ section.settings.background-color | hex_to_rgba: 0.0 }}), to({{ section.settings.background-color }}));">
+		</div>
+	</div>
+	<div class="msize-wrap">
+		{% for block in section.blocks %}
+			<div class="msize-tab {% if block.settings.title == product.selected_or_first_available_variant.option1 %}active{% endif %}" data-tab="{{ block.settings.title | handle }}">
+				<div class="msize-tab__wrap">
+					<div class="msize-tab__image">
+						<img data-src="{{ block.settings.image | img_url: 'master' }}" class="lazyload">
+					</div>
+					<div class="msize-tab__description">
+						<p style="color:{{ section.settings.description-text-color }};">{{ block.settings.description }}</p>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}

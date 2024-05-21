@@ -1,0 +1,322 @@
+{% assign image_position = 0 %}
+{% assign specific_image = product.metafields.product.specific_image %}
+
+{% if specific_image %}
+	{% assign image_position = specific_image | plus: 0 %}
+{% endif %}
+
+{%- assign product_img_url = product.images[image_position] | img_url: '700x' -%}
+{%- if grid_width_large == 'large--one-whole' -%}
+{%- assign product_img_url = product.images[image_position] | img_url: '1200x' -%}
+{%- elsif grid_width_large == 'large--one-half' -%}
+{%- assign product_img_url = product.images[image_position] | img_url: '900x' -%}
+{%- endif -%}
+
+{% assign product_linkable = section.settings.product_linkable %}
+
+{% assign banner_option = section.settings.banner_option %}
+
+{% assign product_title_alignment = section.settings.product_title_alignment %}
+{% assign product_title_position = section.settings.product_title_position %}
+
+{% assign product_description = product.metafields.product.description %}
+{% assign product_specification = product.metafields.product.specification %}
+
+{% assign price_option_alignment = section.settings.price_option_alignment %}
+{% assign price_option = section.settings.price_option %}
+{% assign discount_price_display = section.settings.discount_price_display %}
+{% assign discount_price_option = section.settings.discount_price_option %}
+
+{% assign product_description_alignment = section.settings.product_description_alignment %}
+
+{% assign product_specification_option = section.settings.product_specification_option %}
+
+{% assign affirm_option = section.settings.affirm_option %}
+
+{% assign shop_button_option = section.settings.shop_button_option %}
+
+{% assign shop_button_display = section.settings.shop_button_display %}
+
+{% assign field_before_button_option = section.settings.field_before_button_option %}
+{% assign field_under_button_option = section.settings.field_under_button_option %}
+
+{% assign discount_price_text_option = section.settings.discount_price_text_option %}
+{% assign discount_text = product.metafields.product.discount_text %}
+
+{% assign discount_price_text_alignment = section.settings.discount_price_text_alignment %}
+
+{% assign link_under_button = product.metafields.product.link_under_button %}
+{% assign text_under_button = product.metafields.product.text_under_button %}
+
+{% assign variant_position = 0 %}
+{% assign specific_variant = product.metafields.product.specific_variant %}
+
+{% if specific_variant %}
+	{% assign variant_position = specific_variant | plus: 0 %}
+{% endif %}
+
+{% assign banner_text = product.metafields.product.banner_text %}
+{% assign banner_color = product.metafields.product.banner_color %}
+{% assign banner_position = section.settings.banner_option_alignment %}
+{% assign collection_review = section.settings.show_section_reviews %}
+
+{% assign banner_top = false %}
+{% assign banner_absolute = false %}
+{% assign banner_inline = false %}
+{% assign banner_class = 'has-no-tag' %}
+
+{% if banner_option == true and banner_text != blank and banner_position == 'top' %}
+	{% assign banner_top = true %}
+	{% assign banner_class = 'has-tag-top' %}
+{% endif %}
+
+{% if banner_option == true and banner_text != blank and banner_position == 'absolute' %}
+	{% assign banner_absolute = true %}
+	{% assign banner_class = 'has-tag-absolute' %}
+{% endif %}
+
+{% if banner_option == true and banner_text != blank and banner_position == 'inline' %}
+	{% assign banner_inline = true %}
+	{% assign banner_class = 'has-tag-inline' %}
+{% endif %}
+
+<div class="grid__item mb-5 {{ grid_offset }} {{ grid_width_small }} {{ grid_width_medium }} {{ grid_width_large }}{% if on_sale %} on-sale{% endif %} product-grid-item mb-5">
+    <div class="grid__item__inner {{banner_class}}">
+
+      	{% if banner_top == true %}
+	        <a class="product-tag" href="{{ product.url }}" style="background-color: {{banner_color}}">{{banner_text}}</a>
+      	{% endif %}
+
+      	{% if banner_absolute == true %}
+			<a class="product-tag" href="{{ product.url }}" style="background-color: {{banner_color}}">{{banner_text}}</a>
+      	{% endif %}
+
+      	{% if product_title_position == 'before' %}
+      		{% if product_linkable == true %}
+      			<h3 class="cs-{{product_title_alignment}}"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+      		{% else %}
+				<h3 class="cs-{{product_title_alignment}}">{{ product.title }}</h3>
+      		{% endif %}
+          {% if product.title == 'Bear Natural' %}
+             <span class="natural-tag-collection"><span class="natural-b">NEW&nbsp; </span> Latex Hybrid Mattress</span>
+            {% endif %}
+         {% if collection_review == true %}     
+           <div class="collection-review">
+             <div class="product-reviews">
+              
+             {% comment %} <-- New Star widget code --> {% endcomment %}
+             <div class="yotpo-widget-instance" data-yotpo-instance-id="544319" data-yotpo-product-id="{{product.id}}" data-yotpo-cart-product-id="{{item.product.id}}" data-yotpo-section-id="{{template.name}}"></div>
+                </div>
+           </div>
+        {% endif %}
+      	{% endif %}
+
+        <a href="{{ product.url }}" class="grid__image">
+          <img data-src="{{ product_img_url }}" alt="{{ product.featured_image.alt | escape }}" class="lazyload">
+        </a>
+
+      	<div class="collection-product-slider hi">
+      		{% include 'collection-grid-item-images' %}
+        </div>
+
+        <div class="content-part {{ settings.product_grid_style }}">
+			{% if banner_inline == true %}
+          
+				{% if product_linkable == true %}
+                    <a class="product-title-wrapper" href="{{ product.url }}">
+                        {% if product_title_position == 'after' %}
+                            <h3 class="cs-{{product_title_alignment}}">{{ product.title }}</h3>
+                        {% endif %}
+
+						<span class="product-tag" style="background-color: {{banner_color}}">{{banner_text}}</span>
+                    </a>
+          		{% else %}
+                    <div class="product-title-wrapper">
+                        {% if product_title_position == 'after' %}
+                            <h3 class="cs-{{product_title_alignment}}">{{ product.title }}</h3>
+                        {% endif %}
+
+						<span class="product-tag" style="background-color: {{banner_color}}">{{banner_text}}</span>
+                    </div>
+				{% endif %}
+          	{% else %}
+                {% if product_title_position == 'after' %}
+                    {% if product_linkable == true %}
+	                    <h3 class="cs-{{product_title_alignment}}"><a href="{{ product.url }}">{{ product.title }}</a></h3>
+                    {% else %}
+    	                <h3 class="cs-{{product_title_alignment}}">{{ product.title }}</h3>
+                    {% endif %}
+                {% endif %}
+          	{% endif %}
+
+          	{% if product_description != blank %}
+          		<div class="product-description cs-{{product_description_alignment}}">{{product_description}}</div>
+          	{% endif %}
+
+          	{% if product_specification_option == true %}
+          		{% if product_specification != blank %}
+	            	<div class="product-specs">{{product_specification}}</div>
+          		{% endif %}
+          	{% endif %}
+
+{% if product.title == 'Adjustable Flex Bed' %}
+  <div class="product-price cs-text-left cs-inline" data-uw-rm-sr="" style="text-align: center;">
+<p class="product-initial-text">Starting at</p> $1698
+    <span class="product-old-price" data-uw-rm-sr="price" aria-label="Previous price was $1398">$3396</span>
+    <span class="product-saved-price" data-uw-rm-sr="">($1698 off)</span>
+      </div>
+  {% else %}
+      
+
+
+
+          
+          	{% if price_option == true %}
+
+				{% assign variant_title = product.variants[variant_position].title %}
+          
+                {% assign cs_price = product.variants[variant_position].price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+                {% assign cs_compare_price = product.variants[variant_position].compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+                {% assign elDiscount = cs_compare_price | minus: cs_price %}
+                {% assign elDiscountText = 'off' %}
+
+          		{% assign cs_has_discount = false %}
+
+                {% assign sale_products = settings.sale_products %}
+
+                {% if sale_products contains product.handle %}
+                    {% assign cs_has_discount = false %}
+          		{% else %}
+					{% assign cs_has_discount = true %}
+                {% endif %}
+
+                {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+                  {% if cs_price >= settings.discount_min_value_1 %}
+
+                    {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+                      {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                    {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+                      {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                    {% elsif cs_price >= settings.discount_min_value_3 %}
+
+                      {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+                  {% assign elDiscountText = 'off with code' %}
+
+                  {% assign cs_compare_price = cs_price %}
+                  {% assign cs_price = cs_price | minus: elDiscount %}
+
+                {% endif %}
+
+                {% if settings.tier_enable == true and cs_has_discount == true %}
+
+                  {% if cs_price >= settings.min_value_1 %}
+
+                    {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+                      {% assign elDiscount = settings.coupon_amount_1 %}
+
+                    {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+                      {% assign elDiscount = settings.coupon_amount_2 %}
+
+                    {% elsif cs_price >= settings.min_value_3 %}
+
+                    {% assign elDiscount = settings.coupon_amount_3 %}
+                    {% assign elDiscountText = 'off with code' %}
+                    {% endif %}
+
+                    {% assign cs_compare_price = cs_price %}
+                    {% assign cs_price = cs_price | minus: elDiscount %}
+                  {% endif %}
+                {% endif %}
+
+          		{% if collection_handle == 'bundles' %}
+          			{% assign price_option_alignment = 'text-center' %}
+          		{% endif %}
+          
+                <div class="product-price cs-{{price_option_alignment}} cs-{{discount_price_display}}">
+
+                  {% if collection_handle == 'mattresses' or collection_handle == 'bundles'%}
+                  	{{ variant_title | replace: "/ Soft / Yes", " " | replace: "/ No", " " }}
+ - ${{ cs_price }}
+                  {% elsif collection_handle == 'closeout-offers' %}
+                      {{ variant_title }} - ${{ cs_price }}
+                  {% else %}
+                      <p class="product-initial-text">Starting at</p> ${{ cs_price }}
+                  {% endif %}
+
+                  {% if cs_compare_price > cs_price %}
+
+                  	  {% if discount_price_option == true %}
+                          <span class="product-old-price">${{cs_compare_price}}</span>
+                          <span class="product-saved-price">(${{elDiscount}} {{elDiscountText}})</span>
+                      {% endif %}
+                  {% endif %}
+                  {% if collection.handle == 'mattresses' or page.handle == 'sale'%}
+                   <a style="padding: 0;display: inline-block;float: right;font-weight: 100;margin-top: 6px;" class="price-details-link" href="javascript:void(0)">Price Details</a>
+                  {% endif %}
+                  
+                </div>
+          	{% endif %}
+
+    {% endif %}
+{% if collection.handle == 'accessories' or collection.handle == 'bed-bases'%}
+                   <a style="padding: 10px 0;;font-weight: 100;text-align: center;" class="price-details-link" href="javascript:void(0)">Price Details</a>
+                  {% endif %}
+
+          
+            {% if collection.handle != 'bundles' %}
+                {% if affirm_option == true %}
+
+                    <div class="finance-info">
+                      <div class="product-finance">
+                        <div class="affirm-as-low-as" data-page-type="category" data-amount="{{ product.variants[variant_position].price | minus: getDiscount }}" data-affirm-type="logo" data-learnmore-show="false"></div>
+                      </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            {% if discount_price_text_option == true %}
+            	<div class="discount-text cs-{{discount_price_text_alignment}}">{{discount_text}}</div>
+            {% endif %}
+
+          	<div class="shop-wrapper cs-{{shop_button_display}}">
+              
+              	{% if field_before_button_option %}
+
+              		{% if link_under_button %}
+                        <a class="shop-after-detail" href="{{link_under_button}}">{{text_under_button}}</a>
+                    {% else %}
+                        <span class="shop-after-detail">{{text_under_button}}</span>
+                    {% endif %}
+              	{% endif %}
+              
+              	{% if shop_button_option == true %}
+              		{% if product.available == true %}
+	                	<a class="btn shadow btn-blue" href="{{ product.url }}">SHOP</a>
+              		{% else %}
+	                	<a class="btn btn-blue disabled" href="{{ product.url }}" disabled="disabled">SOLD OUT</a>
+              		{% endif %}
+              	{% endif %}
+
+              	{% if field_under_button_option %}
+
+              		{% if link_under_button %}
+                        <a class="shop-after-detail" href="{{link_under_button}}">{{text_under_button}}</a>
+                    {% else %}
+                        <span class="shop-after-detail">{{text_under_button}}</span>
+                    {% endif %}
+              	{% endif %}
+            </div>
+        </div>
+    </div>
+</div>

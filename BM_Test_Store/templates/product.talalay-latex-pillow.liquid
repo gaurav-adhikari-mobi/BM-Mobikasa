@@ -1,0 +1,23 @@
+{% include 'product-details' %}
+{% section 'pdp-icon-grid-talalay-pillow' %}
+{% section 'pdp-details-talalay-pillow' %}
+{% section 'pdp-accordion-talalay-pillow' %}
+{% section 'faq-component-talalay-pillow' %}
+
+
+{% comment %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">{{ product.title }} Reviews</h2>
+		<div class="yotpo yotpo-main-widget"
+		    data-product-id="{{ product.id }}"
+		    data-name="{{ product.title | escape }}"
+		    data-url="{{ shop.url }}{{ product.url }}"
+		    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+		    data-description="{{ product.description | escape }}">
+		</div>
+	</div>
+</section>
+{% endcomment %}
+
+{% include 'schema' %}

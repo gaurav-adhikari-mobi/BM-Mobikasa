@@ -1,0 +1,47 @@
+{% include 'product-details' %}
+
+{% section 'flex-pdp-icon-grid' %}
+
+{% section 'flex-section-publications' %}
+
+{% section 'pdp-imageblockcontent-flex' %}
+
+{% section 'flex-remote-video' %}
+
+{% section 'flex-standard-content' %}
+
+{% section 'flex-product-details' %}
+{% section 'yotpo-pdp-hybrid-gallery' %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Adjustable Flex Bed Reviews</h2>
+     <div style="margin: 0 auto; padding: 1rem; text-align: center;">
+    	</div>
+		<div class="yotpo-widget-instance" data-yotpo-instance-id="544318" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" | prepend: "https:" | replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-price="{{ product.price | divided_by: 100.00 }}" data-yotpo-currency="{{ shop.currency }}" data-yotpo-description="{{ product.description | escape }}"></div>
+	</div>
+</section>
+{% section 'flex-faq-component' %}
+
+{% section 'pdp-accordion-flex' %}
+
+{% include 'schema' %}
+{% if product.handle == 'adjustable-flex-bed' %}
+   <style>
+  .frequent-products{
+    display: none!important;
+  }
+    .adj-bed-deal-btn{
+      position: absolute;top: 0;right: 0;
+    }
+      @media only screen and (max-width: 600px) {
+  .adj-bed-deal-btn{
+    position: relative;
+    padding: 10px;
+    height: 42px;
+    display: table-caption;
+    caption-side: bottom;
+    margin-top: 10px;
+    }
+}
+     </style>
+  {% endif %}

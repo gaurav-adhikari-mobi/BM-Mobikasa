@@ -1,0 +1,58 @@
+<!-- /sections/index-pageliquid -->
+{% include "sections__advantage-grid" %}
+
+
+{% schema %}
+{
+  "name": "Bear Advantage Grid",
+  "max_blocks": 3,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type":"text",
+      "id": "header",
+      "label": "Header text"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Advantage",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Advantage Title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Advantage Text"
+        }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Advantage Grid Slider",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

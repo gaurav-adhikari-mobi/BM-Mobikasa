@@ -1,0 +1,37 @@
+{% section 'mattress-dimensions' %}
+{% include 'product-details' %}
+{% section 'pdp-icon-grid' %}
+{% section 'section-publications-2' %}
+{% section 'simple-grid--mattress' %}
+{% section 'pdp-imageblockcontent' %}
+{% section 'staggered-content--bear' %}
+{% section 'staggered-content--bear-2' %}
+
+{% section 'yotpo-pdp-gallery' %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Original Reviews</h2>
+		<div class="yotpo yotpo-pictures-widget" data-gallery-id="63e265c0d468a7002553a7b8" data-product-id="{{ product.id }}"></div>
+<div class="yotpo-widget-instance" data-yotpo-instance-id="544320" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div></div>
+</section>
+
+{% section 'staggered-firmness-mattress' %}
+{% section 'bear-slideshow-reviews' %}
+{% section 'bear-advantage-grid' %}
+{% section 'pdp-accordion' %}
+{% section 'pdp-financing-blocks' %}
+{% section 'pdp-standard-content' %}
+{% section 'life-style-grid' %}
+{% section 'bear-faq-component' %}
+{% section 'pdp-product-grid' %}
+
+{% include 'schema' %}
+<div class="yotpo yotpo-main-widget"
+data-product-id="{{ product.id }}"
+data-name="{{ product.title | escape }}"
+data-url="{{ shop.url }}{{ product.url }}"
+data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+data-price="{{ variant.price | money_without_currency }}"
+data-currency="{{ shop.currency }}"
+data-description="{{ product.description | escape }}">
+</div>

@@ -1,0 +1,189 @@
+<!-- /sections/index-pageliquid -->
+
+<div class="staggered_section__wrapper" data-section-id="{{ section.id }}" data-section-type="staggered_section__wrapper" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+  {% for block in section.blocks %}
+  <div class="staggered_block" style="flex-direction: {{ block.settings.orientation }}">
+    <div class="staggered_media">
+    {% if block.settings.media == 'image' %}
+      <img class="staggered_media-image lazyload" data-src="{{ block.settings.media_link }}" alt="{{ block.settings.fallbackImageText }}">
+    {% elsif block.settings.media == 'youtube_video' %}
+      <iframe class="staggered-detail__img-image lazyload" src="https://www.youtube.com/embed/{{ block.settings.media_link }}" frameborder="0" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    {% else %}
+      <span class="staggered_video">
+        <video poster="{{ block.settings.poster_img }}" autoplay loop playsinline muted aria-hidden="true">
+          <source src="{{ block.settings.media_link }}" type='video/mp4'/>
+          <img class="lazyload" src="{{ block.settings.poster_img }}" title="Video not supported by browser." alt="{{ block.settings.fallbackImageText }}">
+        </video>
+      </span>      
+    {% endif %}
+    </div>
+    <div class="staggered_text_content {% if block.settings.orientation == 'row-reverse' %} positionLeft {% else %} positionRight {% endif %}">
+      {% if block.settings.topic_header.size > 0 %}
+      <h2 class="staggered_block_heading" style="color: {{ block.settings.topic_header_color}};">{{ block.settings.topic_header }}</h2>
+      {% endif %}
+      {% if block.settings.detail_description.size > 0 %}
+          <p class="staggered_block_detail_text" style="color: {{ block.settings.detail_description_text_color }};">{{ block.settings.detail_description }}</p>
+      {% endif %}
+      {% if block.settings.detail_misc_text.size > 0 %}
+      	  <p class="staggered_block_flag" style="color: {{ block.settings.misc_text_color }};"><i class="mdi mdi-check" style="color:#444;"></i> {{ block.settings.detail_misc_text }}</p>
+      {% endif %}
+      {% if block.settings.primary_button_text.size > 0 %}
+        <a class="btn shadow" href="{{block.settings.primary_button_link}}" style="color: rgb(255, 255, 255); cursor: pointer;">{{block.settings.primary_button_text}}</a>
+      {% endif %}
+      {% if block.settings.secondary_button_text.size > 0 %}
+        <div class="closing-cta__cta btn shadow" style="background-color: #ffffff !important;border-color: rgba(0,0,0,0);" data-id="learn-more">
+        <a class="closing-cta__cta-link" href="{{block.settings.secondary_button_link}}" style="color: #2e577c;"><span>{{block.settings.secondary_button_text}}</span></a>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+  {
+    "name": "BM Staggered Detail",
+    "settings": [
+		{
+			"type": "color",
+			"id": "background-color",
+			"label": "Background Color"
+		}
+	],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Staggered Content",
+        "settings": [
+          {
+            "type": "select",
+            "id": "media",
+            "label": "Media",
+            "options": [
+              {
+                "value": "image",
+                "label": "Image"
+              },
+              {
+                "value": "youtube_video",
+                "label": "Youtube Video"
+              },
+              {
+                "value": "video",
+                "label": "Local Video"
+              }
+            ],
+            "default":   "image"
+          },
+          {
+            "id": "media_link",
+            "type": "text",
+            "label": "Media Link"
+          },
+          {
+            "id": "fallbackImageText",
+            "type": "text",
+            "label": "Image Alt Text"
+          },
+		  {
+            "id": "poster_img",
+            "type": "text",
+            "label": "Fallback Image"
+          },
+          {
+            "type":      "select",
+            "id":        "orientation",
+            "label":     "Orientation",
+            "options": [
+                {
+                "value": "row-reverse",
+                "label": "List on Left"
+                },
+                {
+                "value": "row",
+                "label": "List on Right"
+                }
+              ],
+            "default":   "row-reverse"
+          },
+          {
+            "type": "color",
+            "id": "topic_header_color",
+            "label": "Topic Header Text Color"
+          },
+          {
+            "type": "text",
+            "id": "topic_header",
+            "label": "Topic Header"
+          },
+          {
+            "type": "color",
+            "id": "detail_description_text_color",
+            "label": "Detail Description Text Color"
+          },
+          {
+            "type": "textarea",
+            "id": "detail_description",
+            "label": "Detail Description"
+          },
+          {
+            "type": "color",
+            "id": "misc_text_color",
+            "label": "Misc Text Color"
+          },
+          {
+            "type": "text",
+            "id": "detail_misc_text",
+            "label": "Misc Text"
+          },
+          {
+            "type": "text",
+            "id": "primary_button_text",
+            "label": "Primary Button Text"
+          },
+		  {
+            "type": "text",
+            "id": "primary_button_link",
+            "label": "Primary Button Link"
+          },
+          {
+            "type": "text",
+            "id": "secondary_button_text",
+            "label": "Secondary Button Text"
+          },
+          {
+            "type": "text",
+            "id": "secondary_button_link",
+            "label": "Secondary Button Link"
+          }
+        ]
+      }	
+    ],
+    "presets": [
+      {
+        "name": "Staggered Content Section",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+{% javascript %}
+  $(document).ready(function(){
+    var vids = $('.staggered_video'); 
+    $.each(vids, function(){
+      this.controls = false; 
+    });
+    $('.staggered_video').on("click", function() {
+      var video=$(this).children("video")[0];
+      if( video.paused ) 
+      {
+        video.play();
+      }
+      else
+      {
+        video.pause();
+      }
+    });
+  });
+
+{% endjavascript %}

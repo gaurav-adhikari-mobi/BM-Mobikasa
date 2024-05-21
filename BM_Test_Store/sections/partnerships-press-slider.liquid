@@ -1,0 +1,70 @@
+<!-- /sections/index-pageliquid -->
+{% include 'sections__press-slider' %}
+
+
+{% schema %}
+{
+  "name": "Partnership Press Slider",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type":"text",
+      "id": "header",
+      "label": "Header text"
+    },
+    {
+      "type": "color",
+      "id": "header-text-color",
+      "label": "Header Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "logo-background-color",
+      "label": "Logo Background Color"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Press Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "publication-logo",
+          "label": "Publication Logo"
+        },
+        {
+          "type": "image_picker",
+          "id": "publication-logo-color",
+          "label": "Color Logo"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Press Text"
+        },
+        {
+          "type": "color",
+          "id": "press-text-color",
+          "label": "Press Text Color"
+        }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Press Slider",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

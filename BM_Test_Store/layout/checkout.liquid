@@ -1,0 +1,1675 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html lang="{{ locale }}" dir="{{ direction }}" class="{{ checkout_html_classes }} checkout_cl">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, height=device-height, minimum-scale=1.0, user-scalable=0">
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/2.6.95/css/materialdesignicons.min.css" media="all" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.optimizely.com/js/22089770168.js"></script>
+    {% if settings.favicon != blank %}
+      <link rel="shortcut icon" href="{{ settings.favicon | img_url: '32x32' }}" type="image/png">
+    {% endif %}
+
+    <title>{{ shop.name }} - {{ page_title }}</title>
+
+    {{ content_for_header }}
+    {{ checkout_stylesheets }}
+    {{ checkout_scripts }}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+    <script>
+    ;(function(w,o,d){
+        w[o]=w[o]||function(){w[o][d].push(arguments)};
+        w[o][d]=w[o][d]||[]
+    })(window,'Osano','data');
+</script>
+  <script src="https://cmp.osano.com/AzyzxlTvcbPa24v4f/bdb2c6c0-b394-40f9-b635-d9f5f7f42e5e/osano.js"></script>
+ <script>
+     document.addEventListener("DOMContentLoaded", function() {
+  setTimeout(function() {
+    const consent = window.Osano.cm.getConsent();
+    if (consent.MARKETING === "DENY") {
+        $(".cs-topbar-link").hide();
+        $(".link-wrapper a").hide();
+    }
+    else{
+       $(".cs-topbar-link").show();
+        $(".link-wrapper a").show();
+    }
+}, 600);
+
+       window.Osano.cm.addEventListener('osano-cm-consent-changed', (change) => {
+    // console.log('Category toggled:', JSON.stringify(change));
+    if (change.MARKETING === "DENY") {
+        // Hide the elements
+        $(".cs-topbar-link").hide();
+        $(".link-wrapper a").hide();
+    }
+        else if (change.MARKETING === "ACCEPT") {
+        // Do something when marketing consent is accepted
+        // For example, show the elements
+        $(".cs-topbar-link").show();
+        $(".link-wrapper a").show();
+    }
+});
+});
+  </script>
+    {% include 'affirm-snippet' %}
+    
+    <script>
+        var discount_code = '';
+        var discount_amount = '';
+
+        {% for discount_application in checkout.discount_applications %}
+            discount_code = '{{ discount_application.title }}';
+            discount_amount = '{{ discount_application.total_allocated_amount | money_without_currency | remove: "," }}'
+        {% endfor %}
+    </script>
+    
+
+
+    {% if request.path contains '/checkouts/' %}
+    	<script>
+          dataLayer = [];
+
+          customer_email = '{{ checkout.email }}';
+          customer_id = '{{ checkout.customer.id }}';
+
+          dataLayer.push({
+            order_value: '{{ checkout.line_items_subtotal_price | money_without_currency | remove: "," }}'
+          });
+    	</script>
+    {% endif %}
+
+    {% if request.path contains '/thank_you' or request.path contains '/orders/' %}
+
+        <script>
+          var SubTotalVal = {{ checkout.line_items_subtotal_price | money_without_currency | remove: "," }};
+          var valueInCents = SubTotalVal * 100;
+           window["optimizely"] = window["optimizely"] || [];
+           window["optimizely"].push({
+             "type"      : "event",
+             "eventName" : "trackRevenue",
+             "tags"      : {
+                             "revenue": valueInCents
+                            }
+           });
+        </script>
+        <script>
+
+            customer_email = '{{ checkout.email | sha1 }}';
+            customer_id = '{{ checkout.customer.id }}';
+
+          	var mattress_bundle_products = [6989665763433, 381450171, 3653284495465, 148842217486, 3687476691049, 10340464782];
+            var has_mattress_bundle_products = false;
+
+            var shipping_notice_products = '{{settings.shipping_notice_exceptions}}';
+            var shipping_notice = '{{settings.thank_you_shipping_notice}}';
+            var has_shipping_notice_products = false;
+          
+          	var gtm_date = new Date();
+  			var gtm_timestamp = gtm_date.getTime();
+
+          	dataLayer = [];
+
+          	var order_items = [];
+
+            {% for item in checkout.line_items %}
+              var item = {};
+              item.product_id = '{{ item.product_id }}';
+              item.product_category = '{{ item.title }}';
+              item.category = '{{ item.title }}';
+              item.sku = '{{ item.sku }}';
+              item.quantity = '{{ item.quantity }}';
+              item.name = '{{ item.title }}';
+              item.subTotal = '{{ item.final_line_price | money_without_currency | remove: "," }}';
+              
+              if(mattress_bundle_products.indexOf(Number('{{ item.product_id }}')) > -1) {
+                has_mattress_bundle_products = true;
+              }
+                                               
+			  if(shipping_notice_products.indexOf(Number('{{ item.product_id }}')) > -1) {
+                has_shipping_notice_products = true;
+              }
+
+              order_items.push(item);
+            {% endfor %}
+          
+            dataLayer.push({
+              order_value: '{{ checkout.line_items_subtotal_price | money_without_currency | remove: "," }}',
+              order_currency: '{{ checkout.currency }}',
+              order_quantity: '{{ checkout.line_items.size }}',
+              order_id: '{{ checkout.order_id }}',
+              order_promo_code: discount_code,
+              order_discount: discount_amount,
+              order_items: order_items,
+              timestamp: gtm_timestamp
+            });
+
+          	jQuery(document).ready(function() {
+
+              // $('.thank-you__additional-content').append('<div class="shipping-delay"><h3 class="shipping-delay-title mdi mdi-information">Potential Delays with Deliveries</h3> Please note that FedEx may be experiencing some delays with deliveries. If you have any questions or concerns, <a target="_blank" href="https://help.bearmattress.com/article/sj8x32gh0t-can-i-make-any-delivery-changes-after-my-purchase">read more about managing your deliveries here</a> or feel free to contact our friendly support team at <a href="mailto:hello@bearmattress.com">hello@bearmattress.com</a>.</div>');
+
+              // if(hasMattressBundle == true) {
+                //jQuery('.cs-powr-survey-wrapper').html('<div class="powr-survey" id="3664f482_1625491976"></div>');
+                //jQuery('.cs-powr-survey-wrapper').show();
+              // }
+			});
+        </script>
+<!-- helixsleep  -->
+ {% if request.path contains '/thank_you'  %}
+<style>
+  .popup__BaseCloseImage-sc-10ta2p7-8.popup__closeImagePopup-sc-10ta2p7-10 {
+    display: none !important;
+  }
+</style>
+<a class="typeform-share button" href="https://helixsleep.typeform.com/to/HBLiL9pg" data-mode="popup" data-auto-open=true data-hide-headers=true data-hide-footer=true data-submit-close-delay="1" target="_blank" id="typeform-survey-link"> </a>
+<script async>
+  (function(){var qs,js,q,s,d=document,gi=d.getElementById,ce=d.createElement,gt=d.getElementsByTagName,id="typef_orm_share",b="https://embed.typeform.com/";if(!gi.call(d,id)){js=ce.call(d,"script");js.id=id;js.src=b+"embed.js";q=gt.call(d,"script")[0];q.parentNode.insertBefore(js,q);}})();
+  document.getElementById("typeform-survey-link").setAttribute("href", "https://helixsleep.typeform.com/to/HBLiL9pg?email=" + Shopify.checkout.email);
+</script>
+{% endif %}
+<!-- helixsleep  -->
+    {% endif %}
+    
+    <script type="text/javascript">
+      var country_code = '{{ checkout.shipping_address.country_code }}';
+      var province_code = '{{ checkout.shipping_address.province_code }}';
+    </script>
+
+ 
+    <!--GA4 Setup purchase start-->
+
+    
+    {% comment %} Purchase data layer v2.0 - part of "Shopify GA4 Kit" by Analyzify
+Visit https://analyzify.app/shopify-google-analytics/ga4 for complete tutorial 
+{% endcomment %}
+
+	<script>    
+			window.dataLayer = window.dataLayer || [];                                            
+			var shipping_price = '{{shipping_price | money_without_currency }}';
+			shipping_price  = shipping_price.replace(",", ".");
+			var total_price = '{{total_price | money_without_currency }}';
+			total_price  = total_price.replace(",", ".");
+			var tax_price = '{{tax_price | money_without_currency }}';
+			tax_price  = tax_price.replace(",", ".");
+		  var orderItemsName = []            
+		  var orderItemsPrice = []
+		  var orderItemsQuantity = []
+			var orderItemsId = []
+		  var totalQuantity = 0;
+
+	  {% for line_item in line_items %}
+	      orderItemsName.push( '{{ line_item.product.title | remove: "'" | remove: '"'}}')
+	      orderItemsPrice.push('{{ line_item.price | times: 0.01 }}');
+	      orderItemsQuantity.push('{{ line_item.quantity }}');
+	      orderItemsId.push('{{ line_item.product_id }}');
+	     totalQuantity +=  {{ line_item.quantity }};
+	  {% endfor %}
+
+	  {% if first_time_accessed %} 
+					window.dataLayer.push({
+					'page_type': 'purchase',
+					'event': 'analyzify_purchase',
+					'currency': "{{ shop.currency }}",
+					'totalValue': total_price,
+					'shipping': shipping_price,
+					'tax': tax_price,
+					'payment_type': '{{order.transactions[0].gateway}}',
+					'transaction_id': "{{order.name}}",
+				  'productName': orderItemsName,
+				  'productPrice': orderItemsPrice,
+				  'productQuantity': orderItemsQuantity,
+				'productId': orderItemsId,
+					});
+		{% endif %}
+ 	</script> 
+ <!--GA4 Setup purchase end-->
+    
+
+    <!-- BEGIN PRIVY WIDGET CODE -->
+    <script type='text/javascript'> var _d_site = _d_site || '5FE3A1F746CE1239FEACE03B'; </script>
+    <script src='https://widget.privy.com/assets/widget.js'></script>
+    <!-- END PRIVY WIDGET CODE -->
+
+    {{ 'checkout.css' | asset_url | stylesheet_tag }}
+
+   
+
+    {% comment %}  heap code {% endcomment %}
+    <script type="text/javascript">   
+      window.heap=window.heap||[],heap.load=function(e,t){window.heap.appid=e,window.heap.config=t=t||{};var r=document.createElement("script");r.type="text/javascript",r.async=!0,r.src="https://cdn.heapanalytics.com/js/heap-"+e+".js";var a=document.getElementsByTagName("script")[0];a.parentNode.insertBefore(r,a);for(var n=function(e){return function(){heap.push([e].concat(Array.prototype.slice.call(arguments,0)))}},p=["addEventProperties","addUserProperties","clearEventProperties","identify","resetIdentity","removeEventProperty","setEventProperties","track","unsetEventProperty"],o=0;o<p.length;o++)heap[p[o]]=n(p[o])};   
+      heap.load("2499289854");
+      var customerId = '{{ customer.id }}';
+      var customerEmail = '{{ customer.email }}' || '{{ checkout.email }}';
+      heap.addUserProperties({'Name': '{{ customer.name }}','email': customerEmail,'CustomerID':'{{ customer.id }}','TotalSpent':'{{ customer.total_spent }}'});
+    </script>
+    {% comment %}  heap code {% endcomment %}
+  </head>
+
+  <body>
+
+    {% if request.path contains '/thank_you' or request.path contains '/orders/' %}
+    {% else %}
+    	{% section 'checkout-topbar' %}
+    {% endif %}
+
+    <div class="banner">
+      <div class="wrap">
+        <span class="_cs_checkout_logo"><a class="_cs_checkout_link" href="/">{{ content_for_logo }}</a></span>
+
+        <div class="page-title page-title-Mobile">
+          <div class="page-title-text">
+            <i class="mdi mdi-lock-outline"></i><span class="page-title-text_part">Secure</span> Checkout
+          </div>
+        </div>
+        <a class="__add_info_pop" href="javascript:void(0);">Shipping Info</a>
+      </div>
+    </div>
+
+    {{ order_summary_toggle }}
+
+    <div id="disclaimer-popup" class="cs-modal">
+      <div class="cs-modal-content">
+        <span class="cs-close mdi mdi-close cs-close-target"></span>
+        <h3></h3>
+        <div class="cs-modal-data"></div>
+        <div class="cs-modal-button">
+			<a class="btn cs-close-target" href="#">OKAY</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="content hideInfo" data-content>
+      <div class="main__header _checkout_header">
+        <div class="wrap">
+          <span class="_cs_checkout_logo"><a class="_cs_checkout_link" href="/">{{ content_for_logo }}</a></span>
+          
+          <div class="page-title">
+            <div class="page-title-text">
+              <i class="mdi mdi-lock-outline"></i><span class="page-title-text_part">Secure</span> Checkout
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="wrap wrap-main">
+       
+        <div class="sidebar" role="complementary">
+          <div class="_checkout_help_content">
+            <div class="_ajax_cart_help_content_block _ajax_cart_help_content_left">
+
+              <div class="_ajax_help_heading">Need Help?</div>
+                <p class="_ajax_help_desc _ajax_help_contact">
+                  <span class="_ajax_help_desc_title">Call us</span>
+                  <span class="_ajax_help_desc_text"><a href="tel:+18443110035"><span>+1 844–311–0035</span></a></span>
+                </p>
+              	<p class="_ajax_or_desc">—</p>
+                <p class="_ajax_help_desc _ajax_help_email">
+                  <span class="_ajax_help_desc_title">Email</span>
+                  <span class="_ajax_help_desc_text"><a href="mailto:support@bearmattress.com" target="_blank" subject="Help with Bear products">support@bearmattress.com</a></span>
+                </p>
+            </div>
+          </div>
+
+          <div class="sidebar__header">
+          	{{ content_for_logo }}
+          </div>
+
+          <div class="sidebar__content">
+          	{{ content_for_order_summary }}
+          </div>
+
+          <div class="checkout-reviews-wrapper checkout-reviews-desktop">
+
+            <div class="checkout-reviews-icons">
+
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+            </div>
+
+            <h3>{{ settings.checkout-reviews-text }}</h3>
+
+            <div class="checkout-reviews-content">
+
+              <div class="checkout-review-card">
+
+                <div class="checkout-review-top">
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                </div>
+
+                <div class="checkout-review-verified">{{ settings.checkout-reviews-item-1 }}</div>
+
+                <div class="checkout-review-user">{{ settings.checkout-reviews-item-name-1 }} <span class="verified"><i class="mdi mdi-check-circle"></i> Verified Buyer</span></div>
+              </div>
+
+              <div class="checkout-review-card">
+
+                <div class="checkout-review-top">
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                </div>
+
+                <div class="checkout-review-verified">{{ settings.checkout-reviews-item-2 }}</div>
+
+                <div class="checkout-review-user">{{ settings.checkout-reviews-item-name-2 }} <span class="verified"><i class="mdi mdi-check-circle"></i> Verified Buyer</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="main" role="main">
+
+          {% if request.path contains '/thank_you' or request.path contains '/orders/' %}
+              <div class="cs-powr-survey-wrapper"></div>
+          {% else %}
+            <div class="cs-breadcrumb">
+                {{ breadcrumb }}
+            </div>
+          {% endif %}
+<p style="margin-bottom: 2rem;font-family: apercubold;">By checking out and purchasing, you agree to our <a style="font-family: apercubold;" href="https://www.bearmattress.com/pages/terms-and-conditions-of-sale" target="_blank">terms and conditions</a> and <a style="font-family: apercubold;" href="https://www.bearmattress.com/pages/privacy-policy" target="_blank">privacy policy</a>.</p>
+          <div class="main__payment_method">
+            <div class="__main_headings">Your Information</div>
+            {{ alternative_payment_methods }}
+          </div>
+
+          <div class="main__content">
+            {{ content_for_layout }}
+
+            <div class="_checkout_help_content">
+
+              <div class="_ajax_cart_help_content_block _ajax_cart_help_content_left">
+                <div class="_ajax_help_heading">Need Help?</div>
+                <p class="_ajax_help_desc _ajax_help_contact">
+                  <span class="_ajax_help_desc_title">Call us</span>
+                  <span class="_ajax_help_desc_text"><a href="tel:+18443110035"><span>+1 844–311–0035</span></a></span>
+                </p>
+              	<p class="_ajax_or_desc">—</p>
+                <p class="_ajax_help_desc _ajax_help_email">
+                  <span class="_ajax_help_desc_title">Email</span>
+                  <span class="_ajax_help_desc_text"><a href="mailto:support@bearmattress.com" target="_blank" subject="Help with Bear products">support@bearmattress.com</a></span>
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="checkout-reviews-wrapper checkout-reviews-mobile">
+
+            <div class="checkout-reviews-icons">
+
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+              <span class="mdi mdi-star review-icon"></span>
+            </div>
+
+            <h3>{{ settings.checkout-reviews-text }}</h3>
+
+            <div class="checkout-reviews-content">
+
+              <div class="checkout-review-card">
+
+                <div class="checkout-review-top">
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                </div>
+
+                <div class="checkout-review-verified">{{ settings.checkout-reviews-item-1 }}</div>
+
+                <div class="checkout-review-user">{{ settings.checkout-reviews-item-name-1 }} <span class="verified"><i class="mdi mdi-check-circle"></i> Verified Buyer</span></div>
+              </div>
+
+              <div class="checkout-review-card">
+
+                <div class="checkout-review-top">
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                  <span class="mdi mdi-star review-verified-icon"></span>
+                </div>
+
+                <div class="checkout-review-verified">{{ settings.checkout-reviews-item-2 }}</div>
+
+                <div class="checkout-review-user">{{ settings.checkout-reviews-item-name-2 }} <span class="verified"><i class="mdi mdi-check-circle"></i> Verified Buyer</span></div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="cs-faq-wrapper cs-faq-wrapper-mobile">
+
+            <div class="cs-faq-inner">
+              <h2>FAQ</h2>
+
+              <div class="cs-faq-section">
+                <h3>When can I expect my delivery to arrive? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+                <div class="cs-faq-body">Our products normally ship in 2–5 days. Products ship from different facilities throughout the United States, so products in your order may arrive on different days.</div>
+              </div>
+
+              <div class="cs-faq-section">
+                <h3>How does the 120-Night Mattress Trial work? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+                <div class="cs-faq-body">After you receive your mattress from Bear, you can sleep on it up to 120 nights before you decide whether or not you love it. If you’re not completely satisfied, email <a href="mailto:returns@bearmattress.com" target="_blank">returns@bearmattress.com</a> before the 120th night and we’ll arrange for someone to come pick up the mattress and refund your money.
+                  <br>
+                  We do know that while your Bear mattress is good to go from the start, an adjustment period can be needed for some people which is why we require you to try the mattress for a least 30 nights.
+                  <br>
+                  The 120 night trial begins on the date the mattress is delivered to your address and is based on the FedEx tracking data.
+                </div>
+              </div>
+
+              <div class="cs-faq-section">
+                <h3>Can I track my shipment? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+                <div class="cs-faq-body">Yes. You will receive an email with your tracking information once your order has shipped.</div>
+              </div>
+
+              <div class="cs-faq-section">
+                <h3>Can I make any delivery changes after my purchase? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+                <div class="cs-faq-body">Yes. To make any changes to your delivery, please sign up for <a href="http://www.fedex.com/us/delivery/" target="_blank">FedEx Delivery Manager (http://www.fedex.com/us/delivery/)</a>. This free membership allows you to request vacation holds or request the package to be held at a local FedEx facility for future pick up.</div>
+              </div>
+
+              <div class="cs-faq-section">
+                <h3>Do I need to let the mattress settle after opening? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+                <div class="cs-faq-body">No. Your mattress will be good to sleep on as soon as it fully expands. The mattress might take 24-48 hours to completely decompress depending on the length of time it was in the box</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="main__footer">
+            <div class="footer_desktop_left"><p>©{{ 'now' | date: "%Y" }} Brooklyn Bedding, LLC<br> 5301 West Bethany Home Road, Glendale Arizona 85301, United States</p>
+</div>
+            {{ content_for_footer }}
+          </div>
+        </div>
+      </div>
+      
+      <div class="cs-faq-wrapper cs-faq-wrapper-desktop">
+
+        <div class="cs-faq-inner">
+          	<h2>FAQ</h2>
+
+          	<div class="cs-faq-section">
+              	<h3>When can I expect my delivery to arrive? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+                <div class="cs-faq-body">Our products normally ship in 2–5 days. Products ship from different facilities throughout the United States, so products in your order may arrive on different days.</div>
+          	</div>
+
+          	<div class="cs-faq-section">
+                <h3>How does the 120-Night Mattress Trial work? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+                <div class="cs-faq-body">After you receive your mattress from Bear, you can sleep on it up to 120 nights before you decide whether or not you love it. If you’re not completely satisfied, email <a href="mailto:returns@bearmattress.com" target="_blank">returns@bearmattress.com</a> before the 120th night and we’ll arrange for someone to come pick up the mattress and refund your money.
+                  <br>
+                  We do know that while your Bear mattress is good to go from the start, an adjustment period can be needed for some people which is why we require you to try the mattress for a least 30 nights.
+                  <br>
+                  The 120 night trial begins on the date the mattress is delivered to your address and is based on the FedEx tracking data.
+                </div>
+          	</div>
+
+          	<div class="cs-faq-section">
+              	<h3>Can I track my shipment? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+              	<div class="cs-faq-body">Yes. You will receive an email with your tracking information once your order has shipped.</div>
+          	</div>
+          
+          	<div class="cs-faq-section">
+              	<h3>Can I make any delivery changes after my purchase? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+              	<div class="cs-faq-body">Yes. To make any changes to your delivery, please sign up for <a href="http://www.fedex.com/us/delivery/" target="_blank">FedEx Delivery Manager (http://www.fedex.com/us/delivery/)</a>. This free membership allows you to request vacation holds or request the package to be held at a local FedEx facility for future pick up.</div>
+          	</div>
+
+          	<div class="cs-faq-section">
+              	<h3>Do I need to let the mattress settle after opening? <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 11 6" xml:space="preserve"><path class="st0" d="M5.4,4.4l4.5-4.2c0.2-0.3,0.7-0.3,0.9,0c0,0,0,0,0,0c0.3,0.3,0.3,0.7,0,1c0,0,0,0,0,0L5.9,5.8 C5.6,6.1,5.2,6.1,5,5.8L0.2,1.1c-0.3-0.3-0.3-0.7,0-0.9C0.4,0,0.8,0,1.1,0.2c0,0,0,0,0,0L5.4,4.4z"></path></svg></h3>
+
+              	<div class="cs-faq-body">No. Your mattress will be good to sleep on as soon as it fully expands. The mattress might take 24-48 hours to completely decompress depending on the length of time it was in the box</div>
+          	</div>
+        </div>
+      </div>
+    </div>
+    <div class="wrap wrap-main">
+      <div class="main__footer_desktop">
+            <div class="footer_desktop_left"><p>©{{ 'now' | date: "%Y" }} Brooklyn Bedding, LLC<br> 5301 West Bethany Home Road, Glendale Arizona 85301, United States</p>
+</div>
+        <div class="footer_desktop_right">
+          {{ content_for_footer }}
+        </div>
+      </div>
+      
+      <div class="footer_consent_text">I consent to receive recurring automated marketing by text message through an automatic telephone dialing system. Consent is not a condition to purchase. STOP to cancel, HELP for help. Message and Data rates may apply. View Privacy Policy & ToS.</div>
+    </div>
+    <script type="text/javascript" src="{{ 'checkout.js' | asset_url }}"></script>
+    
+    {{ tracking_code }}
+
+
+    <script src="https://s3.amazonaws.com/idme/developer/idme-buttons-2.0.1/assets/js/idme-modal.min.js" type="text/javascript"></script>
+    <script type="text/javascript">
+
+      $("#checkout_shipping_address_address1").on("keyup", function(){
+        $('.field[data-address-field="city"], .field--show-floating-label[data-address-field="country"], .field--show-floating-label[data-address-field="province"], .field--show-floating-label[data-address-field="zip"], .field--optional[data-address-field="address2"], .field--quarter[data-address-field="zip"], .field--third[data-address-field="zip"]').css("display","block");
+      });
+
+      var sh = false;
+
+      $(".order-summary-toggle").on('click',function(event){
+        if(!sh){
+          $(".sidebar").addClass("expended");
+          $(".wrap-main  .main").addClass("back");
+          $(".order-summary-toggle__inner .order-summary-toggle__text span i").removeClass("mdi-plus").addClass("mdi-close");
+          sh = true;
+        } else {
+          $(".sidebar").removeClass("expended");
+          $(".wrap-main  .main").removeClass("back");
+          $(".order-summary-toggle__inner .order-summary-toggle__text span i").removeClass("mdi-close").addClass("mdi-plus");
+          sh = false;
+        }
+      });
+
+      $(".order-summary__section  .total-line--taxes").removeClass("hidden");
+
+      $(".order-summary__section  .total-line--subtotal").addClass("hidden");
+
+      var tax_value = $(".total-line--taxes .order-summary__emphasis").data("checkout-total-taxes-target");
+      
+      if(tax_value == 0) {
+      	var tax_value = $(".total-line--taxes .order-summary__emphasis").text("Calculated at next step");
+      }
+
+      // $(".order-summary__section--discount .edit_checkout   .field__input-wrapper .field__input").prop("placeholder", "Enter discount code");
+      // $(".review-block .link--small span[aria-hidden='true']").html("Edit");
+      // $(".radio__label__primary .offsite-payment-gateway-logo").prop("src",  "");
+      // $(".order-summary-toggle__inner .order-summary-toggle__text span").html('<i class="mdi mdi-plus mdi-24px"></i>View Order Summary');
+      // setTimeout(function(){ $(".order-summary__section--total-lines .total-line-table .total-line--taxes").removeClass("hidden"); }, 1000);
+
+      $(document).on('page:load page:change', function() {
+
+        if(window.location.href.indexOf("/checkouts") > -1) {
+          var total_amount = $('.total-line .payment-due__price').data('checkout-payment-due-target');
+          $(".order-summary__section  .total-line-table__footer .cs-affirm-tax-line").remove();
+          $(".order-summary__section  .total-line-table__footer").append('<tr class="cs-affirm-tax-line"><td colspan="2"><span class="affirm-as-low-as" data-page-type="cart" data-amount="'+total_amount+'" data-learnmore-show="false" data-affirm-color="blue" data-affirm-type="logo"></span></td></tr>');
+
+          $('.order-summary__section .cs-affirm-note').remove();
+          $('.order-summary__section.order-summary__section--total-lines').append('<div class="cs-affirm-note"><h3 data-uw-styling-context="true"><img src="https://cdn.shopify.com/s/files/1/0661/5815/files/Icon-Bag_64x.png"> Pay as low as 0% APR</h3><div class="cs-affirm-description" data-uw-styling-context="true">Choose <b data-uw-styling-context="true">Monthly Payments</b> at the payment step to get a real time decision with just 5 pieces of info.</div></div>');
+        }
+        
+        if($('body').hasClass('payment')) {
+          // $('[data-select-gateway=66405695593] .offsite-payment-gateway-logo').attr('src', '//cdn.shopify.com/s/files/1/0661/5815/files/shop-pay-logo.png');
+
+          $('[data-select-gateway=53528259] .offsite-payment-gateway-logo').attr('src', '//cdn.shopify.com/s/files/1/0661/5815/files/affirm-logo.png');
+          $('[data-select-gateway=53528259] .radio__label__primary').append('<span class="offsite-payment-gateway-text">Monthly payments with as low as 0% APR financing</span>');
+
+          $('[data-select-gateway=63763677289] .offsite-payment-gateway-logo').attr('src', 'https://cdn.shopify.com/s/files/1/0661/5815/files/6220a9b0912013c51947f9b8_1_1.png?v=1658829068');
+          $('[data-select-gateway=63763677289] .radio__label__primary').append('<span class="offsite-payment-gateway-text">Monthly payments using your credit card at 0% interest</span>');
+        }
+
+        if($('body').hasClass('shipping')) {
+          $('.main__payment_method .cs-dynamic-checkout').remove();
+          $('.main__payment_method').append('<div class="cs-dynamic-checkout"><h2 class="cs-dynamic-heading-top">Looking to Finance?</h2><div class="cs-dynamic-checkout-finance"><div class="cs-dynamic-checkout-affirm"><img src="//cdn.shopify.com/s/files/1/0661/5815/files/affirm-logo.png?v=5435435435" /></div><div class="cs-dynamic-checkout-splitit test"><img src="https://cdn.shopify.com/s/files/1/0661/5815/files/6220a9b0912013c51947f9b8_1_1.png?v=1658829068" /></div></div><h2 class="cs-dynamic-heading-bottom">Select one at Payments</h2></div>');
+        }
+
+//         var dataline = 1;
+
+//         $(".product").each(function(){
+//           $(this).attr("data-line",dataline);
+
+//           if($(this).attr("data-variant-id") == "21286724239465" || $(this).attr("data-variant-id") == "21286724272233" || $(this).attr("data-variant-id") == "21391581544553" || $(this).attr("data-variant-id") == "21391584755817"){
+//             $("[data-order-summary-section='line-items']").append(this);
+//             $(this).find(".product__price .order-summary__emphasis").html("<span style='color:#c12827'>Free</span>");
+//           }
+
+//           dataline++;
+//         });
+
+        var containerEl = $(".step__footer").parents(".edit_checkout");
+      let listing_content = $('.cs-mattress-list-wrapper').html();
+		 containerEl.append('<div class="mattress-list-wrapper">'+listing_content+'</div>'); 
+
+        var linkTargetEl = $('.step__footer__info');
+        linkTargetEl.find('span').html('Any questions? Email <a data-tekkie-id="contact_us_link" href="mailto:support@bearmattress.com">support@bearmattress.com</a>');
+
+        var comparePriceArr = [];
+
+        var tempObj = {};
+        var hasAdjustable = false;
+        var adjustableID = [10175339022];
+
+		var hasRemoval = false;
+        var hasAllRemoval = true;
+        var removalID = [4858808402025];
+
+        {% for item_list in checkout.line_items %}
+          {% assign varient_id = item_list.variant.id %}
+          {% assign compare_price = item_list.variant.compare_at_price | money_without_currency | replace: ',', '' | remove: '.00' | plus: 0 %}
+          {% assign original_price = item_list.line_price | money_without_currency | replace: ',', '' | remove: '.00' | plus: 0  %}
+          {% assign product_id = item_list.product_id %}
+
+          if(adjustableID.indexOf({{product_id}}) > -1) {
+            hasAdjustable = true;
+          }
+
+          if(removalID.indexOf({{product_id}}) > -1) {
+            hasRemoval = true;
+          } else {
+            hasAllRemoval = false;
+          }
+
+          tempObj = {"id": "{{varient_id}}", "price": {{ compare_price }}+".00"};
+          comparePriceArr.push(tempObj);
+        {% endfor %}
+
+        if(hasAdjustable == true) {
+          $('.section--shipping-method').append('<div class="shipping-notice adjustable-base"><strong>Shipping Update for the Adjustable Base: </strong>The Adjustable Base will be shipped with Signature Required at no added cost to you. We offer this to ensure your product is delivered to the correct customer. You will need to be home at the time of delivery for safe, non-contact verification.</div>');
+        }
+
+        if(hasRemoval == true) {
+		  $('.section--shipping-method').append('<div class="shipping-notice removal-service"><strong>About Removal Services: </strong>No Shipping is required. Once you complete your order, Load Up removal service will contact you in order to schedule a time and date for your removal.</div>');
+        }
+
+        if(hasAllRemoval == true) {
+          $('.section--shipping-method .section__content').hide();
+        }
+
+        setTimeout(function(){
+          jQuery('tr.product').each(function(){
+
+            var productProperty = jQuery(this).find('.product__description__property');
+            var _this = jQuery(this);
+
+            if(productProperty.length > 0){
+
+              productProperty.each(function(){
+                var thisVariantVal = $(this).text().replace(/--/g, '<br />').split('Variant: ')[1];
+                $(this).html(thisVariantVal);
+
+                if($(this).text().indexOf('FREE') > -1) {
+                  $(this).css('display', 'none');
+                  $(this).siblings('.product__description__variant').css('display', 'none');
+                } else if($(this).text().indexOf('combo') > -1 || $(this).text().indexOf('celliant') > -1) {
+                  $(this).css('display', 'none');
+                } else if($(this).text().indexOf('CELLIANT') > -1) {
+                  $(this).css('display', 'none');
+                  _this.find(".product__price .order-summary__emphasis").html("$0");
+                } else {
+                  $(this).css('opacity', 1);
+                }
+              });
+            }
+
+            var bundleCheck = jQuery(this).find('.product__description__name')
+
+            if(bundleCheck.length > 0) {
+              var isBundle = bundleCheck.text().indexOf('Bundle');
+
+              if(isBundle > 0) {
+                jQuery(this).find('.product__description__variant').hide();
+              }
+            }
+          });
+
+          $('.product__description__variant').css('opacity', 1);
+
+//           $(".product").each(function(){
+//             if($(this).attr("data-variant-id") == "21286724239465" || $(this).attr("data-variant-id") == "21286724272233" || $(this).attr("data-variant-id") == "21391581544553" || $(this).attr("data-variant-id") == "21391584755817"){
+//               $("[data-order-summary-section='line-items']").append(this);
+//               $(this).find(".product__price .order-summary__emphasis").html("<span style='color:#c12827'>Free</span>");
+//             }
+//           });
+
+          console.log(comparePriceArr);
+          if(comparePriceArr.length > 0){
+            for (var i=0; i<comparePriceArr.length; i++) {
+              var RowId = i + 1;
+              console.log(RowId);
+              var $priceBlock = $(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]:nth-child("+RowId+")").find(".product__price");
+              var $quantityEl = $(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]:nth-child("+RowId+")").find(".product-thumbnail__quantity").text();
+              
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("2019") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Bear Pro") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+
+ if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Bear Pillow") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+
+               if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Adjustable Bed Deal") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+              
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("2021 Bear Hybrid") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Bear Mini Pillow") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Adjustable Flex Bed") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+   if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Bear Essentials Bundle") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Contour Pillow") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Weighted Blanket") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+
+              if(($(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__description__name").text()).indexOf("Sleep Bundle") != -1) {
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+              
+              if(!$priceBlock.hasClass("acc-discount")){
+
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                
+                $priceBlock.addClass("acc-discount");
+
+                if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='mmm compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                }
+              }
+            }
+          }
+
+        },2000);
+
+        jQuery('tr.product').addClass('prd__row');
+
+        setInterval(function(){ 
+
+          if(jQuery('tr.product.prd__row').length <= 0){
+
+            var dataline = 1;
+
+            jQuery('tr.product').each(function(){
+
+              $(this).attr("data-line",dataline);
+
+              var productProperty = jQuery(this).find('.product__description__property');
+              var _this = jQuery(this);
+
+              if(productProperty.length > 0){
+
+                productProperty.each(function(){
+                  var thisVariantVal = $(this).text().replace(/--/g, '<br />').split('Variant: ')[1];
+                  $(this).html(thisVariantVal);
+
+                  if($(this).text().indexOf('FREE') > -1) {
+                    $(this).css('display', 'none');
+                    $(this).siblings('.product__description__variant').css('display', 'none');
+                  } else if($(this).text().indexOf('combo') > -1 || $(this).text().indexOf('celliant') > -1) {
+                    $(this).css('display', 'none');
+                  } else if($(this).text().indexOf('CELLIANT') > -1) {
+                    $(this).css('display', 'none');
+            		_this.find(".product__price .order-summary__emphasis").html("$0");
+                  } else {
+                    $(this).css('opacity', 1);
+                  }
+                });
+              }
+
+              var bundleCheck = jQuery(this).find('.product__description__name')
+
+              if(bundleCheck.length > 0) {
+                var isBundle = bundleCheck.text().indexOf('Bundle');
+
+                if(isBundle > 0) {
+                  jQuery(this).find('.product__description__variant').hide();
+                }
+              }
+
+//               if($(this).attr("data-variant-id") == "21286724239465" || $(this).attr("data-variant-id") == "21286724272233" || $(this).attr("data-variant-id") == "21391581544553" || $(this).attr("data-variant-id") == "21391584755817"){
+//                 $("[data-order-summary-section='line-items']").append(this);
+//                 $(this).find(".product__price .order-summary__emphasis").html("<span style='color:#c12827'>Free</span>");
+//               }
+
+              dataline++;
+            });
+
+            jQuery('.product__description__variant').css('opacity', 1);
+            jQuery('tr.product').addClass('prd__row');          
+          }
+
+          $(".order-summary__small-text:contains('Standard (2 Pillows)')").show();
+          $(".order-summary__small-text:contains('King (2 Pillows)')").show();
+          $(".order-summary__small-text:contains('Product_Id:')").hide();
+
+          $(".prd__row .product__quantity").remove();
+
+          if(comparePriceArr.length > 0){
+            for (var i=0; i<comparePriceArr.length; i++) {
+              var $priceBlock = $(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product__price");
+              var $quantityEl = $(".product.prd__row[data-variant-id="+comparePriceArr[i].id+"]").find(".product-thumbnail__quantity").text();
+            
+              if(!$priceBlock.hasClass("acc-discount")){
+
+                var compare_price_with_quantity = Number(comparePriceArr[i].price) * Number($quantityEl);
+                $priceBlock.addClass("acc-discount");
+
+         /*     if(Number(compare_price_with_quantity) > 0) {
+                  $priceBlock.prepend("<span class='nnn compare-price'>$"+compare_price_with_quantity.toFixed(2)+"</span>");
+                } */
+              }
+            }
+          }
+
+          if($(".dicDetails").length == 0){
+            $(".order-summary__sections .edit_checkout .fieldset").before('<p class="dicDetails">One discount code per order. Codes cannot be combined.</p>');
+
+            $('.order-summary__section.order-summary__section--discount').children().last().after('<div class="idme-btn-container"><span class="idme-btn-affinity"><i class="mdi mdi-menu-down mdi-24px"></i><i class="mdi mdi-menu-up mdi-24px"></i>Medical, Military, Nurse, Responder, and Teacher Discounts</span><div class="idme-content"><p class="pText">Bear offers exclusive discounts for Medical Professionals, Military, Nurses, First Responders, and Teachers through ID.me.</p><a href="https://shopify.id.me/oauth/checkpoint/bear-mattress" target="_blank"><img src="https://s3.amazonaws.com/idme/buttons/v4/verify-with-idme.png" border="0" alt="Verify with ID.me troop ID" class="idme-btn-primary-lg-troop" style="height:34px"></a><span class="idme-btn-verification"><img alt="Lock" src="https://s3.amazonaws.com/idme/assets/lock.png" class="idme-btn-lock" width="8">Verification by ID.me • <a href="https://www.id.me/about" class="idme-about-link" target="_new">What is ID.me?</a></span></div></div>');
+
+			var showHide = true;
+			$(".order-summary__section .mdi-menu-up").css("display","none");
+
+            $(".idme-btn-affinity").on("click",function(){
+              if(showHide) {
+                $(".idme-btn-container").css("height","auto");
+                $(".order-summary__section .mdi-menu-up").css("display","block");
+                $(".order-summary__section .mdi-menu-down").css("display","none");
+                showHide = false;
+              } else {
+                $(".idme-btn-container").css("height","56px");
+                $(".order-summary__section .mdi-menu-up").css("display","none");
+                $(".order-summary__section .mdi-menu-down").css("display","block");
+                showHide = true;
+              }
+            });
+          }
+
+          if($('.section.section--payment-method').is(':visible')){
+            $('.step__footer__continue-btn').addClass('last-section-payment');
+            $(".content-box__row--tight-spacing-vertical .review-block:last-child").css({"display":"block","margin-top": "0.85714em", "padding-top": "0.85714em", "border-top": "1px solid #e6e6e6"});
+          }
+
+          if(Shopify.Checkout.currency == 'CAD') {
+            $('body').addClass('curr_CAD');
+            $('.idme-btn-container').remove();
+            $('.radio-wrapper[data-select-gateway="53528259"]').remove();
+          }
+        },50);
+
+        $(".sidebar ._checkout_help_content").insertAfter(".sidebar__content");
+
+        if($(".shipping .alt-payment-list__item--apple-pay")){
+          $(".shipping .alt-payment-list__item--apple-pay").insertAfter('.shipping .alt-payment-list__item--paypalv4');
+        }
+
+        if($("#checkout_shipping_address_address1").val()<1 && $("#checkout_shipping_address_address1")){
+          $('.field[data-address-field="city"], .field--show-floating-label[data-address-field="country"], .field--show-floating-label[data-address-field="province"], .field--show-floating-label[data-address-field="zip"], .field--optional[data-address-field="address2"], .field--quarter[data-address-field="zip"], .field--third[data-address-field="zip"]').css("display","none");
+        }
+
+        if($('.payment .content-box__row[data-gateway-group="express"]')){
+          $('#payment-gateway-subfields-9268819').insertAfter('.payment .content-box__row[data-subfields-for-gateway="53528259"]'); 
+          $('.payment .content-box__row[data-gateway-group="express"]').insertAfter('.payment .content-box__row[data-subfields-for-gateway="53528259"]');
+        }
+
+        setInterval(function(){
+          var onlyDiscount = $('.total-line.total-line--reduction .order-summary__emphasis').data('checkout-discount-amount-target');
+          var discounted_amount = [];
+          var free_discounted_amount = [];
+          var final_amount = [];
+          var hasFreeProduct = false;
+
+          $(".product").each(function() {
+
+            var compare_price = $(this).find('.product__price .compare-price').text().replace(/[,$ ]/g, '');
+            var small_price = $(this).find('.product__price .order-summary__small-text').text().replace(/[,$ ]/g, '');
+            var final_price = $(this).find('.product__price .order-summary__emphasis').text().replace(/[,$ ]/g, '');
+
+            if(final_price == 'Free') {
+
+              hasFreeProduct = true;
+              free_discounted_amount.push(Number(compare_price));
+            } else {
+
+              if(Number(compare_price) && Number(final_price)) {
+
+                discounted_amount.push(Number(compare_price) - Number(final_price));
+              } else {
+
+                if(Number(small_price) && Number(final_price)) {
+
+                  discounted_amount.push(Number(small_price) - Number(final_price));
+                }
+              }
+            }
+          });
+          
+          if(onlyDiscount) {
+
+            final_amount.push(Number(onlyDiscount) / 100);
+            final_amount = final_amount.concat(free_discounted_amount);
+          } else {
+
+            final_amount = discounted_amount.concat(free_discounted_amount);
+          }
+
+          var final_discount = final_amount.reduce(function(a,b) {return a+ b}, 0);
+          if($(".total-line--reduction").length < 1) {
+
+            if(Number(final_discount)) {
+
+              if(hasFreeProduct == true) {
+              	$(".total-line--subtotal").after('<tr class="total-line total-line--reduction" data-discount-success="" data-discount-type="fixed_amount"><th class="total-line__name" scope="row"><span>Discount + Gift Value</span></th><td class="total-line__price"><span class="order-summary__emphasis" aria-hidden="true" data-checkout-discount-amount-target="">- $' + final_discount.toFixed(2) + '</span></td></tr>');
+              } else {
+              	$(".total-line--subtotal").after('<tr class="total-line total-line--reduction" data-discount-success="" data-discount-type="fixed_amount"><th class="total-line__name" scope="row"><span>Discount</span></th><td class="total-line__price"><span class="order-summary__emphasis" aria-hidden="true" data-checkout-discount-amount-target="">- $' + final_discount.toFixed(2) + '</span></td></tr>');
+              }
+            }
+          } else {
+
+            if(Number(final_discount)) {
+
+              if(hasFreeProduct == true) {
+                $(".total-line.total-line--reduction .total-line__name span:first-child").text('Discount + Gift Value');
+              } else {
+              	$(".total-line.total-line--reduction .total-line__name span:first-child").text('Discount');
+              }
+            /* added code for   discount_gift*/
+             var discount_gift_v = Number($('.total-line.total-line--reduction .order-summary__emphasis').attr("data-checkout-applied-gift-card-amount-target"));
+            //console.log(discount_gift_v)
+            
+              if ( !isNaN(discount_gift_v)){
+             var final_discount_final = (discount_gift_v / 100) + (final_discount);
+            }else{
+              final_discount_final = final_discount;
+            }
+              $('.total-line.total-line--reduction .order-summary__emphasis').text('- $' + final_discount_final.toFixed(2));
+            /* added code for   discount_gift*/
+            }
+          }
+        }, 100);
+
+        $(".wrap.wrap-main").css("visibility","visible");
+
+        function csupdate(data, success, fail) {
+
+          $.ajax({
+            type: 'POST',
+            url: '/cart/update.js',
+            data: data,
+            dataType: 'json',
+            cache: false
+          }).done(function(response){
+
+            if (typeof success === 'function') success(response);
+          }).fail(function(response){
+
+            if (typeof fail === 'function') fail(response);
+          });
+        }
+
+		// function addFee(data, success, fail) {
+  //         $.ajax({
+  //           type: 'POST',
+  //           url: '/cart/add.js',
+  //           data: data,
+  //           dataType: 'json',
+  //           cache: false
+  //         }).done(function(response){
+
+  //           if (typeof success === 'function') success(response);
+  //         }).fail(function(response){
+
+  //           if (typeof fail === 'function') fail(response);
+  //         });
+  //       }
+        
+  //       function checkFee() {
+  //           var mattressProductID = [];
+  //           mattressProductID['CA'] = 39775214567529;
+  //           mattressProductID['RI'] = 39775213715561;
+  //           mattressProductID['CT'] = 39775213551721;
+
+  //           var foundationProductID = [];
+  //           foundationProductID['CA'] = 39775216500841;
+  //           foundationProductID['RI'] = 39775216762985;
+  //           foundationProductID['CT'] = 39775217123433;
+
+  //         	var mattressQuantity = 0, mattressFee, isMattressFee = false, foundationQuantity = 0, foundationFee, isFoundationFee = false, currentProduct;
+
+  //           var mattressProducts = [381450171,6989665763433,3653284495465,6945454915689,6948906336361,6993928126569,10340464782,148842217486,3687476691049,6790983286889,4617447702633,6820507484265];
+
+  //         	var foundationProducts = [9512290574];
+
+  //           $.ajax({
+  //             type: 'GET',
+  //             url: '/cart.js',
+  //             dataType: 'json',
+  //             async: false
+  //           }).done(function(cartData) {
+
+  //             cartData.items.forEach(function(val, index) {
+
+  //               if(mattressProducts.indexOf(val.product_id) > -1){
+  //                 mattressQuantity = parseInt(mattressQuantity) + parseInt(val.quantity);
+  //               }
+
+  //               if(val.id == parseInt(mattressProductID['CA']) || val.id == parseInt(mattressProductID['RI']) || val.id == parseInt(mattressProductID['CT'])) {
+  //                 isMattressFee = true;
+  //                 mattressFee = val.key;
+  //               }
+                
+  //               if(foundationProducts.indexOf(val.product_id) > -1){
+  //                 foundationQuantity = parseInt(foundationQuantity) + parseInt(val.quantity);
+  //               }
+
+  //               if(val.id == parseInt(foundationProductID['CA']) || val.id == parseInt(foundationProductID['RI']) || val.id == parseInt(foundationProductID['CT'])) {
+  //                 isFoundationFee = true;
+  //                 foundationFee = val.key;
+  //               }
+  //             });
+
+  //             if((isMattressFee == false && mattressProductID[province_code] && mattressQuantity > 0) || (isFoundationFee == false && foundationProductID[province_code] && foundationQuantity > 0)) {
+
+  //               var itemsData = [];
+
+  //               var mattressFeeItem = {};
+  //               mattressFeeItem.quantity = mattressQuantity;
+  //               mattressFeeItem.id = mattressProductID[province_code];
+
+  //               itemsData.push(mattressFeeItem);
+
+  //               var foundationFeeItem = {};
+  //               foundationFeeItem.quantity = foundationQuantity;
+  //               foundationFeeItem.id = foundationProductID[province_code];
+
+  //               itemsData.push(foundationFeeItem);
+
+  //               var finalItem = {};
+  //               finalItem['items'] = itemsData;
+
+  //               addFee(finalItem, function(cart) {
+  //                 window.location.reload(window.location.href);
+  //                 console.log("1");
+  //               });
+  //             }
+
+  //             if((isMattressFee == true && !mattressProductID[province_code]) || (isFoundationFee == true && !foundationProductID[province_code])) {
+
+  //               var itemsData = {};
+                
+  //               if(mattressFee) {
+  //               	itemsData[mattressFee] = 0;
+  //               }
+                
+  //               if(foundationFee) {
+  //               	itemsData[foundationFee] = 0;
+  //               }
+
+  //               csupdate({updates: itemsData}, function(cart) {
+  //                 window.location.reload(window.location.href);
+  //                 console.log("2");
+  //               });
+  //             }
+  //           });
+  //       }
+           
+        jQuery.getJSON('/cart.js', function (cart) {
+
+            var cartItems = cart.items;
+            var finalUpdation = [];
+            var keyUpdation = {};
+//             console.log("cart.total_price" + cart.total_price);
+      var subcheck_price_s = {{ checkout.line_items_subtotal_price | money_without_currency | remove: "," }};
+
+          {%- assign isOnlyWhiteGlove = true -%}
+          {%- for item in checkout.line_items -%}
+            {%- if item.product_id != 6712607801449 -%}
+              {% assign isOnlyWhiteGlove = false %}
+            {%- endif -%}
+          {%- endfor -%}
+
+          {% assign whiteGloveGuardian = 0 %}
+          {%- if isOnlyWhiteGlove -%}
+            {% assign whiteGloveGuardian = 1 %}
+          {%- endif -%}
+
+// false == 0, true == 1
+if (subcheck_price_s == 0 && {{ whiteGloveGuardian }} == 0) {
+    jQuery.ajax({
+      type: "POST",
+      url: '/cart/clear.js',
+      dataType: 'json',
+      success: function(cart) {
+        window.location.href = '/';
+      }
+    });
+} else {
+  if (cartItems.length > 0) {
+    for (var i = 0; i < cartItems.length; i++) {
+      for (var property in cartItems[i].properties) {
+        if (property == "combo") {
+          if (finalUpdation[cartItems[i].properties[property]] > 0) {
+            finalUpdation[cartItems[i].properties[property]] = Number(finalUpdation[cartItems[i].properties[property]]) + Number(cartItems[i].quantity);
+          } else {
+            finalUpdation[cartItems[i].properties[property]] = cartItems[i].quantity;
+          }
+        }
+      }
+    }
+
+    for (var i = 0; i < cartItems.length; i++) {
+      for (var property in cartItems[i].properties) {
+        if (property == "FREE") {
+          if (finalUpdation[cartItems[i].properties[property]] > 0) {
+            if (Number(finalUpdation[cartItems[i].properties[property]]) == Number(cartItems[i].quantity)) {
+              // Do nothing
+            } else {
+              keyUpdation[cartItems[i].key] = finalUpdation[cartItems[i].properties[property]];
+            }
+          } else {
+            keyUpdation[cartItems[i].key] = 0;
+          }
+        }
+      }
+    }
+
+    if (jQuery.isEmptyObject(keyUpdation)) {
+      checkFee();
+    } else {
+      csupdate({ updates: keyUpdation }, function(cart) {
+        window.location.reload(window.location.href);
+        console.log("3");
+      });
+    }
+  }
+}
+
+        });
+
+        var reviewText = $("._checkout_header .breadcrumb .breadcrumb__item:last-child").text().trim().split(" ")[0];
+
+        if(reviewText == "Review"){
+          $("._checkout_header .breadcrumb .breadcrumb__item:last-child").text(reviewText);
+        }
+      });
+    </script>
+    
+	<script async type="text/javascript" src="https://static.klaviyo.com/onsite/js/klaviyo.js?company_id=L26DSi"></script>
+   
+     <script>var HIDE_POWERED_BY_GORGIAS = true;</script>
+    
+    <!--Gorgias Chat Widget Start-->
+   
+<!-- Start of bear-mattress Zendesk Widget script -->
+<script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=9ab9315c-e29e-45b7-ba90-022bdd137dbe"> </script>
+<!-- End of bear-mattress Zendesk Widget script -->
+
+    {{ 'idme-checkout-style.css' | asset_url | stylesheet_tag }}
+    {{ 'idme-checkout-template.js' | asset_url | script_tag }}
+  </body>
+</html>
+{{ 'idme-checkout-style.css' | asset_url | stylesheet_tag }}
+{{ 'idme-checkout-template.js' | asset_url | script_tag }}
+<style>
+  .wrap-main *{
+    font-family: "apercu";
+}
+  h1, h2, h3, h4, h5, h6 {
+  font-family: 'apercubold'!important;
+}
+</style>
+<script>
+// // Function to create content box row and append it to the DOM
+// function createContentBoxRow() {
+//     const contentBoxRowouter = document.createElement('div');
+//     contentBoxRowouter.classList.add('content-box');
+//   contentBoxRowouter.classList.add('content-box-custom');
+
+//     // Create div with class "content-box__row"
+//     const contentBoxRow = document.createElement('div');
+//     contentBoxRow.classList.add('content-box__row');
+
+//     // Create div with class "checkbox-wrapper"
+//     const checkboxWrapper = document.createElement('div');
+//     checkboxWrapper.classList.add('checkbox-wrapper');
+//     checkboxWrapper.classList.add('custom-wrap');
+
+//     // Create div with class "checkbox__input"
+//     const checkboxInput = document.createElement('div');
+//     checkboxInput.classList.add('checkbox__input');
+
+//     // Create hidden input element for false value
+//     const hiddenInputFalse = document.createElement('input');
+//     hiddenInputFalse.setAttribute('autocomplete', 'off');
+//     hiddenInputFalse.setAttribute('size', '30');
+//     hiddenInputFalse.setAttribute('type', 'hidden');
+//     hiddenInputFalse.setAttribute('value', 'false');
+//     hiddenInputFalse.setAttribute('name', 'checkout[remember_me]');
+
+//     // Create hidden input element for 0 value
+//     const hiddenInputZero = document.createElement('input');
+//     hiddenInputZero.setAttribute('name', 'checkout[remember_me]');
+//     hiddenInputZero.setAttribute('type', 'hidden');
+//     hiddenInputZero.setAttribute('value', '0');
+//     hiddenInputZero.setAttribute('autocomplete', 'off');
+
+//     // Create checkbox input element
+//     const checkboxInputElem = document.createElement('input');
+//     checkboxInputElem.classList.add('input-checkbox');
+//     checkboxInputElem.classList.add('custom-inp');
+//     checkboxInputElem.setAttribute('data-backup', 'remember_me');
+//     checkboxInputElem.setAttribute('data-remember-me-opt-in', 'true');
+//     checkboxInputElem.setAttribute('aria-controls', 'section--remember-me__phone');
+//     checkboxInputElem.setAttribute('type', 'checkbox');
+//     checkboxInputElem.setAttribute('value', '1');
+//     checkboxInputElem.setAttribute('name', 'checkout[remember_me]');
+//     checkboxInputElem.setAttribute('id', 'checkout_remember_mee');
+
+//     // Append hidden inputs and checkbox input to "checkbox__input" div
+//     checkboxInput.appendChild(hiddenInputFalse);
+//     checkboxInput.appendChild(hiddenInputZero);
+//     checkboxInput.appendChild(checkboxInputElem);
+
+//     // Create label element with class "checkbox__label" and text content
+//     const labelElem = document.createElement('label');
+//     labelElem.classList.add('checkbox__label', 'content-box__emphasis');
+//     labelElem.setAttribute('for', 'checkout_remember_mee');
+//     labelElem.innerHTML = 'By clicking this box, you agree to Bear\'s <a href="https://www.bearmattress.com/pages/terms-and-conditions-of-sale" target="_blank">terms and conditions</a> and <a href="https://www.bearmattress.com/pages/privacy-policy" target="_blank">privacy policy</a>';
+
+//     // Append label element to "checkbox-wrapper" div
+//     checkboxWrapper.appendChild(checkboxInput);
+//     checkboxWrapper.appendChild(labelElem);
+
+//     // Append "checkbox-wrapper" div to "content-box__row" div
+//     contentBoxRowouter.appendChild(contentBoxRow);
+//     contentBoxRow.appendChild(checkboxWrapper);
+
+//     // Find the element with class "step__footer"
+//     const stepFooter = document.querySelector('.step__footer');
+
+//     // Insert "content-box__row" before the "step__footer" element
+//     stepFooter.parentNode.insertBefore(contentBoxRowouter, stepFooter);
+// }
+
+// // Function to check if the checkbox is checked
+// function isCheckboxChecked() {
+//     const checkbox = document.getElementById('checkout_remember_mee');
+//     return checkbox.checked;
+// }
+
+// // Function to display error message
+// function displayErrorMessage() {
+//     const errorText = document.createElement('p');
+//     errorText.textContent = 'You must accept our Terms & Conditions and Privacy Policy to continue.';
+//     errorText.classList.add('error-message');
+
+//     // Check if error message already exists
+//     const existingError = document.querySelector('.error-message');
+//     if (!existingError) {
+//         // If error message doesn't exist, append it below the checkbox wrapper
+//         const checkboxWrapper = document.querySelector('.custom-wrap');
+//         checkboxWrapper.appendChild(errorText);
+//     }
+// }
+
+// // DOMContentLoaded event listener to ensure script execution after DOM is fully loaded
+// let isContentBoxCreated = false; // Flag to track if content box row is created
+
+// function initializeContentBox() {
+//     // Check if the content box row is already created
+//     if (isContentBoxCreated) {
+//         return; // If already created, exit the function
+//     }
+
+//     // Check if the element with the class step__footer__previous-link-content exists
+//     var previousLink = document.querySelector('.section--payment-method');
+
+//     // If the previous link exists, run the code to create content box row
+//     if (previousLink) {
+//         createContentBoxRow();
+//         observeSubmitButtonClick(); // Function to observe submit button click
+//         isContentBoxCreated = true; // Set flag to true indicating content box is created
+//     } else {
+//         // Otherwise, observe changes in the DOM and run the code when the target element is added
+//         const observer = new MutationObserver(function(mutationsList, observer) {
+//             for (let mutation of mutationsList) {
+//                 if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
+//                     // Check if the added nodes contain the target element
+//                     if ([...mutation.addedNodes].some(node => node.classList && node.classList.contains('section--payment-method'))) {
+//                         // If the target element is added, disconnect the observer and run the code
+//                         observer.disconnect();
+//                         createContentBoxRow();
+//                         observeSubmitButtonClick(); // Function to observe submit button click
+//                         isContentBoxCreated = true; // Set flag to true indicating content box is created
+//                         break;
+//                     }
+//                 }
+//             }
+//         });
+
+//         // Start observing changes in the body and its descendants after DOM is fully loaded
+//         document.addEventListener('DOMContentLoaded', function() {
+//             observer.observe(document.body, { childList: true, subtree: true });
+//         });
+//     }
+// }
+
+// // Run initializeContentBox every second until content box is created
+// const intervalId = setInterval(initializeContentBox, 1000);
+
+// function observeSubmitButtonClick() {
+//     // Find the submit button
+//     const submitButton = document.getElementById('continue_button');
+//     submitButton.addEventListener('click', function(event) {
+//         // Check if the checkbox is checked
+//         if (!isCheckboxChecked()) {
+//             // Checkbox is not checked, display error message
+//             event.preventDefault(); // Prevent default form submission
+//             displayErrorMessage();
+//             $(".custom-inp").css("border-color", "red");
+//         }
+//     });
+// }
+</script>
+<style>
+  .custom-paragraph{
+    text-align: center;
+    margin-top: 20px;
+  }
+  .content-box-custom .error-message{
+    line-height: 1.3em;
+    margin: 0.5714285714em 0 0.2857142857em;
+    color: #ff6d6d;
+  }
+  .section__content__policy{
+    display: none!important;
+  }
+</style>
+  <style> .osano-cm-widget {display: none;}</style>
+  <script>
+// Define a variable to track if the link has been created
+let linkCreated = false;
+
+// Define the function to check for special products and add/remove the link
+function checkForSpecialProducts() {
+    // Get all <tr> elements with the class "prd__row"
+    const productRows = document.querySelectorAll('.prd__row');
+    const hasExtensibleDiscounts = document.querySelector('.extensible-discounts') !== null;
+    const hasautoDiscounts = document.querySelector('.reduction-code__text') !== null;
+    // Iterate through each <tr> element
+    productRows.forEach(row => {
+        // Get the <span> element with the specified class
+        const span = row.querySelector('.product__description__name.order-summary__emphasis');
+
+        // Check if the text inside the <span> matches "Adjustable Flex Bed" or "Bear Sleep Bundle", or if hasExtensibleDiscounts is true
+        if ((span && (span.textContent.trim() === "Adjustable Flex Bed" || span.textContent.trim() === "Bear Sleep Bundle")) || hasExtensibleDiscounts || hasautoDiscounts) {
+            // Check if the link has already been created
+            if (!linkCreated) {
+                // Create the link element
+                const link = document.createElement('a');
+                link.setAttribute('class', 'price-details-link');
+                link.setAttribute('href', 'javascript:void(0)');
+                link.setAttribute('tabindex', '0');
+                link.textContent = 'Price Details';
+
+                // Get the element before which the link should be added
+                const orderSummarySections = document.querySelector('.order-summary__sections');
+
+                // Insert the link before the element
+                if (orderSummarySections) {
+                    orderSummarySections.parentNode.insertBefore(link, orderSummarySections);
+                }
+
+                // Set the flag to true to indicate that the link has been created
+                linkCreated = true;
+            }
+        } else {
+            // If hasExtensibleDiscounts is not in the DOM, remove the link
+            if (!hasExtensibleDiscounts && linkCreated) {
+                const linkToRemove = document.querySelector('.price-details-link');
+                if (linkToRemove) {
+                    linkToRemove.parentNode.removeChild(linkToRemove);
+                }
+                linkCreated = false;
+            }
+        }
+    });
+}
+
+// Run the function every second
+setInterval(checkForSpecialProducts, 1000);
+
+// Run the function once immediately to handle initial DOM content
+checkForSpecialProducts();
+
+  </script>
+  <style>
+    .price-details-link {
+    color: #0C324C;
+    text-decoration: underline;
+    display: block;
+    line-height: normal;
+    }
+    .price-details-link:hover {
+    color: #437EB4;
+}
+    .product-details-wrapper{
+  display: none;
+    position: fixed;
+    z-index: 99999997;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+}
+.product-details-tool-tip{
+  border-radius: 4px;
+    box-shadow: 0 24px 24px 0 rgba(0, 0, 0, 0.26), 0 0 24px 0 rgba(0, 0, 0, 0.12);
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 471px;
+    height: auto;
+    padding: 24px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 99999999;
+    transform: translate(-50%, -50%);
+}
+.product-details-wrapper .mdi-close{
+      display: flex;
+    width: 100%;
+    justify-content: end;
+    cursor: pointer;
+}
+@media only screen and (max-width: 600px) {
+ .product-details-tool-tip{
+    width: 77%;
+  }
+}
+#AjaxifyCart .price-details-link{
+  padding-left: 25px;
+  text-align: left;
+}
+    .product-details-wrapper .mdi-close {
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    cursor: pointer;
+}
+    .product-details-wrapper h3{
+      font-size: 1.375em;
+      color: #2a2a2a;
+    margin: 0 0 1rem;
+    line-height: 1.25;
+    font-family: apercubold, Helvetica, Arial, sans-serif;
+      padding: 0;
+    }
+    .cs-tooltip-content p {
+    margin: 0 0 15px;
+}
+    .cs-tooltip-bottom {
+    margin: 25px 0 0 0;
+    text-align: center;
+}
+    .btn-blue {
+    color: #ffffff !important;
+    background-color: #13507A;
+}
+    .product-details-wrapper .btn {
+      display: inline-block;
+    padding: 8px 10px;
+    margin: 0;
+    line-height: 1.42;
+    font-weight: 400;
+    text-decoration: none;
+    text-align: center;
+    vertical-align: middle;
+    white-space: nowrap;
+    cursor: pointer;
+    border: 1px solid transparent;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border-radius: 2px;
+    background-color: #2e577c;
+    color: #fff;
+    position: relative;
+    border-radius: 3px;
+    padding: 15px;
+    height: 52px;
+    text-align: center;
+    text-transform: uppercase;
+    text-decoration: none !important;
+    font-size: 1rem;
+    font-family: "apercubold", sans-serif;
+    font-style: normal;
+    font-stretch: normal;
+    background-color: #13507A;
+}
+    @media only screen and (max-width: 600px) {
+  .price-details-link {
+    margin-top: 8px;
+  }
+}
+  </style>
+  <script>
+
+
+// Event delegation for dynamically loaded elements
+$(document).on("click", ".price-details-link", function(){
+    $(".product-details-wrapper").fadeIn();
+});
+  // Event delegation for improved performance
+$(document).on("click", ".close, .pdb", function(){
+    $(".product-details-wrapper").fadeOut();
+});
+  </script>
+  <style>
+    #gorgias-chat-container{
+  display: none!important;
+}
+  </style>
+   <div class="product-details-wrapper">
+             <div class="product-details-tool-tip">
+               
+                  <span class="close mdi mdi-close"></span>
+               <h3>Product Pricing Details</h3>
+                   <div class="cs-tooltip-content">
+                    <p>We strive to bring you the lowest prices. The strike-through or reference price indicates the Product’s suggested retail price (SRP) and may not have been offered by us or other retailers at that price in the past and may not be offered for sale at that price on any future date. Thus, the strike-through price may not necessarily be the prevailing market price, regular retail price, or former price of a Product. In addition, Products may be offered by us or other retailers at the same or lower prices during future promotional events beginning on or after the last day of any advertised promotion. 
+                    <a href="https://www.bearmattress.com/pages/terms-and-conditions-of-sale" target="_blank">See Details</a>
+                    </p>
+                   </div>
+                <div class="cs-tooltip-bottom">
+                 <a href="javascript:void(0)" class="pdb btn btn-blue">Close</a>
+                </div>
+              </div>
+           </div>

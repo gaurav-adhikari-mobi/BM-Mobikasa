@@ -1,0 +1,102 @@
+{% include 'sections__purchase-cta' %}
+
+{% schema %}
+{
+	"name": "Purchase CTA",
+	"settings": [
+		{
+			"type": "header",
+			"content": "Section Options"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle Section On\/Off"
+		},
+		{
+			"type": "color",
+			"id": "background-color",
+			"label": "Background Color",
+			"default": "#7b7b81"
+		},
+		{
+			"type": "color",
+			"id": "text-color",
+			"label": "Text Color",
+			"default": "#ffffff"
+		},
+		{
+			"type": "select",
+			"id": "padding-top",
+			"label": "Padding Top",
+			"options": [
+				{
+					"value": "pt--small",
+					"label": "Small"
+				},
+				{
+					"value": "pt--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pt--large",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"type": "select",
+			"id": "padding-bottom",
+			"label": "Padding Bottom",
+			"options": [
+				{
+					"value": "pb--small",
+					"label": "Small"
+				},
+				{
+					"value": "pb--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pb--large",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"type": "header",
+			"content": "Content Settings"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "text",
+			"id": "description",
+			"label": "Description"
+		},
+		{
+			"type": "text",
+			"id": "button-text",
+			"label": "Button Text"
+		},
+		{
+			"type": "text",
+			"id": "product-handle",
+			"label": "Product Handle"
+		},
+		{
+			"type": "paragraph",
+			"content": "Note: clicking the purchase button will add the product\'s first variant to cart."
+		}
+	],
+	"blocks": [],
+	"presets": [
+		{
+			"name": "Purchase CTA",
+			"category": "Text"
+		}
+	]
+}{% endschema %}

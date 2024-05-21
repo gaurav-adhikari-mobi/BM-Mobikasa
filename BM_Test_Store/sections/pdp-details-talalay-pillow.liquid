@@ -1,0 +1,150 @@
+<!-- /sections/index-pageliquid -->
+<div class="product-detail" data-section-id="{{ section.id }}" data-section-type="product-detail" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+	<h1 class="product-detail__header">{{ section.settings.section_header }}</h1>
+	<div class="product-detail__wrap">
+		<div class="product-detail__img">
+			<img class="product-detail__img-image lazyload" data-src="{{ section.settings.detail_image | img_url: 'master' }}">
+		</div>
+		<div class="product-detail__list">
+			<div class="product-detail__list-wrapper">
+				{% for block in section.blocks %}
+					{% case block.type %}
+						{% when "text" %}
+							<div class="product-detail__wrapper">
+                                {% if block.settings.topic_icon != blank %}
+								<img class="product-detail__icon lazyload" data-src="{{ block.settings.topic_icon | img_url: 'master' }}">
+                              	{% else %}
+                              	<img class="product-detail__icon lazyload" data-src="{{ "blank.png" | asset_url }}">
+                                {% endif %}
+								<div class="product-detail__wrapper-content">
+									<h2 class="product-detail__topic-header" style="color: {{ block.settings.topic_header_color}};">{{ block.settings.topic_header }}</h2>
+									<p class="product-detail__text" style="color: {{ block.settings.detail_description_text_color }};">{{ block.settings.detail_description }}</p>
+								</div>
+							</div>
+						{% endcase %}
+				{% endfor %}
+              	<div class="product-detail__cta-main">
+				{% for block in section.blocks %}
+					{% case block.type %}
+						{% when "button" %}
+							<div class="product-detail__cta btn {% if block.settings.use-shadow %} shadow {% endif %}" style="background-color: {{ block.settings.button-background-color }}; border-color: {{block.settings.button-border-color}};" data-id="{{ block.settings.cta_text | handle }}">
+								<a class="product-detail__cta-link" href="{{ block.settings.cta_link }}" style="color: {{ block.settings.button-text-color }};"><span>{{ block.settings.cta_text }}</span></a>
+							</div>
+							<style>
+								.product-detail__cta.btn[data-id="{{ block.settings.cta_text | handle }}"]:hover {
+									background-color: {{block.settings.button-border-color}} !important;
+								}
+								.product-detail__cta.btn.shadow[data-id="{{ block.settings.cta_text | handle }}"]:hover {
+									background-color: {{block.settings.button-border-color | color_lighten: 05}} !important;
+								}
+							</style>
+					{% endcase %}
+				{% endfor %}
+                </div>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% schema %}
+{
+	"name": "Talalay Latex Detail",
+	"settings": [
+		{
+			"type": "color",
+			"id": "background-color",
+			"label": "Background Color"
+		},
+		{
+			"type": "image_picker",
+			"id": "detail_image",
+			"label": "Detail Image"
+		},
+		{
+			"type": "text",
+			"id": "section_header",
+			"label": "Section Header"
+		},
+		{
+			"type": "color",
+			"id": "text-color",
+			"label": "Text Color"
+		}
+	],
+	"blocks": [
+		{
+			"type": "text",
+			"name": "Detail Topic",
+			"settings": [
+				{
+					"type": "text",
+					"id": "topic_header",
+					"label": "Topic Header"
+				},
+				{
+					"type": "color",
+					"id": "topic_header_color",
+					"label": "Topic Header Text Color"
+				},
+				{
+					"type": "image_picker",
+					"id": "topic_icon",
+					"label": "Topic Icon"
+				},
+				{
+					"type": "textarea",
+					"id": "detail_description",
+					"label": "Detail Description"
+				},
+				{
+					"type": "color",
+					"id": "detail_description_text_color",
+					"label": "Detail Description Text Color"
+				}
+			]
+		},
+		{
+			"type": "button",
+			"name": "CTA Button",
+			"settings": [
+				{
+					"type": "url",
+					"id": "cta_link",
+					"label": "CTA Link"
+				},
+				{
+					"type": "text",
+					"id": "cta_text",
+					"label": "CTA Text"
+				},
+				{
+					"type": "color",
+					"id": "button-background-color",
+					"label": "Background Color"
+				},
+				{
+					"type": "color",
+					"id": "button-text-color",
+					"label": "Text Color"
+				},
+				{
+					"type": "color",
+					"id": "button-border-color",
+					"label": "Border Color"
+				},
+				{
+					"type": "checkbox",
+					"id": "use-shadow",
+					"label": "Use Shadow?",
+					"default": false
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Talalay Latex Detail",
+			"category": "Text"
+		}
+	]
+}{% endschema %}

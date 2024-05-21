@@ -1,0 +1,260 @@
+<style>
+  .product-tiles-check:checked {
+    background: url({{ 'check-box.png' | asset_url }}) no-repeat !important;
+    background-size: 1.125rem 1.125rem !important;
+    background-position: center center !important;
+  }
+</style>
+<section class="product">
+	<section class="product-slider">
+		<div class="product-slider__wrap df">
+			{% for image in product.images %}
+              {% if image.alt == '_upsell_img'%}          
+          		{% else %}
+				<div class="product-slider__slide{% if forloop.first %} active{% endif %}" {% if forloop.first %}style="background-image: url({{ image.src | img_url: '1440x' }});"{% endif %} data-index="{{ forloop.index }}" data-image="{{ image.src | img_url: '1440x' }}">
+					{% unless forloop.first %}<img data-src="{{ image.src | img_url: '1440x' }}" class="lazyload">{% endunless %}
+				</div>
+          	  {% endif %}
+			{% endfor %}
+			<div class="product-slider__transition"></div>
+		</div>
+      <div class="product-slider__controls">
+        {% for image in product.images %}
+        {% if image.alt == '_upsell_img' %}
+        {% else %}
+        <div class="product-slider__controls-thumb{% if forloop.first %} active{% endif %}" style="background-image: url({{ image.src | img_url: '72x' }});" data-index="{{ forloop.index }}"></div>
+        {% endif %}
+        {% endfor %}
+      </div>
+	</section>
+	<section class="product-box">
+		<div class="product-box__wrap">
+			<div class="product-logo" data-handle="{{ product.handle }}">
+				{% assign product-logo = product.handle | append: '--logo.png' %}
+                
+				<img data-src="{{ product-logo | asset_url }}" class="lazyload">
+			</div>
+           {% unless product.handle contains 'adjustable' %}
+			<div class="product-reviews">
+
+              <div class="yotpo bottomLine"
+				data-appkey="yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d"
+				data-domain="{{ shop.permanent_domain | escape }}"
+				data-product-id="{{ product.id }}"
+				data-product-models="{{ product.id }}"
+				data-name="{{ product.title | escape }}"
+				data-url="{{ shop.url }}{{ product.url }}"
+				data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+				data-description="{{ product.description | escape }}"
+				data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+              </div>
+			</div>
+          {% endunless %}
+			<div class="product-description">
+				<div class="product-description__wrap">
+					{{ product.description }}
+				</div>
+			</div>
+			<div class="product-tiles" data-tiles="{{ product.variants.size }}">
+              		{% if product.handle contains 'protector' or product.handle contains 'frame' or product.handle contains  'foundation' %}
+              			<h3>Choose a Size</h3>
+                  	{% else %}
+              			<h3>Choose Mattress Size</h3>
+					{% endif %}
+              	<ul class="product-tiles__list">
+					{% for variant in product.variants %}
+						<li class="product-tiles__item{% if variant.available %} available{% endif %}{% if variant.id == product.selected_or_first_available_variant.id %} selected{% endif %}" 
+                            data-variant-id="{{ variant.id }}" 
+                            data-price="{{ variant.price | money_without_currency | replace: '.00', '' }}" 
+                            data-title="{{ variant.title | escape }}">
+							<span>{{ variant.title }}</span>
+						</li>
+					{% endfor %}
+				</ul>
+              	{% if product.handle == 'bear-original-mattress' %}
+                  {% if settings.bear-mattress-add-on %}   
+              		<div class="check-found">
+                      <h3 class="switch_heading">Protect Your Investment <span>(Optional)</span></h3>
+                      <div class="foundation-row no-mb">
+                        <input type="checkbox" class="product-tiles-check" id="_checkbox" name="checkbox" value="" data-value=" 1 Bear Mattress Protector" />
+                        <label for="_checkbox"> Add Bear Mattress Protector</label>  
+                        <label class="price_bundle">{{ xv.price | money_without_currency | replace: '.00', '' }}</label>
+                        <p>
+                          <a href="/products/bear-mattress-protector" target="_blank">See Details</a>
+                        </p>
+                      </div>
+              		</div>
+                    <div class="foundation_product_loop hidden" >
+                      {% for x in collections.all.products %}
+                      {% if x.handle == 'bear-mattress-protector' %}
+                      {% for xv in x.variants %}
+                      <li class="foundation-add-product" data-price="{{ xv.price | money | replace: '.00', '' }}" data-id="{{ xv.id }}">{{ xv.title | replace:' Protector',''}}</li>
+                      {% endfor %}
+                      {% endif%}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+              	{% endif %}
+              	{% if product.handle == 'bear-hybrid' %}
+                  {% if settings.bear-hybrid-add-on %}   
+              		<div class="check-found">
+                      <h3 class="switch_heading">Protect Your Investment <span>(Optional)</span></h3>
+                      <div class="foundation-row no-mb">
+                        <input type="checkbox" class="product-tiles-check" id="_checkbox" name="checkbox" value="" data-value=" 1 Bear Mattress Protector" />
+                        <label for="_checkbox"> Add Bear Mattress Protector</label>  
+                        <label class="price_bundle">{{ xv.price | money_without_currency | replace: '.00', '' }}</label>
+                        <p>
+                          <a href="/products/bear-mattress-protector" target="_blank">See Details</a>
+                        </p>
+                      </div>
+              		</div>
+                    <div class="foundation_product_loop hidden" >
+                      {% for x in collections.all.products %}
+                      {% if x.handle == 'bear-mattress-protector' %}
+                      {% for xv in x.variants %}
+                      <li class="foundation-add-product" data-price="{{ xv.price | money | replace: '.00', '' }}" data-id="{{ xv.id }}">{{ xv.title | replace:' Protector',''}}</li>
+                      {% endfor %}
+                      {% endif%}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+              	{% endif %}
+              	{% if product.handle == 'bear-foundation' %}
+                  {% if settings.bear-foundation-add-on %}   
+              		<div class="check-found">
+                      <h3 class="switch_heading">Complete Your Base <span>(Optional)</span></h3>
+                      <div class="foundation-row no-mb">
+                        <input type="checkbox" class="product-tiles-check" id="_checkbox" name="checkbox" value="" data-value=" 1 Bear Bed Frame" />
+                        <label for="_checkbox"> Add Bear Bed Frame</label>  
+                        <label class="price_bundle">{{ xv.price | money_without_currency | replace: '.00', '' }}</label>
+                        <p>
+                          <a href="/products/bear-bed-frame" target="_blank">See Details</a>
+                        </p>
+                      </div>
+              		</div>
+                    <div class="foundation_product_loop hidden" >
+                      {% for x in collections.all.products %}
+                      {% if x.handle == 'bear-bed-frame' %}
+                      {% for xv in x.variants %}
+                      <li class="foundation-add-product" data-price="{{ xv.price | money | replace: '.00', '' }}" data-id="{{ xv.id }}">{{ xv.title | replace:' Protector',''}}</li>
+                      {% endfor %}
+                      {% endif%}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+              	{% endif %}
+              	{% if product.handle == 'bear-bed-frame' %}
+                  {% if settings.bear-bed-frame-add-on %}   
+              		<div class="check-found">
+                      <h3 class="switch_heading">Complete Your Base <span>(Optional)</span></h3>
+                      <div class="foundation-row no-mb">
+                        <input type="checkbox" class="product-tiles-check" id="_checkbox" name="checkbox" value="" data-value=" 1 Bear Foundation" />
+                        <label for="_checkbox"> Add Bear Foundation</label>  
+                        <label class="price_bundle">{{ xv.price | money_without_currency | replace: '.00', '' }}</label>
+                        <p>
+                          <a href="/products/bear-foundation" target="_blank">See Details</a>
+                        </p>
+                      </div>
+              		</div>
+                    <div class="foundation_product_loop hidden" >
+                      {% for x in collections.all.products %}
+                      {% if x.handle == 'bear-foundation' %}
+                      {% for xv in x.variants %}
+                      <li class="foundation-add-product" data-price="{{ xv.price | money | replace: '.00', '' }}" data-id="{{ xv.id }}">{{ xv.title | replace:' Protector',''}}</li>
+                      {% endfor %}
+                      {% endif%}
+                      {% endfor %}
+                    </div>
+                  {% endif %}
+              	{% endif %}
+              	<div class="product-tiles__header">
+                  {% unless product.handle contains 'protector' %}
+                  {% unless product.handle contains 'adjustable' %}
+                  {% unless product.handle contains 'bundle' %}
+                  {% unless product.handle contains 'frame' %}
+					<div class="product-tiles__header-details">
+                      <span>Dimensions: </span>
+                      <span class="value">W x L x H</span>
+					</div>
+                  {% endunless %}
+                  {% endunless %}
+                  {% endunless %}
+                  {% endunless %}
+                  
+                  {% if product.handle contains 'bearmattress' %}
+<!-- 					<div class="product-tiles__header-cta">
+						<a href="#sizes">Size Guide</a>
+					</div> -->
+                  {% else %}
+                  {% endif %}
+                  
+                  {% if product.handle contains 'frame' %}
+                  <div class="product-tiles__header-details hide">
+                    <p>What's included: <span class="value"></span></p>
+                  </div>
+                  {% endif %}
+				</div>
+			</div>
+          {% if product.handle == 'bearmattress' %}
+          	{% if settings.bear-mattress-add-on %}            		
+          		{% include 'add-on-product-buy' %}
+          	{% else %}
+            	{% include 'single-product-buy' %}
+          	{% endif %}
+          {% endif %}
+          
+          {% if product.handle == 'bear-hybrid' %}
+          	{% if settings.bear-hybrid-add-on %}            		
+          		{% include 'add-on-product-buy' %}
+          	{% else %}
+            	{% include 'single-product-buy' %}
+          	{% endif %}
+          {% endif %}
+          
+          {% if product.handle == 'bear-bed-frame' %}
+          	{% if settings.bear-bed-frame-add-on %}            		
+          		{% include 'add-on-product-buy' %}
+          	{% else %}
+            	{% include 'single-product-buy' %}
+          	{% endif %}
+          {% endif %}
+          
+          {% if product.handle == 'bear-foundation' %}
+          	{% if settings.bear-foundation-add-on %}            		
+          		{% include 'add-on-product-buy' %}
+          	{% else %}
+            	{% include 'single-product-buy' %}
+          	{% endif %}
+          {% endif %}
+          {% if product.handle == 'bear-mattress-protector' %}
+          		{% include 'add-on-product-buy' %}
+          {% endif %}
+			
+			<div class="product-finance">
+              <div
+                   class="affirm-as-low-as"
+                   data-promo-id="promo_set_pdp"
+                   data-amount="{{ product.selected_or_first_available_variant.price }}"
+                   data-learnmore-show="false"
+                   data-affirm-color="blue"
+                   data-affirm-type="logo"
+              >
+                	&nbsp;
+              </div>
+              <div
+                   class="affirm-prequal-text" 
+                   data-promo-id="prequal_text_seehowmuchyouprequalifyfor" 
+                   data-amount="{{ product.selected_or_first_available_variant.price }}" 
+                   data-learnmore-show="false"
+              >
+                	&nbsp;
+              </div>
+          	</div>
+		</div>
+	</section>
+</section>
+<script type="text/javascript">
+  $(window).on('load', function(){
+    $('.product-tiles__list li:first-child').click();
+  });
+</script>

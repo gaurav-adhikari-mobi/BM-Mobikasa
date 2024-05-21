@@ -1,0 +1,38 @@
+{% section 'kids-mattress-dimensions' %}
+{% include 'product-details' %}
+{% section 'kids-pdp-icon-grid' %}
+{% section 'kids-section-publications-2' %}
+{% section 'kids-simple-grid--mattress' %}
+{% section 'pdp-imageblockcontent-kids' %}
+{% comment %}
+  {% section 'kids-staggered-content--bear' %}
+{% endcomment %}
+{% section 'kids-staggered-content--bear-2' %}
+
+{% section 'kids-yotpo-pdp-gallery' %}
+
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Cub Reviews</h2>
+    <div class="yotpo-widget-instance" data-yotpo-instance-id="544318" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" | prepend: "https:" | replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-price="{{ product.price | divided_by: 100.00 }}" data-yotpo-currency="{{ shop.currency }}" data-yotpo-description="{{ product.description | escape }}"></div>
+  </div>
+</section>
+
+{% comment %}
+  {% section 'kids-staggered-firmness-mattress' %}
+{% endcomment %}
+{% section 'kids-bear-slideshow-reviews' %}
+{% comment %}
+  {% section 'kids-bear-advantage-grid' %}
+{% endcomment %}
+{% section 'pdp-accordion-kids' %}
+{% section 'pdp-financing-blocks' %}
+{% comment %}
+  {% section 'pdp-standard-content-kids' %}
+{% endcomment %}
+{% section 'life-style-grid' %}
+{% section 'kids-bear-faq-component' %}
+{% comment %}
+  {% section 'pdp-product-grid' %}
+{% endcomment %}
+{% include 'schema' %}

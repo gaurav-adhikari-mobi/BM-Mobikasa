@@ -1,0 +1,61 @@
+{% if section.settings.gallery_id.size > 0 %}
+<div class="yotpo-instagram" data-section-id="{{ section.id }}" data-section-type="instagram">
+  {% unless section.settings.title == '' %}
+    <h1 class="">{{section.settings.title}}</h1>
+  {% endunless %}
+  
+  {% unless section.settings.subtitle == '' %}
+    <p class="">{{section.settings.subtitle}}</p>
+  {% endunless %}
+
+  <div class="cs-yotpo-gallery-page">
+    <div class="yotpo yotpo-pictures-widget" data-gallery-id="{{section.settings.gallery_id}}"></div>
+  </div>
+
+  <div class="cs-yotpo-bottom">
+    <a class="btn shadow btn-blue" href="{{section.settings.button_link}}">{{section.settings.button_text}}</a>
+  </div>
+  {% if page.handle == 'why-bear' %}
+     <p class="small-link dark" style="text-align:center;margin-top: 2rem;font-family: apercu!important;">Team Bear members received free products.</p>
+{% endif %}
+</div>
+{% endif %}
+
+{% schema %}
+{
+  "name": "Yotpo Gallery",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading"
+    },
+	{
+      "type": "text",
+      "id": "gallery_id",
+	  "label": "Gallery ID"
+    },
+	{
+      "type": "text",
+      "id": "button_text",
+	  "label": "Button Text"
+    },
+	{
+      "type": "text",
+      "id": "button_link",
+	  "label": "Button Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Instagram updated",
+      "category": "Social"
+    }
+  ]
+}
+{% endschema %}

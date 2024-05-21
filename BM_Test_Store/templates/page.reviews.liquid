@@ -1,0 +1,483 @@
+{% section 'review-banner' %}
+
+{% section 'yotpo-reviews-gallery' %}
+
+{% section 'review-right-column' %}
+
+{% section 'staggered-content--reviews' %}
+
+<div class="section-2 main-rating-wrapper" id="reviews-all-products">
+    <div class="common-loader-background"></div>
+    <div class="common-loader">
+		<i class="mdi mdi-loading mdi-spin"></i>
+  	</div>
+
+  	<div class="review-sec">
+      {% comment %}
+        <h1><span class="rating"></span> out of 5 Star Rating</h1>
+      {% endcomment %}
+      <div class="yotpo-widget-instance" data-yotpo-instance-id="668205"/>
+{% comment %}
+
+      
+        <div class="based-review">
+            <div class="based-yotpo">
+
+                <div class="yotpo bottomline" style="display:inline-block; vertical-align: middle;">
+                    <div class="yotpo-bottomline star-clickable">
+                        <span class="yotpo-stars overall-review"></span>
+                        <div class="yotpo-clr"></div>
+                    </div>
+                </div>
+
+                <span class="total-review-points"></span>
+            </div>
+
+            <div class="boxes-container"></div>
+        </div>
+{% endcomment %}
+        <div id="pagination"></div>
+    </div>
+</div>
+<script>
+const options = {
+  method: 'GET',
+  headers: {accept: 'application/json', 'Content-Type': 'application/json'}
+};
+
+fetch('https://api.yotpo.com/v1/apps/yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d/reviews?count=5000&utoken=i9vrKYGiRf3ulPsh52Qmiol08z4uMTMxixhnv02V', options)
+  .then(response => response.json())
+  .then(response => {
+    console.log("hello", response);
+  })
+  .catch(err => console.error(err));
+
+</script>
+<script>
+    totalReview = 0;
+    $(document).ready(function () {
+        getAccessToken();
+        getReviews(1);
+        products = [];
+    });
+
+    function reviewBars(data, total_review) {
+        $.each(data, function (key, value) {
+            var totalReview = ((value / total_review) * 100) + "%";
+            if (key == 1) {
+                $('.bar-empty-one .bar-fill').css("width", totalReview);
+                $('.bar-empty-one').siblings('.star-count').text(value);
+            }
+            if (key == 2) {
+                $('.bar-empty-two .bar-fill').css("width", totalReview);
+                $('.bar-empty-two').siblings('.star-count').text(value);
+            }
+            if (key == 3) {
+                $('.bar-empty-three .bar-fill').css("width", totalReview);
+                $('.bar-empty-three').siblings('.star-count').text(value);
+            }
+            if (key == 4) {
+                $('.bar-empty-four .bar-fill').css("width", totalReview);
+                $('.bar-empty-four').siblings('.star-count').text(value);
+            }
+            if (key == 5) {
+                $('.bar-empty-five .bar-fill').css("width", totalReview);
+                $('.bar-empty-five').siblings('.star-count').text(value);
+            }
+        });
+
+    }
+
+    function reviewRatingScore(average_score) {
+
+        var averagescore = average_score.toFixed(1);
+      
+        var getLastValue = averagescore.split(".")[1];
+
+        var yoptoHtml = "";
+
+        var reviewsData = '<div class="review-star-wrapper">';
+
+        reviewsData += '<div class="review-star-base">';
+
+        for (i = 0; i < 5; i++) {
+            reviewsData += '<span class="mdi mdi-star review-icon"></span>';
+        }
+
+        reviewsData += '</div>';
+
+        var elWidth = (averagescore / 5) * 100;
+
+        if (Number(elWidth) != 100) {
+
+          	if(getLastValue > 7) {
+            	elWidth = Number(elWidth) - 4;
+            }
+        }
+
+        reviewsData += '<div class="review-star-top" style="width: ' + elWidth + '%">';
+
+        for (i = 0; i < 5; i++) {
+            reviewsData += '<span class="mdi mdi-star review-icon"></span>';
+        }
+
+        reviewsData += '</div>';
+
+        reviewsData += '</div>';
+
+        return reviewsData;
+    }
+
+    function appendRightReview() {
+        $(".get-rating").each(function () {
+            var rating = $(this).data("rating");
+            var reviewData = reviewRatingScore(rating);
+            $(this).find(".yotpo-stars").html(reviewData);
+        });
+    }
+    function dateFormat(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [month, day,year].join('-');
+    }
+  function productReview(review) {
+    // Sort reviews by creation date in descending order
+    review.sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+    $('.boxes-container').html('');
+    var verify = "";
+    var productName = '';
+    var productImg = '';
+    review.forEach(function (data) {
+        if (data.verified_buyer) {
+            verify = '<i class="mdi mdi-check-circle mdi-24px"></i><span class="verified-buy">Verified Buyer</span';
+        } else {
+            verify = "";
+        }
+        productName = data['products'][0].Product.name;
+        if (data['products'][0].Product.images.length > 0) {
+            productImg = data['products'][0].Product.images[0].image_url;
+        } else {
+            productImg = '';
+        }
+      
+        var revDate = dateFormat(data.created_at.split('T')[0]);
+      
+        var shortContent = jQuery.trim(data.content).substring(0, 80).split(' ').slice(0, -1).join(' ')+'...';
+        var fullContent = data.content;
+      
+        $('.boxes-container').append('<div class="box"><div class="img-contain"><span class="date">'+revDate+'</span><div class="block-imgtext"><div class="img"><img src="'+productImg+'"></div><div class="product-contain"><p class="product-name">'+productName+'</p><p class="review-title">'+data.title+'</p><div class="yotpo bottomline"><div class="yotpo-bottomline star-clickable"><span class="yotpo-stars product-review">'+reviewRatingScore(data.score)+'</span><div class="yotpo-clr"></div></div></div></div></div></div><p class="desc" data-short="'+shortContent+'" data-full="'+fullContent+'"><span>'+fullContent+'</span><a class="readmore" href="javascript:void(0)">Read More</a><a class="readless" href="javascript:void(0)">Read Less</a></p><div class="reviewer-name"><span>-' + data.user.display_name + '</span><span class="verified">'+verify+'</span></div></div>');
+    });
+
+  	truncate();
+}
+
+
+    function truncate() {
+
+        $('.boxes-container .box').each(function () {
+
+            var shortText = $(this).find('.desc').data('short');
+            var fullText = $(this).find('.desc').data('full');
+
+          	if (fullText.trim().length > 100) {
+                $(this).find('.desc span').text(shortText);
+            } else {
+                $(this).find('.readmore').css('visibility', 'hidden');
+                $(this).find('.readless').css('visibility', 'hidden');
+            }
+        });
+
+        $('.boxes-container .box a.readmore').click(function () {
+            $(this).parents('.box').find('.readless').show();
+            $(this).hide();
+            var fullData = $(this).parents('.desc').data('full');
+            $(this).parent('.desc').find("span").text(fullData);
+        });
+
+        $('.boxes-container .box a.readless').click(function () {
+            $(this).parents('.box').find('.readmore').show();
+            $(this).hide();
+            var shortData = $(this).parents('.desc').data('short');
+            $(this).parent('.desc').find("span").text(shortData);
+        });
+    }
+
+    function getReviews(page) {
+        $('.common-loader-background').show();
+        $('.common-loader').show();
+      
+        $.ajax({
+          url: "https://api.yotpo.com/v1/widget/yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d/reviews?per_page=0&page=1",
+          success: function (result1) {
+            $.ajax({
+              url: "https://api.yotpo.com/products/yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d/yotpo_site_reviews/bottomline",
+              success: function (result2) {
+                $('.total-review').text((result1.response.bottomline.total_review + result2.response.bottomline.total_reviews).toString().replace(/\B(?=(\d{3})+(?!\d))/g, ","));
+              	$('.based-yotpo span.total-review-points').text("Based on " + (result1.response.bottomline.total_review + result2.response.bottomline.total_reviews) + " Reviews");
+                $('.rating').text(((result1.response.bottomline.average_score + result2.response.bottomline.average_score)/2).toFixed(2));
+              }
+            });
+          }
+        });
+      
+        $.ajax({
+            url: "https://api.yotpo.com/products/yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d/yotpo_global_reviews/reviews.json?page=" + page + "&count=16",
+            success: function (result) {
+                var x = result;
+                console.log(result);
+                var reviews = result.response.reviews;
+                var reviewsBottomline = result.response.bottomline;
+                if ($('#pagination').is(':empty')) {
+                    pagination(reviewsBottomline.total_reviews);
+                }
+
+                //$('.review-one .stars .total-review').text(reviewsBottomline.total_reviews + " Reviews");
+                $('.based-yotpo span.total-review-points').text("Based on " + reviewsBottomline.total_reviews + " Reviews");
+                $('.review-one .stars .yotpo-stars').html('');
+                $('.review-one .stars .yotpo-stars').append(reviewRatingScore(reviewsBottomline.average_score));
+                $('.based-yotpo .yotpo-stars').html('');
+                $('.based-yotpo .yotpo-stars').append(reviewRatingScore(reviewsBottomline.average_score));
+
+                productReview(reviews);
+
+                $('.common-loader-background').hide();
+                $('.common-loader').hide();
+            }
+        });
+
+    }
+
+    function pagination(totalReview) {
+
+        var Pagination = {
+
+            code: '',
+          	first:1,
+          lastpage:10,
+
+            // --------------------
+            // Utility
+            // --------------------
+
+            // converting initialize data
+            Extend: function (data) {
+                data = data || {};
+                Pagination.size = data.size || 300;
+                Pagination.page = data.page || 1;
+                Pagination.step = data.step || 3;
+            },
+
+            // add pages by number (from [s] to [f])
+            Add: function (s, f) {
+                for (var i = s; i < f; i++) {
+                    Pagination.code += '<a>' + i + '</a>';
+                }
+            },
+
+            // add last page with separator
+            Last: function () {
+                Pagination.code += '<i>...</i><a>' + Pagination.lastpage + '</a>';
+            },
+
+            // add first page with separator
+            First: function () {
+                Pagination.code += '<a>1</a><i>...</i>';
+            },
+
+            // --------------------
+            // Handlers
+            // --------------------
+
+            // change page
+            Click: function () {
+                Pagination.page = +this.innerHTML;
+                Pagination.Start();
+            },
+
+            // previous page
+            Prev: function () {
+                Pagination.page--;
+                if (Pagination.page < 1) {
+                    Pagination.page = 1;
+                }
+                Pagination.Start();
+            },
+
+            // next page
+            Next: function () {
+                Pagination.page++;
+                if (Pagination.page > Pagination.size) {
+                    Pagination.page = Pagination.size;
+                }
+                Pagination.Start();
+            },
+
+            // --------------------
+            // Script
+            // --------------------
+
+            // binding pages
+            Bind: function () {
+                var a = Pagination.e.getElementsByTagName('a');
+                for (var i = 0; i < a.length; i++) {
+                    if (+a[i].innerHTML === Pagination.page) 
+                        a[i].className = 'current';
+                    a[i].addEventListener('click', Pagination.Click, false);
+                }
+                pageClick();
+
+            },
+
+            // write pagination
+            Finish: function () {
+                Pagination.e.innerHTML = Pagination.code;
+                Pagination.code = '';
+                Pagination.Bind();
+            },
+
+            // find pagination type
+            Start: function () {
+                if (Pagination.size < Pagination.step * 2 + 6) {
+                    Pagination.Add(1, Pagination.size + 1);
+                } else if (Pagination.page < Pagination.step * 2 + 3) {
+                    Pagination.Add(1, Pagination.step * 2 + 4);
+                    Pagination.Last();
+                } else if (Pagination.page == Pagination.first + 4) {
+                    Pagination.Add(Pagination.page, Pagination.step * Pagination.page + 5);
+                  	Pagination.first = Pagination.page;
+                    if (Pagination.page + 7 >= Pagination.lastpage) {
+                      Pagination.lastpage = Pagination.lastpage + 10;
+                    }
+                    Pagination.Last();
+                } else if (Pagination.page > Pagination.size - Pagination.step * 2) {
+                    Pagination.First();
+                    Pagination.Add(Pagination.size - Pagination.step * 2 - 2, Pagination.size + 1);
+                } else {
+//                     Pagination.First();
+                    Pagination.Add(Pagination.page, Pagination.step * Pagination.page + 5);
+                    Pagination.first = Pagination.page;
+                    if (Pagination.page + 7 >= Pagination.lastpage) {
+                      Pagination.lastpage = Pagination.lastpage + 10;
+                    }
+                    Pagination.Last();
+                }
+                Pagination.Finish();
+            },
+
+            // --------------------
+            // Initialization
+            // --------------------
+
+            // binding buttons
+            Buttons: function (e) {
+                var nav = e.getElementsByTagName('a');
+                nav[0].addEventListener('click', Pagination.Prev, false);
+                nav[1].addEventListener('click', Pagination.Next, false);
+            },
+
+            // create skeleton
+            Create: function (e) {
+
+                var html = [
+                    '<a class="page-arrow mdi mdi-chevron-left"></a>', // previous button
+                    '<span></span>', // pagination container
+                    '<a class="page-arrow mdi mdi-chevron-right"></a>' // next button
+                ];
+
+                e.innerHTML = html.join('');
+                Pagination.e = e.getElementsByTagName('span')[0];
+                Pagination.Buttons(e);
+            },
+
+            // init
+            Init: function (e, data) {
+                Pagination.Extend(data);
+                Pagination.Create(e);
+                Pagination.Start();
+            }
+        };
+
+        Pagination.Init(document.getElementById('pagination'), {
+            size: Math.round(totalReview / 16), // pages size
+            page: 1, // selected page
+            step: 1 // pages before and after current
+        });
+        arrowClick();
+    }
+
+    function pageClick() {
+
+        $('#pagination > span a').click(function () {
+            getReviews($(this).text());
+            $('html, body').animate({
+                scrollTop: $(".review-sec").offset().top - 110
+            }, 800);
+        });
+
+    }
+
+    function arrowClick() {
+
+        $("#pagination .page-arrow").click(function () {
+            console.log($(this).siblings('span').children('.current').text());
+            var arrowClick = $(this).siblings('span').children('.current').text();
+            getReviews(arrowClick);
+            $('html, body').animate({
+                scrollTop: $(".review-sec").offset().top - 110
+            }, 800);
+        });
+    }
+
+    function getAccessToken() {
+        $.ajax({
+            type: 'POST',
+            url: "https://api.yotpo.com/oauth/token",
+            data: {
+                "client_id": "yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d",
+                "client_secret": "Wvp8rtCUlRdP2Amc2AYPxm2kcHQ8G8jYX18ZQ28y",
+                "grant_type": "client_credentials"
+            },
+            success: function (result) {
+                console.log(result.access_token);
+                createCookie("access_token", result.access_token, 10);
+            }
+        });
+    }
+
+    function createCookie(name, value, days) {
+        var date,
+            expires;
+        if (days) {
+            date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toGMTString();
+        } else {
+            expires = "";
+        }
+        document.cookie = name + "=" + value + expires + "; path=/";
+    }
+
+    function readCookie(name) {
+        var nameEQ = name + "=";
+        var ca = document.cookie.split(';');
+        for (var i = 0; i < ca.length; i++) {
+            var c = ca[i];
+            while (c.charAt(0) == ' ') 
+                c = c.substring(1, c.length);
+            if (c.indexOf(nameEQ) == 0) 
+                return c.substring(nameEQ.length, c.length);
+            }
+        return null;
+    }
+  
+    setTimeout(function () {
+      	appendRightReview();
+    }, 2000);
+</script>

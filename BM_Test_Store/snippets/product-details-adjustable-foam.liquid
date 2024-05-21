@@ -1,0 +1,402 @@
+{% include 'frequent-products' %}
+{% comment %}
+{% include 'frequent-extra-products' %}
+{% endcomment %}
+
+<div class="cs-sticky-choose">
+    <div class="cs-sticky-price-wrapper">
+        Pay Now 
+
+        <span class="cs-sticky-price-new">
+			<span class="currency">$</span><span class="cs-sticky-discount"></span>
+        </span>
+
+        <span class="cs-sticky-price-old">
+			<span class="currency">$</span><span class="cs-sticky-total"></span>
+        </span>
+        <a style="float: inline-end;" class="price-details-link" href="javascript:void(0)">Price Details</a>
+    </div>
+
+  	<div class="cs-sticky-price-variants">
+
+      	<div class="cs-sticky-price-dropdown">
+      	</div>
+      	<div class="cs-sticky-price-button"></div>
+  	</div>
+</div>
+
+<section class="product">
+  	<section class="product-slider">
+      {% include 'product-grid-item-images' %}
+	</section>
+
+	<section class="product-box">
+		<div class="product-box__wrap">
+            {% if product.handle contains 'adjustable' %}
+            <h1 class="f1">Adjustable <span class="f2">{{ product.title | replace: 'Adjustable ', '' }}</span> </h1>
+            {% elsif product.handle contains 'topper' %}
+            <h1 class="f1">Pro <span class="f2">{{ product.title | replace: 'Pro ', '' }}</span> </h1>
+            {% elsif product.handle contains 'cloud' %}
+            <h1 class="f1">Cloud <span class="f2">{{ product.title | replace: 'Cloud ', '' }}</span> </h1>
+            {% elsif product.handle contains 'weighted' %}
+            <h1 class="f1">Weighted <span class="f2">{{ product.title | replace: 'Weighted ', '' }}</span> </h1>
+            {% elsif product.handle contains 'platform' %}
+            <h1 class="f1">Platform <span class="f2">{{ product.title | replace: 'Platform ', '' }}</span> </h1>
+            {% elsif product.handle contains 'contour' %}
+            <h1 class="f1">Contour <span class="f2">{{ product.title | replace: 'Contour ', '' }}</span> </h1>
+            {% elsif product.handle contains 'universal' %}
+            <h1 class="f1">Universal <span class="f2">{{ product.title | replace: 'Universal ', '' }}</span> </h1>
+            {% elsif product.handle contains 'white-glove' %}
+            <h1 class="f1"><span class="f2">{{ product.title | replace: 'Universal ', '' }}</span> </h1>
+            {% elsif product.handle contains 'terry-mattress-protector' %}
+            <h1 class="f1">Terry <span class="f2">{{ product.title | replace: 'Terry ', '' }}</span> </h1>
+            {% elsif product.handle contains '2019-hybrid-mattress' %}
+            <h1 class="f1">2019 <span class="f2">{{ product.title | replace: '2019 ', '' }}</span> </h1>
+ {% elsif product.handle contains 'elite-hybrid-mattress' or 'star-hybrid-mattress' %}
+   <h1 class="f1"><span class="f2">{{ product.title | replace: '2019 ', '' }}</span> </h1>
+          
+            {% else %}
+            <h1 class="f1">Bear <span class="f2">{{ product.title | replace: 'Bear ', '' }}</span> </h1>
+            {% endif %}
+
+          	{% if product.id == 4826388955241 or product.id == 6820507484265 %}
+          	{% else %}
+           
+          	{% endif %}
+
+          	<div class="product-description">
+				<div class="product-description__wrap">
+
+					{% if product.available == true %}
+						{% section 'product-discount-code' %}
+
+                        {% if product.metafields.product.sale_text.size > 0 %}
+                            <div class="link-wrapper"><a href="{{product.metafields.product.sale_link}}">{{product.metafields.product.sale_text}}</a></div>
+                        {% endif %}
+					{% endif %}
+
+                    {% if product.description.size > 0 %}
+                    	<div class="product-content">{{product.description}}</div>
+                    {% endif %}
+				</div>
+			</div>
+
+
+            <div class="price-block">
+               <span class="cs-price-loader">
+                <i class="mdi mdi-loading mdi-spin"></i>
+              </span>
+               <div class="price-block-inner cs-price-loading">
+              {% assign currencyISO = product.selected_or_first_available_variant.price | money_with_currency | slice: -3, 3 %}
+              
+              {% assign variant_position = 0 %}
+              {% assign specific_variant = product.metafields.product.pdp_specific_variant %}
+
+              {% if specific_variant %}
+              {% assign variant_position = specific_variant %}
+              {% endif %}
+
+              {% assign cs_price = product.variants[variant_position].price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+              {% assign cs_compare_price = product.variants[variant_position].compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+              {% assign elDiscount = cs_compare_price | minus: cs_price %}
+              {% assign elDiscountText = 'off' %}
+
+              {% assign cs_has_discount = false %}
+
+              {% assign sale_products = settings.sale_products %}
+
+              {% if sale_products contains product.handle %}
+              	{% assign cs_has_discount = false %}
+              {% else %}
+              	{% assign cs_has_discount = true %}
+              {% endif %}
+
+              {% if settings.percentage_enable == true and cs_has_discount == true %}
+              
+                {% if cs_price >= settings.discount_min_value_1 %}
+
+              	  {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+                  	{% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                  {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+                  	{% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                  {% elsif cs_price >= settings.discount_min_value_3 %}
+
+					{% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                  {% endif %}
+              	{% endif %}
+
+                {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+                {% assign elDiscountText = 'off with code' %}
+
+                {% assign cs_compare_price = cs_price %}
+                {% assign cs_price = cs_price | minus: elDiscount %}
+
+              {% endif %}
+
+              {% if settings.tier_enable == true and cs_has_discount == true %}
+
+                {% if cs_price >= settings.min_value_1 %}
+
+                  {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+                      {% assign elDiscount = settings.coupon_amount_1 %}
+
+                  {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+                      {% assign elDiscount = settings.coupon_amount_2 %}
+
+                  {% elsif cs_price >= settings.min_value_3 %}
+
+                    {% assign elDiscount = settings.coupon_amount_3 %}
+                    {% assign elDiscountText = 'off with code' %}
+                  {% endif %}
+
+                  {% assign cs_compare_price = cs_price %}
+                  {% assign cs_price = cs_price | minus: elDiscount %}
+                {% endif %}
+              {% endif %}
+
+              <div class="price-info">
+                <div class="price-head">Pay Now</div>
+
+                <div class="title-after-price">
+                  <div class="discount-price">
+                    <span class="currency-symbol">$</span>
+                    <span id="discount-price">{{ cs_price }}</span>
+                    <span class="last">{{ currencyISO }}</span>
+                  </div>
+
+                  <div class="total-price {% if cs_compare_price > 0 %}{% else %}_hide{% endif %}">
+                    <span class="was hidden">WAS</span>
+                    <span class="currency-symbol">$</span>
+                    <span id="total-price">{{ cs_compare_price }}</span>
+					<span class="total-discount-text" data-uw-rm-sr=""> ${{elDiscount | ceil }} off </span>
+                    <span class="total-discount-text-new" data-uw-rm-sr=""></span>
+                  </div>
+                </div>
+                <a class="price-details-link" href="javascript:void(0)">Price Details</a>
+              </div>
+
+              <div class="finance-info" style=" {% if currencyISO == 'CAD' %}display: none;{% endif %} ">
+                <div class="price-head">As low as</div>
+
+                <div class="affirm-block">
+                  <div class="product-finance">
+                    <div class="affirm-as-low-as" data-page-type="product" data-amount="{{ product.selected_or_first_available_variant.price }}" data-affirm-type="logo" data-learnmore-show="false">&nbsp;</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+            {% if product.handle contains 'white-glove' %}
+            {% else %}
+              <div class="product-splitit-wrapper">
+              <div class="product-splitit-content">
+                  {% form 'product', product %}
+                    {{ form | payment_terms }}
+                  {% endform %}
+                  {% comment %}
+                  <img class="lazyload" src="//cdn.shopify.com/s/files/1/0661/5815/files/splitit-logo.png" /> <span class="product-splitit-text">Monthly payments using your credit card at 0% interest. <a class="product-splitit-link" href="#">Learn More</a></span>
+                 {% endcomment %}
+              </div>
+              </div>
+            {% endif %}
+
+            <div class="product-tiles" data-tiles="{{ product.variants.size }}">
+
+              {% assign slection_class = false %}
+
+              {% if product.handle contains 'elite' and product.variants.size > 1 %}
+              
+				{% assign slection_class = true %}
+
+                {% for option in product.options %}
+                  {% if option contains 'Size' %}
+                  	<label for="cs-option-selection-{{forloop.index0}}">
+                      Choose Mattress Size
+                      {% if product.handle contains 'elite-hybrid-mattress' %}
+                      	<span class="size-guide-link">Product Specs</span>
+                      {% endif %}
+              		</label>
+                  {% else %}
+                  	<label for="cs-option-selection-{{forloop.index0}}">
+                      Choose Comfort Level
+                      {% if product.handle contains 'elite-hybrid-mattress' %}
+                      	<span class="firmness-guide-link">Firmness Guide</span>
+                      {% endif %}
+              		</label>
+                  {% endif %}
+
+              	  <select id="cs-option-selection-{{forloop.index0}}" class="single-option-selector single-option-{{option | downcase}}" name="cs-option-{{option | downcase}}">
+                    {% capture option_index %}option{{ forloop.index }}{% endcapture %}
+                    {% assign option_values = product.variants | map: option_index | uniq %}
+
+                    {% for choice in option_values %}
+                    	<option value="{{choice}}">{{choice}}</option>
+                    {% endfor %}
+                  </select>
+                {% endfor %}
+              {% endif %}
+
+              <label for="dropdownMattressSize" {% if slection_class == true %}style="display: none;"{% endif %}>
+                {% if product.handle contains 'protector' or product.handle contains 'frame' or product.handle contains 'foundation' or product.handle contains 'bedding' or product.handle contains 'adjustable' or product.handle contains 'pillow' or product.handle contains 'bear-encasement' %}
+                <span style="flex:1;">Choose a Size</span>
+                {% elsif product.handle contains 'white-glove' %}
+                <span style="flex:1;">Choose Service</span>
+                {% elsif product.handle contains 'weighted' %}
+                <span style="flex:1;">Choose a Color</span>
+                {% else %}
+                <span style="flex:1;">Choose Mattress Size</span>
+                {% endif %}
+
+                {% if product.handle contains 'white-glove' %}
+                {% else %}
+                	<span class="size-guide-link">Product Specs</span>
+                {% endif %}
+              </label>
+
+              {% assign cs_has_discount = false %}
+
+              {% assign sale_products = settings.sale_products %}
+
+              {% if sale_products contains product.handle %}
+              	{% assign cs_has_discount = false %}
+              {% else %}
+              	{% assign cs_has_discount = true %}
+              {% endif %}
+
+              {% assign variant_position = 0 %}
+              {% assign specific_variant = product.metafields.product.pdp_specific_variant %}
+
+              {% if specific_variant %}
+              {% assign variant_position = specific_variant %}
+              {% endif %}
+
+              <select data-selection="{{variant_position}}" id="dropdownMattressSize" class="product-dropdown__list" {% if slection_class == true %}style="display: none;"{% endif %}>
+                {% for variant in product.variants %}
+
+                {% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+                {% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+				{% assign elDiscount = cs_compare_price | minus: cs_price %}
+				{% assign elDiscountText = 'off' %}
+
+                {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+                  {% if cs_price >= settings.discount_min_value_1 %}
+
+                    {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+                      {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                    {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+                      {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                    {% elsif cs_price >= settings.discount_min_value_3 %}
+
+                      {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+                {% comment %}
+                  {% assign elDiscountText = 'off with code' %}
+{% endcomment %}
+                  {% assign cs_compare_price = cs_price %}
+                  {% assign cs_price = cs_price | minus: elDiscount %}
+
+                {% endif %}
+
+                {% if settings.tier_enable == true and cs_has_discount == true %}
+
+                {% if cs_price >= settings.min_value_1 %}
+
+                {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+                {% assign elDiscount = settings.coupon_amount_1 %}
+
+                {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+                {% assign elDiscount = settings.coupon_amount_2 %}
+
+                {% elsif cs_price >= settings.min_value_3 %}
+
+                {% assign elDiscount = settings.coupon_amount_3 %}
+				{% assign elDiscountText = 'off with code' %}
+                {% endif %}
+
+                {% assign cs_compare_price = cs_price %}
+                {% assign cs_price = cs_price | minus: elDiscount %}
+                {% endif %}
+                {% endif %}
+
+                {% assign haspillow = variant.metafields.variant.attached_product_2 %}
+                {% assign hasinformation = '' %}
+                {% assign hasthumbnail = variant.metafields.variant.thumbnail %}
+
+                <option class="" 
+                        value="{{ variant.id }}" 
+                        data-variant="{{ variant.title }}"
+                        data-price="{{cs_price}}"
+                        data-information="{{hasinformation}}"
+                        data-attached="{{haspillow}}"
+                        data-thumbnail="{{hasthumbnail}}"
+                        data-old-price="{{cs_compare_price}}"
+                        data-discount-text="{% if elDiscount > 0 %} (${{elDiscount | ceil}} {{elDiscountText}}){% endif %}"
+                        {% if variant.available %}{% else %}disabled{% endif %}
+                        data-title="{{ variant.title | escape }}">{{ variant.title }}{% if variant.available %}{% else %} - SOLD OUT{% endif %}
+                </option>
+                {% endfor %}
+              </select>
+
+              {% include 'bonus-products' %}
+
+              <div class="frequent-products" style="display: none;">
+                <h3 class="switch_heading">{{product.metafields.product.addon_heading}}</h3>
+
+                <div class="check-found hhhh"></div>
+              </div>
+              
+              <label class="check-mattress-only">
+                <span>Mattress Only</span>
+                <input type="checkbox" class="check-mattress-only-checkbox mdi" name="mattress-only" />
+				<div class="check-mattress-only-additional"></div>
+              </label>
+            </div>
+
+            {% include 'add-on-product-buy' %}
+          </div>
+	</section>
+</section>
+<script type="text/javascript">
+
+  {% if has_youtube == true %}
+
+        var tag = document.createElement('script');
+        tag.src = "//www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player = [];
+
+        function onYouTubePlayerAPIReady() {
+
+           if($('.product-slider__slide.video-youtube').length > 0) {
+              $('.product-slider__slide.video-youtube').each(function(i) {
+                  var iframeEl = $(this).find('iframe').attr('id');
+                  player[i] = new YT.Player(iframeEl);
+              });
+           }
+        }
+  {% endif %}
+  
+  $(document).ready(function(){
+	var currencyCode = $("#in-context-paypal-metadata").attr("data-currency");
+    $(".discount-price .last").text(currencyCode);
+  });
+  
+</script>

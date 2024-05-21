@@ -1,0 +1,1368 @@
+[
+  {
+    "name": "theme_info",
+    "theme_name": "Pipeline",
+    "theme_author": "Corknine",
+    "theme_version": "2.2",
+    "theme_documentation_url": "http:\/\/corknine.com\/pipeline-docs\/",
+    "theme_support_email": "themes@corknine.com"
+  },
+  {
+    "name": "Color",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Promotion bar"
+      },
+      {
+        "type": "color",
+        "id": "color_account_bg",
+        "label": "Background",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "color",
+        "id": "color_account_text",
+        "label": "Text",
+        "default": "#000000"
+      },
+      {
+        "type": "header",
+        "content": "Header"
+      },
+      {
+        "type": "color",
+        "id": "color_header_bg",
+        "label": "Background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_header_text",
+        "label": "Text",
+        "default": "#333333"
+      },
+      {
+        "type": "header",
+        "content": "General"
+      },
+      {
+        "type": "color",
+        "id": "color_body_bg",
+        "label": "Body background",
+        "default": "#ffffff"
+      },
+      {
+        "type": "color",
+        "id": "color_body_text",
+        "label": "Body text",
+        "default": "#000000"
+      },
+      {
+        "type": "color",
+        "id": "color_primary",
+        "label": "Link color",
+        "info": "For text links and primary buttons.",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "color_splash",
+        "label": "Accent color",
+        "info": "A bright color for highlighting elements.",
+        "default": "#1f9bde"
+      },
+      {
+        "type": "color",
+        "id": "color_border",
+        "label": "Border color",
+        "default": "#cccccc"
+      },
+      {
+        "type": "header",
+        "content": "Home page"
+      },
+      {
+        "type": "color",
+        "id": "homepage_background_light",
+        "label": "Light background",
+        "default": "#f7f7f7"
+      },
+      {
+        "type": "color",
+        "id": "homepage_background_dark",
+        "label": "Dark background",
+        "default": "#2e3438"
+      },
+      {
+        "type": "header",
+        "content": "Product page"
+      },
+      {
+        "type": "color",
+        "id": "product_background_color",
+        "label": "Background color",
+        "default": "#FFFFFF",
+        "info": "Choose the background color used in isolated product photos, usually white."
+      },
+      {
+        "type": "color",
+        "id": "product_slideshow_arrows",
+        "label": "Product slideshow arrows",
+        "default": "#cccccc"
+      },
+      {
+        "type": "header",
+        "content": "Footer"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_bg",
+        "label": "Background",
+        "default": "#f2f2f2"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_text",
+        "label": "Text",
+        "default": "#333333"
+      },
+      {
+        "type": "color",
+        "id": "color_footer_social_link",
+        "label": "Icons",
+        "default": "#333333"
+      }
+    ]
+  },
+  {
+    "name": "Typography",
+    "settings": [
+      {
+        "type": "paragraph",
+        "content": "Choose the fonts used on your site."
+      },
+      {
+        "type": "header",
+        "content": "Fonts"
+      },
+      {
+        "type": "select",
+        "id": "font_title",
+        "label": "Headings font",
+        "options": [
+          {
+            "value": "'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
+            "label": "Century Gothic",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica \/ Arial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Montserrat:400",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Questrial:400",
+            "label": "Questrial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Open+Sans:400",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lato:400",
+            "label": "Lato",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Oswald:400",
+            "label": "Oswald",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Roboto:400",
+            "label": "Roboto",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Raleway:400",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Megrim:400",
+            "label": "Megrim",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Abel:400",
+            "label": "Abel",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lobster+Two:400",
+            "label": "Lobster Two",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Source+Sans+Pro:400",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:PT+Mono:400",
+            "label": "PT Mono",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Sans:400",
+            "label": "Josefin Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "'Hoefler Text','Baskerville Old Face',Garamond,'Times New Roman',serif",
+            "label": "Hoefler Text",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Cardo:400",
+            "label": "Cardo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:PT+Serif:400",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Lora:400",
+            "label": "Lora",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Arvo:400",
+            "label": "Arvo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Slabo+13px:400",
+            "label": "Slabo 13px",
+            "group": "Serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Slab:400",
+            "label": "Josefin Slab",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Glegoo:400",
+            "label": "Glegoo",
+            "group": "Serif"
+          },
+          {
+            "value": "'apercu', Helvetica, Arial, sans-serif",
+            "label": "Apercu"
+          },
+          {
+            "value": "'apercubold', Helvetica, Arial, sans-serif",
+            "label": "Apercu Bold"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "font_title_capitalize",
+        "label": "Capitalize headings"
+      },
+      {
+        "type": "select",
+        "id": "font_accent",
+        "label": "Subheading font",
+        "options": [
+          {
+            "value": "'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
+            "label": "Century Gothic",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica \/ Arial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Montserrat:400",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Questrial:400",
+            "label": "Questrial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Open+Sans:400",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lato:400",
+            "label": "Lato",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Oswald:400",
+            "label": "Oswald",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Roboto:400",
+            "label": "Roboto",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Raleway:400",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Megrim:400",
+            "label": "Megrim",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Abel:400",
+            "label": "Abel",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lobster+Two:400",
+            "label": "Lobster Two",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Source+Sans+Pro:400",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:PT+Mono:400",
+            "label": "PT Mono",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Sans:400",
+            "label": "Josefin Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "'Hoefler Text','Baskerville Old Face',Garamond,'Times New Roman',serif",
+            "label": "Hoefler Text",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Cardo:400",
+            "label": "Cardo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:PT+Serif:400",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Lora:400",
+            "label": "Lora",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Arvo:400",
+            "label": "Arvo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Slabo+13px:400",
+            "label": "Slabo 13px",
+            "group": "Serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Slab:400",
+            "label": "Josefin Slab",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Glegoo:400",
+            "label": "Glegoo",
+            "group": "Serif"
+          },
+          {
+            "value": "'apercu', Helvetica, Arial, sans-serif",
+            "label": "Apercu"
+          },
+          {
+            "value": "'apercubold', Helvetica, Arial, sans-serif",
+            "label": "Apercu Bold"
+          }
+        ]
+      },
+      {
+        "type": "select",
+        "id": "font_body",
+        "label": "Body font",
+        "options": [
+          {
+            "value": "'Century Gothic', CenturyGothic, 'AppleGothic', sans-serif",
+            "label": "Century Gothic",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial, sans-serif",
+            "label": "Helvetica \/ Arial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Montserrat:400",
+            "label": "Montserrat",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Questrial:400",
+            "label": "Questrial",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Open+Sans:400",
+            "label": "Open Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lato:400",
+            "label": "Lato",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Oswald:400",
+            "label": "Oswald",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Roboto:400",
+            "label": "Roboto",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Raleway:400",
+            "label": "Raleway",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Megrim:400",
+            "label": "Megrim",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Abel:400",
+            "label": "Abel",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Lobster+Two:400",
+            "label": "Lobster Two",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Source+Sans+Pro:400",
+            "label": "Source Sans Pro",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:PT+Mono:400",
+            "label": "PT Mono",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Sans:400",
+            "label": "Josefin Sans",
+            "group": "Sans-serif"
+          },
+          {
+            "value": "Garamond, Baskerville, 'Baskerville Old Face', 'Hoefler Text', 'Times New Roman', serif",
+            "label": "Garamond",
+            "group": "Serif"
+          },
+          {
+            "value": "'Hoefler Text','Baskerville Old Face',Garamond,'Times New Roman',serif",
+            "label": "Hoefler Text",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Cardo:400",
+            "label": "Cardo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:PT+Serif:400",
+            "label": "PT Serif",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Lora:400",
+            "label": "Lora",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Arvo:400",
+            "label": "Arvo",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Slabo+13px:400",
+            "label": "Slabo 13px",
+            "group": "Serif"
+          },
+          {
+            "value": "google:sansStack:Josefin+Slab:400",
+            "label": "Josefin Slab",
+            "group": "Serif"
+          },
+          {
+            "value": "google:serifStack:Glegoo:400",
+            "label": "Glegoo",
+            "group": "Serif"
+          },
+          {
+            "value": "'apercu', Helvetica, Arial, sans-serif",
+            "label": "Apercu"
+          },
+          {
+            "value": "'apercubold', Helvetica, Arial, sans-serif",
+            "label": "Apercu Bold"
+          }
+        ]
+      },
+      {
+        "type": "header",
+        "content": "Size"
+      },
+      {
+        "type": "select",
+        "id": "base_font_size",
+        "label": "Base font size",
+        "info": "14px reccomended",
+        "default": "14px",
+        "options": [
+          {
+            "value": "12px",
+            "label": "12px"
+          },
+          {
+            "value": "13px",
+            "label": "13px"
+          },
+          {
+            "value": "14px",
+            "label": "14px"
+          },
+          {
+            "value": "15px",
+            "label": "15px"
+          },
+          {
+            "value": "16px",
+            "label": "16px"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Cart",
+    "settings": [
+      {
+        "type": "select",
+        "id": "cart_type",
+        "label": "Cart type",
+        "options": [
+          {
+            "value": "modal",
+            "label": "Modal"
+          },
+          {
+            "value": "page",
+            "label": "Page"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_on_click",
+        "default": true,
+        "label": "Show modal when item is added"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_vendor_enable",
+        "label": "Show product vendor"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_notes_enable",
+        "label": "Show cart notes"
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_quantity",
+        "label": "Show quantity selectors",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_additional_buttons",
+        "label": "Show additional checkout options",
+        "info": "Apple Pay, PayPal express, etc",
+        "default": true
+      },
+      {
+        "type": "url",
+        "id": "cart_continue_browsing",
+        "label": "Empty cart link",
+        "info": "Continue browsing link for the empty cart"
+      },
+      {
+        "type": "textarea",
+        "id": "cart_listing_options",
+        "label": "Cart listing options"
+      }
+    ]
+  },
+  {
+    "name": "Product grid",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Product layout"
+      },
+      {
+        "type": "paragraph",
+        "content": "Control how products look when displayed side-by-side in collections and groups of related products."
+      },
+      {
+        "type": "checkbox",
+        "label": "Enable free pillows",
+        "id": "two_free_pillows_enable",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "collection_text_alignment",
+        "label": "Text alignment",
+        "options": [
+          {
+            "value": "text-left",
+            "label": "Left"
+          },
+          {
+            "value": "text-center",
+            "label": "Center"
+          },
+          {
+            "value": "text-right",
+            "label": "Right"
+          }
+        ],
+        "default": "text-center"
+      },
+      {
+        "type": "select",
+        "id": "product_grid_style",
+        "label": "Price hover effect",
+        "options": [
+          {
+            "value": "under",
+            "label": "Always show price"
+          },
+          {
+            "value": "hover",
+            "label": "Show price on hover"
+          }
+        ],
+        "info": "Price will always show on small devices and phones."
+      },
+      {
+        "type": "header",
+        "content": "Image auto-height"
+      },
+      {
+        "type": "paragraph",
+        "content": "Neatly align title and price fields underneath unevenly sized images."
+      },
+      {
+        "type": "checkbox",
+        "label": "Enable image auto-height",
+        "id": "image_autoheight_enable",
+        "default": true
+      }
+    ]
+  },
+  {
+    "name": "Social",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Accounts"
+      },
+      {
+        "type": "text",
+        "id": "twittercard_handle",
+        "label": "Twitter handle",
+        "info": "E.g. @Shopify. Required for Twitter cards."
+      },
+      {
+        "type": "text",
+        "id": "social_twitter_link",
+        "label": "Twitter",
+        "info": "https:\/\/twitter.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_facebook_link",
+        "label": "Facebook",
+        "info": "https:\/\/facebook.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_instagram_link",
+        "label": "Instagram",
+        "info": "https:\/\/instagram.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_pinterest_link",
+        "label": "Pinterest",
+        "info": "https:\/\/pinterest.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_google_link",
+        "label": "Google Plus",
+        "info": "https:\/\/plus.google.com\/+shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_youtube_link",
+        "label": "Youtube",
+        "info": "https:\/\/www.youtube.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_vimeo_link",
+        "label": "Vimeo",
+        "info": "https:\/\/vimeo.com\/shopify"
+      },
+      {
+        "type": "text",
+        "id": "social_tumblr_link",
+        "label": "Tumblr",
+        "info": "http:\/\/shopify.tumblr.com"
+      },
+      {
+        "type": "text",
+        "id": "social_fancy_link",
+        "label": "Fancy",
+        "info": "http:\/\/fancy.com\/shopify"
+      },
+      {
+        "type": "header",
+        "content": "Sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "product_social_enable",
+        "label": "Enable product sharing"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_facebook",
+        "label": "Share on Facebook"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_twitter",
+        "label": "Tweet on Twitter"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_pinterest",
+        "label": "Pin on Pinterest"
+      },
+      {
+        "type": "checkbox",
+        "id": "share_enable_google",
+        "label": "+1 on Google Plus"
+      }
+    ]
+  },
+  {
+    "name": "Favicon",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "favicon",
+        "label": "Favicon image",
+        "info": "Will be scaled down to 32 x 32px"
+      }
+    ]
+  },
+  {
+    "name": "Firmness values",
+    "settings": [
+      {
+        "type": "text",
+        "id": "hybrid_firmness_value",
+        "label": "Hybrid firmness value"
+      },
+      {
+        "type": "text",
+        "id": "pro_firmness_value",
+        "label": "Pro firmness value"
+      },
+      {
+        "type": "text",
+        "id": "mattress_firmness_value",
+        "label": "Mattress firmness value"
+      }
+    ]
+  },
+  {
+    "name": "Product Delivery",
+    "settings": [
+      {
+        "type": "text",
+        "id": "delivery_text",
+        "label": "Delivery Disclaimer"
+      },
+      {
+        "type": "text",
+        "id": "pdp_tooltip_line",
+        "label": "Tooltip Line"
+      },
+      {
+        "type": "text",
+        "id": "pdp_tooltip_title",
+        "label": "Tooltip Title"
+      },
+      {
+        "type": "textarea",
+        "id": "pdp_tooltip_text",
+        "label": "Tooltip Text"
+      },
+      {
+        "type": "text",
+        "id": "shipping_notice_exceptions",
+        "label": "Shipping notice exceptions"
+      },
+      {
+        "type": "textarea",
+        "id": "thank_you_shipping_notice",
+        "label": "Thank you shipping notice"
+      }
+    ]
+  },
+  {
+    "name": "Promotion",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Topbar"
+      },
+      {
+        "type": "color",
+        "id": "promo_background_color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "promo_text_color",
+        "label": "Text Color"
+      },
+      {
+        "type": "color",
+        "id": "promo_link_color",
+        "label": "Link Color"
+      },
+      {
+        "type": "color",
+        "id": "promo_gradient_color",
+        "label": "Gradient Color"
+      },
+      {
+        "type": "color",
+        "id": "countdown_progress_bar_default_color",
+        "label": "Progress Bar default Color",
+        "default": "#0c324c"
+      },
+      {
+        "type": "color",
+        "id": "countdown_progress_bar_color",
+        "label": "Progress Bar Color",
+        "default": "#FFFFFF"
+      },
+      {
+        "type": "checkbox",
+        "id": "counter_enable",
+        "default": false,
+        "label": "Show Counter Banner"
+      },
+      {
+        "type": "text",
+        "id": "counter_timer_start",
+        "label": "Counter Timer Start ",
+        "info": "Like ( May 20, 2022 08:00:00 )"
+      },
+      {
+        "type": "text",
+        "id": "counter_timer_end",
+        "label": "Timer End",
+        "info": "Like ( May 30, 2022 08:00:00 )"
+      },
+      {
+        "type": "checkbox",
+        "id": "promobar_enable",
+        "default": false,
+        "label": "Show Promobar Banner"
+      },
+      {
+        "type": "textarea",
+        "id": "promobar-textarea-desktop",
+        "label": "Message Desktop"
+      },
+      {
+        "type": "textarea",
+        "id": "promobar-textarea-mobile",
+        "label": "Message Mobile"
+      },
+      {
+        "type": "textarea",
+        "id": "checkout-textarea-desktop",
+        "label": "Checkout Message Desktop"
+      },
+      {
+        "type": "textarea",
+        "id": "checkout-textarea-mobile",
+        "label": "Checkout Message Mobile"
+      },
+      {
+        "type": "header",
+        "content": "Products"
+      },
+      {
+        "type": "text",
+        "id": "sale_products",
+        "label": "Sale products",
+        "info": "Enter comma separated products handle here which you want to exclude"
+      },
+      {
+        "type": "header",
+        "content": "Percentage data"
+      },
+      {
+        "type": "checkbox",
+        "id": "percentage_enable",
+        "label": "Percentage based"
+      },
+      {
+        "type": "textarea",
+        "id": "percentage_discount_message",
+        "label": "Percentage discount message (For cart)",
+        "info": "Use #savedAmount# and #discountCode# parameter to show amount saved and for discount code respectively."
+      },
+      {
+        "type": "text",
+        "id": "discount_code_1",
+        "label": "Discount code 1"
+      },
+      {
+        "type": "text",
+        "id": "discount_percentage_1",
+        "label": "Discount percentage 1"
+      },
+      {
+        "type": "number",
+        "id": "discount_min_value_1",
+        "label": "Min value 1"
+      },
+      {
+        "type": "number",
+        "id": "discount_max_value_1",
+        "label": "Max value 1"
+      },
+      {
+        "type": "text",
+        "id": "discount_code_2",
+        "label": "Discount code 2"
+      },
+      {
+        "type": "text",
+        "id": "discount_percentage_2",
+        "label": "Discount percentage 2"
+      },
+      {
+        "type": "number",
+        "id": "discount_min_value_2",
+        "label": "Min value 2"
+      },
+      {
+        "type": "number",
+        "id": "discount_max_value_2",
+        "label": "Max value 2"
+      },
+      {
+        "type": "text",
+        "id": "discount_code_3",
+        "label": "Discount code 3"
+      },
+      {
+        "type": "text",
+        "id": "discount_percentage_3",
+        "label": "Discount percentage 3"
+      },
+      {
+        "type": "number",
+        "id": "discount_min_value_3",
+        "label": "Min value 3"
+      },
+      {
+        "type": "header",
+        "content": "Tier data"
+      },
+      {
+        "type": "checkbox",
+        "id": "tier_enable",
+        "label": "Tier based"
+      },
+      {
+        "type": "textarea",
+        "id": "discount_message",
+        "label": "Tier discount message (For cart)",
+        "info": "Use #savedAmount# and #discountCode# parameter to show amount saved and for discount code respectively."
+      },
+      {
+        "type": "textarea",
+        "id": "no_discount_message",
+        "label": "No discount message (For cart)",
+        "info": "Use #discountDifference# and #discountAmount# parameter to show amount saved and for discount code respectively."
+      },
+      {
+        "type": "image_picker",
+        "id": "no_discount_icon",
+        "label": "No discount icon"
+      },
+      {
+        "type": "text",
+        "id": "coupon_1",
+        "label": "Coupon 1"
+      },
+      {
+        "type": "image_picker",
+        "id": "coupon_icon_1",
+        "label": "Coupon icon 1"
+      },
+      {
+        "type": "number",
+        "id": "coupon_amount_1",
+        "label": "Coupon amount 1"
+      },
+      {
+        "type": "number",
+        "id": "min_value_1",
+        "label": "Min value 1"
+      },
+      {
+        "type": "number",
+        "id": "max_value_1",
+        "label": "Max value 1"
+      },
+      {
+        "type": "text",
+        "id": "coupon_2",
+        "label": "Coupon 2"
+      },
+      {
+        "type": "image_picker",
+        "id": "coupon_icon_2",
+        "label": "Coupon icon 2"
+      },
+      {
+        "type": "number",
+        "id": "coupon_amount_2",
+        "label": "Coupon amount 2"
+      },
+      {
+        "type": "number",
+        "id": "min_value_2",
+        "label": "Min value 2"
+      },
+      {
+        "type": "number",
+        "id": "max_value_2",
+        "label": "Max value 2"
+      },
+      {
+        "type": "text",
+        "id": "coupon_3",
+        "label": "Coupon 3"
+      },
+      {
+        "type": "image_picker",
+        "id": "coupon_icon_3",
+        "label": "Coupon icon 3"
+      },
+      {
+        "type": "number",
+        "id": "coupon_amount_3",
+        "label": "Coupon amount 3"
+      },
+      {
+        "type": "number",
+        "id": "min_value_3",
+        "label": "Min value 3"
+      },
+      {
+        "type": "header",
+        "content": "Mattress promotion"
+      },
+      {
+        "type": "text",
+        "id": "matt_code",
+        "label": "Mattress promotion code"
+      }
+    ]
+  },
+  {
+    "name": "No sale content",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "no_sale_desktop_image",
+        "label": "Desktop Background Image"
+      },
+      {
+        "type": "image_picker",
+        "id": "no_sale_mobile_image",
+        "label": "Mobile Background Image"
+      },
+      {
+        "type": "text",
+        "id": "no_sale_text_heading",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "no_sale_text_content",
+        "label": "Description"
+      }
+    ]
+  },
+  {
+    "name": "Shipping Content",
+    "settings": [
+      {
+        "type": "header",
+        "content": "Default content (For all except CANADA\/HAWAII\/ALASKA)"
+      },
+      {
+        "type": "html",
+        "id": "shipping_method_value1",
+        "label": "1) Learn more"
+      },
+      {
+        "type": "html",
+        "id": "tooltip_value1",
+        "label": "1) Tooltip"
+      },
+      {
+        "type": "html",
+        "id": "disclaimer_value1",
+        "label": "1) Disclaimer"
+      },
+      {
+        "type": "text",
+        "id": "modal_title1",
+        "label": "1) Modal title"
+      },
+      {
+        "type": "html",
+        "id": "modal_content1",
+        "label": "1) Modal content"
+      },
+      {
+        "type": "html",
+        "id": "shipping_method_value2",
+        "label": "2) Learn more"
+      },
+      {
+        "type": "html",
+        "id": "tooltip_value2",
+        "label": "2) Tooltip"
+      },
+      {
+        "type": "html",
+        "id": "disclaimer_value2",
+        "label": "2) Disclaimer"
+      },
+      {
+        "type": "text",
+        "id": "modal_title2",
+        "label": "2) Modal title"
+      },
+      {
+        "type": "html",
+        "id": "modal_content2",
+        "label": "2) Modal content"
+      },
+      {
+        "type": "html",
+        "id": "shipping_method_value3",
+        "label": "3) Learn more"
+      },
+      {
+        "type": "html",
+        "id": "tooltip_value3",
+        "label": "3) Tooltip"
+      },
+      {
+        "type": "html",
+        "id": "disclaimer_value3",
+        "label": "3) Disclaimer"
+      },
+      {
+        "type": "text",
+        "id": "modal_title3",
+        "label": "3) Modal title"
+      },
+      {
+        "type": "html",
+        "id": "modal_content3",
+        "label": "3) Modal content"
+      },
+      {
+        "type": "html",
+        "id": "shipping_method_value4",
+        "label": "4) Learn more"
+      },
+      {
+        "type": "html",
+        "id": "tooltip_value4",
+        "label": "4) Tooltip"
+      },
+      {
+        "type": "html",
+        "id": "disclaimer_value4",
+        "label": "4) Disclaimer"
+      },
+      {
+        "type": "text",
+        "id": "modal_title4",
+        "label": "4) Modal title"
+      },
+      {
+        "type": "html",
+        "id": "modal_content4",
+        "label": "4) Modal content"
+      }
+    ]
+  },
+  {
+    "name": "Accordion settings",
+    "settings": [
+      {
+        "type": "color",
+        "id": "accordion_heading_color",
+        "label": "Accordion heading color"
+      },
+      {
+        "type": "select",
+        "id": "data_view_type",
+        "options": [
+          {
+            "value": "list",
+            "label": "List"
+          },
+          {
+            "value": "accordion",
+            "label": "Accordion"
+          }
+        ],
+        "default": "list",
+        "label": "Content type"
+      },
+      {
+        "type": "select",
+        "id": "data_view_icon_position",
+        "options": [
+          {
+            "value": "left",
+            "label": "Left"
+          },
+          {
+            "value": "right",
+            "label": "Right"
+          }
+        ],
+        "default": "left",
+        "label": "Icon position"
+      }
+    ]
+  },
+  {
+    "name": "Checkout Reviews settings",
+    "settings": [
+      {
+        "type": "text",
+        "id": "checkout-reviews-text",
+        "label": "Checkout Reviews Text",
+        "default": "Over 17,000 Reviews"
+      },
+      {
+        "type": "text",
+        "id": "checkout-reviews-item-1",
+        "label": "Checkout First Reviews",
+        "default": "Very comfortable and a great value. Awesome customer service. Came within a week of ordering."
+      },
+      {
+        "type": "text",
+        "id": "checkout-reviews-item-name-1",
+        "label": "Checkout First Reviews Author",
+        "default": "Angela W."
+      },
+      {
+        "type": "text",
+        "id": "checkout-reviews-item-2",
+        "label": "Checkout Second Reviews",
+        "default": "It was an easy process, simple shipping, and set up. Good purchase for good price"
+      },
+      {
+        "type": "text",
+        "id": "checkout-reviews-item-name-2",
+        "label": "Checkout Second Reviews Author",
+        "default": "Thomas F."
+      }
+    ]
+  }
+]

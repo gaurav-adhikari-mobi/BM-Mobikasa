@@ -1,0 +1,48 @@
+{% include 'product-details' %}
+{% section '2021-hybrid-standard-content' %}
+{% section 'pdp-icon-grid-h' %}
+{% section 'section-publications-2' %}
+
+{% section 'simple-grid-2021hybrid' %}
+{% section 'pdp-imageblockcontent-hybrid' %}
+
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Hybrid Reviews</h2>
+   <div class="yotpo-widget-instance" data-yotpo-instance-id="544318" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" | prepend: "https:" | replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-price="{{ product.price | divided_by: 100.00 }}" data-yotpo-currency="{{ shop.currency }}" data-yotpo-description="{{ product.description | escape }}"></div>
+  </div>
+</section>
+
+{% section 'pdp-accordion-hybrid' %}
+
+<style>
+    td{
+      width: 50%;
+    }
+    .cs-fcompare-table tr td:nth-child(4n+4) {
+      display: none;
+  }
+      .cs-fcompare-table tr td:nth-child(5n+5) {
+      display: none;
+  }
+    .cs-fcompare-table tr td:nth-of-type(2) {
+      background-color: #fff;
+  }
+    @media only screen and (max-width: 768px) {
+    .cs-info-box {
+     display: flex;
+    }
+      .cs-fcompare-table tr td:nth-of-type(1) {
+      width: 30%;
+  }
+      .cs-fcompare-table tr td {
+      width: 35%;
+  }
+      .cs-fcompare-table tr{
+        display: flex;
+      }
+      .cs-fcompare-table{
+        min-width: auto;
+      }
+  }
+</style>

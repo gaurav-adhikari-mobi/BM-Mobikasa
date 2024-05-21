@@ -1,0 +1,71 @@
+{% if section.settings.toggle %}
+ {% unless section.blocks == empty %}
+  <div class="slideshow-reviews-section" style="background-color: {{section.settings.background-color}}; {% if section.settings.background-image.size %}background-image: url({{ section.settings.background-image | img_url: 'master' }}); background-repeat: {{ section.settings.background-repeat }} {% endif %}">
+    <div class="">
+    {% if section.settings.section_header != blank %}
+    <h2 class="slideshow-reviews__header">
+      {{ section.settings.section_header }}
+    </h2>
+    {% endif %}
+    </div>
+    <div class="slideshow-reviews">
+       {% for block in section.blocks %}
+       <div class="slideshow-reviews-main">
+         <a {% if block.settings.section_link != blank %}target="_blank"{% endif %} href="{% if block.settings.section_link != blank %}{{ block.settings.section_link }}{% else %}javascript:void(0);{% endif %}">
+           <div class="slideshow-reviews-slide-main">
+            {% if block.settings.section_image != blank %}
+             <div class="slideshow-reviews_desktop_img">
+               <img class="lazyload" data-src="{{ block.settings.section_image | file_url }}"/>
+             </div>
+            {% else %}
+             <div class="slideshow-reviews_desktop_img">
+               {% if block.settings.section_star_icon %}
+               <div class="review-star-top">
+                 <h3 class="bm-visually-hidden">5 Star Rating</h3>
+                 <span class="mdi mdi-star review-icon" aria-hidden="true"></span>
+                 <span class="mdi mdi-star review-icon" aria-hidden="true"></span>
+                 <span class="mdi mdi-star review-icon" aria-hidden="true"></span>
+                 <span class="mdi mdi-star review-icon" aria-hidden="true"></span>
+                 <span class="mdi mdi-star review-icon" aria-hidden="true"></span>
+               </div>
+               {% endif %}
+               {% if block.settings.section_check_icon %}
+               <span class="verified-big"><i class="mdi mdi-check-circle"></i></span>
+               {% endif %}
+             </div>
+            {% endif %}
+            {% if block.settings.section_rich_text != blank %}
+              <div class="slideshow-reviews__text {% if block.settings.show_cta_toggle %}cta-review-txt{% endif %}">
+                {{ block.settings.section_rich_text }}
+              </div>
+              {% if block.settings.show_cta_toggle %}
+                <div class="closing-cta__link-wrapper">
+                  <div class="closing-cta__cta btn {% if block.settings.use-shadow %} shadow {% endif %}" style="background-color: {{ block.settings.button-background-color }} !important; border-color: {{block.settings.button-border-color}};" data-id="{{ block.settings.cta_text | handle }}">
+                        <a class="closing-cta__cta-link" href="{{ block.settings.section_link }}" style="color: {{ block.settings.button-text-color }};"><span>{{ block.settings.cta_text }}</span></a>
+                  </div>
+                  <style>
+                  .closing-cta__cta.btn[data-id="{{ block.settings.cta_text | handle }}"]:hover {
+                    background-color: {{block.settings.button-border-color}} !important;
+                  }
+                  .closing-cta__cta.btn.shadow:hover {
+                    background-color: {{block.settings.button-background-color | color_lighten: 05}} !important;
+                  }
+                  </style>
+               </div>
+             {% else %}
+              <div class="slideshow-reviews-source__text">
+                <p>{{ block.settings.section_source_text }} 
+                  {% if block.settings.verified_soruce_toggle %}<span class="verified"><i class="mdi mdi-check-circle"></i><span class="varified-source">Verified Buyer</span></span>{%endif%}
+                </p>
+              </div>
+             {% endif %}
+            {% endif %}
+
+           </div>
+         </a>
+       </div>
+     {% endfor %}
+    </div>
+  </div>
+ {% endunless %}
+{% endif %}

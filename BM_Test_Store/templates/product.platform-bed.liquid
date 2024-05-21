@@ -1,0 +1,16 @@
+{% include 'product-details' %}
+{% section 'pdp-platform-bed-icon-grid' %}
+{% section 'staggered-content--platform-bed' %}
+{% section 'yotpo-pdp-hybrid-gallery' %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Platform Bed Reviews</h2>
+     <div style="margin: 0 auto; padding: 1rem; text-align: center;">
+    	</div>
+	<div class="yotpo-widget-instance" data-yotpo-instance-id="544320" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div></div>
+</section>
+{% section 'platform-bed-faq-component' %}
+{% section 'pdp-accordion-platform-bed' %}
+{% section 'platform-bed-standard-content' %}
+
+{% include 'schema' %}

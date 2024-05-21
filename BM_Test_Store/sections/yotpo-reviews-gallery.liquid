@@ -1,0 +1,43 @@
+<div class="cs-yotpo-wrapper"style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+  <div class="cs-yotpo-gallery">
+    {% if section.settings.title.size > 0 %}
+    <h1 class="cs-yotpo-gallery-title">{{ section.settings.title }}</h1>
+    {% endif %}
+
+    {% if section.settings.description.size > 0 %}
+    <div class="cs-yotpo-gallery-text">{{ section.settings.description }}</div>
+    {% endif %}
+
+    <div class="yotpo yotpo-pictures-widget" data-gallery-id="5ffcbcb41b07c351a81bfbf8"></div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Reviews Gallery",
+    "settings": [
+		{
+			"type": "color",
+			"id": "text_color",
+			"label": "Text Color",
+			"default": "#000000"
+		},
+		{
+			"type": "color",
+			"id": "background_color",
+			"label": "Background Color",
+			"default": "#F7F7F7"
+		},
+        {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+        },
+        {
+            "type": "text",
+            "id": "description",
+            "label": "Description"
+        }
+	]
+  }
+{% endschema %}

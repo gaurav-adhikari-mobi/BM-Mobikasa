@@ -1,0 +1,67 @@
+<section class="product">
+  	<section class="product-slider">
+      {% include 'product-grid-item-images' %}
+	</section>
+
+	<section class="product-box">
+		<div class="product-box__wrap">
+          <h1 class="f1">{{ product.title }}</h1>
+
+          	{% if product.id == 6562775302249 or product.id == 4826388955241 %}
+          	{% else %}
+              <div class="product-reviews">
+                <div class="yotpo bottomLine"
+                  data-appkey="yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d"
+                  data-domain="{{ shop.permanent_domain | escape }}"
+                  data-product-id="{{ product.id }}"
+                  data-product-models="{{ product.id }}"
+                  data-name="{{ product.title | escape }}"
+                  data-url="{{ shop.url }}{{ product.url }}"
+                  data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                  data-description="{{ product.description | escape }}"
+                  data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+                </div>
+              </div>
+          	{% endif %}
+
+          	<div class="product-description">
+
+              <div class="product-description__wrap">
+
+                    {% if product.description.size > 0 %}
+                    	<div class="product-content">{{product.description}}</div>
+                    {% endif %}
+				</div>
+			</div>
+          </div>
+	</section>
+</section>
+
+<script type="text/javascript">
+
+  {% if has_youtube == true %}
+
+        var tag = document.createElement('script');
+        tag.src = "//www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player = [];
+
+        function onYouTubePlayerAPIReady() {
+
+           if($('.product-slider__slide.video-youtube').length > 0) {
+              $('.product-slider__slide.video-youtube').each(function(i) {
+                  var iframeEl = $(this).find('iframe').attr('id');
+                  player[i] = new YT.Player(iframeEl);
+              });
+           }
+        }
+  {% endif %}
+  
+  $(document).ready(function(){
+	var currencyCode = $("#in-context-paypal-metadata").attr("data-currency");
+    $(".discount-price .last").text(currencyCode);
+  });
+  
+</script>

@@ -1,0 +1,9 @@
+{% if section.settings.toggle %}
+	<section class="purchase {{ section.settings.padding-top }} {{ section.settings.padding-bottom }}" data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background-color }}; color: {{ section.settings.text-color }};" data-module="purchasecta">
+		<div class="purchase-wrap">
+			<h2 class="purchase-title">{{ section.settings.title }}</h2>
+			<p class="purchase-description">{{ section.settings.description }}</p>
+			<button class="purchase-button btn shadow" data-handle="{{ section.settings.product-handle }}" data-variant-id="{{ all_products[section.settings.product-handle].variants.first.id }}"><span>{{ section.settings.button-text }}</span></button>
+		</div>
+	</section>
+{% endif %}

@@ -1,0 +1,93 @@
+<div class="content-email-form-block clearfix" data-section-id="{{ section.id }}" data-section-type="content-email-form-block" style="background-color: {{section.settings.background_color}};">
+  <div id="mc_embed_signup" class="footer-newsletter" {% if section.settings.section_text_color != blank %}style="color: {{ section.settings.section_text_color }};"{% endif %}>
+    <form action="{{section.settings.mailchimp_cta_link}}" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+      
+      <div class="container text-center">
+        
+        <h3>{{section.settings.content_cta_title}}</h3>
+        
+        <p>{{section.settings.content_cta_text}}</p>
+		
+        <div class="footer-field">
+          <input type="email" name="EMAIL" class="email required text-field" id="mce-EMAIL" placeholder="{{section.settings.placeholder_text}}" required>
+          <input id="mc-embedded-subscribe"  style="background:{{section.settings.email_button_background}}; 
+color:{{section.settings.email_button_color}};" class="submit button" name="subscribe" type="submit" value="{{section.settings.button_text}}"/>
+        </div>
+
+        <div id="mce-responses" class="clear">
+            <div class="response" id="mce-error-response" style="display:none"></div>
+            <div class="response" id="mce-success-response" style="display:none"></div>
+        </div> 
+
+        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+        <div style="position: absolute; left: -5000px;"><input type="text" name="b_3d4791a41545b572aa9ecc41a_acbbe6ec89" tabindex="-1" value=""></div>
+      
+      </div>
+
+    </form>
+  </div><!-- end #mc_embed_signup --> 
+</div>
+
+{% schema %}
+{
+	"name": "Content & Email Form",	
+	"settings": [
+		{
+			"type": "color",
+			"id": "background_color",
+			"label": "Background Color"
+		},
+		{
+			"type": "color",
+			"id": "section_text_color",
+			"label": "Section Text Color"
+		},
+		{
+            "type": "text",
+            "id": "content_cta_title",
+            "label": "Section Title"
+        },
+        {
+            "type": "textarea",
+            "id": "content_cta_text",
+            "label": "Section Text"
+        },
+		{
+            "type": "text",
+            "id": "mailchimp_cta_link",
+            "label": "Section Form action"
+        },
+        {
+            "type": "text",
+            "id": "placeholder_text",
+            "label": "Section Placeholder Text"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Section submit Text"
+        },		
+         {
+            "type": "color",
+            "id": "email_button_color",
+            "label": "Section Button Text color"
+        },
+        {
+            "type": "color",
+            "id": "email_button_background",
+            "label": "Section Button Background color"
+        }
+	],
+	"presets": [
+		{
+			"name": "Content & Email Form",
+			"category": "Custom Sections"
+		}
+	]
+}{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

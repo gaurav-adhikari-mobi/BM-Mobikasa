@@ -1,0 +1,206 @@
+{% if product.id == 6989665763433 or product.id == 381450171 or product.id == 3653284495465 or product.id == 6790983286889 %}
+
+	{% assign fe_product = all_products['white-glove-service'] %}
+
+    <div class="global-frequent-wrapper frequent-white-glove">
+      <div class="global-frequent-inner">
+        <a href="#" class="close mdi mdi-close"></a>
+        <h3>Select White Glove Service</h3>
+        <div class="global-frequent-description">
+          <p>Our White Glove partner, Loadup, will visit your home at a date and time of your choosing. After your order is processed, you will be contacted to schedule a date and time that's preferable to you.</p><p>Note: Delivery of your order will be fulfilled by FedEx Ground. Place your items aside until your scheduled day.</p>
+        </div>
+
+        <div class="gf-products">
+          <div class="gf-product">
+            <div class="gf-feature">
+              <img class="lazyload" data-src="{{ fe_product.variants[0].featured_media | img_url: '400x' }}" />
+            </div>
+
+            <div class="gf-details">
+              <label class="gf-details-inner">
+                <div class="cs-bonus-price-saving">FULL SERVICE: INSTALL AND REMOVAL</div>
+                <h4>{{ fe_product.variants[0].title }}</h4>
+                <div class="gf-details-price">$175</div>
+                <p>In-home setup of your new Bear mattress and removal of your old mattress on the date you schedule with LoadUp. All packaging, plus your old mattress is disposed of in a sustainable manner.</p>
+                <input type="radio" name="gf-detail-selection" class="gf-detail-selection" value="{{ fe_product.variants[0].id }}" />
+              </label>
+              <label class="gf-details-option">
+                <div class="gf-details-price">Install and Removal: Bed Base +$25</div>
+                <input type="checkbox" name="gf-detail-full-selection" class="gf-detail-full-selection" value="{{ fe_product.variants[1].id }}" />
+                <!-- <span class="gf-details-add btn btn-white mdi mdi-plus">ADD</span>
+                <span class="gf-details-remove btn btn-white mdi mdi-check">ADDED</span> -->
+              </label>
+            </div>
+          </div>
+
+          <div class="gf-product">
+            <div class="gf-feature">
+              <img class="lazyload" data-src="{{ fe_product.variants[2].featured_media | img_url: '400x' }}" />
+            </div>
+
+            <div class="gf-details">
+              <label class="gf-details-inner">
+                <h4>{{ fe_product.variants[2].title }}</h4>
+                <div class="gf-details-price">$100</div>
+                <p>In-home setup of your new Bear mattress. All packaging will be disposed of appropriately.</p><input type="radio" name="gf-detail-selection" class="gf-detail-selection" value="{{ fe_product.variants[2].id }}" />
+              </label>
+              <label class="gf-details-option">
+                <div class="gf-details-price">Install: Bed Base +$50</div>
+                <input type="checkbox" name="gf-detail-full-selection" class="gf-detail-full-selection" value="{{ fe_product.variants[3].id }}" />
+                <!-- <span class="gf-details-add btn btn-white mdi mdi-plus">ADD</span>
+                <span class="gf-details-remove btn btn-white mdi mdi-check">ADDED</span> -->
+              </label>
+            </div>
+          </div>
+
+          <div class="gf-product">
+            <div class="gf-feature">
+              <img class="lazyload" data-src="{{ fe_product.variants[4].featured_media | img_url: '400x' }}" />
+            </div>
+
+            <div class="gf-details">
+              <label class="gf-details-inner">
+                <h4>{{ fe_product.variants[4].title }}</h4>
+                <div class="gf-details-price">$100</div>
+                <p>Ensure your mattress is removed and either donated or disposed of sustainably.</p>
+                <input type="radio" name="gf-detail-selection" class="gf-detail-selection" value="{{ fe_product.variants[4].id }}" />
+              </label>
+              <label class="gf-details-option">
+                <div class="gf-details-price">Removal: Bed Base +$25</div>
+                <input type="checkbox" name="gf-detail-full-selection" class="gf-detail-full-selection" value="{{ fe_product.variants[5].id }}" />
+                <!-- <span class="gf-details-add btn btn-white mdi mdi-plus">ADD</span>
+                <span class="gf-details-remove btn btn-white mdi mdi-check">ADDED</span> -->
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <div class="global-frequent-bottom">
+          <a href="#" class="global-frequent-selection-btn btn btn-blue disabled">YES, INCLUDE IT</a>
+          <a href="#" class="global-frequent-btn btn btn-cs-disable">CLOSE</a>
+        </div>
+      </div>
+    </div>
+
+	<ul class="frequent-extra-list">
+
+  	{% if fe_product.variants != blank %}
+
+          {% assign frequentAddonValue = fe_product.metafields.product.product_addon_value %}
+
+          {% assign frequent_title = fe_product.metafields.product.frequent_title %}
+          {% assign frequent_data = fe_product.metafields.product.frequent_data %}
+          {% assign frequent_popup_heading = fe_product.metafields.product.frequent_popup_heading %}
+          {% assign frequent_popup_description = fe_product.metafields.product.frequent_popup_description %}
+ {% assign frequent_popup_subdescription = fe_product.metafields.product.frequent_popup_subdescription %}
+          {% assign frequent_mattress_only_pupup_text = fe_product.metafields.product.mattress_only_pupup_text %}
+
+          {% assign frequent_product_list = fe_product.metafields.product.frequent_product_list %}
+
+          {% assign cs_has_discount = false %}
+
+          {% if sale_products contains fe_product.handle %}
+              {% assign cs_has_discount = false %}
+          {% else %}
+              {% assign cs_has_discount = true %}
+          {% endif %}
+
+          {% assign productDescription = fe_product.description | strip_html | replace: 'View Sale Details', '' %}
+
+          {% assign productTitle = fe_product.title %}
+          {% assign productTitlePopup = productTitle | split: ' ' %}
+
+          {% for fe_product_variant in fe_product.variants %}
+
+  
+		  <li class="frequent-extra frequent-extra-{{fe_product_variant.id}}">
+          {% assign hasinformation = fe_product_variant.metafields.variant.information %}
+          {% assign productImage = fe_product_variant.featured_media | img_url: '400x'  %}
+
+          {% assign cs_price = fe_product_variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+          {% assign cs_compare_price = fe_product_variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+
+          {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+          {% assign discountValue = settings.discount_percentage | plus: 0 %}
+          {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+
+          {% assign cs_compare_price = cs_price %}
+          {% assign cs_price = cs_price | minus: elDiscount %}
+
+          {% endif %}
+
+          {% if settings.tier_enable == true and cs_has_discount == true %}
+
+          {% if cs_price >= settings.min_value_1 %}
+
+          {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+          {% assign elDiscount = settings.coupon_amount_1 %}
+
+          {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+          {% assign elDiscount = settings.coupon_amount_2 %}
+
+          {% elsif cs_price >= settings.min_value_3 %}
+
+          {% assign elDiscount = settings.coupon_amount_3 %}
+          {% endif %}
+
+          {% assign cs_compare_price = cs_price %}
+          {% assign cs_price = cs_price | minus: elDiscount %}
+          {% endif %}
+          {% endif %}
+
+          <div class="add-on-row frequent-extra-white-glove" data-target="target-{{fe_product_variant.id}}" data-productel="{{ frequent_mattress_only_pupup_text }}">
+
+            <div class="add-on-heading"><span data-class="frequent-white-glove" class="popup-click">Have an old mattress and need White Glove?</span></div>
+
+            <div class="add-on-inner">
+
+              <div class="add-on-left">
+                <img src="{{productImage}}" />
+              </div>
+
+              <div class="add-on-right">
+
+                <div class="add-on-title">
+                  <a class="product-popup-call" href="#" data-prod-list='{{ frequent_product_list }}' data-prod-img="{{productImage}}" data-prod-desc="{{productDescription}}" data-html="{{productTitle}}" data-fheading="{{frequent_popup_heading}}" data-fdescription="{{frequent_popup_description}}" data-subfdescription="{{frequent_popup_subdescription}}">{{ productTitle }}</a>
+                </div>
+
+                <div class="add-on-variant">{{ fe_product_variant.title }}</div>
+
+                {% if cs_compare_price > 0 %}
+
+                <label class="price_bundle">
+                  <span class="price-new">+ ${{cs_price}}</span>
+                  <span class="price-old">${{cs_compare_price}}</span>
+                </label>
+
+                <label class="el_price_bundle">
+                  <span class="price-new">${{cs_price}}</span>
+                  <span class="price-old">${{cs_compare_price}}</span>
+                </label>
+
+                {% else %}
+                <label class="price_bundle">
+                  <span class="price-cs-old">+ ${{cs_price}}</span>
+                </label>
+
+                <label class="el_price_bundle">
+                  <span class="price-cs-old">${{cs_price}}</span>
+                </label>
+                {% endif %}
+              </div>
+              <input type="checkbox" id="fv-{{fe_product_variant.id}}" class="product-tiles-check mdi" name="checkbox" data-value="{{fe_product_variant.title}}-{{fe_product_variant.id}}" value="{{fe_product_variant.id}}">
+            </div>
+
+            {% if hasinformation.size > 0 %}
+            <span class="cs-addon-information">{{hasinformation}}</span>
+            {% endif %}
+          </div>
+  		</li>
+          {% endfor %}
+    {% endif %}
+</ul>
+{% endif %}

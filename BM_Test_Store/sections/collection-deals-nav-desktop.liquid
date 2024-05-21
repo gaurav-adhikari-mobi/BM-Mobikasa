@@ -1,0 +1,164 @@
+<a style="opacity:1!important;" href="{{section.settings.link}}" class="header-nav__item-link {% if section.settings.has_dropdown == true %}dropdown{% endif %}" {% if section.settings.has_target == true %}target="_blank"{% endif %}>
+  <span>{{section.settings.heading}}</span>
+</a>
+{% if section.settings.has_dropdown == true %}
+<div class="dnav dropdown__subnav">
+  <div class="dropdown__subnav_inner">
+    
+    {% for block in section.blocks %}
+
+        {% case block.type %}
+
+            {% when "menu_block" %}
+            <div class="{{block.settings.menu_block_width}}">
+
+              {% if block.settings.title.size > 0 %}
+              	<h5 class="dropdown__subnav_heading">{{block.settings.title}}</h5>
+              {% endif %}
+
+              {% if block.settings.select_menu.size > 0 %}
+                <ul class="dnav-wrap">
+                  {% for link in linklists[block.settings.select_menu].links %} 
+                  	<li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+              
+              {% if block.settings.button_text.size > 0 %}
+              	<a class="btn shadow btn-blue nav-hover-button-switcher" href="{{block.settings.button_link}}" data-el="nav-{{block.settings.button_text | handleize}}">{{block.settings.button_text}}</a>
+              {% endif %}
+            </div>
+
+            {% when "image_block" %}
+            <div class="{{block.settings.image_block_width}}">
+              {% if block.settings.title.size > 0 %}
+              	<h5 class="dropdown__subnav_heading nav_dropdown__subnav_heading">{{block.settings.title}}</h5>
+              {% endif %}
+
+			  <a class="dropdown__subnav_image_wrapper csload" data-src="{{block.settings.image | img_url: 'master' }}" href="{{block.settings.bottom_link}}">
+                  {% if block.settings.image.size > 0 %}
+                    <img class="dropdown__subnav_image" src="{{block.settings.image | img_url: '50x' }}" />
+                  {% endif %}
+
+                  {% if block.settings.bottom_text.size > 0 %}
+                    <span class="dropdown__subnav_link">{{block.settings.bottom_text}}</span>
+                  {% endif %}
+			  </a>
+            </div>
+        {% endcase %}
+    {% endfor %}
+  </div>
+</div>
+{% endif %}
+
+{% schema %}
+  {
+    "name": "Special Deals Desktop",
+    "settings": [
+        {
+            "type": "text",
+            "id": "heading",
+            "label": "Menu"
+        },
+        {
+            "type": "text",
+            "id": "link",
+            "label": "Link"
+        },
+        {
+            "type": "checkbox",
+            "id": "has_target",
+            "label": "New Tab",
+            "default": false
+        },
+        {
+            "type": "checkbox",
+            "id": "has_dropdown",
+            "label": "Dropdown",
+            "default": false
+        }
+	],
+	"blocks": [
+		{
+        "type": "menu_block",
+        "name": "Menu Block",
+          "settings": [
+              {
+                "type": "select",
+                "id": "menu_block_width",
+                "options": [
+                    { "value": "dropdown__subnav_of", "label": "25%"},
+                    { "value": "dropdown__subnav_ot", "label": "33%"},
+                    { "value": "dropdown__subnav_oh", "label": "50%"},
+                    { "value": "dropdown__subnav_tt", "label": "66%"},
+                    { "value": "dropdown__subnav_tf", "label": "75%"},
+					{ "value": "dropdown__subnav_o", "label": "100%"}
+                ],
+                "default": "dropdown__subnav_of",
+                "label": "Block width"
+              },
+              {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Heading"
+              },
+              {
+                  "type": "link_list",
+                  "id": "select_menu",
+                  "label": "Select Menu"
+              },
+              {
+                  "type": "text",
+                  "id": "button_text",
+                  "label": "Button Text"
+              },
+              {
+                  "type": "url",
+                  "id": "button_link",
+                  "label": "Button Link"
+              }
+          ]
+        },
+		{
+        "type": "image_block",
+        "name": "Image Block",
+          "settings": [
+              {
+                "type": "select",
+                "id": "image_block_width",
+                "options": [
+                    { "value": "dropdown__subnav_of", "label": "25%"},
+                    { "value": "dropdown__subnav_ot", "label": "33%"},
+                    { "value": "dropdown__subnav_oh", "label": "50%"},
+                    { "value": "dropdown__subnav_tt", "label": "66%"},
+                    { "value": "dropdown__subnav_tf", "label": "75%"},
+					{ "value": "dropdown__subnav_o", "label": "100%"}
+                ],
+                "default": "dropdown__subnav_of",
+                "label": "Block width"
+              },
+              {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Heading"
+              },
+			  {
+                  "type": "image_picker",
+                  "id": "image",
+                  "label": "Image"
+              },
+              {
+                  "type": "text",
+                  "id": "bottom_text",
+                  "label": "Bottom Text"
+              },
+              {
+                  "type": "url",
+                  "id": "bottom_link",
+                  "label": "Bottom Link"
+              }
+          ]
+        }
+	]
+  }
+{% endschema %}

@@ -1,0 +1,197 @@
+{% if section.settings.toggle %}
+<section class="temp simplegrid {{ section.settings.padding-top }} {{ section.settings.padding-bottom }}" data-section-id="{{ section.id }}" style="background-color: {{ section.settings.background-color }}; color: {{ section.settings.text-color }};" data-module="simplegrid">
+
+    <style type="text/css">
+      {% if section.settings.background-image.size > 0 %}
+        #shopify-section-{{section.id}} .simplegrid {
+          background-image: url({{ section.settings.background-image | img_url: 'master' }});
+        }
+      {% endif %}
+
+      {% if section.settings.background-image.size > 0 %}
+
+      	@media screen and (max-width: 767px) {
+          #shopify-section-{{section.id}} .simplegrid {
+            background-image: url({{ section.settings.mobile-image | img_url: 'master' }});
+          }
+        }
+      {% endif %}
+    </style>
+  
+  	{% if section.settings.title.size > 0 %}
+		<h2 class="simplegrid-title">{{ section.settings.title }}</h2>
+  	{% endif %}
+	<div class="simplegrid-wrap">
+		<ul class="simplegrid-list">
+			{% for block in section.blocks %}
+				<li class="simplegrid-item">
+					<div class="simplegrid-item__wrap">
+                      	{% if block.settings.image.size > 0 %}
+							<img data-src="{{ block.settings.image | img_url: '300x' }}" class="simplegrid-item__image lazyload">
+                     	{% endif %}
+						<h2 class="simplegrid-item__title">{{ block.settings.title }}</h2>
+						<p class="simplegrid-item__text">{{ block.settings.description }}</p>
+					</div>
+				</li>
+			{% endfor %}
+		</ul>
+
+      	{% if section.settings.bottom_line.size > 0 %}
+      		<div class="text-center">
+              	{{ section.settings.bottom_line }}
+      		</div>
+      	{% endif %}
+	</div>
+    {% if product.handle == "bear-original-mattress" or product.handle == "bear-original-hybrid" %}
+      <p class="small-link dark text-center" style="margin-top: 30px;">*Based on All-Foam and Hybrid models.</p>
+    {% endif %}
+</section>
+{% endif %}
+<style>
+  .temp .simplegrid-wrap .simplegrid-list{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+  }
+  .temp .simplegrid-wrap .simplegrid-list .simplegrid-item{
+    margin: 0;
+    max-width: 235px;
+    min-width: 150px;
+    flex-basis: initial;
+    flex: none;
+  }
+    @media only screen and (max-width: 1245px) {
+       .temp .simplegrid-wrap .simplegrid-list .simplegrid-item{
+        min-width: 288px;
+       }
+    }
+  @media only screen and (max-width: 600px) {
+   .temp .simplegrid-wrap .simplegrid-list .simplegrid-item{
+    margin: 0;
+    max-width: none;
+    min-width: 50px;
+     width: 48%;
+    
+  }
+}
+</style>
+
+
+{% schema %}
+{
+	"name": "Simple Grid",
+	"max_blocks": 6,
+	"settings": [
+		{
+			"type": "header",
+			"content": "Toggle"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle Section On\/Off"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "text",
+			"id": "bottom_line",
+			"label": "Bottom line"
+		},
+		{
+			"type": "color",
+			"id": "background-color",
+			"label": "Background Color",
+			"default": "#2e577c"
+		},
+		{
+			"type": "image_picker",
+			"id": "background-image",
+			"label": "Desktop Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "mobile-image",
+			"label": "Mobile Image"
+		},
+		{
+			"type": "color",
+			"id": "text-color",
+			"label": "Text Color",
+			"default": "#ffffff"
+		},
+		{
+			"type": "select",
+			"id": "padding-top",
+			"label": "Padding Top",
+			"options": [
+				{
+					"value": "pt--small",
+					"label": "Small"
+				},
+				{
+					"value": "pt--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pt--large",
+					"label": "Large"
+				}
+			]
+		},
+		{
+			"type": "select",
+			"id": "padding-bottom",
+			"label": "Padding Bottom",
+			"options": [
+				{
+					"value": "pb--small",
+					"label": "Small"
+				},
+				{
+					"value": "pb--medium",
+					"label": "Medium"
+				},
+				{
+					"value": "pb--large",
+					"label": "Large"
+				}
+			]
+		}
+	],
+	"blocks": [
+		{
+			"type": "text",
+			"name": "Column",
+			"settings": [
+				{
+					"type": "image_picker",
+					"id": "image",
+					"label": "Image",
+					"info": "Upload at 400 x 400"
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "description",
+					"label": "Description"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Simple Grid",
+			"category": "Text"
+		}
+	]
+ }
+
+{% endschema %}

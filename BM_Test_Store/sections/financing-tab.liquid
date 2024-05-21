@@ -1,0 +1,69 @@
+<div class="fn-tabs-wrapper">
+  <div class="fn-tabs-inner">
+    
+    <div class="fn-tabs-top">
+      <h2>{{ section.settings.section_header }}</h2>
+      <div class="fn-tabs-content">{{ section.settings.section_text }}</div>
+    </div>
+    
+    <ul class="fn-tabs-list">
+      <li>
+        <a class="fn-tabs-link fn-caller-affirm" data-target="#fn-tabs-affirm" href="#">
+          <img src="{{ 'affirm-logo.png' | file_url }}" />
+        </a>
+      </li>
+
+      <li>
+        <a class="fn-tabs-link fn-caller-splitit" data-target="#fn-tabs-splitit" href="#">
+          <img src="{{ 'splitit-logo.png' | file_url }}" />
+        </a>
+      </li>
+    </ul>
+
+    <div class="fn-tabs-columns">
+      <div id="fn-tabs-affirm" class="fn-tabs-column">
+		<img src="{{ 'affirm-logo.png' | file_url }}" />
+        
+		{{ section.settings.affirm_text }}
+        
+        <a class="fn-learn fn-learn-affirm affirm-site-modal" href="javascript:void(0);">Learn more about Affirm</a>
+      </div>
+
+      <div id="fn-tabs-splitit" class="fn-tabs-column">
+		<img src="{{ 'splitit-logo.png' | file_url }}" />
+        
+		{{ section.settings.splitit_text }}
+        
+        <a class="fn-learn fn-learn-splitit" href="javascript:void(0);">Learn more about Splitit</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Financing Tabs",
+    "settings": [
+      {
+        "type": "text",
+        "id": "section_header",
+        "label": "Section Header"
+      },
+      {
+        "type": "textarea",
+        "id": "section_text",
+        "label": "Section Text"
+      },
+      {
+        "type": "textarea",
+        "id": "affirm_text",
+        "label": "Affirm Text"
+      },
+      {
+        "type": "textarea",
+        "id": "splitit_text",
+        "label": "Splitit Text"
+      }
+	]
+  }
+{% endschema %}

@@ -1,0 +1,40 @@
+<div class="container">
+
+  <div class="faq-section">
+    {% if page.type == 'products' %}
+    	<h2 class="pfeatures-title">Top {{product.title}} Questions</h2>
+    {% else %}
+    	<h2 class="pfeatures-title">Frequently Asked Questions</h2>
+    {% endif %}
+
+    {% for block in section.blocks %}
+
+    <div class="accordion {% if section.settings.data_view_type == 'list' %}static-has-type-list{% else %}static-has-type-accordion static-style-icon static-has-icon-{{settings.data_view_icon_position}}{% endif %}">
+
+      <div class="accordion-section">
+        {% if section.settings.data_view_type == 'list' %}
+        	<span class="accordion-section-title" style="color: {{section.settings.accordion_heading_color}}">{{block.settings.faq_heading}}</span>
+        {% else %}
+        	<a class="accordion-section-title {% if section.settings.data_view_type == 'accordion' and forloop.index == 1 %}active{% endif %}" style="color: {{section.settings.accordion_heading_color}}" href="javascript:void()" data-href="#accordion-{{forloop.index}}">{{block.settings.faq_heading}}</a>
+        {% endif %}
+
+        <div id="accordion-{{forloop.index}}" class="accordion-section-content {% if section.settings.data_view_type == 'accordion' and forloop.index == 1 %}open{% endif %}">
+          <p>{{block.settings.faq_content}}</p>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+    
+    {% if request.path contains 'military-discount' %}
+    <div class="flex flex-align-items-center flex-justify-content-center">
+      <a href="https://shopify.id.me/oauth/checkpoint/bear-mattress">
+          <img style="max-width: 200px" src="https://s3.amazonaws.com/idme/buttons/v4/verify-with-idme-green.png">
+      </a>
+    </div>
+    {% else %}
+    <div class="flex flex-align-items-center flex-justify-content-center">
+      <a class="btn-white btn shadow" href="/apps/help-center">View More FAQ</a>
+    </div>
+    {% endif %}
+  </div>
+</div>

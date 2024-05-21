@@ -1,0 +1,17 @@
+{% if collection.handle == 'bed-bases' %}
+	{% section 'collections-bed-base-standard-content' %}
+{% endif %}
+
+{% if collection.handle == 'accessories' %}
+	{% section 'collections-accessories-standard-content' %}
+{% endif %}
+
+{% section 'collection-common' %}
+
+{% if collection.handle == 'bed-bases' %}
+    {% section 'pdp-simple-grid' %}
+
+    <div class="faq-component">
+      {% section 'bed-bases-faq-component' %}
+    </div>
+{% endif %}

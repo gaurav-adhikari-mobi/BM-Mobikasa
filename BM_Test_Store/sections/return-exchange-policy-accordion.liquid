@@ -1,0 +1,134 @@
+{% include 'return-policy-accordion' %}
+{% schema %} 
+{
+    "name": "Policy Accordion",
+    "settings": [{
+            "type": "color",
+            "id": "background-color",
+            "label": "Background Color"
+        },
+        {
+            "type": "text",
+            "id": "section_header",
+            "label": "Section Header"
+        },
+        {
+            "type": "color",
+            "id": "text-color",
+            "label": "Text Color"
+        },
+		{
+            "type": "header",
+            "content": "Notification Block"
+        },
+		{
+            "type": "color",
+            "id": "notification_background_color",
+            "label": "Background Color"
+        },
+		{
+            "type": "textarea",
+            "id": "notification_content",
+            "label": "Content"
+        },
+        {
+            "type": "color",
+            "id": "notification_text_color",
+            "label": "Text Color"
+        },
+        {
+            "type": "select",
+            "id": "data_view_type",
+            "options": [
+            { "value": "list", "label": "List"},
+            { "value": "accordion", "label": "Accordion"}
+            ],
+            "default": "list",
+            "label": "Content type"
+        },
+        {
+            "type": "select",
+            "id": "data_view_icon_position",
+            "options": [
+            { "value": "left", "label": "Left"},
+            { "value": "right", "label": "Right"}
+            ],
+            "default": "left",
+            "label": "Icon position"
+        }
+    ],
+    "blocks": [{
+        "type": "text",
+        "name": "Accordion Topic",
+        "settings": [{
+                "type": "text",
+                "id": "topic_header",
+                "label": "Topic Header"
+            },
+            {
+                "type": "color",
+                "id": "topic_header_color",
+                "label": "Topic Header Text Color"
+            },
+            {
+                "type": "checkbox",
+                "id": "sub_topic_toggle_1",
+                "label": "Show Sub Topic 1 Section",
+                "default": false
+            },
+            {
+                "type": "text",
+                "id": "sub_topic_header_1",
+                "label": "Sub Topic 1 Header"
+            },
+            {
+                "type": "color",
+                "id": "sub_topic_header_color_1",
+                "label": "Sub Topic 1 Header Text Color"
+            },
+            {
+                "type": "textarea",
+                "id": "sub_topic_description_1",
+                "label": "Sub Topic 1 Description"
+            },
+            {
+                "type": "color",
+                "id": "sub_topic_text_color_1",
+                "label": "Sub Topic 1 Description Text Color"
+            },
+            {
+                "type": "checkbox",
+                "id": "sub_topic_toggle_2",
+                "label": "Show Sub Topic 2 Section",
+                "default": false
+            },
+            {
+                "type": "text",
+                "id": "sub_topic_header_2",
+                "label": "Sub Topic 2 Header"
+            },
+            {
+                "type": "color",
+                "id": "sub_topic_header_color_2",
+                "label": "Sub Topic 2 Header Text Color"
+            },
+            {
+                "type": "textarea",
+                "id": "sub_topic_description_2",
+                "label": "Sub Topic 2 Description"
+            },
+            {
+                "type": "color",
+                "id": "sub_topic_text_color_2",
+                "label": "Sub Topic 2 Description Text Color"
+            }
+        ]
+    }]
+} 
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

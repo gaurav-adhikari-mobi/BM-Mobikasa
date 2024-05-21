@@ -1,0 +1,32 @@
+<!-- /sections/index-pageliquid -->
+{% include 'sections__image' %}
+
+{% schema %}
+{
+  "name": "Technology-Image2",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "main-image",
+      "label": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "mobile-image",
+      "label": "Mobile Image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image",
+      "category": "Image"
+    }
+  ]
+}
+{% endschema %}
+

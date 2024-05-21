@@ -1,0 +1,113 @@
+{{ 'mattress-firmness-section.scss.css' | asset_url | stylesheet_tag }}
+
+<div class="firmness-index-section__wrapper">
+  <div id="page-wrap">
+    <div class="product-firmness-wrap">
+      <div class="content" data-block-id="{{ section.id }}">
+        <div class="product-text-wrapper static text-left">
+          <h1 class="text-center">{{product.title}} Firmness Guide</h1>
+          <div class="product-text-container">
+            <div class="flex flex-center relative firmness-scale">
+              <div class="firmness-scale__rating--{{ section.settings.firmnessLevel | downcase }} text-center">
+                <div class="firmnessRange">
+                  {% assign firmness = section.settings.firmnessLevel | downcase %}
+                  {% if firmness == "hybrid" %}
+                  {{ settings.hybrid_firmness_value }}
+                  {% elsif firmness == "pro" %}
+                  {{ settings.pro_firmness_value }}
+                  {% elsif firmness == "mattress" %}
+                  {{ settings.mattress_firmness_value }}
+                  {% endif %}
+                </div>
+                <div class="firmnessLevel">Bear {{ section.settings.firmnessLevel }}</div>
+                <div class="firmness-scale__rating--point text-center"></div>
+              </div>
+
+              <div class="text-center">
+                <div class="firmness-scale__label text-center">Soft Feel</div>
+              </div>
+
+              <div>
+                <div class="firmness-scale__number">1</div>
+              </div>
+
+              <div class="firmness-scale__scale"></div>
+              <div class="firmness-scale__line"></div>
+              <div class="firmness-scale__scale"></div>
+
+              <div>
+                <div class="firmness-scale__number">10</div>
+              </div>
+
+              <div class="text-center">
+                <div class="firmness-scale__label">Firm Feel</div>
+              </div>
+            </div>
+            
+            <div class="list static">
+              {{ section.settings.mattressDetailsText }}
+            </div>
+
+            <div class="feedbackDisclaimer">{{section.settings.highlighted_text}}</div>
+
+            {% if section.settings.bottom_text.size > 0 %}
+              <div class="firmness-bottom">
+                  <a class="firmness-bottom-link" href="{{section.settings.bottom_link}}">{{section.settings.bottom_text}}</a>
+              </div>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div> 
+  </div>
+</div>
+
+{% schema %}
+  {
+    "name": "Static Firmness Hybrid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "firmnessLevel",
+        "label": "Firmness Level ( Hybrid / Pro / Mattress )"
+      },
+      {
+        "type": "textarea",
+        "id": "mattressDetailsText",
+        "label": "Mattress Details",
+        "info":"Paste List code here"
+      },
+      {
+        "type": "text",
+        "id": "bottom_text",
+        "label": "Bottom text"
+      },
+      {
+        "type": "text",
+        "id": "bottom_link",
+        "label": "Bottom link"
+      },
+      {
+        "type": "text",
+        "id": "highlighted_text",
+        "label": "Footnote Text"
+      }
+    ],
+    
+	"presets": [
+      {
+        "name": "Static Firmness Hybrid",
+        "category": "Text"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
+
+

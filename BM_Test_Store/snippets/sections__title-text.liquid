@@ -1,0 +1,8 @@
+{% if section.settings.toggle %}
+  <div class="closing-cta {{ section.settings.padding-top }} {{ section.settings.padding-bottom }}" data-section-id="{{ section.id }}" data-section-type="closing-cta" style="background-color: {{section.settings.background-color}}; {% if section.settings.background-image.size %}background-image: url({{ section.settings.background-image | img_url: 'master' }}); background-repeat: {{ section.settings.background-repeat }} {% endif %}">
+    <h2 class="closing-cta__subhead" style="color: {{ section.settings.heading-text-color }};">{{ section.settings.section_header }}</h2>
+	{% if section.settings.section_rich_text != blank %}
+    <p class="closing-cta__text" style="color: {{ section.settings.text-color }};">{{ section.settings.section_rich_text }}</p>  
+    {% endif %}
+</div>
+{% endif %}

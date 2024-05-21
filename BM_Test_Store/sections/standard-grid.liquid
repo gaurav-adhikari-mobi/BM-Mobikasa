@@ -1,0 +1,112 @@
+<div class="cs-strandard-grid">
+	<div class="cs-standard-grid-inner">
+      	<h2 class="common-section-heading">{{section.settings.heading}}</h2>
+      
+        <div class="cs-standard-grid-posts {{ section.settings.column_count }}">
+          	{% for block in section.blocks %}
+                {% if block.type == 'griddata' %}
+                    <div class="cs-standard-grid-column cs-grid">
+                        <img src="{{ block.settings.grid_image | img_url: 'master' }}" />
+                      	<h3>{{ block.settings.title }}</h3>
+                      	<p>{{ block.settings.description }}</p>
+                      	<a href="{{ block.settings.link }}">{{ block.settings.link_text }}</a>
+                    </div>
+                {% endif %}
+            {% endfor %}
+      	</div>
+
+      	{% if section.settings.bottom_text.size > 0 %}
+      	<div class="cs-standard-grid-link cs-text-center">
+            <a href="{{ section.settings.bottom_link }}">{{ section.settings.bottom_text }}</a>
+      	</div>
+      	{% endif %}
+  	</div>
+</div>
+
+{% schema %}
+  {
+    "name": "Standard grid",
+    "settings": [
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading"
+      },
+      {
+        "type": "select",
+        "id": "desktop_text_alignment",
+        "options": [
+          { "value": "text-left", "label": "Left"},
+          { "value": "text-center", "label": "Center"}
+        ],
+        "default": "text-left",
+        "label": "Desktop Alignment"
+      },
+      {
+        "type": "select",
+        "id": "mobile_text_alignment",
+        "options": [
+          { "value": "text-left", "label": "Left"},
+          { "value": "text-center", "label": "Center"}
+        ],
+        "default": "text-center",
+        "label": "Mobile Alignment"
+      },
+      {
+        "type": "select",
+        "id": "column_count",
+        "options": [
+          { "value": "cs-grid-1", "label": "1 per row"},
+          { "value": "cs-grid-2", "label": "2 per row"},
+          { "value": "cs-grid-3", "label": "3 per row"},
+          { "value": "cs-grid-4", "label": "4 per row"}
+        ],
+        "default": "cs-grid-4",
+        "label": "Full width"
+      },
+      {
+        "type": "text",
+        "id": "bottom_text",
+        "label": "Bottom text"
+      },
+      {
+        "type": "text",
+        "id": "bottom_link",
+        "label": "Bottom link"
+      }
+	],
+    "blocks" : [
+      {
+        "type": "griddata",
+        "name": "Variant",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "grid_image",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Title"
+          },
+          {
+            "type": "text",
+            "id": "description",
+            "label": "Description"
+          },
+          {
+            "type": "text",
+            "id": "link_text",
+            "label": "Link text"
+          },
+          {
+            "type": "text",
+            "id": "link",
+            "label": "Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

@@ -1,0 +1,72 @@
+<section class="product">
+	<section class="product-slider">
+		<div class="product-slider__wrap">
+			{% for image in product.images %}
+				<div class="product-slider__slide{% if forloop.first %} active{% endif %}" {% if forloop.first %}style="background-image: url({{ image.src | img_url: '1440x' }});"{% endif %} data-index="{{ forloop.index }}" data-image="{{ image.src | img_url: '1440x' }}">
+					{% unless forloop.first %}<img data-src="{{ image.src | img_url: '1440x' }}" class="lazyload">{% endunless %}
+				</div>
+			{% endfor %}
+			<div class="product-slider__transition"></div>
+		</div>
+		<div class="product-slider__controls">
+			{% for image in product.images %}
+				<div class="product-slider__controls-thumb{% if forloop.first %} active{% endif %}" style="background-image: url({{ image.src | img_url: '72x' }});" data-index="{{ forloop.index }}"></div>
+			{% endfor %}
+		</div>
+	</section>
+	<section class="product-box">
+		<div class="product-box__wrap">
+			<div class="product-logo" data-handle="{{ product.handle }}">
+				{% assign product-logo = product.handle | append: '--logo.png' %}
+				{% assign product-logo = 'bearmattress--logo.png' %}
+				<img data-src="{{ product-logo | asset_url }}" class="lazyload">
+			</div>
+			<div class="product-reviews">
+
+              <div class="yotpo bottomLine"
+				data-appkey="yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d"
+				data-domain="{{ shop.permanent_domain | escape }}"
+				data-product-id="{{ product.id }}"
+				data-product-models="{{ product.id }}"
+				data-name="{{ product.title | escape }}"
+				data-url="{{ shop.url }}{{ product.url }}"
+				data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+				data-description="{{ product.description | escape }}"
+				data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+              </div>
+			</div>
+			<div class="product-description">
+				<div class="product-description__wrap">
+					{{ product.description }}
+				</div>
+			</div>
+			<div class="product-tiles" data-tiles="{{ product.variants.size }}">
+				<div class="product-tiles__header">
+					<div class="product-tiles__header-details">
+						<span class="label">Dimensions:</span>
+						<span class="value">60" x 80" x 10"</span>
+					</div>
+<!-- 					<div class="product-tiles__header-cta">
+						<a href="#sizes">Size Guide</a>
+					</div> -->
+				</div>
+				<ul class="product-tiles__list">
+					{% for variant in product.variants %}
+						<li class="product-tiles__item{% if variant.available %} available{% endif %}{% if variant.id == product.selected_or_first_available_variant.id %} selected{% endif %}" data-variant-id="{{ variant.id }}" data-price="{{ variant.price | money_without_currency | replace: '.00', '' }}" data-title="{{ variant.title | escape }}">
+							<span>{{ variant.title }}</span>
+						</li>
+					{% endfor %}
+				</ul>
+			</div>
+			<div class="product-buy">
+				<button type="button" class="product-buy__button">
+					<div class="action"><span>ADD TO CART</span></div>
+					<div class="price"><span>{{ product.selected_or_first_available_variant.price | money_without_currency | replace: '.00', '' }}</span></div>
+				</button>
+			</div>
+			<div class="product-finance">
+				<a href="#" id="learn-more"></a>
+			</div>
+		</div>
+	</section>
+</section>

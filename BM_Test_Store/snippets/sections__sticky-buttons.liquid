@@ -1,0 +1,12 @@
+{% if section.settings.toggle %}
+<section class="stickybtns" data-section-id="{{ section.id }}">
+	<div class="stickybtns-wrap">
+		{% for block in section.blocks %}
+			<a href="{{ block.settings.button-url }}" class="stickybtns-link">
+				<img data-src="{{ block.settings.icon }}" class="lazyload">
+				<span>{{ block.settings.button-text }}</span>
+			</a>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}

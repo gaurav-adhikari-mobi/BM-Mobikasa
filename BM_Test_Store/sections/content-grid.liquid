@@ -1,0 +1,114 @@
+{% include 'content-grid' %}
+
+{% schema %}
+  {
+    "name": "Content Grid",
+	"max_blocks": 2,
+    "settings": [
+        {
+          "type": "header",
+          "content": "Grid structure"
+        },
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section title"
+        },
+        {
+          "type": "color",
+          "id": "section_title_color",
+          "label": "Section title color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "section_background_color",
+          "label": "Section background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "grid_color",
+          "label": "Grid color",
+          "default": "#f2efeb"
+        },
+        {
+          "type": "color",
+          "id": "grid_button_text_color",
+          "label": "Button text color",
+          "default": "#000000"
+
+        },
+        {
+          "type": "color",
+          "id": "grid_button_background_color",
+          "label": "Button background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "checkbox",
+          "id": "grid_overlay_option",
+          "label": "Grid overlay",
+          "default": true
+        }
+	],
+	"blocks": [
+        {
+        "type": "griddata",
+        "name": "Grid data",
+        "settings": [
+            {
+                "type": "text",
+                "id": "grid_title",
+                "label": "Grid title"
+            },
+            {
+                "type": "textarea",
+                "id": "grid_description",
+                "label": "Grid description"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image",
+                "label": "Image (Desktop)"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_ipad",
+                "label": "Image (Tablet)"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_mobile",
+                "label": "Image (Mobile)"
+            },
+            {
+                "type": "text",
+                "id": "grid_image_alt",
+                "label": "Image alt"
+            },
+            {
+                "type": "text",
+                "id": "grid_video",
+                "label": "Video"
+            },
+            {
+                "type": "text",
+                "id": "grid_button_text",
+                "label": "Button text"
+            },
+            {
+                "type": "text",
+                "id": "grid_button_link",
+                "label": "Button link"
+            }
+        ]}
+	],
+    "presets": [
+      {
+        "name": "Content Grid",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

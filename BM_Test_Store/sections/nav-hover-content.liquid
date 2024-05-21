@@ -1,0 +1,56 @@
+{% for block in section.blocks %}
+
+  {% case block.type %}
+
+  {% when "hover_block" %}
+  <div class="nav-hover-content nav-{{block.settings.heading | handleize }}" data-image="{{block.settings.image | img_url: 'master' }}" data-title="{{block.settings.title }}" data-text="{{block.settings.bottom_text }}" data-link="{{block.settings.link }}">
+    <img src="{{block.settings.image | img_url: 'master' }}" />
+  </div>
+  {% endcase %}
+{% endfor %}
+
+{% schema %}
+  {
+    "name": "Menu hovered",
+    "settings": [
+	],
+	"blocks": [{
+        "type": "hover_block",
+        "name": "Hover Block",
+          "settings": [
+              {
+                  "type": "text",
+                  "id": "heading",
+                  "label": "Product"
+              },
+              {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Title"
+              },
+			  {
+                  "type": "image_picker",
+                  "id": "image",
+                  "label": "Image"
+              },
+              {
+                  "type": "text",
+                  "id": "bottom_text",
+                  "label": "Bottom Text"
+              },
+              {
+                  "type": "url",
+                  "id": "link",
+                  "label": "Link"
+              }
+          ]
+        }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,154 @@
+<!-- /sections/summary-blocks.liquid -->
+<div class="product-summary-blocks clearfix" data-section-id="{{ section.id }}" data-section-type="product-summary-blocks" style="padding: 0  0 2rem 0; background-color: {{section.settings.background_color}};">
+  {% for block in section.blocks %}
+  	<div class="ps-block pb-{{ block.id }}" style="vertical-align: middle; padding: 0 2rem; background: {{ block.settings.content_background_color }}">
+      
+      {% if block.settings.content_title != blank %}
+      <h2 class="content__title">{{ block.settings.content_title }}</h2>
+      {% endif %}
+      
+      {% if block.settings.content_caption != blank %}
+      	<span class="content__caption">{{ block.settings.content_caption }}</span>
+      {% endif %}
+      
+      {% if block.settings.content_image != blank %}
+      	<a href="{% if block.settings.content_image_link %}{{ block.settings.content_image_link }}{% else %}javascript:void(0);{% endif %}">
+          <img class="lazyload" data-src="{{ block.settings.content_image | img_url: 'master' }}" /></a>
+      {% endif %}
+      
+      {% if block.settings.content_desc != blank %}
+      	<p class="content__desc" style="color:{{ block.settings.content_color }}">{{ block.settings.content_desc }}</p>
+      {% endif %}
+      
+      {% if block.settings.content_cta_text != blank %}
+        <a class="btn {% if block.settings.content_cta_use_shadow %} shadow {% endif %}" href="{{ block.settings.content_cta_link }}" style="color: {{ block.settings.content_cta_color }}; background-color: {{ block.settings.content_cta_background_color }}; border-color: {{block.settings.content_cta_border_color}};" data-id="{{ block.settings.cta_text | handle }}">{{ block.settings.content_cta_text }}</a>
+      {% endif %}
+      
+      {% if block.settings.content_additional != blank %}
+      	<p class="content__additional-text"> {{ block.settings.content_additional }}</p>
+      {% endif %}
+      <style type="text/css">
+        @media screen and (max-width: 767px){
+          {% if block.settings.content_mobile_background_color != blank %}
+          	.pb-{{ block.id }}{
+              background: {{ block.settings.content_mobile_background_color }} !important;
+            }
+          {% endif %}
+           .product-summary-blocks{
+              background: {{ section.settings.content_main_mobile_background_color }} !important;
+           }
+        }       
+      </style>
+  	</div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+	"name": "Bedding Summary Blocks",	
+	"settings": [
+		{
+			"type": "color",
+			"id": "background_color",
+			"label": "Background Color"
+		},
+		{
+			"type": "color",
+			"id": "content_main_mobile_background_color",
+			"label": "For Mobile: Background Color"
+		}
+	],
+	"blocks": [{
+      "type": "text",
+      "name": "Summary Block",
+      "settings": [
+		{
+			"type": "color",
+			"id": "content_background_color",
+			"label": "Background Color"
+		},
+		{
+			"type": "color",
+			"id": "content_mobile_background_color",
+			"label": "For Mobile: Background Color"
+		},
+		{
+			"type": "color",
+			"id": "content_color",
+			"label": "Text Color"
+		},
+		{
+			"type" : "text",
+			"id": "content_title",
+			"label" : "Content Title"
+		},
+		{
+			"type" : "text",
+			"id": "content_caption",
+			"label" : "Content Caption"
+		},        
+        {
+            "type": "image_picker",
+            "id": "content_image",
+            "label": "Image"
+        },
+		{
+            "type": "url",
+            "id": "content_image_link",
+            "label": "Image Hyperlink"
+        },
+		{
+			"type": "textarea",
+			"id": "content_desc",
+			"label": "Description"
+		},
+		{
+            "type": "text",
+            "id": "content_cta_text",
+            "label": "CTA Text"
+        },
+		{
+            "type": "url",
+            "id": "content_cta_link",
+            "label": "CTA Link"
+        },
+		{
+            "type": "color",
+            "id": "content_cta_background_color",
+            "label": "CTA Background Color"
+        },
+        {
+            "type": "color",
+            "id": "content_cta_color",
+            "label": "CTA Text Color"
+        },
+        {
+            "type": "color",
+            "id": "content_cta_border_color",
+            "label": "CTA Border color"
+        },
+        {
+            "type": "checkbox",
+            "id": "content_cta_use_shadow",
+            "label": "CTA : Use Shadow?",
+            "default": false
+        },
+		{
+			"type": "text",
+			"id": "content_additional",
+			"label": "Additional Content",
+			"info": "Below CTA"
+		}
+      ]
+  }],
+	"presets": [
+		{
+			"name": "Bedding Launch Blocks",
+			"category": "Custom Sections"
+		}
+	]
+}{% endschema %}
+
+
+{% javascript %}
+{% endjavascript %}

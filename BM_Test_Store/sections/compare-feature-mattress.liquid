@@ -1,0 +1,139 @@
+<a class="compare-tag" href="{{section.settings.button_link}}" style="background-color: #eff7f9">The Original</a>
+<span class="fcompare-title">{{section.settings.product_title}}</span>
+<span class="fcompare-button">3 Layers, 10" Height</span>
+
+<a href="{{section.settings.button_link}}">
+	<img class="fcompare-image lazyload" data-src="{{ section.settings.section_image | img_url: 'master' }}"/>
+</a>
+
+{% comment %}
+<ul class="features-list simple-features">
+{% for block in section.blocks %}
+	{% if block.type == 'simplefeature' %}
+  		<li>{{block.settings.simple_feature_text}}</li>
+	{% endif %}
+{% endfor %}
+</ul>
+
+{% if section.settings.show_advance_feature == true %}
+<div class="list-heading">Advanced Features:</div>
+
+<ul class="features-list advance-features">
+{% for block in section.blocks %}
+	{% if block.type == 'advancefeature' %}
+		<li>{{block.settings.advance_feature_text}}</li>
+	{% endif %}
+{% endfor %}
+</ul>
+{% endif %}
+{% endcomment %}
+
+<ul class="compare-list">
+	<li>
+		<strong>Average Customer Firmness Rating</strong>
+        <span>7.1 / 10</span>
+  	</li>
+  	<li>
+		<strong>Feel</strong>
+        <span>A contouring hug </span>
+  	</li>
+  	<li>
+		<strong>Best For</strong>
+        <span>Price conscience and those who love memory foam</span>
+  	</li>
+ 	 <li>
+		<strong>Notable Quote</strong>
+        <span>“The Bear mattress has a nice firmness that feels very supportive and comfortable. It's also not too hard. We like the slightly soft initial feel.” - Roger Y.</span>
+  	</li>
+  <li>
+		<strong>Cooling Technology</strong>
+        <span>Very Good</span>
+  	</li>
+  <li>
+		<strong>Pressure Relief and Spinal Alignment</strong>
+        <span>Graphite memory foam</span>
+  	</li>
+  <li>
+		<strong>Edge Support</strong>
+        <span>Very Good</span>
+  	</li>
+  <li>
+		<strong>Environmentally Friendly</strong>
+        <span>Certi-PUR US Certified</span>
+  	</li>
+   <li>
+     <strong>Sleep Technology</strong>
+        <span><a href="https://www.bearmattress.com/pages/technology">Celliant Infrared-Yarn</a> Cover</span>
+  	</li>
+   <li>
+		<strong>Made in America</strong>
+        <span>Yes</span>
+  	</li>
+  	<li>
+		<strong>Warranty</strong>
+        <span>10 Years</span>
+  	</li>
+  	<li class="fcompare-bottom">
+		<a href="{{section.settings.button_link}}">Queen - $890</a>
+      	<a class="btn btn-blue shadow" href="{{section.settings.button_link}}">{{section.settings.button_text}}</a>
+  	</li>
+</ul>
+
+{% schema %}
+{
+	"name": "Compare feature mattress",	
+	"settings": [
+        {
+            "type": "image_picker",
+            "id": "section_image",
+            "label": "Section image"
+        },
+        {
+            "type": "text",
+            "id": "product_title",
+            "label": "Product title"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        },
+        {
+            "type": "text",
+            "id": "button_link",
+            "label": "Button link"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_advance_feature",
+            "label": "Show advanced feature",
+            "default": false
+        }
+	],
+
+	"blocks": [
+		{
+			"type": "simplefeature",
+			"name": "Standard feature",
+			"settings": [
+				{
+					"type": "text",
+					"id": "simple_feature_text",
+					"label": "Standard feature"
+				}
+			]
+	  	},
+		{
+			"type": "advancefeature",
+			"name": "Advanced feature",
+			"settings": [
+				{
+					"type": "text",
+					"id": "advance_feature_text",
+					"label": "Advanced feature"
+				}
+			]
+	  	}
+	]
+}
+{% endschema %}

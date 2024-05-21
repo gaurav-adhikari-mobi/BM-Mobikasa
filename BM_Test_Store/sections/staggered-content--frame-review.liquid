@@ -1,0 +1,169 @@
+{% include 'section__staggered-content_3' %}
+
+{% schema %}
+  {
+    "name": "Frame Staggered",
+    "settings": [
+		{
+			"type": "color",
+			"id": "background-color",
+			"label": "Background Color"
+		},
+        {
+          "type": "text",
+          "id": "section_heading",
+          "label": "Section Heading"
+        },
+        {
+          "type": "textarea",
+          "id": "section_description",
+          "label": "Section Description"
+        },
+        {
+          "type": "color",
+          "id": "section_heading_color",
+          "label": "Section Heading Color"
+        },
+        {
+          "type": "select",
+          "id": "section_heading_alignment",
+          "options": [
+            { "value": "cs-text-left", "label": "Left"},
+            { "value": "cs-text-center", "label": "Center"}
+          ],
+          "default": "cs-text-left",
+          "label": "Alignment"
+        }
+	],
+    "blocks": [
+      {
+        "type": "text",
+        "name": "Staggered Content",
+        "settings": [
+          {
+            "type": "select",
+            "id": "media",
+            "label": "Media",
+            "options": [
+              {
+                "value": "image",
+                "label": "Image"
+              },
+              {
+                "value": "youtube_video",
+                "label": "Youtube Video"
+              },
+              {
+                "value": "video",
+                "label": "Local Video"
+              }
+            ],
+            "default":   "image"
+          },
+          {
+            "id": "media_link",
+            "type": "text",
+            "label": "Media Link"
+          },
+          {
+            "id": "fallbackImageText",
+            "type": "text",
+            "label": "Image Alt Text"
+          },
+		  {
+            "id": "poster_img",
+            "type": "text",
+            "label": "Fallback Image"
+          },
+          {
+            "type":      "select",
+            "id":        "orientation",
+            "label":     "Orientation",
+            "options": [
+                {
+                "value": "row-reverse",
+                "label": "List on Left"
+                },
+                {
+                "value": "row",
+                "label": "List on Right"
+                }
+              ],
+            "default":   "row-reverse"
+          },
+          {
+            "type": "color",
+            "id": "topic_header_color",
+            "label": "Topic Header Text Color"
+          },
+          {
+            "type": "text",
+            "id": "topic_header",
+            "label": "Topic Header"
+          },
+          {
+            "type": "color",
+            "id": "detail_description_text_color",
+            "label": "Detail Description Text Color"
+          },
+          {
+            "type": "textarea",
+            "id": "detail_description",
+            "label": "Detail Description"
+          },
+          {
+            "type": "color",
+            "id": "misc_text_color",
+            "label": "Misc Text Color"
+          },
+          {
+            "type": "text",
+            "id": "detail_misc_text",
+            "label": "Misc Text"
+          },
+          {
+            "type": "text",
+            "id": "primary_button_text",
+            "label": "Primary Button Text"
+          },
+		  {
+            "type": "text",
+            "id": "primary_button_link",
+            "label": "Primary Button Link"
+          },
+          {
+            "type": "text",
+            "id": "secondary_button_text",
+            "label": "Secondary Button Text"
+          },
+          {
+            "type": "text",
+            "id": "secondary_button_link",
+            "label": "Secondary Button Link"
+          }
+        ]
+      }	
+    ]
+  }
+{% endschema %}
+
+{% javascript %}
+  $(document).ready(function(){
+    var vids = $('.staggered_video'); 
+    $.each(vids, function(){
+      this.controls = false; 
+    });
+    $('.staggered_video').on("click", function() {
+      var video=$(this).children("video")[0];
+      if( video.paused ) 
+      {
+        video.play();
+      }
+      else
+      {
+        video.pause();
+      }
+    });
+  });
+
+{% endjavascript %}

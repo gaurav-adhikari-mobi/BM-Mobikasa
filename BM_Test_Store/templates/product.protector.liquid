@@ -1,0 +1,41 @@
+{% include 'product-details' %}
+
+{% if product.id == 6768480583785 %}
+ {% section 'pdp-terry-protector-icon-grid' %}
+ {% section 'terry-protector-product-detail' %}
+   <section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews"> {{ product.title }} Reviews</h2>
+	<div class="yotpo-widget-instance" data-yotpo-instance-id="544320" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div></div>
+</section>
+ {% section 'pdp-accordion-terry-protector' %}
+  
+{% else %}
+ {% section 'pdp-protector-icon-grid' %}
+ {% section 'protector-video' %}
+ {% section 'pdp-protector-features' %}
+ 
+ {% section 'pdp-accordion-protector' %}
+{% endif %}
+{% comment %}
+{% section 'protector-standard-content' %}
+{% endcomment %}
+{% section 'glaciotex-upsell-standard-content' %}
+
+{% if product.id == 6768480583785 %}
+{% else %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Protector Reviews</h2>
+		<div class="yotpo yotpo-main-widget"
+		    data-product-id="{{ product.id }}"
+		    data-name="{{ product.title | escape }}"
+		    data-url="{{ shop.url }}{{ product.url }}"
+		    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+		    data-description="{{ product.description | escape }}">
+		</div>
+	</div>
+</section>
+{% endif %}
+
+{% include 'schema' %}

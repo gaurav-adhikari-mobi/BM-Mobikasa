@@ -1,0 +1,89 @@
+{% include "sections__trial-hero-grid" %}
+
+{% schema %}
+  {
+    "name": "Trial Hero Grid",
+	"max_blocks": 3,
+    "settings": [
+		{
+          "type": "color",
+          "id": "background-color",
+          "label": "Background Color"
+        },
+        {
+          "type": "color",
+          "id": "text-color",
+          "label": "Text Color"
+        },
+        {
+          "type":"text",
+          "id": "header",
+          "label": "Header text"
+        },
+		{
+          "type": "image_picker",
+          "id": "desktop_background_image",
+          "label": "Desktop Background Image"
+        },
+		{
+          "type": "image_picker",
+          "id": "mobile_background_image",
+          "label": "Mobile Background Image"
+        },
+		{
+          "type": "image_picker",
+          "id": "desktop_overlay_image",
+          "label": "Desktop Overlay Image"
+        },
+		{
+          "type": "text",
+          "id": "desktop_overlay_image_alt",
+          "label": "Desktop Alt Text"
+        },
+		{
+          "type": "image_picker",
+          "id": "mobile_overlay_image",
+          "label": "Mobile Overlay Image"
+        },
+		{
+          "type": "text",
+          "id": "mobile_overlay_image_alt",
+          "label": "Mobile Alt Text"
+        },
+		{
+          "type": "text",
+          "id": "highlighted_text",
+          "label": "Footnote Text"
+		}
+	],
+	"blocks" : [{
+      "type": "text",
+      "name": "Grid",
+      "settings": [
+        {
+          "type": "text",
+          "id": "main_icon",
+          "label": "Grid Counter",
+		  "info": "Use MDI icon class"	
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Grid Text"
+        }
+      ]
+  }],
+  "presets": [
+		{
+			"name": "Hero Trial Grid",
+			"category": "Custom Sections"
+		}
+	]	
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

@@ -1,0 +1,130 @@
+<!-- /sections/index-pageliquid -->
+{% include 'section_slideshow-reviews' %}
+
+{% schema %}
+{
+  "name": "Slideshow reviews",
+  "max_blocks": 8,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Toggle Section On/Off",
+      "default": true
+    },
+	{
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+      },
+      {
+        "type": "image_picker",
+        "id": "background-image",
+        "label": "Background Image"
+      },
+      {
+        "type": "select",
+        "id": "background-repeat",
+        "label": "Tile Background",
+        "options": [
+          {
+            "value": "no-repeat",
+            "label": "No Tiles"
+          },
+          {
+            "value": "repeat",
+            "label": "Tiles"
+          }
+        ]
+      },
+      {
+        "type": "text",
+        "id": "section_header",
+        "label": "Section Header"
+      }
+  ],
+  "blocks" : [{
+      "type": "button",
+      "name": "Slideshow Reviews Section",
+      "settings": [{
+        "type": "color",
+        "id": "heading-text-color",
+        "label": "Heading Text Color"
+      },
+      {
+        "type": "textarea",
+        "id": "section_rich_text",
+        "label": "Section Text"
+      },
+      {
+        "type": "text",
+        "id": "section_source_text",
+        "label": "Section Source Text"
+      },
+      {
+        "type": "checkbox",
+        "id": "verified_soruce_toggle",
+        "label": "Show verified soruce toggle"
+      },
+      {
+        "type": "text",
+        "id": "section_image",
+        "label": "Section Image JPG, SVG, GIF"
+      },
+	  {
+        "type": "checkbox",
+        "id": "section_star_icon",
+        "label": "Show Star Icon toggle"
+      },
+	  {
+        "type": "checkbox",
+        "id": "section_check_icon",
+        "label": "Show Check Icon toggle"
+      },
+      {
+        "type": "url",
+        "id": "section_link",
+        "label": "CTA Link for Section"	
+      },
+      {
+        "type": "checkbox",
+        "id": "show_cta_toggle",
+        "label": "Show CTA Button",
+        "default": false
+      },
+	  {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Text"
+      },
+      {
+        "type": "color",
+        "id": "button-background-color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "button-text-color",
+        "label": "Text Color"
+      },
+      {
+        "type": "color",
+        "id": "button-border-color",
+        "label": "Border color"
+      },
+      {
+        "type": "checkbox",
+        "id": "use-shadow",
+        "label": "Use Shadow?",
+        "default": false
+      }
+     ]
+  }],
+  "presets": [
+    {
+      "name": "Slideshow Reviews",
+      "category": "Custom Sections"
+    }
+  ]
+}
+{% endschema %}

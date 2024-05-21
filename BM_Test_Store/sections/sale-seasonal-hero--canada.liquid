@@ -1,0 +1,203 @@
+{% if template == 'index' %}
+<section class="hero" data-section-id="{{ section.id }}" data-module="hero">
+{% else %}
+<section class="hero hero-secondary" data-section-id="{{ section.id }}" data-module="hero">
+{% endif %}
+	<img data-src="{{ section.settings.desktop-image | img_url: 'master' }}" class="hero-bg desktop lazyload">
+	<img data-src="{{ section.settings.mobile-image | img_url: 'master' }}" class="hero-bg mobile lazyload">
+	<div class="hero-wrap {{ section.settings.flex-align }} {{ section.settings.text-align }}">
+	<div class="hero-content">
+			{% for block in section.blocks %}
+				{% case block.type %}
+					{% when 'heading' %}
+						<h1 class="hero-heading" style="color: {{ block.settings.text-color }};">{{ block.settings.text-content }}</h1>
+					{% when 'text' %}
+						<p class="hero-description" style="color: {{ block.settings.text-color }};">{{ block.settings.text-content }}</p>
+                    {% when 'newsletter' %}
+	                    {% include 'banner-newsletter-form--mc' %}
+					{% when 'button' %}
+                        {% if block.settings.has_hyperlink == true %}
+                          <a href="{{ block.settings.button-url }}" class="btn-hyperlink" style="color: {{ block.settings.text-color }};">{{ block.settings.button-text }}</a>
+                        {% else %}
+                          <a href="{{ block.settings.button-url }}" class="btn btn-green btn-hero cs-btn-large shadow" style="background: {{ block.settings.button-color }}; color: {{ block.settings.text-color }};">{{ block.settings.button-text }}</a>
+                        {% endif %}
+				{% endcase %}
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+{% schema %}
+{
+	"name": "Sale Seasonal Hero",
+	"max_blocks": 4,
+	"settings": [
+		{
+			"type": "header",
+			"content": "Toggle"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle Section On/Off"
+		},
+		{
+			"type": "image_picker",
+			"id": "desktop-image",
+			"label": "Desktop Background Image"
+		},
+		{
+			"type": "image_picker",
+			"id": "mobile-image",
+			"label": "Mobile Background Image"
+		},
+		{
+			"type": "select",
+			"id": "flex-align",
+			"label": "Content Align",
+			"options": [
+				{
+					"value": "fa--left-top",
+					"label": "Left // Top"
+				},
+				{
+					"value": "fa--left-center",
+					"label": "Left // Center"
+				},
+				{
+					"value": "fa--left-bottom",
+					"label": "Left // Bottom"
+				},
+				{
+					"value": "fa--center-top",
+					"label": "Center // Top"
+				},
+				{
+					"value": "fa--center-center",
+					"label": "Center // Center"
+				},
+				{
+					"value": "fa--center-bottom",
+					"label": "Center // Bottom"
+				},
+				{
+					"value": "fa--right-top",
+					"label": "Right // Top"
+				},
+				{
+					"value": "fa--right-center",
+					"label": "Right // Center"
+				},
+				{
+					"value": "fa--right-bottom",
+					"label": "Right // Bottom"
+				}
+			],
+			"info": "Values are Horizontal // Vertical"
+		},
+		{
+			"type": "select",
+			"id": "text-align",
+			"label": "Text Align",
+			"options": [
+				{
+					"value": "ta--left",
+					"label": "Left"
+				},
+				{
+					"value": "ta--right",
+					"label": "Right"
+				},
+				{
+					"value": "ta--center",
+					"label": "Center"
+				}
+			]
+		}
+	],
+	"blocks": [
+		{
+			"type": "heading",
+			"name": "Headline",
+			"settings": [
+				{
+					"type": "color",
+					"id": "text-color",
+					"label": "Text Color",
+					"default": "#fff"
+				},
+				{
+					"type": "text",
+					"id": "text-content",
+					"label": "Title"
+				}
+			]
+		},
+		{
+			"type": "text",
+			"name": "Description",
+			"settings": [
+				{
+					"type": "color",
+					"id": "text-color",
+					"label": "Text Color",
+					"default": "#fff"
+				},
+				{
+					"type": "text",
+					"id": "text-content",
+					"label": "Description"
+				}
+			]
+		},
+		{
+			"type": "newsletter",
+			"name": "Newsletter",
+			"settings": []
+		},
+		{
+			"type": "button",
+			"name": "Button",
+			"settings": [
+                {
+                    "type": "checkbox",
+                    "id": "has_hyperlink",
+                    "label": "Hyperlink",
+					"default": false
+
+                },
+				{
+					"type": "color",
+					"id": "button-color",
+					"label": "Button Color",
+					"default": "#2be08d"
+				},
+				{
+					"type": "color",
+					"id": "text-color",
+					"label": "Text Color",
+					"default": "#fff"
+				},
+				{
+					"type": "text",
+					"id": "button-url",
+					"label": "Button URL"
+				},
+				{
+					"type": "text",
+					"id": "button-text",
+					"label": "Button Text",
+					"info": "To include small text below, use a <span></span>"
+				}
+			]
+		}
+	],
+	"presets": [
+		{
+			"name": "Canada Sale Seasonal Hero",
+			"category": "Image"
+		}
+	]
+}
+{% endschema %}

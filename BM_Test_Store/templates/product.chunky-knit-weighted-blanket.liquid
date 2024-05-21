@@ -1,0 +1,22 @@
+{% include 'product-details' %}
+{% section 'pdp-icon-grid-chunky-blanket' %}
+{% section 'product-detail-chunky-blanket' %}
+{% section 'pdp-accordion-chunky-blanket' %}
+{% section 'faq-component-chunky-blanket' %}
+
+{% comment %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Weighted Blanket Reviews</h2>
+		<div class="yotpo yotpo-main-widget"
+		    data-product-id="{{ product.id }}"
+		    data-name="{{ product.title | escape }}"
+		    data-url="{{ shop.url }}{{ product.url }}"
+		    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+		    data-description="{{ product.description | escape }}">
+		</div>
+	</div>
+</section>
+{% endcomment %}
+
+{% include 'schema' %}

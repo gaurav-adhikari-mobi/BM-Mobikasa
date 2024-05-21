@@ -1,0 +1,83 @@
+<!-- /sections/index-pageliquid -->
+
+<div class="intro-cta" data-section-id="{{ section.id }}" data-section-type="intro-cta" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}}; background-image: url({{section.settings.background-image}})">
+  <h1 class="intro-cta__header">{{ section.settings.section_header }}</h1>
+  <p class="intro-cta__text">{{ section.settings.section_text }}</p>
+  <div class="intro-cta__link-wrapper">
+    {% for block in section.blocks %}
+      <div class="intro-cta__cta btn" style="background-color: {{ block.settings.button-background-color }}; border-color: {{block.settings.button-border-color}};">
+        <a class="intro-cta__cta-link" href="{{ block.settings.cta_link }}" style="color: {{ block.settings.button-text-color }};">{{ block.settings.cta_text }}</a>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Intro CTA",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "background-image",
+      "label": "Background Image"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type": "text",
+      "id": "section_header",
+      "label": "Section Header"
+    },
+    {
+      "type": "text",
+      "id": "section_text",
+      "label": "Section Text"
+    }
+  ],
+  "blocks" : [{
+      "type": "button",
+      "name": "CTA Button",
+      "settings": [
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Text"
+      },
+      {
+        "type": "color",
+        "id": "button-background-color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "button-text-color",
+        "label": "Text Color"
+      },
+      {
+        "type": "color",
+        "id": "button-border-color",
+        "label": "Border color"
+      }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Intro CTA",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

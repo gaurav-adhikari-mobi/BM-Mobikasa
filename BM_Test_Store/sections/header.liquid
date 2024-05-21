@@ -1,0 +1,83 @@
+{% include 'sections__header' %}
+
+{% schema %}
+{
+  "name": "Header",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "text",
+      "id": "logo_max_width",
+      "label": "Custom logo width (in pixels)"
+    },
+    {
+      "type": "link_list",
+      "label": "Menu",
+      "id": "main_menu_linklist"
+    },
+    {
+      "type": "select",
+      "label": "Height",
+      "id": "height",
+      "default": "header--medium",
+      "options": [
+        { "value": "header--small", "label": "Small"},
+        { "value": "header--medium", "label": "Medium"},
+        { "value": "header--large", "label": "Large"},
+        { "value": "header--xl", "label": "Extra Large"}
+      ]
+    },
+    {
+      "type": "header",
+      "content": "Meganav image"
+    },
+    {
+      "type": "image_picker",
+      "id": "meganav_image",
+      "label": "Meganav image",
+      "info": "500 x 800px .jpg max"
+    },
+    {
+      "type": "url",
+      "id": "meganav_link",
+      "label": "Meganav Image Link"
+    },
+    {
+      "type": "header",
+      "content": "Promotional Bar"
+    },
+    {
+      "type": "text",
+      "id": "header_message",
+      "label": "Announcement text",
+      "info": "45 characters or less recommended"
+    },
+    {
+      "type": "url",
+      "id": "header_message_url",
+      "label": "Announcement link"
+    },
+    {
+      "type": "checkbox",
+      "id": "header_enable_account",
+      "default": true,
+      "label": "Show account link in header"
+    },
+    {
+      "type": "checkbox",
+      "id": "header_enable_search",
+      "default": true,
+      "label": "Show search in header"
+    },
+    {
+      "type": "checkbox",
+      "id": "search_only_products",
+      "label": "Only search products"
+    }
+  ]
+}
+{% endschema %}

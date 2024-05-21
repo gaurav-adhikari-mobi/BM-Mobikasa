@@ -1,0 +1,570 @@
+<ul class="frequent-list">
+  {% assign sale_products = settings.sale_products %}
+
+  {% for variant in product.variants %}
+    {% assign frequentValues = variant.metafields.variant.addon_product | split: ',' %}
+
+    {% if frequentValues.size > 0 %}
+      <li class="frequent-{{variant.id}}">
+        {% for frequentValue in frequentValues %}
+          {% if frequentValue contains '+' %}
+            {% assign frequentStrings = frequentValue | split: '+' %}
+
+            {% assign firstFrequentItem = frequentStrings[0] | split: ':' %}
+            {% assign firstFrequentHandle = firstFrequentItem[0] %}
+            {% assign firstSelectedVariant = firstFrequentItem[1] | plus: 0 %}
+
+            {% assign secondFrequentItem = frequentStrings[1] | split: ':' %}
+            {% assign secondSelectedVariant = secondFrequentItem[1] | plus: 0 %}
+
+            {% assign firstFrequentProduct = all_products[firstFrequentHandle] %}
+            {% assign firstFrequentAddonValue = firstFrequentProduct.metafields.product.product_addon_value %}
+
+            {% assign first_frequent_title = firstFrequentProduct.metafields.product.frequent_title %}
+            {% assign first_frequent_data = firstFrequentProduct.metafields.product.frequent_data %}
+            {% assign first_frequent_popup_heading = firstFrequentProduct.metafields.product.frequent_popup_heading %}
+            {% assign first_frequent_popup_description = firstFrequentProduct.metafields.product.frequent_popup_description %}
+            {% assign first_frequent_popup_subdescription = firstFrequentProduct.metafields.product.frequent_popup_subdescription %}
+            {% assign first_frequent_mattress_only_pupup_text = firstFrequentProduct.metafields.product.mattress_only_pupup_text %}
+
+            {% assign first_frequent_product_list = firstFrequentProduct.metafields.product.frequent_product_list %}
+
+            {% assign first_cs_has_discount = false %}
+
+            {% if sale_products contains firstFrequentProduct.handle %}
+              {% assign first_cs_has_discount = false %}
+            {% else %}
+              {% assign first_cs_has_discount = true %}
+            {% endif %}
+
+            {% assign firstProductDescription = firstFrequentProduct.description
+              | strip_html
+              | replace: 'View Sale Details', ''
+            %}
+            {% assign firstProductImage = firstFrequentProduct.featured_image | img_url: '400x' %}
+            {% assign firstProductTitle = firstFrequentProduct.title %}
+            {% assign firstProductTitlePopup = firstProductTitle | split: ' ' %}
+
+            {% for firstFrequentVariant in firstFrequentProduct.variants %}
+              {% if firstFrequentVariant.id == firstSelectedVariant and firstFrequentVariant.available == true %}
+                {% assign firstHasinformation = firstFrequentVariant.metafields.variant.information %}
+                {% assign firstHasAddon = firstFrequentVariant.metafields.variant.attached_product_2 %}
+
+                {% assign first_cs_price = firstFrequentVariant.price
+                  | money_without_currency
+                  | replace: ',', ''
+                  | replace: '.00', ''
+                  | plus: 0
+                %}
+                {% assign first_cs_compare_price = firstFrequentVariant.compare_at_price
+                  | money_without_currency
+                  | replace: ',', ''
+                  | replace: '.00', ''
+                  | plus: 0
+                %}
+
+                {% if settings.percentage_enable == true and first_cs_has_discount == true %}
+                  {% if first_cs_price >= settings.discount_min_value_1 %}
+                    {% if first_cs_price >= settings.discount_min_value_1
+                      and first_cs_price <= settings.discount_max_value_1
+                    %}
+                      {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                    {% elsif first_cs_price >= settings.discount_min_value_2
+                      and first_cs_price <= settings.discount_max_value_2
+                    %}
+                      {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                    {% elsif first_cs_price >= settings.discount_min_value_3 %}
+                      {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% assign elDiscount = first_cs_price | times: discountValue | divided_by: 100 %}
+
+                  {% assign first_cs_compare_price = first_cs_price %}
+                  {% assign first_cs_price = first_cs_price | minus: elDiscount %}
+                {% endif %}
+
+                {% if settings.tier_enable == true and first_cs_has_discount == true %}
+                  {% if first_cs_price >= settings.min_value_1 %}
+                    {% if first_cs_price >= settings.min_value_1 and first_cs_price <= settings.max_value_1 %}
+                      {% assign elDiscount = settings.coupon_amount_1 %}
+
+                    {% elsif first_cs_price >= settings.min_value_2 and first_cs_price <= settings.max_value_2 %}
+                      {% assign elDiscount = settings.coupon_amount_2 %}
+
+                    {% elsif first_cs_price >= settings.min_value_3 %}
+                      {% assign elDiscount = settings.coupon_amount_3 %}
+                    {% endif %}
+
+                    {% assign first_cs_compare_price = first_cs_price %}
+                    {% assign first_cs_price = first_cs_price | minus: elDiscount %}
+                  {% endif %}
+                {% endif %}
+
+                <div
+                  class="add-on-row has-additional"
+                  data-target="target-{{firstFrequentVariant.id}}"
+                  data-productel="{{ first_frequent_mattress_only_pupup_text }}"
+                  data-has-additional="fv-{{secondSelectedVariant}}"
+                >
+                  {% if first_frequent_data.size > 0 %}
+                    <div class="add-on-heading hhh">{{ first_frequent_data }}</div>
+                  {% endif %}
+
+                  <div class="add-on-inner">
+                    <div class="add-on-left">
+                      <img src="{{firstProductImage}}">
+                    </div>
+
+                    <div class="add-on-right">
+                      <div class="add-on-title">
+                        <a
+                          class="product-popup-call"
+                          href="#"
+                          data-prod-list="{{ first_frequent_product_list }}"
+                          data-prod-img="{{firstProductImage}}"
+                          data-prod-desc="{{firstProductDescription}}"
+                          data-html="{{firstProductTitle}}"
+                          data-fheading="{{first_frequent_popup_heading}}"
+                          data-fdescription="{{first_frequent_popup_description}}"
+                        >
+                          {{- firstProductTitle -}}
+                        </a>
+                {% if firstProductTitle == 'Bear Pillow' or  firstProductTitle == 'Bear Protector' or  firstProductTitle == 'Bear Mini Pillow'%}<span class="close-text">CLOSEOUT</span>{% else %}{% endif %}
+      
+                       </div>
+
+                      <div class="add-on-variant {% if firstFrequentProduct.id == 6661501550697 or firstFrequentProduct.id == 9512290574 or firstFrequentProduct.id == 6562775302249 or firstFrequentProduct.id == 8784730307 %}{% else %}change-variant{% endif %}">
+                        {{ firstFrequentVariant.title }}
+                      </div>
+
+                      {% if first_cs_compare_price > 0 %}
+                        <label class="price_bundle">
+                          <span class="price-new">+ ${{ first_cs_price }}</span>
+                          <span class="price-old">${{ first_cs_compare_price }}</span>
+                        </label>
+
+                        <label class="el_price_bundle">
+                          <span class="price-new">${{ first_cs_price }}</span>
+                          <span class="price-old">${{ first_cs_compare_price }}</span>
+                        </label>
+
+                      {% else %}
+                        <label class="price_bundle">
+                          <span class="price-cs-old">+ ${{ first_cs_price }}</span>
+                        </label>
+
+                        <label class="el_price_bundle">
+                          <span class="price-cs-old">${{ first_cs_price }}</span>
+                        </label>
+                      {% endif %}
+                    </div>
+
+                    <input
+                      type="checkbox"
+                      id="fv-{{firstFrequentVariant.id}}"
+                      class="product-tiles-check mdi"
+                      name="checkbox"
+                      data-value="{{firstFrequentVariant.title}}-{{firstFrequentVariant.id}}"
+                      data-addon="{{firstHasAddon}}"
+                      value="{{firstFrequentVariant.id}}"
+                    >
+                  </div>
+
+                  {% if firstHasinformation.size > 0 %}
+                    <span class="cs-addon-information">{{ firstHasinformation }}</span>
+                  {% endif %}
+                </div>
+
+                {% break %}
+              {% endif %}
+            {% endfor %}
+
+            {% assign secondFrequentItem = frequentStrings[1] | split: ':' %}
+            {% assign secondFrequentHandle = secondFrequentItem[0] %}
+            {% assign secondSelectedVariant = secondFrequentItem[1] | plus: 0 %}
+
+            {% assign secondFrequentProduct = all_products[secondFrequentHandle] %}
+            {% assign secondFrequentAddonValue = secondFrequentProduct.metafields.product.product_addon_value %}
+
+            {% assign second_frequent_title = secondFrequentProduct.metafields.product.frequent_title %}
+            {% assign second_frequent_data = secondFrequentProduct.metafields.product.frequent_data %}
+            {% assign second_frequent_popup_heading = secondFrequentProduct.metafields.product.frequent_popup_heading %}
+            {% assign second_frequent_popup_description = secondFrequentProduct.metafields.product.frequent_popup_description %}
+            {% assign second_frequent_popup_subdescription = secondFrequentProduct.metafields.product.frequent_popup_subdescription %}
+            {% assign second_frequent_mattress_only_pupup_text = secondFrequentProduct.metafields.product.mattress_only_pupup_text %}
+
+            {% assign second_frequent_product_list = secondFrequentProduct.metafields.product.frequent_product_list %}
+
+            {% assign second_cs_has_discount = false %}
+
+            {% if sale_products contains secondFrequentProduct.handle %}
+              {% assign second_cs_has_discount = false %}
+            {% else %}
+              {% assign second_cs_has_discount = true %}
+            {% endif %}
+
+            {% assign secondProductDescription = secondFrequentProduct.description
+              | strip_html
+              | replace: 'View Sale Details', ''
+            %}
+            {% assign secondProductImage = secondFrequentProduct.featured_image | img_url: '400x' %}
+            {% assign secondProductTitle = secondFrequentProduct.title %}
+            {% assign secondProductTitlePopup = secondProductTitle | split: ' ' %}
+
+            {% for secondFrequentVariant in secondFrequentProduct.variants %}
+              {% if secondFrequentVariant.id == secondSelectedVariant and secondFrequentVariant.available == true %}
+                {% assign secondHasinformation = secondFrequentVariant.metafields.variant.information %}
+                {% assign SecondHasAddon = secondFrequentVariant.metafields.variant.attached_product_2 %}
+
+                {% assign second_cs_price = secondFrequentVariant.price
+                  | money_without_currency
+                  | replace: ',', ''
+                  | replace: '.00', ''
+                  | plus: 0
+                %}
+                {% assign second_cs_compare_price = secondFrequentVariant.compare_at_price
+                  | money_without_currency
+                  | replace: ',', ''
+                  | replace: '.00', ''
+                  | plus: 0
+                %}
+
+                {% if settings.percentage_enable == true and second_cs_has_discount == true %}
+                  {% if second_cs_price >= settings.discount_min_value_1 %}
+                    {% if second_cs_price >= settings.discount_min_value_1
+                      and second_cs_price <= settings.discount_max_value_1
+                    %}
+                      {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                    {% elsif second_cs_price >= settings.discount_min_value_2
+                      and second_cs_price <= settings.discount_max_value_2
+                    %}
+                      {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                    {% elsif second_cs_price >= settings.discount_min_value_3 %}
+                      {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                    {% endif %}
+                  {% endif %}
+
+                  {% assign elDiscount = second_cs_price | times: discountValue | divided_by: 100 %}
+
+                  {% assign second_cs_compare_price = second_cs_price %}
+                  {% assign second_cs_price = second_cs_price | minus: elDiscount %}
+                {% endif %}
+
+                {% if settings.tier_enable == true and second_cs_has_discount == true %}
+                  {% if second_cs_price >= settings.min_value_1 %}
+                    {% if second_cs_price >= settings.min_value_1 and second_cs_price <= settings.max_value_1 %}
+                      {% assign elDiscount = settings.coupon_amount_1 %}
+
+                    {% elsif second_cs_price >= settings.min_value_2 and second_cs_price <= settings.max_value_2 %}
+                      {% assign elDiscount = settings.coupon_amount_2 %}
+
+                    {% elsif second_cs_price >= settings.min_value_3 %}
+                      {% assign elDiscount = settings.coupon_amount_3 %}
+                    {% endif %}
+
+                    {% assign second_cs_compare_price = second_cs_price %}
+                    {% assign second_cs_price = second_cs_price | minus: elDiscount %}
+                  {% endif %}
+                {% endif %}
+
+                <div
+                  class="add-on-row is-additional"
+                  data-target="target-{{secondFrequentVariant.id}}"
+                  data-productel="{{ second_frequent_mattress_only_pupup_text }}"
+                >
+                  <div class="add-on-inner">
+                    <div class="add-on-right">
+                      <div class="add-on-title">{{ secondProductTitle }}</div>
+                      <div class="add-on-variant {% if secondFrequentProduct.id == 6661501550697 or secondFrequentProduct.id == 9512290574 or secondFrequentProduct.id == 6562775302249 or secondFrequentProduct.id == 8784730307 %}{% else %}change-variant{% endif %}">
+                        {{ secondFrequentVariant.title }}
+                      </div>
+
+                      {% if second_cs_compare_price > 0 %}
+                        <label class="price_bundle">
+                          <span class="price-new">+ ${{ second_cs_price }}</span>
+                          <span class="price-old">${{ second_cs_compare_price }}</span>
+                        </label>
+
+                        <label class="el_price_bundle">
+                          <span class="price-new">${{ second_cs_price }}</span>
+                          <span class="price-old">${{ second_cs_compare_price }}</span>
+                        </label>
+
+                      {% else %}
+                        <label class="price_bundle">
+                          <span class="price-cs-old">+ ${{ second_cs_price }}</span>
+                        </label>
+
+                        <label class="el_price_bundle">
+                          <span class="price-cs-old">${{ second_cs_price }}</span>
+                        </label>
+                      {% endif %}
+
+                      {% if secondHasinformation.size > 0 %}
+                        <span class="cs-addon-information">{{ secondHasinformation }}</span>
+                      {% endif %}
+                    </div>
+
+                    <input
+                      type="checkbox"
+                      id="fv-{{secondFrequentVariant.id}}"
+                      class="product-tiles-check mdi"
+                      name="checkbox"
+                      data-value="{{secondFrequentVariant.title}}-{{secondFrequentVariant.id}}"
+                      data-addon="{{SecondHasAddon}}"
+                      value="{{secondFrequentVariant.id}}"
+                    >
+                  </div>
+                </div>
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% else %}
+            {% assign frequentItem = frequentValue | split: ':' %}
+            {% assign frequentHandle = frequentItem[0] %}
+            {% assign selectedVariant = frequentItem[1] | plus: 0 %}
+
+            {% assign frequentProduct = all_products[frequentHandle] %}
+            {% assign frequentAddonValue = frequentProduct.metafields.product.product_addon_value %}
+
+            {% assign frequent_title = frequentProduct.metafields.product.frequent_title %}
+            {% assign frequent_data = frequentProduct.metafields.product.frequent_data %}
+            {% assign frequent_popup_heading = frequentProduct.metafields.product.frequent_popup_heading %}
+            {% assign frequent_popup_description = frequentProduct.metafields.product.frequent_popup_description %}
+            {% assign frequent_popup_subdescription = frequentProduct.metafields.product.frequent_popup_subdescription %}
+
+            {% assign frequent_mattress_only_pupup_text = frequentProduct.metafields.product.mattress_only_pupup_text %}
+
+            {% assign frequent_product_list = frequentProduct.metafields.product.frequent_product_list %}
+
+            {% assign cs_has_discount = false %}
+
+            {% if sale_products contains frequentProduct.handle %}
+              {% assign cs_has_discount = false %}
+            {% else %}
+              {% assign cs_has_discount = true %}
+            {% endif %}
+
+            {% assign productDescription = frequentProduct.description
+              | strip_html
+              | replace: 'View Sale Details', ''
+            %}
+            {% assign productImage = frequentProduct.featured_image | img_url: '400x' %}
+            {% assign productTitle = frequentProduct.title %}
+            {% assign productTitlePopup = productTitle | split: ' ' %}
+
+            {% for frequentVariant in frequentProduct.variants %}
+              {% if frequentVariant.id == selectedVariant and frequentVariant.available == true %}
+                {% assign hasinformation = frequentVariant.metafields.variant.information %}
+                {% if product.handle == "adjustable-flex-bed" %}
+                  {% assign hasAddon = frequentVariant.metafields.variant.attached_product_3.value %}
+                {% else %}
+                  {% assign hasAddon = frequentVariant.metafields.variant.attached_product_2 %}
+                {% endif %}
+                
+                {% assign cs_price = frequentVariant.price
+                  | money_without_currency
+                  | replace: ',', ''
+                  | replace: '.00', ''
+                  | plus: 0
+                %}
+                {% assign cs_compare_price = frequentVariant.compare_at_price
+                  | money_without_currency
+                  | replace: ',', ''
+                  | replace: '.00', ''
+                  | plus: 0
+                %}
+                {% if cs_compare_price <= 0 %}
+                  {% if settings.percentage_enable == true and cs_has_discount == true %}
+                    {% if cs_price >= settings.discount_min_value_1 %}
+                      {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+                        {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+                      {% elsif cs_price >= settings.discount_min_value_2
+                        and cs_price <= settings.discount_max_value_2
+                      %}
+                        {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+                      {% elsif cs_price >= settings.discount_min_value_3 %}
+                        {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+                      {% endif %}
+                    {% endif %}
+
+                    {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+
+                    {% assign cs_compare_price = cs_price %}
+                    {% assign cs_price = cs_price | minus: elDiscount %}
+                  {% endif %}
+
+                  {% if settings.tier_enable == true and cs_has_discount == true %}
+                    {% if cs_price >= settings.min_value_1 %}
+                      {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+                        {% assign elDiscount = settings.coupon_amount_1 %}
+
+                      {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+                        {% assign elDiscount = settings.coupon_amount_2 %}
+
+                      {% elsif cs_price >= settings.min_value_3 %}
+                        {% assign elDiscount = settings.coupon_amount_3 %}
+                      {% endif %}
+
+                      {% assign cs_compare_price = cs_price %}
+                      {% assign cs_price = cs_price | minus: elDiscount %}
+                    {% else %}
+
+                    {% endif %}
+                  {% endif %}
+                {% endif %}
+
+                <div
+                  class="add-on-row"
+                  data-target="target-{{frequentVariant.id}}"
+                  data-productel="{{ frequent_mattress_only_pupup_text }}"
+                >
+                  {% comment %} frequent_data.size > 0 {% endcomment %}
+                  {% if frequent_data != blank %}
+                    <div class="add-on-heading 22">{{ frequent_data }}</div>
+                  {% endif %}
+
+                  <div class="add-on-inner">
+                    <div class="add-on-left">
+                      <img src="{{productImage}}">
+                    </div>
+
+                    <div class="add-on-right">
+                      <div class="add-on-title">
+               
+                   <a
+               
+                          class="product-popup-call"
+                          href="#"
+                          data-prod-list="{{ frequent_product_list }}"
+                          data-prod-img="{{productImage}}"
+                          data-prod-desc="{{productDescription}}"
+                          data-html="{{productTitle}}"
+                          data-fheading="{{frequent_popup_heading}}"
+                          data-fdescription="{{frequent_popup_description}}"
+                          data-subfdescription="{{frequent_popup_subdescription}}"
+                        >
+                          {{- productTitle -}}
+                        </a>
+                 {% if product.handle == 'adjustable-bed-deal' %}<span class="close-text" style="color: #fff;">50% OFF</span>{% endif %}
+                       
+                  {% if productTitle == 'Bear Pillow' or  productTitle == 'Bear Protector' or  productTitle == 'Bear Mini Pillow'%}<span class="close-text" >CLOSEOUT</span>{% else %}{% endif %}
+                  </div>
+
+                      <div class="jjj add-on-variant {% if frequentProduct.id == 6661501550697 or frequentProduct.id == 9512290574 or frequentProduct.id == 6562775302249 or frequentProduct.id == 8784730307 %}{% else %}change-variant{% endif %}">
+                        {{ frequentVariant.title }}
+                      </div>
+
+                      {% if cs_compare_price > 0 %}
+                         {% if product.handle == 'adjustable-bed-deal' %}
+                           <label class="price_bundle">
+                          <span class="price-new">+ ${{ cs_compare_price | divided_by: 2 }}</span>
+                          <span class="price-old">${{ cs_compare_price }}</span>
+                        </label>
+                           {% else %}
+                           
+                        <label class="price_bundle">
+                          <span class="price-new">+ ${{ cs_price }}</span>
+                          <span class="price-old">${{ cs_compare_price }}</span>
+                        </label>
+                       {% endif %}
+                         {% if product.handle == 'adjustable-bed-deal' %}
+                           <label class="el_price_bundle">
+                          <span class="price-new">${{ cs_compare_price | divided_by: 2 }}</span>
+                          <span class="price-old">${{ cs_compare_price }}</span>
+                        </label>
+                             {% else %}
+                           {% endif %}
+                        <label class="el_price_bundle">
+                          <span class="price-new">${{ cs_price }}</span>
+                          <span class="price-old">${{ cs_compare_price }}</span>
+                        </label>
+
+                      {% else %}
+                        <label class="price_bundle">
+                          <span class="price-cs-old">+ ${{ cs_price }}</span>
+                        </label>
+
+                        <label class="el_price_bundle">
+                          <span class="price-cs-old">${{ cs_price }}</span>
+                        </label>
+                      {% endif %}
+                    </div>
+                    {% if product.handle == 'adjustable-bed-deal' %}
+                      <input
+                      type="radio"
+                      id="fv-{{frequentVariant.id}}"
+                      class="product-tiles-check mdi"
+                      name="checkbox"
+                      checked
+                      data-value="{{frequentVariant.title}}-{{frequentVariant.id}}"
+                      data-addon="{{hasAddon}}"
+                      value="{{frequentVariant.id}}"
+                      
+                    >
+                    {% elsif productTitle  ==  'Adjustable Bed Deal'%}
+                      <a class="btn adj-bed-deal-btn" href="https://www.bearmattress.com/products/adjustable-bed-deal">SHOP</a>
+  {% else %}
+  <input
+                      type="checkbox"
+                      id="fv-{{frequentVariant.id}}"
+                      class="product-tiles-check mdi"
+                      name="checkbox"
+                      data-value="{{frequentVariant.title}}-{{frequentVariant.id}}"
+                      data-addon="{{hasAddon}}"
+                      value="{{frequentVariant.id}}"
+                      
+                    >
+  {% endif %}
+                  </div>
+
+                  {% if hasinformation.size > 0 %}
+                    <span class="cs-addon-information">{{ hasinformation }}</span>
+                  {% endif %}
+                </div>
+                {% break %}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        {% endfor %}
+      </li>
+    {% endif %}
+  {% endfor %}
+</ul>
+<style>
+  .add-on-title{
+    didplay: flex;
+        align-items: center;
+  }
+  .close-text{
+    color: #fff;
+    background-color: #E14818;
+    border-radius: 12px;
+    font-size: 14px;
+        padding: 3px 8px;
+        margin-left: 10px;
+    font-weight: 700;
+  }
+  @media only screen and (max-width: 800px) {
+  .close-text{ 
+    margin-left: 0px;
+        display: inline-block;
+    margin-top: 5px;
+     font-size: 12px;
+  }
+}
+  
+   {% if product.handle == 'adjustable-bed-deal#' or product.handle == 'adjustable-bed-deal'%}
+     .add-on-title span{
+        color: #0C324C;
+     }
+  
+     {% else %}{% endif %}
+</style>

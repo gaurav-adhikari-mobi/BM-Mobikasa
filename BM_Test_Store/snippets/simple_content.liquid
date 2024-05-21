@@ -1,0 +1,20 @@
+<div class="simple-content-wrapper">
+  <div class="simple-content-inner" style="background-color: {{ section.settings.background_color }}">
+    {% if section.settings.section_heading.size > 0 %}
+    <h2>{{ section.settings.section_heading }}</h2>
+    {% endif %}
+
+    {% if section.settings.section_description.size > 0 %}
+    <p>{{ section.settings.section_description }}</p>
+    {% endif %}
+    
+    <div class="simple-content-buttons">
+
+      {% for block in section.blocks %}
+        {% if block.type == "button"%}
+      		<a href="{{ block.settings.cta_link }}">{{ block.settings.title }}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>

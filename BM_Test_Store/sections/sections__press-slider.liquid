@@ -1,0 +1,78 @@
+<!-- /sections/index-pageliquid -->
+
+<div class="press-slider desktop" data-section-id="{{ section.id }}" data-section-type="press-slider" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};" data-module="press">
+  <h1 class="press-slider__header">{{ section.settings.header }}</h1>
+  <div class="press-slider__testimonials-wrapper" style="background-color: {{ section.settings.background-color }};">
+    {% for block in section.blocks %}
+    <div class="press-slider__text-wrapper {% if forloop.first %} active {% endif %}" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+      <p class="press-slider__text" style="color: {{ block.settings.press-text-color }};">{{ block.settings.text }}</p>
+    </div>
+    {% endfor %}
+    <div class="press-slider__publication-wrapper" style="background-color: {{ section.settings.logo-background-color }};">
+      {% for block in section.blocks %}
+      <div class="press-slider__logo-wrapper {% if forloop.first %} active {% endif %}" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+      <div class="press-slider__arrow {% if forloop.first %} active {% endif %}" style="background-color: {{ section.settings.background-color }};" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+      </div>
+      <img class="press-slider__publication-logo lazyload {% if forloop.first %} active {% endif %}" data-src="{{ block.settings.publication-logo | img_url: 'master' }}" data-slide="{{ section.settings.header | handle | append: '-' | append: forloop.index }}">
+    </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+
+{% schema %}
+{
+  "name": "Press Slider",
+  "max_blocks": 4,
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type":"text",
+      "id": "header",
+      "label": "Header text"
+    },
+    {
+      "type": "color",
+      "id": "logo-background-color",
+      "label": "Logo Background Color"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Press Text",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "publication-logo",
+          "label": "Publication Logo"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Press Text"
+        },
+        {
+          "type": "color",
+          "id": "press-text-color",
+          "label": "Press Text Color"
+        }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Press Slider",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

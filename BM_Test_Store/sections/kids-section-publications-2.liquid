@@ -1,0 +1,86 @@
+{% if section.settings.toggle %}
+	<div class="hightlight-grid" data-section-id="{{ section.id }}" data-section-type="hightlight-grid" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+
+      {% if section.settings.title.size > 0 %}
+      <h2>{{ section.settings.title }}</h2>
+      {% endif %}
+
+      <div class="hightlight-grid__section-wrapper hightlight-grid-center slider">
+	  {% for block in section.blocks %}
+	    <div class="hightlight-grid-img__wrapper">
+	      <div class="hightlight-grid-img-main">
+            <img class="hightlight-grid-img lazyload" role="img" alt="{{ block.settings.svg_main_alt }}" width="{{ block.settings.svg_main_width }}" height="{{ block.settings.svg_main_height }}" data-src="{{ block.settings.svg_main_image | file_url }}">
+            <p class="hightlight-grid-text">{{ block.settings.message }}</p>
+          </div>
+	    </div>
+	    {% endfor %}
+	  </div>
+	</div>
+{% endif %}
+
+
+{% schema %}
+{
+  "name": "Hightlight Publication",
+  "max_blocks": 5,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Toggle Section On/Off",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Grid Item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+		{
+          "type": "text",
+          "id": "svg_main_image",
+          "label": "SVG Image Name"
+        },
+        {
+          "type": "text",
+          "id": "svg_main_width",
+          "label": "SVG Width"
+        },
+		{
+          "type": "text",
+          "id": "svg_main_height",
+          "label": "SVG Height"
+        },
+        {
+          "type": "text",
+          "id": "message",
+          "label": "Image Label"
+        },
+		{
+          "type": "text",
+          "id": "svg_main_alt",
+          "label": "Image Alt text"
+        }
+      ]
+
+  }]
+}
+{% endschema %}

@@ -1,0 +1,620 @@
+<h1 style="margin-top: 2em;" class="cs-page-title" role="heading" aria-level="2" data-uw-rm-heading="level">{{ section.settings.titleoriginal }}</h1>
+<h2 class="cs-page-description text-center">{{ section.settings.descoriginal }}</h2>
+{% assign cs_elite_hybrid = all_products['elite-hybrid-mattress'] %}
+{% assign cs_hybrid = all_products['star-hybrid-mattress'] %}
+{% assign cs_pro = all_products['pro-hybrid-mattress'] %}
+{% assign cs_mattress = all_products['bear-original-mattress'] %}
+
+{% assign cs_elite_hybrid_variant_position = 0 %}
+{% assign cs_elite_hybrid_specific_variant = cs_elite_hybrid.metafields.product.specific_variant %}
+
+{% if cs_elite_hybrid_specific_variant %}
+	{% assign cs_elite_hybrid_variant_position = cs_elite_hybrid_specific_variant %}
+{% endif %}
+
+{% assign cs_hybrid_variant_position = 0 %}
+{% assign cs_hybrid_specific_variant = cs_hybrid.metafields.product.specific_variant %}
+
+{% if cs_hybrid_specific_variant %}
+	{% assign cs_hybrid_variant_position = cs_hybrid_specific_variant %}
+{% endif %}
+
+{% assign cs_pro_variant_position = 0 %}
+{% assign cs_pro_specific_variant = cs_pro.metafields.product.specific_variant %}
+
+{% if cs_pro_specific_variant %}
+	{% assign cs_pro_variant_position = cs_pro_specific_variant %}
+{% endif %}
+
+{% assign cs_mattress_variant_position = 0 %}
+{% assign cs_mattress_specific_variant = cs_mattress.metafields.product.specific_variant %}
+
+{% if cs_mattress_specific_variant %}
+	{% assign cs_mattress_variant_position = cs_mattress_specific_variant %}
+{% endif %}
+
+<script>
+  var elite_hybrid_variant = [];
+  var hybrid_variant = [];
+  var pro_variant = [];
+  var mattress_variant = [];
+
+  {% for variant in cs_elite_hybrid.variants %}
+
+	{% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+	{% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+    {% assign cs_has_discount = false %}
+    
+    {% assign sale_products = settings.sale_products %}
+
+    {% if sale_products contains cs_elite_hybrid.handle %}
+    	{% assign cs_has_discount = false %}
+    {% else %}
+    	{% assign cs_has_discount = true %}
+    {% endif %}
+
+    {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.discount_min_value_1 %}
+
+        {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+            {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+            {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_3 %}
+
+            {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+        {% endif %}
+      {% endif %}
+
+      {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+
+      {% assign cs_compare_price = cs_price %}
+      {% assign cs_price = cs_price | minus: elDiscount %}
+
+    {% endif %}
+  
+    {% if settings.tier_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.min_value_1 %}
+
+        {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+          {% assign elDiscount = settings.coupon_amount_1 %}
+
+        {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+          {% assign elDiscount = settings.coupon_amount_2 %}
+
+        {% elsif cs_price >= settings.min_value_3 %}
+
+          {% assign elDiscount = settings.coupon_amount_3 %}
+        {% endif %}
+  
+        {% assign cs_compare_price = cs_price %}
+        {% assign cs_price = cs_price | minus: elDiscount %}
+      {% endif %}
+    {% endif %}
+
+  	{% assign haspillow = variant.metafields.variant.attached_product_2 %}
+
+	{% assign current_loop = forloop.index | minus: 1 %}
+
+    elite_hybrid_variant[{{current_loop}}] = [];
+    elite_hybrid_variant[{{current_loop}}][0] = '{{ variant.title }}';
+    elite_hybrid_variant[{{current_loop}}][1] = '{{variant.id}}';
+    elite_hybrid_variant[{{current_loop}}][2] = '${{ cs_price }}';
+    elite_hybrid_variant[{{current_loop}}][4] = '{{ haspillow }}';
+
+    {% if cs_compare_price != 0 %}
+    	elite_hybrid_variant[{{current_loop}}][3] = '${{ cs_compare_price }}';
+    {% endif %}
+  {% endfor %}
+
+  {% for variant in cs_hybrid.variants %}
+
+	{% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+	{% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+    {% assign cs_has_discount = false %}
+    
+    {% assign sale_products = settings.sale_products %}
+
+    {% if sale_products contains cs_hybrid.handle %}
+    	{% assign cs_has_discount = false %}
+    {% else %}
+    	{% assign cs_has_discount = true %}
+    {% endif %}
+
+    {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.discount_min_value_1 %}
+
+        {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+            {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+            {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_3 %}
+
+            {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+        {% endif %}
+      {% endif %}
+
+      {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+
+      {% assign cs_compare_price = cs_price %}
+      {% assign cs_price = cs_price | minus: elDiscount %}
+
+    {% endif %}
+  
+    {% if settings.tier_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.min_value_1 %}
+
+        {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+          {% assign elDiscount = settings.coupon_amount_1 %}
+
+        {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+          {% assign elDiscount = settings.coupon_amount_2 %}
+
+        {% elsif cs_price >= settings.min_value_3 %}
+
+          {% assign elDiscount = settings.coupon_amount_3 %}
+        {% endif %}
+  
+        {% assign cs_compare_price = cs_price %}
+        {% assign cs_price = cs_price | minus: elDiscount %}
+      {% endif %}
+    {% endif %}
+
+  	{% assign haspillow = variant.metafields.variant.attached_product_2 %}
+
+	{% assign current_loop = forloop.index | minus: 1 %}
+
+    hybrid_variant[{{current_loop}}] = [];
+    hybrid_variant[{{current_loop}}][0] = '{{ variant.title }}';
+    hybrid_variant[{{current_loop}}][1] = '{{variant.id}}';
+    hybrid_variant[{{current_loop}}][2] = '${{ cs_price }}';
+    hybrid_variant[{{current_loop}}][4] = '{{ haspillow }}';
+
+    {% if cs_compare_price != 0 %}
+    	hybrid_variant[{{current_loop}}][3] = '${{ cs_compare_price }}';
+    {% endif %}
+  {% endfor %}
+    
+  {% for variant in cs_pro.variants %}
+    
+	{% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+	{% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+    {% assign cs_has_discount = false %}
+    
+    {% assign sale_products = settings.sale_products %}
+        
+    {% if sale_products contains cs_pro.handle %}
+    	{% assign cs_has_discount = false %}
+    {% else %}
+    	{% assign cs_has_discount = true %}
+    {% endif %}
+
+    {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.discount_min_value_1 %}
+
+        {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+            {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+            {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_3 %}
+
+            {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+        {% endif %}
+      {% endif %}
+
+      {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+
+      {% assign cs_compare_price = cs_price %}
+      {% assign cs_price = cs_price | minus: elDiscount %}
+
+    {% endif %}
+  
+    {% if settings.tier_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.min_value_1 %}
+
+        {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+          {% assign elDiscount = settings.coupon_amount_1 %}
+
+        {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+          {% assign elDiscount = settings.coupon_amount_2 %}
+
+        {% elsif cs_price >= settings.min_value_3 %}
+
+          {% assign elDiscount = settings.coupon_amount_3 %}
+        {% endif %}
+  
+        {% assign cs_compare_price = cs_price %}
+        {% assign cs_price = cs_price | minus: elDiscount %}
+      {% endif %}
+    {% endif %}
+
+  	{% assign haspillow = variant.metafields.variant.attached_product_2 %}
+
+	{% assign current_loop = forloop.index | minus: 1 %}
+
+    pro_variant[{{current_loop}}] = [];
+    pro_variant[{{current_loop}}][0] = '{{ variant.title }}';
+    pro_variant[{{current_loop}}][1] = '{{variant.id}}';
+    pro_variant[{{current_loop}}][2] = '${{ cs_price }}';
+    pro_variant[{{current_loop}}][4] = '{{ haspillow }}';
+
+    {% if cs_compare_price != 0 %}
+    	pro_variant[{{current_loop}}][3] = '${{ cs_compare_price }}';
+    {% endif %}
+  {% endfor %}
+    
+  {% for variant in cs_mattress.variants %}
+    
+	{% assign cs_price = variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+	{% assign cs_compare_price = variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+    {% assign cs_has_discount = false %}
+    
+    {% assign sale_products = settings.sale_products %}
+        
+    {% if sale_products contains cs_mattress.handle %}
+    	{% assign cs_has_discount = false %}
+    {% else %}
+    	{% assign cs_has_discount = true %}
+    {% endif %}
+
+    {% if settings.percentage_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.discount_min_value_1 %}
+
+        {% if cs_price >= settings.discount_min_value_1 and cs_price <= settings.discount_max_value_1 %}
+
+            {% assign discountValue = settings.discount_percentage_1 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_2 and cs_price <= settings.discount_max_value_2 %}
+
+            {% assign discountValue = settings.discount_percentage_2 | plus: 0 %}
+
+        {% elsif cs_price >= settings.discount_min_value_3 %}
+
+            {% assign discountValue = settings.discount_percentage_3 | plus: 0 %}
+        {% endif %}
+      {% endif %}
+
+      {% assign elDiscount = cs_price | times: discountValue | divided_by: 100 %}
+
+      {% assign cs_compare_price = cs_price %}
+      {% assign cs_price = cs_price | minus: elDiscount %}
+
+    {% endif %}
+  
+    {% if settings.tier_enable == true and cs_has_discount == true %}
+
+      {% if cs_price >= settings.min_value_1 %}
+
+        {% if cs_price >= settings.min_value_1 and cs_price <= settings.max_value_1 %}
+
+          {% assign elDiscount = settings.coupon_amount_1 %}
+
+        {% elsif cs_price >= settings.min_value_2 and cs_price <= settings.max_value_2 %}
+
+          {% assign elDiscount = settings.coupon_amount_2 %}
+
+        {% elsif cs_price >= settings.min_value_3 %}
+
+          {% assign elDiscount = settings.coupon_amount_3 %}
+        {% endif %}
+  
+        {% assign cs_compare_price = cs_price %}
+        {% assign cs_price = cs_price | minus: elDiscount %}
+      {% endif %}
+    {% endif %}
+
+  	{% assign haspillow = variant.metafields.variant.attached_product_2 %}
+
+	{% assign current_loop = forloop.index | minus: 1 %}
+
+    mattress_variant[{{current_loop}}] = [];
+    mattress_variant[{{current_loop}}][0] = '{{ variant.title }}';
+    mattress_variant[{{current_loop}}][1] = '{{variant.id}}';
+   	mattress_variant[{{current_loop}}][2] = '${{ cs_price }}';
+    mattress_variant[{{current_loop}}][4] = '{{ haspillow }}';
+
+    {% if cs_compare_price != 0 %}
+    	mattress_variant[{{current_loop}}][3] = '${{ cs_compare_price }}';
+    {% endif %}
+  {% endfor %}
+</script>
+
+<div class="cs-fcompare-row hii">
+
+  <div class="cs-fcompare-inner">
+
+    <table class="cs-fcompare-table">
+
+      <tbody>
+        
+        <tr class="cs-info-box">
+          <td></td>
+          <td>
+
+            <h2>{{cs_elite_hybrid.title}}</h2>
+
+            <a href="{{cs_elite_hybrid.url}}">
+            	<img class="fcompare-image lazyload" data-src="{{ cs_elite_hybrid.metafields.product.image_compare }}">
+            </a>
+
+            <a class="cs-compare-tag" href="{{cs_elite_hybrid.url}}" style="background-color: {{cs_elite_hybrid.metafields.product.banner_color}}">{{cs_elite_hybrid.metafields.product.banner_text}}</a>
+
+            {% if cs_elite_hybrid.metafields.product.specification != blank %}
+            	<div>{{cs_elite_hybrid.metafields.product.specification}}</div>
+            {% endif %}
+
+            <div class="cs-compare-affiliat">{{ cs_elite_hybrid.metafields.product.affiliat_review }}</div>
+          </td>
+          <td>
+
+            <h2>{{cs_hybrid.title}}</h2>
+
+            <a href="{{cs_hybrid.url}}">
+            	<img class="fcompare-image lazyload" data-src="{{ cs_hybrid.metafields.product.image_compare }}">
+            </a>
+            
+            <a class="cs-compare-tag" href="{{cs_hybrid.url}}" style="background-color: {{cs_hybrid.metafields.product.banner_color}}">{{cs_hybrid.metafields.product.banner_text}}</a>
+
+            {% if cs_hybrid.metafields.product.specification.size > 0 %}
+            	<div>{{cs_hybrid.metafields.product.specification}}</div>
+            {% endif %}
+
+            <div class="cs-compare-affiliat">{{ cs_hybrid.metafields.product.affiliat_review }}</div>
+          </td>
+          <td>
+
+            <h2>{{cs_pro.title}}</h2>
+
+            <a href="{{cs_pro.url}}">
+				<img class="fcompare-image lazyload" data-src="{{ cs_pro.metafields.product.image_compare }}">
+            </a>
+            
+            <a class="cs-compare-tag" href="{{cs_pro.url}}" style="background-color: {{cs_pro.metafields.product.banner_color}}">{{cs_pro.metafields.product.banner_text}}</a>
+
+            {% if cs_pro.metafields.product.specification.size > 0 %}
+            	<div>{{cs_pro.metafields.product.specification}}</div>
+            {% endif %}
+            
+            <div class="cs-compare-affiliat">{{ cs_pro.metafields.product.affiliat_review }}</div>
+          </td>
+          <td>
+
+            <h2>{{cs_mattress.title}}</h2>
+
+            <a href="{{cs_mattress.url}}">
+              <img class="fcompare-image lazyload" data-src="{{ cs_mattress.metafields.product.image_compare }}">
+            </a>
+            
+            <a class="cs-compare-tag" href="{{cs_mattress.url}}" style="background-color: {{cs_mattress.metafields.product.banner_color}}">{{cs_mattress.metafields.product.banner_text}}</a>
+
+			{% if cs_mattress.metafields.product.specification.size > 0 %}
+            	<div>{{cs_mattress.metafields.product.specification}}</div>
+            {% endif %}
+
+            <div class="cs-compare-affiliat">{{ cs_mattress.metafields.product.affiliat_review }}</div>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Firmness Rating</strong></td>
+          <td><a href="/pages/firmness-guide">{{ cs_elite_hybrid.metafields.product.firmness_rating }}</a></td>
+          <td><a href="/pages/firmness-guide">{{ cs_hybrid.metafields.product.firmness_rating }}</a></td>
+          <td><a href="/pages/firmness-guide">{{ cs_pro.metafields.product.firmness_rating }}</a></td>
+          <td><a href="/pages/firmness-guide">{{ cs_mattress.metafields.product.firmness_rating }}</a></td>
+        </tr>
+        
+        <tr>
+          <td><strong>Type</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.type }}</td>
+          <td>{{ cs_hybrid.metafields.product.type }}</td>
+          <td>{{ cs_pro.metafields.product.type }}</td>
+          <td>{{ cs_mattress.metafields.product.type }}</td>
+        </tr>
+
+        <tr>
+          <td><strong>Handles</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.handles }}</td>
+          <td>{{ cs_hybrid.metafields.product.handles }}</td>
+          <td>{{ cs_pro.metafields.product.handles }}</td>
+          <td>{{ cs_mattress.metafields.product.handles }}</td>
+        </tr>
+
+        <tr>
+          <td><strong>Feel</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.feel_description }}</td>
+          <td>{{ cs_hybrid.metafields.product.feel_description }}</td>
+          <td>{{ cs_pro.metafields.product.feel_description }}</td>
+          <td>{{ cs_mattress.metafields.product.feel_description }}</td>
+        </tr>
+
+        <tr>
+          <td><strong>Best For</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.best_for }}</td>
+          <td>{{ cs_hybrid.metafields.product.best_for }}</td>
+          <td>{{ cs_pro.metafields.product.best_for }}</td>
+          <td>{{ cs_mattress.metafields.product.best_for }}</td>
+        </tr>
+        
+        <tr>
+          <td><strong>Cooling Technology</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.cooling_level }}</td>
+          <td>{{ cs_hybrid.metafields.product.cooling_level }}</td>
+          <td>{{ cs_pro.metafields.product.cooling_level }}</td>
+          <td>{{ cs_mattress.metafields.product.cooling_level }}</td>
+        </tr>
+        
+        <tr>
+          <td><strong>Features</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.layer_features }}</td>
+          <td>{{ cs_hybrid.metafields.product.layer_features }}</td>
+          <td>{{ cs_pro.metafields.product.layer_features }}</td>
+          <td>{{ cs_mattress.metafields.product.layer_features }}</td>
+        </tr>
+
+		<tr>
+          <td><strong>Edge Support</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.edge_support }}</td>
+          <td>{{ cs_hybrid.metafields.product.edge_support }}</td>
+          <td>{{ cs_pro.metafields.product.edge_support }}</td>
+          <td>{{ cs_mattress.metafields.product.edge_support }}</td>
+        </tr>
+        
+        <tr>
+          <td><strong>Eco-Friendly</strong></td>
+          <td>{{ cs_elite_hybrid.metafields.product.eco_certification }}</td>
+          <td>{{ cs_hybrid.metafields.product.eco_certification }}</td>
+          <td>{{ cs_pro.metafields.product.eco_certification }}</td>
+          <td>{{ cs_mattress.metafields.product.eco_certification }}</td>
+        </tr>
+        
+        <tr>
+          <td><strong>Sleep Recovery Technology&#8482; (SRT)</strong></td>
+          <td>
+			  {{ cs_elite_hybrid.metafields.product.sleep_technology }}
+          </td>
+          <td>
+			  {{ cs_hybrid.metafields.product.sleep_technology }}
+          </td>
+          <td>
+			  {{ cs_pro.metafields.product.sleep_technology }}
+          </td>
+          <td>
+			  {{ cs_mattress.metafields.product.sleep_technology }}
+          </td>
+        </tr>
+        
+        <tr>
+          <td><strong>Cover</strong></td>
+          <td>
+              <img class="foam-image" src="{{ cs_elite_hybrid.metafields.product.cover_image }}" />
+            <span class="foam-text">{{ cs_elite_hybrid.metafields.product.cover_text }}</span>
+          </td>
+          <td>
+              <img class="foam-image" src="{{ cs_hybrid.metafields.product.cover_image }}" />
+            <span class="foam-text">{{ cs_hybrid.metafields.product.cover_text }}</span>
+          </td>
+          <td>
+			  <img class="foam-image" src="{{ cs_pro.metafields.product.cover_image }}" />
+              <span class="foam-text">{{ cs_pro.metafields.product.cover_text }}</span>
+          </td>
+          <td>
+			  <img class="foam-image" src="{{ cs_mattress.metafields.product.cover_image }}" />
+              <span class="foam-text">{{ cs_mattress.metafields.product.cover_text }}</span>
+          </td>
+        </tr>
+
+        <tr>
+          <td><strong>Verified Buyers</strong></td>
+          <td>
+              {{ cs_elite_hybrid.metafields.product.verified_buyers }}
+          </td>
+          <td>
+              {{ cs_hybrid.metafields.product.verified_buyers }}
+          </td>
+          <td>
+              {{ cs_pro.metafields.product.verified_buyers }}
+          </td>
+          <td>
+              {{ cs_mattress.metafields.product.verified_buyers }}
+          </td>
+        </tr>
+        <tr>
+          <td class="fcompare-global">
+        
+          </td>
+          <td>
+            <form class="fcompare-buy">
+
+              <div class="fcompare-option fcompare-elite-hybrid-option">Queen</div>
+
+              <span class="fcompare-price fcompare-elite-hybrid-price"></span>
+              <span class="fcompare-old-price fcompare-elite-hybrid-old-price"></span>
+
+              <span class="discount-text cs-text-left">{{ cs_elite_hybrid.metafields.product.discount_text }}</span>
+
+              <div class="fcompare-actions">
+                <a class="btn btn-blue shadow buy-2019-hybrid-direct" href="{{cs_elite_hybrid.url}}">SHOP <span class="inline-loader"><i class="mdi mdi-loading mdi-spin"></i></span></a>
+              </div>
+            </form>
+          </td>
+          <td>
+            <form class="fcompare-buy">
+
+              <div class="fcompare-option fcompare-hybrid-option"></div>
+
+              <span class="fcompare-price fcompare-hybrid-price"></span>
+              <span class="fcompare-old-price fcompare-hybrid-old-price"></span>
+
+            
+
+              <div class="fcompare-actions">
+                <a class="btn btn-blue shadow buy-hybrid-direct" href="{{cs_hybrid.url}}">SWITCH TO STAR HYBRID  <span class="inline-loader"><i class="mdi mdi-loading mdi-spin"></i></span></a>
+              </div>
+            </form>
+          </td>
+          <td>
+            <form class="fcompare-buy">
+
+         
+
+              <div style="justify-content: center;" class="fcompare-actions">
+              </div>
+            </form>
+          </td>
+          <td>
+          
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Comparison Table",
+    "settings": [
+     
+		{
+			"type": "text",
+			"id": "titleoriginal",
+			"label": "Title"
+		},
+      {
+			"type": "text",
+			"id": "descoriginal",
+			"label": "Title"
+		}
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

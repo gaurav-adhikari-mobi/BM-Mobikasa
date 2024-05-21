@@ -1,0 +1,9 @@
+{% if product.metafields.product.delivery_info != blank %}
+    <div class="highlight-shipping">
+      {{ product.metafields.product.delivery_info }}
+    </div>
+  {% else %}
+    {% if settings.delivery_text != blank %}
+        <div class="highlight-shipping">{{settings.delivery_text}}</div>
+    {% endif %}
+{% endif %}

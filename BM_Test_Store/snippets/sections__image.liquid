@@ -1,0 +1,4 @@
+<div class="image" data-section-id="{{ section.id }}" data-section-type="main-image" style="background-color: {{section.settings.background-color}};">
+  <img class="image__flat lazyload" data-src="{{ section.settings.main-image | img_url: 'master' }}">
+  <img class="image__flat--mobile lazyload" data-src="{{ section.settings.mobile-image | img_url: 'master' }}">
+</div>

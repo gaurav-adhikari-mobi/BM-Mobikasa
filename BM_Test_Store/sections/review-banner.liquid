@@ -1,0 +1,154 @@
+<div class="review-wrapper" style="background-color: {{ section.settings.background_color }}; color: {{ section.settings.text_color }};">
+
+  <div class="review-container">
+
+    <div class="review-one">
+
+      <div class="review-one-inner">
+
+        <div class="stars">
+          <div class="yotpo bottomline">
+            <div class="yotpo-bottomline star-clickable">
+              <span class="yotpo-stars"></span>
+              <div class="yotpo-clr"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+   <h1>{% comment %}<span class="total-review"></span>{% endcomment %} Over 20,000 Verified Customer Reviews</h1>
+
+    <p>{{section.settings.review_description}}</p>
+  </div>
+
+  <div class="reviews-large-wrapper">
+
+	<div class="grid-uniform">
+            {% for block in section.blocks %}
+              	{% case block.type %}
+
+                {% when 'large' %}
+                <div class="grid__item small--one-full medium--one-half large--one-half">
+                    <span class="reviews-tag" style="background-color: {{block.settings.large_tag_color}}">{{ block.settings.large_tag }}</span>
+
+                    <a class="review-image-link" href="{{ block.settings.large_link }}">
+                      <h3>{{ block.settings.title }}</h3>
+                      <img src="{{ block.settings.large_media | img_url: '500x' }}" />
+
+                    </a>
+                </div>
+              {% endcase %}
+            {% endfor %}
+      	</div>
+  </div>
+
+  <div class="reviews-more">
+    <a class="" href="javascript:void(0)">More Product Reviews</a>
+  </div>
+  
+  <div class="reviews-small-wrapper" style="display: none;">
+
+      {% for block in section.blocks %}
+      {% case block.type %}
+
+      {% when 'small' %}
+      {% assign product = block.settings.small_product %}
+      {% assign productData = all_products[product] %}
+	  {% assign featureData = productData.images[0] %}
+      <div class="reviews-small-box">
+
+        <a class="review-image-link" href="{{ block.settings.small_link }}">
+          <img src="{{ featureData | img_url: '200x' }}" />
+
+          <h3>{{ block.settings.title }}</h3>
+        </a>
+      </div>
+      {% endcase %}
+      {% endfor %}
+
+      <div class="reviews-small-box-all">
+        <a class="review-product-link" href="#reviews-all-products">View All Reviews</a>
+      </div>
+  </div>
+
+</div>
+
+{% schema %}
+  {
+    "name": "Review Banner",
+    "settings": [
+        {
+          "type": "color",
+          "id": "background_color",
+          "label": "Background Color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "text_color",
+          "label": "Text Color",
+          "default": "#000000"
+        },
+        {
+          "type": "text",
+          "id": "review_description",
+          "label": "Description"
+        }
+    ],
+	"blocks" : [
+      {
+        "type": "large",
+        "name": "Large Block",
+        "settings": [
+          {
+            "type": "image_picker",
+            "id": "large_media",
+            "label": "Image"
+          },
+          {
+            "type": "text",
+            "id": "large_tag",
+            "label": "Tag"
+          },
+          {
+            "type": "color",
+            "id": "large_tag_color",
+            "label": "Tag Color"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Product Title"
+          },
+          {
+            "type": "text",
+            "id": "large_link",
+            "label": "Product Link"
+          }
+        ]
+      },
+	  {
+        "type": "small",
+        "name": "Small Block",
+        "settings": [
+          {
+            "type": "product",
+            "id": "small_product",
+            "label": "Product"
+          },
+          {
+            "type": "text",
+            "id": "title",
+            "label": "Product Title"
+          },
+          {
+            "type": "text",
+            "id": "small_link",
+            "label": "Product Link"
+          }
+        ]
+      }
+    ]
+  }
+{% endschema %}

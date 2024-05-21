@@ -1,0 +1,37 @@
+{% if section.settings.show_topbar == true %}  
+<div onclick="Privy('show', 4251222);" style="{% if settings.promo_text_color.size > 0 %}color: {{settings.promo_text_color}};{% endif %}
+ {% if settings.promo_background_color.size > 0 %}background-color: {{settings.promo_background_color}};{% endif %}
+  {% if settings.promo_gradient_color.size > 0 %}background: linear-gradient(120deg, {{settings.promo_background_color}} 0%,{{settings.promo_gradient_color}} 70%);{% endif %}" class="cs-topbar">
+	<div class="cs-topbar-content content-desktop">{{ settings.checkout-textarea-desktop }}</div>
+  	<div class="cs-topbar-content content-mobile">{{ settings.checkout-textarea-mobile }}</div>
+</div>
+{% endif %}
+
+{% if settings.cart_listing_options != blank %}
+	<div class="cs-mattress-list-wrapper">{{ settings.cart_listing_options }}</div>
+{% endif %}
+
+
+<style>
+  .cs-topbar {
+    cursor: pointer;
+  }
+
+  .cs-topbar .cs-topbar-content a {
+    color: {{settings.promo_link_color}};
+  }
+</style>
+
+{% schema %}
+  {
+    "name": "Checkout Promo Bar",
+    "settings": [
+      {
+        "type": "checkbox",
+        "id": "show_topbar",
+        "default": false,
+        "label": "Show Topbar"
+      }
+	]
+  }
+{% endschema %}

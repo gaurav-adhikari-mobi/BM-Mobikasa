@@ -1,0 +1,84 @@
+<div class="map-wrapper">
+	<div class="map-inner">
+      	<div class="map-details">
+          	{% if section.settings.section_heading.size > 0 %}
+	          	<h2>{{section.settings.section_heading}}</h2>
+          	{% endif %}
+
+          	{% if section.settings.left_title.size > 0 %}
+          		<h3>{{section.settings.left_title}}</h3>
+          	{% endif %}
+
+          	{% if section.settings.highlight_text.size > 0 %}
+          		<div class="map-highlight-text">{{section.settings.highlight_text}}</div>
+          	{% endif %}
+
+          	{% if section.settings.contact_heading.size > 0 %}
+          		<span class="map-contact-heading">{{section.settings.contact_heading}}</span>
+			{% endif %}
+
+          	{% if section.settings.contact_details.size > 0 %}
+          		<div class="map-contact-details">{{section.settings.contact_details}}</div>
+          	{% endif %}
+
+			{% if section.settings.address_details.size > 0 %}
+          		<div class="map-address">{{section.settings.address_details}}</div>
+         	{% endif %}
+
+          	{% if section.settings.bottom_text.size > 0 %}
+	          	<div class="map-bottom-text">{{section.settings.bottom_text}}</div>
+         	{% endif %}
+      	</div>
+      	<div class="map-frame">
+			<iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12095.585579707287!2d-74.5632745!3d40.7202972!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x7cac4cbeabd46826!2sHibernate%20Bedding!5e0!3m2!1sen!2sus!4v1615580982027!5m2!1sen!2sus" width="100%" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+      	</div>
+  	</div>
+</div>
+
+{% schema %}
+{
+  "name": "Map",
+  "settings": [
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type": "text",
+      "id": "section_heading",
+      "label": "Section Heading"
+    },
+    {
+      "type": "text",
+      "id": "left_title",
+      "label": "Left Title"
+    },
+    {
+      "type": "textarea",
+      "id": "highlight_text",
+      "label": "Highlighted Text"
+    },
+    {
+      "type": "text",
+      "id": "contact_heading",
+      "label": "Contact Heading"
+    },
+    {
+      "type": "textarea",
+      "id": "contact_details",
+      "label": "Contact Details"
+    },
+    {
+      "type": "textarea",
+      "id": "address_details",
+      "label": "Address Details"
+    },
+    {
+      "type": "textarea",
+      "id": "bottom_text",
+      "label": "Bottom Text"
+    }
+  ]
+}
+{% endschema %}

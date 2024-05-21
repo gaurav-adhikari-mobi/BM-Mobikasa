@@ -1,0 +1,58 @@
+{% include 'faq-component' %}
+
+{% schema %}
+  {
+    "name": "Adjustable FAQ section",
+    "settings": [
+        {
+            "type": "color",
+            "id": "accordion_heading_color",
+            "label": "Accordion heading color"
+        },
+        {
+            "type": "select",
+            "id": "data_view_type",
+            "options": [
+                { "value": "list", "label": "List"},
+                { "value": "accordion", "label": "Accordion"}
+            ],
+            "default": "list",
+            "label": "Content type"
+        },
+        {
+            "type": "select",
+            "id": "data_view_icon_position",
+            "options": [
+                { "value": "left", "label": "Left"},
+                { "value": "right", "label": "Right"}
+            ],
+            "default": "left",
+            "label": "Icon position"
+        }
+	],
+	"blocks": [
+		{
+            "type": "faqsection",
+            "name": "Faq section",
+            "settings": [
+            	{
+                	"id": "faq_heading",
+                	"type": "text",
+                	"label": "FAQ heading"
+                },
+                {
+                    "id": "faq_content",
+                    "type": "textarea",
+                    "label": "FAQ content"
+                }
+            ]
+      }
+	]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

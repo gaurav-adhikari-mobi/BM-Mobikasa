@@ -1,0 +1,23 @@
+<div class="row pfeatures-wrap featured-image content_toshown">
+  <div class="left-portion">
+    <img data-src="{{section.settings.featured_bm_image | img_url: 'master'}}" class="accordion_image desk lazyload" alt="{{ block.settings.featured_bm_image_alt }}">
+    <img data-src="{{section.settings.tab_image | img_url: 'master'}}" class="accordion_tab_image tab lazyload" alt="{{ block.settings.tab_image_alt }}">
+    <img data-src="{{section.settings.mob_image | img_url: '2000x'}}" class="accordion_mob_image mob lazyload" alt="{{ block.settings.mob_image_alt }}">
+  </div>
+  <div class="right-portion">
+    <h2 class="feature-title">
+      {%  if product.title contains "Kids Mattress" %}
+        Kids Mattress Benefits
+      {% else %}
+        {{ product.title }} Features
+      {% endif %}
+    </h2>
+    <div>{{section.settings.textarea_measurement_bm}}</div>
+
+    {% if section.settings.bottom_text.size > 0 %}
+    	<div class="bottom-text">
+			<a href="{{section.settings.bottom_link}}">{{section.settings.bottom_text}}</a>
+    	</div>
+    {% endif %}
+  </div>
+</div>

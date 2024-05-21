@@ -1,0 +1,137 @@
+{% include 'sections__pdp-grid-tabs-noimage' %}
+
+
+{% schema %}
+{
+	"name": "Partnership Grid Tabs",
+	"max_blocks": 4,
+	"settings": [
+		{
+			"type": "header",
+			"content": "Toggle"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle Section On\/Off"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "color",
+			"id": "title-text-color",
+			"label": "Title Text Color"
+		},
+		{
+			"type": "color",
+			"id": "column-title-text-color",
+			"label": "Column Title Text Color"
+		},
+		{
+			"type": "color",
+			"id": "column-title-active-outline-color",
+			"label": "Active State Title Outline Color"
+		}
+	],
+	"blocks": [
+		{
+			"type": "text",
+			"name": "Tab",
+			"settings": [
+				{
+					"type": "header",
+					"content": "Tab Options"
+				},
+				{
+					"type": "select",
+					"id": "numcolumns",
+					"label": "Number of Columns",
+					"options": [
+						{
+							"value": "1",
+							"label": "One"
+						},
+						{
+							"value": "2",
+							"label": "Two"
+						},
+						{
+							"value": "3",
+							"label": "Three"
+						},
+						{
+							"value": "4",
+							"label": "Four"
+						}
+					]
+				},
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "header",
+					"content": "Column One"
+				},
+				{
+					"type": "text",
+					"id": "title--1",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "description--1",
+					"label": "Description"
+				},
+				{
+					"type": "header",
+					"content": "Column Two"
+				},
+				{
+					"type": "text",
+					"id": "title--2",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "description--2",
+					"label": "Description"
+				},
+				{
+					"type": "header",
+					"content": "Column Three"
+				},
+
+				{
+					"type": "text",
+					"id": "title--3",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "description--3",
+					"label": "Description"
+				},
+				{
+					"type": "header",
+					"content": "Column Four"
+				},
+
+				{
+					"type": "text",
+					"id": "title--4",
+					"label": "Title"
+				},
+				{
+					"type": "text",
+					"id": "description--4",
+					"label": "Description"
+				}
+			]
+		}
+	]
+}{% endschema %}

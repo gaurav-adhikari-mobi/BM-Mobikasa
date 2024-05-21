@@ -1,0 +1,626 @@
+<div class="competition-table">
+  <h3 style="text-align: center;">{{ section.settings.compheading }}</h3>
+  <table >
+    {% for block in section.blocks %}
+
+<tr>
+  <td>{{ block.settings.tdone }}</td>
+   <td>{{ block.settings.tdtwo }}</td>
+    <td>{{ block.settings.tdthree }}</td>
+    <td>{{ block.settings.tdfour }}</td>
+    <td>{{ block.settings.tdfive }}</td>
+</tr>
+      {% endfor %}
+  </table>
+  <p class="table-dic">{{ section.settings.compdesc }}</p>
+</div>
+{% assign productPillow = section.settings.product-id %}
+{% comment %} {%  for variant in productPillow.variants %} 
+    {{ variant.title }}
+{{ variant.price | money_without_trailing_zeros |  replace: '$',''  }}
+{% endfor %} {% endcomment %}
+
+
+<style>
+  .table-dic{
+    color: #667085;
+  font-family: apercu, Helvetica, Arial, sans-serif;
+font-size: 12px;
+font-weight: 300;
+line-height: 16px;
+text-align: center;
+margin: 0;
+    margin-top: 1rem;
+  }
+  .competition-table{
+    padding: 48px 0;
+  }
+  .competition-table table{
+    max-width: 768px;
+    margin: auto;
+     border-collapse: collapse;
+  }
+   .competition-table table tr{
+     border: none;
+   }
+   .competition-table td {
+    text-align: center!important;
+    font-family: apercu, Helvetica, Arial, sans-serif;
+font-size: 14px;
+font-weight: 400;
+line-height: 18px;
+text-align: left;
+         white-space: pre;
+  }
+ .competition-table tr td:first-child {
+    text-align: left!important;
+  }
+  .competition-table tr:first-child td:nth-child(2) {
+    background-color: #3B82FF;
+    color: #fff;
+    font-size: 16px;
+       border-top: 1.5px solid #3B82FF;
+       border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+  }
+  .competition-table td:nth-child(2) {
+    border-right: 1.5px solid #3B82FF;
+      border-left: 1.5px solid #3B82FF;
+  }
+ .competition-table tr:last-child td:nth-child(2) {
+    border-bottom: 1.5px solid #3B82FF;
+  }
+ .competition-table tr td:first-child {
+   border-left: 1px solid #475467;
+  }
+  .competition-table tr:first-child td:first-child,
+  .competition-table tr:last-child td:first-child {
+    border-left: none;
+  }
+ .competition-table tr:nth-child(2) td:first-child {
+    border-top: 1px solid #475467;
+  }
+ .competition-table tr:nth-last-child(2) td:first-child {
+    border-left: 1px solid #226796;
+    border-top: 1px solid #226796;
+    border-bottom: 1px solid #226796;
+    background-color: #F6FAFF;
+    color: #475467;
+    font-weight: 800;
+  }
+  .competition-table tr:nth-child(2) td:nth-child(3),
+.competition-table tr:nth-child(2) td:nth-child(4),
+ .competition-table tr:nth-child(2) td:nth-child(5) {
+    border-top: 1px solid #475467;
+  }
+ .competition-table tr td:last-child {
+   border-right: 1px solid #475467;
+  }
+  .competition-table tr:last-child td:last-child,
+  .competition-table tr:first-child td:last-child {
+    border-right: none;
+  }
+ .competition-table table tr:nth-last-child(2) td:nth-child(5) {
+    border-bottom: 1px solid #226796;
+    border-right: 1px solid #226796;
+    border-top: 1px solid #226796;
+    background-color: #F6FAFF;
+    color: #475467;
+    font-weight: 800;
+}
+ .competition-table table tr:nth-last-child(2) td:nth-child(4) {
+    border-bottom: 1px solid #226796;
+    border-top: 1px solid #226796;
+    background-color: #F6FAFF;
+    color: #475467;
+     font-weight: 800;
+}
+   .competition-table table tr:nth-last-child(2) td:nth-child(3) {
+    border-bottom: 1px solid #226796;
+    border-top: 1px solid #226796;
+    background-color: #F6FAFF;
+      color: #475467;
+       font-weight: 800;
+}
+ .competition-table table td p{
+       margin: 0;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    font-weight: 800;
+    color: #0C324C;
+  }
+   .competition-table table td span{
+     margin-left: 0px;
+     text-decoration: line-through;
+     color: #96979c;
+     font-weight: 100;
+    }
+    .competition-table table td span.dark-text{
+      color: #000;
+      text-decoration: none;
+    }
+  .competition-table tr:nth-child(6) td:nth-child(3),
+.competition-table tr:nth-child(6) td:nth-child(4),
+.competition-table tr:nth-child(6) td:nth-child(5) {
+    border-radius: 4px;
+}
+.checkbox-icon-tables{
+    color: #30D686;
+}
+.close-icon-table{
+    color: #475467;
+;
+}
+  @media only screen and (max-width: 600px) {
+  .competition-table td {
+   padding: 8px;
+  }
+   .competition-table table {
+    width: 91%;
+    }
+}
+</style>
+{% schema %}
+  {
+  "name": "Competition Table",
+    "settings": [
+            {
+            "type": "text",
+            "id": "compheading",
+            "label": "Section Heading"
+            },
+            {
+                "type": "product",
+                "id": "product-id",
+                "label": "Pillow Product"
+            },
+            {
+                "type": "product",
+                "id": "product-protector",
+                "label": "Protector Product"
+            },
+            {
+                "type": "product",
+                "id": "product-sheet",
+                "label": "Sheet Product"
+            },
+            {
+            "type": "text",
+            "id": "compdesc",
+            "label": "Description below table"
+            }
+        ],
+     "blocks": [
+     {
+       "name": "Row",
+       "type": "Row",
+       "settings": [
+       
+           {
+      "type": "text",
+      "id": "tdone",
+      "label": "Text for TD One",
+      "default": "Preset Text for TD One"
+    },
+    {
+      "type": "html",
+      "id": "tdtwo",
+      "label": "Text for TD Two"
+    },
+    {
+      "type": "text",
+      "id": "tdthree",
+      "label": "Text for TD Three",
+      "default": "Preset Text for TD Three"
+    },
+    {
+      "type": "text",
+      "id": "tdfour",
+      "label": "Text for TD Four",
+      "default": "Preset Text for TD Four"
+    },
+    {
+      "type": "text",
+      "id": "tdfive",
+      "label": "Text for TD Five",
+      "default": "Preset Text for TD Five"
+    }
+       ]
+     }
+  ],
+     "presets": [
+    {
+      "name": "Competition Table"
+    }
+  ]
+}
+
+{% endschema %}
+{% assign productPillow = section.settings.product-id %}
+{% assign productProtector = section.settings.product-protector %}
+{% assign productSheet = section.settings.product-sheet %}
+
+<script>
+      var variantPrices = {};
+
+{% for variant in productPillow.variants %}
+  {% capture variantTitle %}{{ variant.title }}{% endcapture %}
+  {% capture variantPrice %}{{ variant.price | money_without_trailing_zeros | replace: '$', '' | replace: ' ',''  }}{% endcapture %}
+  variantPrices["{{ variantTitle }}"] = "{{ variantPrice }}";
+{% endfor %}
+
+console.log(variantPrices);
+var variantProtector = {};
+
+{% for variant in productProtector.variants %}
+  {% capture variantTitle %}{{ variant.title }}{% endcapture %}
+  {% capture variantPrice %}{{ variant.price | money_without_trailing_zeros | replace: '$', '' |  replace: ' ',''  }}{% endcapture %}
+  variantProtector["{{ variantTitle }}"] = "{{ variantPrice }}";
+{% endfor %}
+
+console.log(variantProtector);
+var variantSheet = {};
+
+{% for variant in productSheet.variants %}
+  {% capture variantTitle %}{{ variant.title }}{% endcapture %}
+  {% capture variantPrice %}{{ variant.price | money_without_trailing_zeros | replace: '$', '' |  replace: ' ',''  }}{% endcapture %}
+  variantSheet["{{ variantTitle }}"] = "{{ variantPrice }}";
+{% endfor %}
+
+console.log(variantSheet);
+//     const pillowsArr = 
+//   {
+//     "Queen_(2-pack)": 160,
+//     "King_(2-pack)": 200
+//   }
+// const protectorArr={
+//   "Twin_Protector": 40,
+//   "Twin_XL_Protector":50,
+//   "Full_Protector":50,
+//   "Queen_Protector":60,
+//   "King_Protector":75,
+//   "Cal_King_Protector":75
+// }
+// const sheetArr={
+//   "Twin":75,
+//   "Twin_XL":100,
+//   "Full":100,
+//   "Queen":110,
+//   "King":125,
+//   "Cal_King":125,
+//   "Split_King":125
+// }
+const nectarMatress ={
+  "Twin":349,
+  "Twin XL":549,
+  "Full":599,
+  "Queen":649,
+  "King":849,
+  "Cal King":849,
+  "Split King":1098
+}
+const casperMatress ={
+  "Twin":650,
+  "Twin XL":650,
+  "Full":840,
+  "Queen":930,
+  "King":1300,
+  "Cal King":130,
+  "Split King":"N/A"
+}
+const purpleMatress ={
+  "Twin":899,
+  "Twin XL":999,
+  "Full":1299,
+  "Queen":1399,
+  "King":1899,
+  "Cal King":1899,
+  "Split King":1998
+}
+const nectarPillow ={
+  "Twin":80,
+  "Twin XL":80,
+  "Full":40,
+  "Queen":80,
+  "King":80,
+  "Cal King":100,
+  "Split King":80
+}
+const casperPillow ={
+  "Twin":117,
+  "Twin XL":117,
+  "Full":117,
+  "Queen":117,
+  "King":153,
+  "Cal King":153,
+  "Split King":"N/A"
+}
+const purplePillow ={
+  "Twin":110,
+  "Twin XL":110,
+  "Full":110,
+  "Queen":110,
+  "King":142,
+  "Cal King":142,
+  "Split King":142
+}
+const nectarProtector ={
+  "Twin":19,
+  "Twin XL":19,
+  "Full":19,
+  "Queen":39,
+  "King":39,
+  "Cal King":49,
+  "Split King":38
+}
+const casperProtector ={
+  "Twin":80,
+  "Twin XL":80,
+  "Full":89,
+  "Queen":89,
+  "King":98,
+  "Cal King":98,
+  "Split King":"N/A"
+}
+const puprleProtector ={
+  "Twin":59,
+  "Twin XL":59,
+  "Full":66,
+  "Queen":74,
+  "King":81,
+  "Cal King":81,
+  "Split King":118
+}
+const nectarSheet ={
+  "Twin":40,
+  "Twin XL":40,
+  "Full":40,
+  "Queen":40,
+  "King":40,
+  "Cal King":50,
+  "Split King":80
+}
+const casperSheet ={
+  "Twin":87,
+  "Twin XL":87,
+  "Full":111,
+  "Queen":111,
+  "King":135,
+  "Cal King":135,
+  "Split King":"N/A"
+}
+const purpleSheet ={
+  "Twin":81,
+  "Twin XL":81,
+  "Full":89,
+  "Queen":96,
+  "King":111,
+  "Cal King":111,
+  "Split King":126
+}
+function priceChange(){
+  var selectValue = $('.single-option-selector').val();
+  var selectValuetwo = $('#cs-option-selection-1').val();
+  var discPrice = $('#discount-price').text();
+  var standardPrice = $('#total-price').text();
+  // console.log(standardPrice,'standard')
+  var totalDiscount = $('.total-discount-text-new').text().split('$');
+  var nectarTotal = parseInt($('.competition-table table tr:eq(1) td:eq(2) span.nectar-amt').text())+
+  parseInt($('.competition-table table tr:eq(2) td:eq(2) span.nectar-amt').text())+
+  parseInt($('.competition-table table tr:eq(3) td:eq(2) span.nectar-amt').text())+
+  parseInt($('.competition-table table tr:eq(4) td:eq(2) span.nectar-amt').text());
+  $('.competition-table table tr:nth-last-child(2) td:eq(2)').html(`$${nectarTotal}`);
+  var casperTotal = parseInt($('.competition-table table tr:eq(1) td:eq(3) span.casper-amt').text())+
+  parseInt($('.competition-table table tr:eq(2) td:eq(3) span.casper-amt').text())+
+  parseInt($('.competition-table table tr:eq(3) td:eq(3) span.casper-amt').text())+
+  parseInt($('.competition-table table tr:eq(4) td:eq(3) span.casper-amt').text());
+  $('.competition-table table tr:nth-last-child(2) td:eq(3)').html(`$${casperTotal}`);
+  if(selectValue == 'Split King'){
+    $('.competition-table table tr:nth-last-child(2) td:eq(3)').html(`N/A`);
+  }
+  var casperTotal = parseInt($('.competition-table table tr:eq(1) td:eq(4) span.purple-amt').text())+
+  parseInt($('.competition-table table tr:eq(2) td:eq(4) span.purple-amt').text())+
+  parseInt($('.competition-table table tr:eq(3) td:eq(4) span.purple-amt').text())+
+  parseInt($('.competition-table table tr:eq(4) td:eq(4) span.purple-amt').text());
+  $('.competition-table table tr:nth-last-child(2) td:eq(4)').html(`$${casperTotal}`);
+
+  var totalDiscountAmt = parseInt(standardPrice.replace(/,/g, "")) + 
+  parseInt($('.competition-table table tr:eq(4) td:eq(1) .sheet-price').text()) +
+  parseInt($('.competition-table table tr:eq(3) td:eq(1) .protector-price').text()) +
+  parseInt($('.competition-table table tr:eq(2) td:eq(1) .pillow-price').text());
+  // console.log(totalDiscountAmt,'total')
+  // console.log(standardPrice.replace (/,/g, ""),'standarrd')
+  // console.log(parseInt($('.competition-table table tr:eq(4) td:eq(1) .sheet-price').text()),"fourth")
+  // console.log(parseInt($('.competition-table table tr:eq(3) td:eq(1) .sheet-price').text()),"third")
+  // console.log(parseInt($('.competition-table table tr:eq(2) td:eq(1) .sheet-price').text()),"second")
+
+  $('.competition-table table tr:nth-last-child(2) td:eq(1)').html(`<span>$${totalDiscountAmt}</span><br><span style="text-decoration:none; color:#3B82FF;">$${discPrice}</span>`);
+  $('.competition-table table tr:eq(1) td:eq(1)').html(`<b>$${discPrice}</b> <span>$${standardPrice}</span>`);
+$('.competition-table table tr:eq(1) td:eq(0)').html(`Mattress <br>(${selectValue} Size)`);
+
+  // pillow prices
+  if (selectValue.includes('Twin') || selectValue.includes('Queen') || selectValue.includes('Twin XL') || selectValue.includes('Full')) {
+    // console.log(pillowsArr["Queen_(2-pack)"]);
+    $('.competition-table table tr:eq(2) td:eq(1)').html(`<b>Free </b><span>$</span><span class="pillow-price">${variantPrices["Queen (2-pack)"]}</span>`);
+  }
+  if(selectValue.includes('King') || selectValue.includes('Cal King') || selectValue.includes('Split King')){
+    // console.log(pillowsArr["King_(2-pack)"])
+    $('.competition-table table tr:eq(2) td:eq(1)').html(`<b>Free </b><span>$</span><span class="pillow-price">${variantPrices ["King (2-pack)"]}</span>`);
+  }
+  // protector prices
+  if(selectValue.includes('Twin')){
+    $('.competition-table table tr:eq(3) td:eq(1)').html(`<b>Free </b><span>$</span><span class="protector-price">${variantProtector["Twin Protector"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(2)').html(`<span class="dark-text">$</span><span class="dark-text nectar-amt">${nectarMatress["Twin"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(3)').html(`<span class="dark-text">$</span><span class="dark-text casper-amt">${casperMatress["Twin"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(4)').html(`<span class="dark-text">$</span><span class="dark-text purple-amt">${purpleMatress["Twin"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarPillow["Twin"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(3)').html(`<span class="dark-text casper-amt">${casperPillow["Twin"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(4)').html(`<span class="dark-text purple-amt">${purplePillow["Twin"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarProtector["Twin"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(3)').html(`<span class="dark-text casper-amt">${casperProtector["Twin"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(4)').html(`<span class="dark-text purple-amt">${puprleProtector["Twin"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarSheet["Twin"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(3)').html(`<span class="dark-text casper-amt">${casperSheet["Twin"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(4)').html(`<span class="dark-text purple-amt">${purpleSheet["Twin"]}</span>`);
+  }
+  if(selectValue.includes('Twin XL')){
+    $('.competition-table table tr:eq(3) td:eq(1)').html(`<b>Free </b><span>$</span><span class="protector-price">${variantProtector["Twin XL Protector"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(2)').html(`<span class="dark-text">$</span><span class="dark-text nectar-amt">${nectarMatress["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(3)').html(`<span class="dark-text casper-amt">$</span><span class="dark-text casper-amt">${casperMatress["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(4)').html(`<span class="dark-text">$</span><span class="dark-text purple-amt">${purpleMatress["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarPillow["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(3)').html(`<span class="dark-text casper-amt">${casperPillow["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(4)').html(`<span class="dark-text purple-amt">${purplePillow["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarProtector["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(3)').html(`<span class="dark-text casper-amt">${casperProtector["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(4)').html(`<span class="dark-text purple-amt">${puprleProtector["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarSheet["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(3)').html(`<span class="dark-text casper-amt">${casperSheet["Twin XL"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(4)').html(`<span class="dark-text purple-amt">${purpleSheet["Twin XL"]}</span>`);
+  }
+  if(selectValue.includes('Full')){
+    $('.competition-table table tr:eq(3) td:eq(1)').html(`<b>Free </b><span>$</span><span class="protector-price">${variantProtector["Full Protector"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(2)').html(`<span class="dark-text">$</span><span class="dark-text nectar-amt">${nectarMatress["Full"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(3)').html(`<span class="dark-text">$</span><span class="dark-text casper-amt">${casperMatress["Full"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(4)').html(`<span class="dark-text">$</span><span class="dark-text purple-amt">${purpleMatress["Full"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarPillow["Full"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(3)').html(`<span class="dark-text casper-amt">${casperPillow["Full"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(4)').html(`<span class="dark-text purple-amt">${purplePillow["Full"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarProtector["Full"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(3)').html(`<span class="dark-text casper-amt">${casperProtector["Full"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(4)').html(`<span class="dark-text purple-amt">${puprleProtector["Full"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarSheet["Full"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(3)').html(`<span class="dark-text casper-amt">${casperSheet["Full"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(4)').html(`<span class="dark-text purple-amt">${purpleSheet["Full"]}</span>`);
+  }
+  if(selectValue.includes('Queen')){
+    $('.competition-table table tr:eq(3) td:eq(1)').html(`<b>Free </b><span>$</span><span class="protector-price">${variantProtector["Queen Protector"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(2)').html(`<span class="dark-text">$</span><span class="dark-text nectar-amt">${nectarMatress["Queen"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(3)').html(`<span class="dark-text">$</span><span class="dark-text casper-amt">${casperMatress["Queen"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(4)').html(`<span class="dark-text">$</span><span class="dark-text purple-amt">${purpleMatress["Queen"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarPillow["Queen"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(3)').html(`<span class="dark-text casper-amt">${casperPillow["Queen"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(4)').html(`<span class="dark-text purple-amt">${purplePillow["Queen"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarProtector["Queen"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(3)').html(`<span class="dark-text casper-amt">${casperProtector["Queen"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(4)').html(`<span class="dark-text purple-amt">${puprleProtector["Queen"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarSheet["Queen"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(3)').html(`<span class="dark-text casper-amt">${casperSheet["Queen"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(4)').html(`<span class="dark-text purple-amt">${purpleSheet["Queen"]}</span>`);
+  }
+  if(selectValue.includes('King')){
+    $('.competition-table table tr:eq(3) td:eq(1)').html(`<b>Free </b><span>$</span><span class="protector-price">${variantProtector["King Protector"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(2)').html(`<span class="dark-text">$</span><span class="dark-text nectar-amt">${nectarMatress["King"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(3)').html(`<span class="dark-text">$</span><span class="dark-text casper-amt">${casperMatress["King"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(4)').html(`<span class="dark-text">$</span><span class="dark-text purple-amt">${purpleMatress["King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarPillow["King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(3)').html(`<span class="dark-text casper-amt">${casperPillow["King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(4)').html(`<span class="dark-text purple-amt">${purplePillow["King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarProtector["King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(3)').html(`<span class="dark-text casper-amt">${casperProtector["King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(4)').html(`<span class="dark-text purple-amt">${puprleProtector["King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarSheet["King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(3)').html(`<span class="dark-text casper-amt">${casperSheet["King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(4)').html(`<span class="dark-text purple-amt">${purpleSheet["King"]}</span>`);
+  }
+  if(selectValue.includes('Cal King')){
+    $('.competition-table table tr:eq(3) td:eq(1)').html(`<b>Free </b><span>$</span><span class="protector-price">${variantProtector["Cal King Protector"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(2)').html(`<span class="dark-text">$</span><span class="dark-text nectar-amt">${nectarMatress["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(3)').html(`<span class="dark-text">$</span><span class="dark-text casper-amt">${casperMatress["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(4)').html(`<span class="dark-text">$</span><span class="dark-text purple-amt">${purpleMatress["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarPillow["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(3)').html(`<span class="dark-text casper-amt">${casperPillow["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(4)').html(`<span class="dark-text purple-amt">${purplePillow["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarProtector["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(3)').html(`<span class="dark-text casper-amt">${casperProtector["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(4)').html(`<span class="dark-text purple-amt">${puprleProtector["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarSheet["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(3)').html(`<span class="dark-text casper-amt">${casperSheet["Cal King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(4)').html(`<span class="dark-text purple-amt">${purpleSheet["Cal King"]}</span>`);
+  }
+  if(selectValue.includes('Split King')){
+    $('.competition-table table tr:eq(3) td:eq(1)').html(`<b>Free </b><span>$</span><span class="protector-price">${variantProtector["Twin XL Protector"] * 2}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(2)').html(`<span class="dark-text">$</span><span class="dark-text nectar-amt">${nectarMatress["Split King"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(3)').html(`<span class="dark-text casper-amt">${casperMatress["Split King"]}</span>`);
+    $('.competition-table table tr:eq(1) td:eq(4)').html(`<span class="dark-text">$</span><span class="dark-text purple-amt">${purpleMatress["Split King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarPillow["Split King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(3)').html(`<span class="dark-text casper-amt">${casperPillow["Split King"]}</span>`);
+    $('.competition-table table tr:eq(2) td:eq(4)').html(`<span class="dark-text purple-amt">${purplePillow["Split King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarProtector["Split King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(3)').html(`<span class="dark-text casper-amt">${casperProtector["Split King"]}</span>`);
+    $('.competition-table table tr:eq(3) td:eq(4)').html(`<span class="dark-text purple-amt">${puprleProtector["Split King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(2)').html(`<span class="dark-text nectar-amt">${nectarSheet["Split King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(3)').html(`<span class="dark-text casper-amt">${casperSheet["Split King"]}</span>`);
+    $('.competition-table table tr:eq(4) td:eq(4)').html(`<span class="dark-text purple-amt">${purpleSheet["Split King"]}</span>`);
+  }
+  // sheet prices
+  if(selectValue.includes('Twin')){
+    $('.competition-table table tr:eq(4) td:eq(1)').html(`<b>Free </b><span>$</span><span class="sheet-price">${variantSheet["Twin"]}</span>`);
+  }
+  if(selectValue.includes('Twin XL')){
+    $('.competition-table table tr:eq(4) td:eq(1)').html(`<b>Free </b><span>$</span><span class="sheet-price">${variantSheet["Twin XL"]}</span>`);
+  }
+  if(selectValue.includes('Full')){
+    $('.competition-table table tr:eq(4) td:eq(1)').html(`<b>Free </b><span>$</span><span class="sheet-price">${variantSheet["Full"]}</span>`);
+  }
+  if(selectValue.includes('Queen')){
+    $('.competition-table table tr:eq(4) td:eq(1)').html(`<b>Free </b><span>$</span><span class="sheet-price">${variantSheet["Queen"]}</span>`);
+  }
+  if(selectValue.includes('King')){
+    $('.competition-table table tr:eq(4) td:eq(1)').html(`<b>Free </b><span>$</span><span class="sheet-price">${variantSheet["King"]}</span>`);
+  }
+  if(selectValue.includes('Cal King')){
+    $('.competition-table table tr:eq(4) td:eq(1)').html(`<b>Free </b><span>$</span><span class="sheet-price">${variantSheet["Cal King"]}</span>`);
+  }
+  if(selectValue.includes('Split King')){
+    $('.competition-table table tr:eq(4) td:eq(1)').html(`<b>Free </b><span>$</span><span class="sheet-price">${variantSheet["Split King"]}</span>`);
+  }
+  }
+setInterval(priceChange,1000)
+$('.product-dropdown__list').on('change', function () {
+  priceChange()
+  var discPrice = $('#discount-price').text(); 
+  $('.competition-table table tr:eq(1) td:eq(1)').text(`$${discPrice}`);
+});
+
+
+
+
+
+
+
+
+function appendTr(){
+// Create a new row element
+var newRow = document.createElement('tr');
+
+// Insert the HTML content for the new row
+newRow.innerHTML = `
+<td>Celliant SRT<br>Infused Cover</td>
+<td><p style="color: #30D686"><i class="mdi mdi-checkbox-marked-circle table-icon-md" style="text-shadow:none; font-weight:600"></i></p></td>
+<td><i class="mdi mdi-window-close table-icon-sm" style="text-shadow:none; font-weight:600"></i></td>
+<td><i class="mdi mdi-window-close table-icon-sm" style="text-shadow:none; font-weight:600"></i></td>
+<td><i class="mdi mdi-window-close table-icon-sm" style="text-shadow:none; font-weight:600"></i></td>
+`;
+
+// Select the table body where you want to append the new row
+var tableBody = document.querySelector('tbody');
+
+// Get the third-to-last row in the table
+var thirdLastRow = tableBody.rows[tableBody.rows.length - 2];
+var newRowremove = tableBody.rows[tableBody.rows.length - 3];
+
+// Insert the new row before the third-to-last row
+var valSelect = $('#cs-option-selection-1').val();
+if(valSelect == "Yes"){
+  tableBody.insertBefore(newRow, thirdLastRow);
+  }
+  else{
+    tableBody.removeChild(newRowremove)
+  }
+}
+$('#cs-option-selection-1').on('change', function () {
+  appendTr()
+});
+</script>

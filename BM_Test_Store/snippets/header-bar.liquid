@@ -1,0 +1,116 @@
+{% section 'nav-hover-content' %}
+
+<div class="header__wrapper"> 
+ 
+  <header class="site-header">
+    
+	{% if settings.counter_enable == true %}
+		<div id="pxu_cst" class="cs-mp-bar-position" onclick="Privy('show', 4251223);"></div>
+    {% endif %}
+
+    {% if settings.promobar_enable == true %}
+      <div id="pxu_cst"></div>
+
+      <div id="cs-promobar" onclick="Privy('show', 4251223);"style="{% if settings.promo_text_color.size > 0 %}color: {{settings.promo_text_color}};{% endif %} {% if settings.promo_background_color.size > 0 %}background-color: {{settings.promo_background_color}};{% endif %} {% if settings.promo_gradient_color.size > 0 %}background: linear-gradient(120deg, {{settings.promo_background_color}} 0%,{{settings.promo_gradient_color}} 70%);{% endif %}" class="toppromobar promo-bar--">
+        <div class="cs-topbar-content desktopbar">{{ settings.promobar-textarea-desktop }}</div>
+        <div class="cs-topbar-content mobilebar">{{ settings.promobar-textarea-mobile }}</div>
+      </div>
+	{% endif %}
+    
+    <div id="bearmenubar">
+      
+  	  <div class="cs-menu-layer"></div>
+
+      <span class="header-nav__item-active"></span>
+      
+      <div class="header-wrap">
+        <div class="header-logo">
+          <a href="/" title="Bear Mattress Home Page" itemprop="url">
+            <img class="lazyload" data-src="{{ '04_Primary_Wordmark_RGB_1.svg' | file_url }}" alt="Bear Mattress Logo">
+          </a>
+        </div>
+
+        <nav class="header-nav">
+          <ul class="header-nav__list">
+            
+            <li class="header-nav__item">
+			  {% section 'collection-mattress-nav-desktop' %}
+            </li>
+
+            <li class="header-nav__item">
+              {% section 'collection-bed-bases-nav-desktop' %}
+            </li>
+            
+            <li class="header-nav__item">
+              {% section 'collection-accessories-nav-desktop' %}
+            </li>
+            
+            <li class="header-nav__item">
+              {% section 'collection-why-bear-nav-desktop' %}
+            </li>
+            
+            <li class="header-nav__item">
+              {% section 'collection-faq-nav-desktop' %}
+            </li>
+            <li class="header-nav__item">
+              {% section 'collection-deals-nav-desktop' %}
+            </li>        
+            {% comment %}
+            <li class="header-nav__item desktop-quiz-btn">
+              {% section 'collection-closeout-nav-desktop' %}
+            </li>
+            {% endcomment %}
+          </ul>
+        </nav>
+
+        <nav class="header-subnav">
+          <a href="tel:+18443110035" class="header-subnav__link _tel"><span><img width="16px" class="lazyload" data-src="{{ 'call.svg' | asset_url }}" /></span> 844-311-0035</a>
+
+          <a href="/cart" class="CartToggle">
+            <span class="cartCount {% if cart.item_count < 1 %} hidden-count {% endif %}">{{ cart.item_count }}</span>
+            <img class="lazyload" data-src="{{ 'cs-cart.svg' | asset_url }}" class="cart-icon">
+          </a>
+        </nav>
+
+        <div class="header-toggle">
+
+          <button type="button" class="header-toggle__button">
+
+            <p>
+              <span class="__first"></span>
+              <span class="__middle"></span>
+              <span class="__last"></span>
+            </p>
+
+            <span>MENU</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+	{% section 'header-trustpoints' %}
+  </header>
+</div>
+
+{% if settings.promo_link_color.size > 0 %}
+	<style>
+        .toppromobar a {
+          	color: {{settings.promo_link_color}}
+        }
+	</style>
+{% endif %}
+
+
+	<style>
+       .toppromobar .cs-countdown-progress-bar {
+         background-color:{{settings.countdown_progress_bar_color}};
+        }
+      .toppromobar .cs-countdown-progress-default{
+        background-color:{{settings.countdown_progress_bar_default_color}};
+      }
+      .desktop-quiz-btn{
+        display: none;
+      }
+	</style>
+
+

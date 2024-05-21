@@ -1,0 +1,220 @@
+<footer class="site-footer-wrapper" role="contentinfo" data-section-id="{{ section.id }}" data-section-type="footer">
+
+  <div class="wrapper site-footer">
+    <div class="grid-uniform">
+
+      	<div class="grid__item cs-one-half">
+          <h4 class="block-title">{{section.settings.discount_title}}</h4>
+          <p>{{section.settings.discount_description}}</p>
+      	</div>
+
+      	<div class="grid__item cs-one-half">
+          {% include 'newsletter-form--mc' %}
+      	</div>
+    </div>
+
+    <div class="grid-uniform">
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+
+          {% when 'menucolumn' %}
+            {% assign linklist_1 = linklists[block.settings.linklist_1] %}
+            {% assign linklist_2 = linklists[block.settings.linklist_2] %}
+            {% assign linklist_3 = linklists[block.settings.linklist_3] %}
+
+      		<div class="grid__item fifth_row">
+              {% if block.settings.title_link.size > 0 %}
+              	<h4 class="block-title"><a class="block-title-link" href="{{block.settings.title_link}}">{{ block.settings.title }}</a></h4>
+              {% else %}
+              	<h4 class="block-title">{{ block.settings.title }}</h4>
+              {% endif %}
+
+              {% if block.settings.heading_1.size > 0 %}
+              <h5 class="block-heading">{{ block.settings.heading_1 }}</h5>
+              {% endif %}
+
+			  {% if block.settings.linklist_1.size > 0 %}
+              <ul class="footer-quicklinks">
+                {% for link in linklist_1.links %}
+
+                  {% if link.url contains 'bearrvmattress' %}
+                  <li><a target="_blank" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% else %}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+                {% comment %}
+                  {% if forloop.index == 5 %}
+                    <li> <a onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Do Not Sell or Share My Personal Information</a></li>
+                  {% endif %}
+                {% endcomment %}
+              </ul>
+              {% endif %}
+
+              {% if block.settings.heading_2.size > 0 %}
+              <h5 class="block-heading">{{ block.settings.heading_2 }}</h5>
+              {% endif %}
+
+			  {% if block.settings.linklist_2.size > 0 %}
+              <ul class="footer-quicklinks">
+                {% for link in linklist_2.links %}
+
+                  {% if link.url contains 'bearrvmattress' %}
+                  <li><a target="_blank" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% else %}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+              {% endif %}
+              
+              {% if block.settings.heading_3.size > 0 %}
+              <h5 class="block-heading">{{ block.settings.heading_3 }}</h5>
+              {% endif %}
+
+              {% if block.settings.linklist_3.size > 0 %}
+              <ul class="footer-quicklinks">
+                {% for link in linklist_3.links %}
+
+                  {% if link.url contains 'bearrvmattress' %}
+                  <li><a target="_blank" href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% else %}
+                  <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                  {% endif %}
+                {% endfor %}
+              </ul>
+              {% endif %}
+            </div>
+          {% endcase %}
+      {% endfor %}
+    </div>
+    
+    {% if section.settings.show_currency_switcher == true %}
+    <div class="grid-uniform" style="display: none;">
+        <div class="grid__item large--one-half currency-grid">
+            <h5 class="block-title">STORE CURRENCY</h5>
+            <hr class="hr--underline">
+          	<div class="currency-wrapper">
+
+                {% form 'currency' %}
+                <a class="currency-selector" href="#"><img src="" /> <span></span></a>
+
+              	<select class="currency-dropdown" id="currency-dropdown" name="currency">
+                  {% for block in section.blocks %}
+                        {% case block.type %}
+                            {% when 'currencyoption' %}
+                            <option data-href="{{block.settings.currency_option_link}}" data-image="{{block.settings.currency_option_image | img_url: 'master' }}" value="{{block.settings.currency_option_name}}">{{block.settings.currency_option_name}}</option>
+                        {% endcase %}
+                  {% endfor %}
+				</select>
+                {% endform %}
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="grid footer-secondary-wrapper">
+      <ul class="footer-secondary grid__item inline-list">
+          <li><a href="/">&copy; {{ 'now' | date: "%Y" }} Brooklyn Bedding, LLC</a></li>
+      </ul>
+      <ul class="footer-secondary grid__item inline-list">
+        {% for link in linklists[section.settings.footer_secondary_linklist].links %}
+          <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+        {% endfor %}
+        <li> <a onclick="Osano.cm.showDrawer('osano-cm-dom-info-dialog-open')">Do Not Sell or Share My Personal Information</a></li>
+      </ul>
+      {% if section.settings.footer_social_enable %}
+      <ul class="footer-social social-icons grid__item inline-list">
+        {% if settings.social_twitter_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_twitter_link }}" title="{{ shop.name }} on Twitter" target="_blank">
+              <span class="icon icon-twitter" aria-hidden="true"></span>
+              <span class="fallback-text">Twitter</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_facebook_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_facebook_link }}" title="{{ shop.name }} on Facebook" target="_blank">
+              <span class="icon icon-facebook" aria-hidden="true"></span>
+              <span class="fallback-text">Facebook</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_instagram_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_instagram_link }}" title="{{ shop.name }} on Instagram" target="_blank">
+              <span class="icon icon-instagram" aria-hidden="true"></span>
+              <span class="fallback-text">Instagram</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_pinterest_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_pinterest_link }}" title="{{ shop.name }} on Pinterest" target="_blank">
+              <span class="icon icon-pinterest" aria-hidden="true"></span>
+              <span class="fallback-text">Pinterest</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_google_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_google_link }}" title="{{ shop.name }} on Google Plus" target="_blank">
+              <span class="icon icon-google_plus" aria-hidden="true"></span>
+              <span class="fallback-text">Google Plus</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_youtube_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_youtube_link }}" title="{{ shop.name }} on Youtube" target="_blank">
+              <span class="icon icon-youtube" aria-hidden="true"></span>
+              <span class="fallback-text">Youtube</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_vimeo_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_vimeo_link }}" title="{{ shop.name }} on Vimeo" target="_blank">
+              <span class="icon icon-vimeo" aria-hidden="true"></span>
+              <span class="fallback-text">Vimeo</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_tumblr_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_tumblr_link }}" title="{{ shop.name }} on Tumblr" target="_blank">
+              <span class="icon icon-tumblr" aria-hidden="true"></span>
+              <span class="fallback-text">Tumblr</span>
+            </a>
+          </li>
+        {% endif %}
+        {% if settings.social_fancy_link != blank %}
+          <li>
+            <a class="icon-fallback-text" href="{{ settings.social_fancy_link }}" title="{{ shop.name }} on Fancy" target="_blank">
+              <span class="icon icon-fancy" aria-hidden="true"></span>
+              <span class="fallback-text">Fancy</span>
+            </a>
+          </li>
+        {% endif %}
+      </ul>
+      {% endif %}
+      
+      {% if section.settings.footer_payment_enable %}
+        {% unless shop.enabled_payment_types == empty %}
+        <ul class="footer-payment payment-icons grid__item inline-list">
+          {% for type in shop.enabled_payment_types %}
+            <li>
+              <span class="icon-fallback-text">
+                <span class="icon icon-{{type}}" aria-hidden="true"></span>
+                <span class="fallback-text">{{type | replace: '_',' '}}</span>
+              </span>
+            </li>
+          {% endfor %}
+        </ul>
+        {% endunless %}
+      {% endif %}
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,10 @@
+<script>
+window.mattressDimensions = [
+  {% for block in section.blocks %}
+    {
+      'title': '{{ block.settings.title | trim | escape }}',
+      'dimensions': '{{ block.settings.dimensions }}'
+    }{% unless forloop.last %},{% endunless %}
+  {% endfor %}
+];
+</script>

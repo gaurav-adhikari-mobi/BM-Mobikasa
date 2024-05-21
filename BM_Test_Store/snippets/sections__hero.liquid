@@ -1,0 +1,117 @@
+{% if section.settings.toggle %}
+<section class="hero {% if template == 'index' %}{% else %}hero-secondary{% endif %}" data-section-id="{{ section.id }}" data-module="hero">
+  <img data-src="{{ section.settings.desktop-image | img_url: 'master' }}" class="hero-bg desktop lazyload">
+  <img data-src="{{ section.settings.mobile-image | img_url: 'master' }}" class="hero-bg mobile lazyload">
+  <div class="hero-wrap {{ section.settings.flex-align }} {{ section.settings.text-align }}">
+    <div class="hero-content">
+      {% for block in section.blocks %}
+        {% case block.type %}
+      
+      	{% when 'eyebrow' %}
+      	<div class="cs-hero-eyebrow">
+          <span class="cs-hero-eyebrow-inner {% if block.settings.has_ribbon == true %}has-ribbon{% endif %}" style="background-color: {{ block.settings.background-color }}; background: linear-gradient(120deg, {{ block.settings.background-color }} 0% ,{{ block.settings.linear-background-color }} 70%); color: {{ block.settings.text-color }};">{{ block.settings.text-content }}</span>
+      	</div>
+
+        {% if block.settings.has_ribbon == true %}
+        <style type="text/css">
+          #shopify-section-{{section.id}} .cs-hero-eyebrow {
+            position: relative;
+            z-index: 999;
+          }
+
+          #shopify-section-{{section.id}} .cs-hero-eyebrow-inner.has-ribbon {
+            position: relative;
+            padding: 4px 20px;
+            background-color: #db3d29;
+            color: #fff3f0;
+            margin: 10px 0 10px 20px;
+            max-width: 85%;
+          }
+
+          #shopify-section-{{section.id}} .cs-hero-eyebrow-inner.has-ribbon:before {
+            content: ' ';
+            position: absolute;
+            top: 20px;
+            left: -20px;
+            width: 40px;
+            height: 100%;
+            background-color: #3B82FF;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 25% 50%);
+            z-index: -1;
+            background-image: linear-gradient(45deg, transparent 50%, #0C324C 50%);
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            background-position: bottom right;
+          }
+
+          #shopify-section-{{section.id}} .cs-hero-eyebrow-inner.has-ribbon:after {
+            content: ' ';
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            width: 40px;
+            height: 100%;
+            background-color: #3B82FF;
+            clip-path: polygon(0 0, 100% 0, 75% 50%, 100% 100%, 0 100%);
+            z-index: -1;
+            background-image: linear-gradient(45deg, #0C324C 50%, transparent 50%);
+            background-size: 20px 20px;
+            background-repeat: no-repeat;
+            background-position: top left;
+          }
+          
+          @media screen and (max-width: 1023px) {
+
+            #shopify-section-{{section.id}} .cs-hero-eyebrow-inner.has-ribbon {
+              margin: 15px 0 10px;
+            }
+          }
+        </style>
+        {% endif %}
+
+      	{% when 'review' %}
+      	<div class="cs-vwo-reviews-count">{{ block.settings.review_content }}</div>
+
+      	{% when 'disclaimer' %}
+      	<div class="small-print light">{{ block.settings.text-content }}</div>
+
+      	{% when 'heading' %}
+          {% if section.settings.show_title == true %}
+              <h1 class="hero-heading" style="color: {{ block.settings.text-color }};">{{ page_title }} {{ block.settings.text-content }}</h1>
+          {% else %}
+              <h1 class="hero-heading" style="color: {{ block.settings.text-color }};">{{ block.settings.text-content }}</h1>
+          {% endif %}
+
+          <img data-src="{{ section.settings.desktop-image-hero }}">
+      	{% when 'text' %}
+        	<div class="hero-description" style="color: {{ block.settings.text-color }};">{{ block.settings.text-content }}</div>
+
+      	{% when 'newsletter' %}
+      	  {% include 'banner-newsletter-form--mc' %}
+
+      	{% when 'button' %}
+      	  {% if page.title == "Financing"%}
+              <a class="btn btn-hero cs-btn-large shadow affirm-site-modal" data-page-type="landing" style="background: {{ block.settings.button-color }}; color: {{ block.settings.text-color }};">{{ block.settings.button-text }}</a>
+          {% else %}
+      		  {% if block.settings.has_hyperlink == true %}
+              	<a href="{{ block.settings.button-url }}" class="btn-hyperlink" style="color: {{ block.settings.text-color }};">{{ block.settings.button-text }}</a>
+      		  {% else %}
+				<a href="{{ block.settings.button-url }}" class="btn btn-green btn-hero cs-btn-large shadow" style="background: {{ block.settings.button-color }}; color: {{ block.settings.text-color }};">{{ block.settings.button-text }}</a>
+      		  {% endif %}
+          {% endif %}
+
+          {% if block.settings.hover-color.size > 0 %}
+          <style type="text/css">
+            #shopify-section-{{section.id}} .btn-hyperlink:hover,
+            #shopify-section-{{section.id}} .btn-green:hover {
+              background-color: {{ block.settings.hover-color }} !important;
+            }
+          </style>
+          {% endif %}
+        {% endcase %}
+      {% endfor %}
+    </div>
+  </div>
+  <a class="anchor" id="see-all"></a>
+</section>
+{% endif %}

@@ -1,0 +1,30 @@
+{% if section.settings.toggle %}
+<section class="gridtabs" data-section-id="{{ section.id }}" data-module="gridtabs">
+	<h2 class="gridtabs-title">{{ section.settings.title }}</h2>
+	<ul class="gridtabs-options">
+		{% for block in section.blocks %}
+			<li class="gridtabs-options__item {% if forloop.first %}active{% endif %}" data-tab="{{ block.settings.title | handle }}">
+				<span>{{ block.settings.title }}</span>
+			</li>
+		{% endfor %}
+	</ul>
+	<div class="gridtabs-wrap">
+		{% for block in section.blocks %}
+			<ul class="gridtabs-tab {% if forloop.first %}active{% endif %}" data-tab="{{ block.settings.title | handle }}" data-columns="{{ block.settings.numcolumns }}">
+				{% for i in (1..4) limit: block.settings.numcolumns %}
+					{% assign block-image = 'image--' | append: i %}
+					{% assign block-title = 'title--' | append: i %}
+					{% assign block-description = 'description--' | append: i %}
+					<li class="gridtabs-tab__item" data-index="{{ i }}">
+						<div class="gridtabs-tab__item-wrap">
+							<img data-src="{{ block.settings[block-image] | img_url: '400x' }}" class="gridtabs-tab__item-image lazyload">
+							<h6 class="gridtabs-tab__item-title">{{ block.settings[block-title] }}</h6>
+							<div class="gridtabs-tab__item-description">{{ block.settings[block-description] }}</div>
+						</div>
+					</li>
+				{% endfor %}
+			</ul>
+		{% endfor %}
+	</div>
+</section>
+{% endif %}

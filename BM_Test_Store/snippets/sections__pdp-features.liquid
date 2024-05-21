@@ -1,0 +1,21 @@
+{% if section.settings.toggle %}
+<section class="pfeatures" data-section-id="{{ section.id }}" data-module="pfeatures">
+  	<h2 class="pfeatures-title">{{ section.settings.title }}</h2>
+	<div class="pfeatures-wrap">
+		<ul class="pfeatures-list" data-items="{{ section.blocks.size }}">
+			<div class="pfeatures-list__wrap">
+				{% for block in section.blocks %}
+					<li class="pfeatures-item">
+						<h4 class="pfeatures-item__title">{% if section.settings.numbered-list %}<span class="num">{{ forloop.index }}.</span>{% endif %}<span class="title">{{ block.settings.title }}</span></h4>
+						<div class="pfeatures-item__description">{{ block.settings.description }}</div>
+					</li>
+				{% endfor %}
+			</div>
+		</ul>
+		<div class="pfeatures-image">
+			<img data-src="{{ section.settings.image | img_url: 'master' }}" class="pfeatures-image__image lazyload">
+		</div>
+	</div>
+
+</section>
+{% endif %}

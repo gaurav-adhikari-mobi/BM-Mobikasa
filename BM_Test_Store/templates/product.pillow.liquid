@@ -1,0 +1,20 @@
+{% section 'pillow-variants' %}
+{% include 'product-details' %}
+
+{% section 'yotpo-pdp-gallery-pillow' %}
+
+{% section 'pdp-pillow-icon-grid' %}
+{% section 'pdp-pillow-features' %}
+{% comment %}
+{% section 'pdp-pillow-standard-content' %}
+{% endcomment %}
+{% section 'pdp-accordion-pillow' %}
+{% section 'pillow-faq-component' %}
+{% section 'pdp-product-grid-pillow' %}
+
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Pillow Reviews</h2>
+<div class="yotpo-widget-instance" data-yotpo-instance-id="544320" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div></section>
+
+{% include 'schema' %}

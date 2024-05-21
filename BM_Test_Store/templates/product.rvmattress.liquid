@@ -1,0 +1,26 @@
+{% include 'product-details' %}
+{% section 'rv-pdp-icon-grid' %}
+{% section 'section-publications-3' %}
+{% section 'pdp-imageblockcontent-rv' %}
+{% section 'staggered-content--rv' %}
+
+{% section 'yotpo-rv-pdp-gallery' %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear RV Mattress Reviews</h2>
+ <div class="yotpo-widget-instance" data-yotpo-instance-id="544320" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div> </div>
+</section>
+
+{% section 'pdp-accordion-rv' %}
+{% section 'pdp-financing-blocks' %}
+
+{% include 'schema' %}
+
+{% comment %}
+  {% section 'mattress-dimensions' %}
+  {% section 'rv-slideshow-reviews' %}
+  {% section 'bear-advantage-grid' %}
+  {% section 'pdp-standard-content' %}
+  {% section 'life-style-grid' %}
+  {% section 'rv-faq-component' %}
+{% endcomment %}

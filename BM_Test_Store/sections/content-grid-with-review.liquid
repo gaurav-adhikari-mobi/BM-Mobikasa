@@ -1,0 +1,151 @@
+{% include 'content-grid-with-review' %}
+
+{% schema %}
+  {
+    "name": "Content Grid With Review",
+	"max_blocks": 2,
+    "settings": [
+        {
+          "type": "header",
+          "content": "Grid structure"
+        },
+        {
+          "type": "text",
+          "id": "section_title",
+          "label": "Section title"
+        },
+        {
+          "type": "color",
+          "id": "section_title_color",
+          "label": "Section title color",
+          "default": "#000000"
+        },
+        {
+          "type": "color",
+          "id": "section_background_color",
+          "label": "Section background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "color",
+          "id": "grid_color",
+          "label": "Grid color",
+          "default": "#f2efeb"
+        },
+        {
+          "type": "color",
+          "id": "grid_button_text_color",
+          "label": "Button text color",
+          "default": "#000000"
+
+        },
+        {
+          "type": "color",
+          "id": "grid_button_background_color",
+          "label": "Button background color",
+          "default": "#ffffff"
+        },
+        {
+          "type": "checkbox",
+          "id": "grid_overlay_option",
+          "label": "Grid overlay",
+          "default": true
+        },
+        {
+            "type": "text",
+            "id": "grid_button_text_b",
+            "label": "Button text"
+        },
+        {
+            "type": "url",
+            "id": "grid_button_link_b",
+            "label": "Button link"
+        }
+	],
+	"blocks": [
+        {
+        "type": "griddata",
+        "name": "Grid data",
+        "settings": [
+            {
+                "type": "html",
+                "id": "grid_review",
+                "label": "Grid review"
+            },
+            {
+                "type": "text",
+                "id": "grid_title",
+                "label": "Grid title"
+            },
+            {
+                "type": "color",
+                "id": "grid_title_bg",
+                "label": "Background Color",
+				"default": "#729fb1"
+            },
+            {
+                "type": "color",
+                "id": "grid_title_text_cl",
+                "label": "text Color",
+				"default": "#1e3d54"
+            },
+            {
+                "type": "textarea",
+                "id": "grid_description",
+                "label": "Grid description"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image",
+                "label": "Image (Desktop)"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_ipad",
+                "label": "Image (Tablet)"
+            },
+            {
+                "type": "image_picker",
+                "id": "grid_image_mobile",
+                "label": "Image (Mobile)"
+            },
+            {
+                "type": "text",
+                "id": "grid_image_alt",
+                "label": "Image alt"
+            },
+            {
+                "type": "text",
+                "id": "grid_video",
+                "label": "Video"
+            },
+            {
+                "type": "text",
+                "id": "grid_button_text",
+                "label": "Button text"
+            },
+            {
+                "type": "url",
+                "id": "grid_button_link",
+                "label": "Button link"
+            },
+            {
+                "type": "text",
+                "id": "grid_button_text_n",
+                "label": "Anchor text"
+            },
+            {
+                "type": "url",
+                "id": "grid_button_link_n",
+                "label": "Anchor link"
+            }
+        ]}
+	],
+    "presets": [
+      {
+        "name": "Content Grid With Review",
+        "category": "Custom"
+      }
+    ]
+  }
+{% endschema %}

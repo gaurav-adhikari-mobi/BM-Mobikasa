@@ -1,0 +1,151 @@
+{%- assign grid_width_large = section.settings.grid_width_large -%}
+{%- assign grid_width_medium = section.settings.grid_width_medium -%}
+{%- assign grid_width_small = section.settings.grid_width_small -%}
+
+{%- assign collections_handles = section.settings.collections_data | split: ',' -%}
+
+{%- assign grid_offset = '' -%}
+{%- assign products_count = current_collection.products_count -%}
+{%- if grid_width_large == 'large--one-half' -%}
+  {%- if products_count == 1 -%}
+    {%- assign grid_offset = 'push--large--one-quarter' -%}
+  {%- endif -%}
+{%- elsif grid_width_large == 'large--one-third' -%}
+  {%- if products_count == 1 -%}
+    {%- assign grid_offset = 'push--large--one-third' -%}
+  {%- elsif products_count == 2 -%}
+    {%- assign grid_offset = 'push--large--one-sixth' -%}
+  {%- endif -%}
+{%- elsif grid_width_large == 'large--one-quarter' -%}
+  {%- if products_count == 1 -%}
+    {%- assign grid_offset = 'push--large--three-eighths' -%}
+  {%- elsif products_count == 2 -%}
+    {%- assign grid_offset = 'push--large--one-quarter' -%}
+  {%- elsif products_count == 3 -%}
+    {%- assign grid_offset = 'push--large--one-eighth' -%}
+  {%- endif -%}
+{%- elsif grid_width_large == 'large--one-fifth' -%}
+  {%- if products_count == 1 -%}
+    {%- assign grid_offset = 'push--large--two-fifths' -%}
+  {%- elsif products_count == 2 -%}
+    {%- assign grid_offset = 'push--large--three-tenths' -%}
+  {%- elsif products_count == 3 -%}
+    {%- assign grid_offset = 'push--large--one-fifth' -%}
+  {%- elsif products_count == 4 -%}
+    {%- assign grid_offset = 'push--large--one-tenth' -%}
+  {%- endif -%}
+{%- elsif grid_width_large == 'large--one-sixth' -%}
+  {%- if products_count == 1 -%}
+    {%- assign grid_offset = 'push--large--five-twelfths' -%}
+  {%- elsif products_count == 2 -%}
+    {%- assign grid_offset = 'push--large--two-sixths' -%}
+  {%- elsif products_count == 3 -%}
+    {%- assign grid_offset = 'push--large--three-twelfths' -%}
+  {%- elsif products_count == 4 -%}
+    {%- assign grid_offset = 'push--large--one-sixth' -%}
+  {%- elsif products_count == 5 -%}
+    {%- assign grid_offset = 'push--large--one-twelfth' -%}
+  {%- endif -%}
+{%- endif -%}
+
+<div class="our-mattresses-collection-component">
+    <div class="wrapper">
+      
+      <div class="cs-collection-container">
+
+         <div class="grid__item one-whole">
+
+                  <div class="grid-uniform">
+                    
+                    {% for block in section.blocks %}
+
+                    	{% if block.type == 'text' %}
+                    
+                            {% assign current_collection = collections[block.settings.collection] %}
+
+                    		<div class="grid__item mb-5 {{ grid_offset }} {{ grid_width_small }} {{ grid_width_medium }} {{ grid_width_large }}">
+
+                                <div class="grid__item__inner text-center">
+
+                                  <h3>{{current_collection.title}}</h3>
+
+                                  {% if current_collection.image %}
+                                      <img class="mb-2" src="{{ current_collection.image | img_url: 'medium' }}" />
+                                  {% endif %}
+
+                                  <a class="btn shadow btn-blue" href="{{current_collection.url}}">{{block.settings.button_text}}</a>
+                                </div>
+                              </div>
+                    	{% endif %}
+                    {% endfor %}
+                  </div>
+            </div>
+      </div>
+
+    </div>
+</div>
+
+{% schema %}
+{
+  "name": "Collection Grid",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Collections per row"
+    },
+    {
+      "type": "select",
+      "id": "grid_width_large",
+      "options": [
+        { "value": "large--one-whole", "label": "1 per row"},
+        { "value": "large--one-half", "label": "2 per row"},
+        { "value": "large--one-third", "label": "3 per row"},
+        { "value": "large--one-quarter", "label": "4 per row"},
+        { "value": "large--one-fifth", "label": "5 per row"},
+        { "value": "large--one-sixth", "label": "6 per row"}
+      ],
+      "default": "large--one-quarter",
+      "label": "Full width"
+    },
+    {
+      "type": "select",
+      "id": "grid_width_medium",
+      "options": [
+        { "value": "medium--one-whole", "label": "1 per row"},
+        { "value": "medium--one-half", "label": "2 per row"},
+        { "value": "medium--one-third", "label": "3 per row"},
+        { "value": "medium--one-quarter", "label": "4 per row"}
+      ],
+      "default": "medium--one-half",
+      "label": "Tablet"
+    },
+    {
+      "type": "select",
+      "id": "grid_width_small",
+      "options": [
+        { "value": "small--one-whole", "label": "1 per row"},
+        { "value": "small--one-half", "label": "2 per row"},
+        { "value": "small--one-third", "label": "3 per row"}
+      ],
+      "default": "small--one-half",
+      "label": "Mobile"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Collection",
+      "settings": [
+          {
+			  "id": "collection",
+              "type": "collection",
+              "label": "Collection"
+          },
+		  {
+			  "type": "text",
+			  "id": "button_text",
+			  "label": "Buttom Text"
+		  }
+      ]
+  }]
+}
+{% endschema %}

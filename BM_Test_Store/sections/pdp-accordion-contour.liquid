@@ -1,0 +1,255 @@
+{% include 'pdp-accordion' %}
+
+{% schema %}
+  {
+    "name": "Contour Accordion",
+    "settings": [
+        {
+            "type": "checkbox",
+            "id": "show_accordion",
+            "label": "Show Accordion Content",
+            "default": true
+        },
+        {
+            "type": "color",
+            "id": "heading-text-color",
+            "label": "Heading Text Color"
+        },
+        {
+            "type": "color",
+            "id": "text-color",
+            "label": "Paragraph Text Color"
+        },
+        {
+            "type": "color",
+            "id": "accordion_heading_color",
+            "label": "Accordion heading color"
+        },
+        {
+            "type": "color",
+            "id": "accordion_subheading_color",
+            "label": "Accordion subheading color"
+        },
+        {
+            "type": "select",
+            "id": "data_view_type",
+            "options": [
+              { "value": "list", "label": "List"},
+              { "value": "accordion", "label": "Accordion"}
+            ],
+            "default": "list",
+            "label": "Content type"
+        },
+        {
+            "type": "select",
+            "id": "data_view_icon_position",
+            "options": [
+              { "value": "left", "label": "Left"},
+              { "value": "right", "label": "Right"}
+            ],
+            "default": "left",
+            "label": "Icon position"
+        }
+	],
+    "blocks": [
+      	{
+        "type": "imageblockcontent",
+        "name": "Image Content Block",
+        "settings": [
+				{
+                  "type": "image_picker",
+                  "id": "featured_bm_image",
+                  "label": "Featured Image"
+                },
+				{
+                  "type": "text",
+                   "id": "featured_bm_image_alt",
+                   "label": "Desktop Alt Text"
+                },
+				{
+                  "type": "image_picker",
+                  "id": "tab_image",
+                  "label": "Tablet Featured Image"
+                },
+				{
+                  "type": "text",
+                   "id": "tab_image_alt",
+                   "label": "Tablet Alt Text"
+                },
+				{
+                  "type": "image_picker",
+                   "id": "mob_image",
+                   "label": "Mobile Featured Image"
+                },
+				{
+                  "type": "text",
+                   "id": "mob_image_alt",
+                   "label": "Mobile Alt Text"
+                },
+				{
+                  "type": "textarea",
+                  "id": "textarea_measurement_bm",
+                  "label": "Featured List"
+                }
+        	]
+     	 },
+		{
+        "type": "measurementgrid",
+        "name": "Measurement Grid",
+        "settings": [
+          {
+            "id": "title_heading",
+            "type": "text",
+            "label": " Block Heading"
+          },
+          {
+            "id": "title_subheading",
+            "type": "text",
+            "label": " Block Subeading"
+          },
+		  {
+            "id": "size_name_1",
+            "type": "text",
+            "label": "First Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_1",
+            "type": "text",
+            "label": "First Dimension row"
+          },
+		  {
+            "id": "weight_dimension_1",
+            "type": "text",
+            "label": "First Weight row"
+          },
+		  {
+            "id": "size_name_2",
+            "type": "text",
+            "label": "Second Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_2",
+            "type": "text",
+            "label": "Second Dimension row"
+          },
+		  {
+            "id": "weight_dimension_2",
+            "type": "text",
+            "label": "Second Weight row"
+          },
+		  {
+            "id": "size_name_3",
+            "type": "text",
+            "label": "Third Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_3",
+            "type": "text",
+            "label": "Third Dimension row"
+          },
+		  {
+            "id": "weight_dimension_3",
+            "type": "text",
+            "label": "Third Weight row"
+          },
+		  {
+            "id": "size_name_4",
+            "type": "text",
+            "label": "Fourth Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_4",
+            "type": "text",
+            "label": "Fourth Dimension row"
+          },
+		  {
+            "id": "weight_dimension_4",
+            "type": "text",
+            "label": "Fourth Weight row"
+          },
+		  {
+            "id": "size_name_5",
+            "type": "text",
+            "label": "Fifth Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_5",
+            "type": "text",
+            "label": "Fifth Dimension row"
+          },
+		  {
+            "id": "weight_dimension_5",
+            "type": "text",
+            "label": "Fifth Weight row"
+          },
+		  {
+            "id": "size_name_6",
+            "type": "text",
+            "label": "Sixth Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_6",
+            "type": "text",
+            "label": "Sixth Dimension row"
+          },
+		  {
+            "id": "weight_dimension_6",
+            "type": "text",
+            "label": "Sixth Weight row"
+          },
+		  {
+            "id": "size_name_7",
+            "type": "text",
+            "label": "Seventh Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_7",
+            "type": "text",
+            "label": "Seventh Dimension row"
+          },
+		  {
+            "id": "weight_dimension_7",
+            "type": "text",
+            "label": "Seventh Weight row"
+          },
+		  {
+            "id": "size_name_8",
+            "type": "text",
+            "label": "Eighth Product Variable Name"
+          },
+		  {
+            "id": "block_dimension_8",
+            "type": "text",
+            "label": "Eighth Dimension row"
+          },
+		  {
+            "id": "weight_dimension_8",
+            "type": "text",
+            "label": "Eighth Weight row"
+          }
+        ]
+      },
+		{
+        "type": "detailtopic",
+        "name": "Detail Topic",
+        "settings": [
+          {
+            "id": "certification_head",
+            "type": "text",
+            "label": "Heading"
+          },
+          {
+            "id": "certification_subhead",
+            "type": "text",
+            "label": "Subheading"
+          },
+		  {
+            "id": "certification_content",
+            "type": "textarea",
+            "label": "Content"
+          }          
+        ]
+      }
+    ]
+  }
+{% endschema %}

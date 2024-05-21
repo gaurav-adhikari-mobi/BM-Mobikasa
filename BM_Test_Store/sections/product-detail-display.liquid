@@ -1,0 +1,88 @@
+<!-- /sections/index-pageliquid -->
+
+<div class="product-detail" data-section-id="{{ section.id }}" data-section-type="product-detail" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+  <h1 class="product-detail__header">{{ settings.section_header }}</h1>
+  <img class="product-detail__img lazyload" data-src="{{ section.settings.detail_image | img_url: 'master' }}">
+  {% for block in section.blocks[0] %}
+  <div class="product-detail__wrapper">
+    <img class="product-detail__icon lazyload" data-src="{{ block.settings.topic_icon | img_url: 'master' }}">
+    <p class="product-detail__text">{{ block.settings.detail_description }}</p>
+  </div>
+  {% endfor %}
+  {% for block in section.blocks[1] %}
+    <div class="product-detail__cta">
+      <a class="product-detail__cta-link" href="{{ block.settings.cta_link }}">{{ block.settings.cta_text }}</a>
+    </div>
+  {% endfor %}
+</div>
+
+{% schema %}
+{
+  "name": "Product Detail Display",
+  "settings": [
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "detail_image",
+      "label": "Detail Image"
+    },
+    {
+      "type": "text",
+      "id": "section_header",
+      "label": "Section Header"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Detail Topic",
+      "settings": [
+        {
+          "type": "text",
+          "id": "topic_header",
+          "label": "Topic Header"
+        },
+        {
+          "type": "image_picker",
+          "id": "topic_icon",
+          "label": "Topic Icon"
+        },
+        {
+          "type": "textarea",
+          "id": "detail_description",
+          "label": "Detail Description"
+        }
+      ]
+  },
+  {
+    "type": "url",
+    "name": "CTA Button",
+    "settings": [
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA Link"
+    },
+    {
+      "type": "text",
+      "id": "cta_text",
+      "label": "CTA Text"
+    }
+    ]
+  }],
+  "presets": [
+    {
+      "name": "Product Detail Display",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

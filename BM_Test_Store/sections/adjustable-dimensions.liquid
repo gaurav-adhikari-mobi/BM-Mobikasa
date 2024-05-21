@@ -1,0 +1,41 @@
+{% include 'sections__mattress-dimensions' %}
+
+{% schema %}
+{
+  "name": "Adjustable Dimensions",
+  "max_blocks": 10,
+  "settings": [],
+  "blocks" : [
+    {
+      "type": "text",
+      "name": "Variant",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Variant"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Variant Title"
+        },
+        {
+          "type": "header",
+          "content": "Dimensions"
+        },
+        {
+          "type": "text",
+          "id": "dimensions",
+          "label": "Variant Dimensions"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Adjustable Dimensions",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

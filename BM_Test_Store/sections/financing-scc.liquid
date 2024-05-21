@@ -1,0 +1,169 @@
+{% include 'sections__closing-cta' %}
+
+
+{% schema %}
+{
+  "name": "Financing SCC",
+  "max_blocks": 2,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Toggle Section On/Off",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "image_picker",
+      "id": "background-image",
+      "label": "Background Image"
+    },
+    {
+      "type": "select",
+      "id": "background-repeat",
+      "label": "Tile Background",
+      "options": [
+        {
+          "value": "no-repeat",
+          "label": "No Tiles"
+        },
+        {
+          "value": "repeat",
+          "label": "Tiles"
+        }
+      ]
+    },
+    {
+      "type": "color",
+      "id": "heading-text-color",
+      "label": "Heading Text Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Paragraph Text Color"
+    },
+    {
+      "type": "text",
+      "id": "section_header",
+      "label": "Section Header"
+    },
+    {
+      "type": "textarea",
+      "id": "section_rich_text",
+      "label": "Section Text"
+    },
+	{
+      "type": "image_picker",
+      "id": "section_image",
+      "label": "Section Image"
+    },
+	{
+      "type": "image_picker",
+      "id": "section_image_mobile",
+      "label": "Section Image For Mobile"
+    },
+	{
+      "type": "url",
+      "id": "section_link",
+      "label": "CTA Link for Section"	
+	},
+	{
+      "type": "checkbox",
+      "id": "image_pos_toggle",
+      "label": "Show Image below Section Text",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Section Padding"
+    },
+    {
+      "type": "select",
+      "id": "padding-top",
+      "label": "Padding Top",
+      "options": [
+        {
+          "value": "pt--small",
+          "label": "Small"
+        },
+        {
+          "value": "pt--medium",
+          "label": "Medium"
+        },
+        {
+          "value": "pt--large",
+          "label": "Large"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "id": "padding-bottom",
+      "label": "Padding Bottom",
+      "options": [
+        {
+          "value": "pb--small",
+          "label": "Small"
+        },
+        {
+          "value": "pb--medium",
+          "label": "Medium"
+        },
+        {
+          "value": "pb--large",
+          "label": "Large"
+        }
+      ]
+    }
+  ],
+  "blocks" : [{
+      "type": "button",
+      "name": "CTA Button",
+      "settings": [
+      {
+        "type": "url",
+        "id": "cta_link",
+        "label": "CTA Link"
+      },
+      {
+        "type": "text",
+        "id": "cta_text",
+        "label": "CTA Text"
+      },
+      {
+        "type": "color",
+        "id": "button-background-color",
+        "label": "Background Color"
+      },
+      {
+        "type": "color",
+        "id": "button-text-color",
+        "label": "Text Color"
+      },
+      {
+        "type": "color",
+        "id": "button-border-color",
+        "label": "Border color"
+      },
+      {
+        "type": "checkbox",
+        "id": "use-shadow",
+        "label": "Use Shadow?",
+        "default": false
+      }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Standard Content -- Centered",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+

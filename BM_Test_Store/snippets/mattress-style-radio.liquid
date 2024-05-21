@@ -1,0 +1,40 @@
+{% comment %}
+{% assign mattress_style = ''; %}
+{% if product.metafields.product.mattress_style_products != blank %}
+    {% assign mattress_style = product.metafields.product.mattress_style_products %}
+    {% assign mattress_style_arr = mattress_style | split : ';' %}
+{% endif %}
+
+{% if mattress_style != "" %}
+  <div class="mattress-style-radio-grid">
+    <label>Choose Mattress Style <span class="compare-style-link" tabindex="0" role="button">Compare Styles</span></label>
+    <div class="matt-style-wrapper">
+    {% for mattress_style_single in mattress_style_arr %}
+      {% assign mattress_style_single_data = mattress_style_single | split : ':' %}
+      {% assign single_mattress_handle = mattress_style_single_data[0] %}
+      {% assign single_mattress_title = mattress_style_single_data[1] %}
+      <a class="mattress-style-radio-box {% if product.handle == single_mattress_handle %} active {% endif %}" href="{% if product.handle == single_mattress_handle %} #0 {% else %} {{ all_products[single_mattress_handle].url }} {% endif %}">
+        <div class="matt-style-item">
+            <div class="matt-style-feature">
+              {% if all_products[single_mattress_handle].metafields.product.mattress_style_image != '' %}
+                <img class="matt-style-image" src="{{ all_products[single_mattress_handle].metafields.product.mattress_style_image }}" alt="{{ all_products[single_mattress_handle].title }}">
+              {% else %}
+                <img class="matt-style-image" src="{{ all_products[single_mattress_handle].featured_image | img_url : '400x' }}" alt="{{ all_products[single_mattress_handle].title }}">
+              {% endif %}
+            </div>
+            <label class="matt-style-details">
+                <input class="matt-style-input" type="radio" {% if product.handle == single_mattress_handle %}checked {% endif %}>
+                <div class="matt-style-variant">
+                    <span class="matt-style--variant" tabindex="0" role="button">{{ single_mattress_title }}</span>
+                </div>
+                {% if all_products[single_mattress_handle].metafields.product.mattress_style_description != blank %}
+                <div class="matt-style-include">{{ all_products[single_mattress_handle].metafields.product.mattress_style_description }}</div>
+                {% endif %}
+            </label>
+        </div>
+      </a>
+    {% endfor %}
+    </div>
+  </div>
+{% endif %}
+{% endcomment %}

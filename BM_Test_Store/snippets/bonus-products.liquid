@@ -1,0 +1,157 @@
+<ul class="cs-bonus-list">
+
+  {% for variant in product.variants %}
+
+  	{% assign bonus_values = variant.metafields.variant.bonus_product_2 | split: ',' %}
+  
+  	{% if bonus_values.size > 0 %}
+  	<li class="bonus-{{variant.id}}">
+
+      {% assign first_bonus_item = bonus_values[0] | split: ':' %}
+      {% assign first_bonus_handle = first_bonus_item[0] %}
+      {% assign first_bonus_selected_variant = first_bonus_item[1] | plus: 0 %}
+
+      {% assign first_bonus_product = all_products[first_bonus_handle] %}
+      {% assign first_bonus_product_title = first_bonus_product.title %}
+      {% assign first_bonus_product_image = first_bonus_product.featured_image | img_url: '400x'  %}
+      {% assign first_bonus_product_description = first_bonus_product.description | strip_html | replace: 'View Sale Details', '' %}
+
+      {% assign first_bonus_variant_text = first_bonus_product.metafields.product.frequent_variant_text %}
+      {% assign first_bonus_popup_heading = first_bonus_product.metafields.product.frequent_popup_heading %}
+      {% assign first_bonus_popup_description = first_bonus_product.metafields.product.frequent_popup_description %}
+
+      {% for first_bonus_variant in first_bonus_product.variants %}
+
+      	{% if first_bonus_variant.id == first_bonus_selected_variant and first_bonus_variant.available == true %}
+
+          {% if first_bonus_product.metafields.product.frequent_variant_text != blank %}
+          	{% assign first_bonus_variant_text = first_bonus_variant.metafields.variant.frequent_variant_text %}
+          {% endif %}
+
+          {% assign first_bonus_variant_price = first_bonus_variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+          {% assign first_bonus_variant_compare_price = first_bonus_variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+
+          <div class="cs-bonus-box">
+
+                <a href="javascript:void(0);" class="cs-bonus-title" data-prod-list='' data-prod-img="{{ first_bonus_product_image }}" data-prod-desc="{{ first_bonus_product_description }}" data-html="{{ first_bonus_product_title }}" data-fheading="{{ first_bonus_popup_heading }}"  data-fdescription="{{ first_bonus_popup_description }}">{{ first_bonus_product_title }}</a>
+            <div class="cs-bonus-item">
+
+              <div class="cs-bonus-feature">
+
+                <img class="cs-bonus-image" src="{{ first_bonus_product_image }}" />
+              </div>
+
+              <label class="cs-bonus-details">
+
+                <input class="cs-bonus-input" type="radio" value="{{ first_bonus_variant.id }}" name="bselection" data-product="{{ first_bonus_variant.id }}" data-value="{{ first_bonus_variant.title }}-{{ first_bonus_variant.id }}" checked />
+
+                <div class="cs-bonus-variant">
+
+                  <span class="cs-bonus--variant">{{ first_bonus_variant.title }}</span>
+                  
+                    {% if first_bonus_variant_compare_price > 0 %}
+                      <strong class="cs-bonus--price">{% if first_bonus_variant_price == 0 %}FREE{% else %}${{ first_bonus_variant_price }}{% endif %}</strong>
+                      <span class="cs-bonus-price">${{ first_bonus_variant_compare_price }}</span>
+
+                      <label class="el_price_bundle">
+                        <span class="price-new">{% if first_bonus_variant_price == 0 %}FREE{% else %}${{ first_bonus_variant_price }}{% endif %}</span>
+                        <span class="price-old">${{first_bonus_variant_compare_price}}</span>
+                      </label>
+                    {% else %}
+                      <strong class="cs-bonus--price">{% if first_bonus_variant_price == 0 %}FREE{% else %}${{ first_bonus_variant_price }}{% endif %}</strong>
+
+                      <label class="el_price_bundle">
+                        <span class="price-new">${{first_bonus_variant_price}}</span>
+                      </label>
+                    {% endif %}
+                </div>
+
+                <div class="cs-bonus-include">{{ first_bonus_variant_text }}</div>
+              </label>
+            </div>
+          </div>
+      		{% break %}
+        {% endif %}
+      {% endfor %}
+      
+      {% if bonus_values[1].size > 0 %}
+        {% assign second_bonus_item = bonus_values[1] | split: ':' %}
+        {% assign second_bonus_handle = second_bonus_item[0] %}
+        {% assign second_bonus_selected_variant = second_bonus_item[1] | plus: 0 %}
+
+        {% assign second_bonus_product = all_products[second_bonus_handle] %}
+        {% assign second_bonus_product_title = second_bonus_product.title %}
+        {% assign second_bonus_product_image = second_bonus_product.featured_image | img_url: '400x'  %}
+        {% assign second_bonus_product_description = second_bonus_product.description | strip_html | replace: 'View Sale Details', '' %}
+
+      	{% assign second_bonus_variant_text = second_bonus_product.metafields.product.frequent_variant_text %}
+		{% assign second_bonus_popup_heading = second_bonus_product.metafields.product.frequent_popup_heading %}
+		{% assign second_bonus_popup_description = second_bonus_product.metafields.product.frequent_popup_description %}
+ {% assign second_bonus_popup_subdescription = second_bonus_product.metafields.product.frequent_popup_subdescription %}
+        {% for second_bonus_variant in second_bonus_product.variants %}
+
+          {% if second_bonus_variant.id == second_bonus_selected_variant and second_bonus_variant.available == true %}
+
+            {% if second_bonus_product.metafields.product.frequent_variant_text != blank %}
+            	{% assign second_bonus_variant_text = second_bonus_variant.metafields.variant.frequent_variant_text %}
+            {% endif %}
+
+            {% assign second_bonus_variant_price = second_bonus_variant.price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+            {% assign second_bonus_variant_compare_price = second_bonus_variant.compare_at_price | money_without_currency | replace: ',', '' | replace: '.00', '' | plus: 0 %}
+            {% assign second_bonus_variant_savings = second_bonus_variant_compare_price | minus: second_bonus_variant_price %}
+
+            <div class="cs-bonus-separator"><span>OR</span></div>
+
+            <div class="cs-bonus-box">
+
+                  <a href="javascript:void(0);" class="cs-bonus-title" data-prod-list='' data-prod-img="{{ second_bonus_product_image }}" data-prod-desc="{{ second_bonus_product_description }}" data-html="{{ second_bonus_product_title }}" data-fheading='{{ second_bonus_popup_heading }} <span class="cs-bonus-price-saving">UPGRADE AND SAVE ${{ second_bonus_variant_savings }}</span>'  data-fdescription="{{ second_bonus_popup_description }}" data-subfdescription="{{ second_bonus_popup_subdescription }}">{{ second_bonus_product_title }}</a>
+              <div class="cs-bonus-item">
+
+                <div class="cs-bonus-feature">
+
+                  <img class="cs-bonus-image" src="{{ second_bonus_product_image }}" />
+                </div>
+
+                <label class="cs-bonus-details">
+                  <span class="cs-bonus-price-saving">UPGRADE AND SAVE ${{ second_bonus_variant_savings }}</span>
+
+                  <input class="cs-bonus-input" type="radio" value="{{ second_bonus_variant.id }}" data-product="{{ second_bonus_product.id }}"  data-value="{{ second_bonus_variant.title }}-{{ second_bonus_variant.id }}" name="bselection" />
+
+                  <div class="cs-bonus-variant">
+
+                    <span class="cs-bonus--variant">{{ second_bonus_variant.title }}</span>
+                    
+                    {% if second_bonus_variant_compare_price > 0 %}
+                      <strong class="cs-bonus--price">{% if second_bonus_variant_price == 0 %}FREE{% else %}${{ second_bonus_variant_price }}{% endif %}</strong>
+                      <span class="cs-bonus-price">${{ second_bonus_variant_compare_price }}</span>
+
+                      <label class="el_price_bundle">
+                        <span class="price-new">{% if second_bonus_variant_price == 0 %}FREE{% else %}${{ second_bonus_variant_price }}{% endif %}</span>
+                        <span class="price-old">${{second_bonus_variant_compare_price}}</span>
+                      </label>
+                    {% else %}
+                      <strong class="cs-bonus--price">{% if second_bonus_variant_price == 0 %}FREE{% else %}${{ second_bonus_variant_price }}{% endif %}</strong>
+
+                      <label class="el_price_bundle">
+                        <span class="price-new">${{second_bonus_variant_price}}</span>
+                      </label>
+                    {% endif %}
+                  </div>
+
+                  <div class="cs-bonus-include">{{ second_bonus_variant_text }}</div>
+                </label>
+              </div>
+            </div>
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    </li>
+  	{% endif %}
+  {% endfor %}
+</ul>
+
+<div class="cs-bonus-wrapper">
+  <h3 class="cs-bonus-heading">Free Accessories Included</h3>
+  <div class="cs-bonus-products"></div>
+</div>

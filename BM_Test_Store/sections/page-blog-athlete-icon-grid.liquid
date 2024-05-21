@@ -1,0 +1,82 @@
+{% include 'sections__icon-grid' %}
+
+{% schema %}
+{
+  "name": "Icon Grid",
+  "max_blocks": 6,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "toggle",
+      "label": "Toggle Section On/Off",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "background-color",
+      "label": "Background Color"
+    },
+    {
+      "type": "color",
+      "id": "text-color",
+      "label": "Text Color"
+    },
+    {
+      "type": "text",
+      "id": "section_title",
+      "label": "Section Title"
+    },
+	{
+      "type": "select",
+      "id": "icon_width",
+      "options": [
+        { "value": "cs-small", "label": "Small"},
+        { "value": "cs-large", "label": "Large"}
+      ],
+      "default": "cs-large",
+      "label": "Icon width"
+    },
+	{
+      "type": "select",
+      "id": "grid_width",
+      "options": [
+        { "value": "cs-small", "label": "Small"},
+        { "value": "cs-large", "label": "Large"}
+      ],
+      "default": "cs-small",
+      "label": "Grid width"
+    },
+    {
+      "type": "textarea",
+      "id": "section_description",
+      "label": "Section Description"
+    }
+  ],
+  "blocks" : [{
+      "type": "text",
+      "name": "Grid Item",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Image"
+        },
+        {
+          "type": "image_picker",
+          "id": "main_image",
+          "label": "Main Image"
+        },
+        {
+          "type": "text",
+          "id": "message",
+          "label": "Image Label"
+        }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Icon Grid",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}

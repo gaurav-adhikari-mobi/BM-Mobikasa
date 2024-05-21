@@ -1,0 +1,171 @@
+<div class="yt-reviews-wrapper" style="background-color: {{section.settings.background}}">
+
+  <div class="yt-reviews-inner">
+
+    <h2>{{ section.settings.heading }}</h2>
+    <p>{{ section.settings.description }}</p>
+
+    <div class="yt-reviews-slider-wrapper">
+
+      <button type="button" class="yt-slider-arrow slick-prev slick-arrow" aria-label="Previous" role="button" aria-disabled="true"><i class="mdi mdi-chevron-left"></i></button>
+      <button type="button" class="yt-slider-arrow slick-next slick-arrow" aria-label="Next" role="button" aria-disabled="false"><i class="mdi mdi-chevron-right"></i></button>
+
+      <div class="yt-reviews-slider">
+
+        {% for block in section.blocks %}
+        {% if block.type == "review"%}
+        <div class="yt-reviews-item" data-index="{{ forloop.index }}">
+
+          <div class="yt-reviews-image">
+            <img class="yt-reviews-feature" src="{{ block.settings.section_image | img_url: '512x' }}" />
+          </div>
+
+          <div class="yt-reviews-content">
+
+            <div class="yt-review-name">{{ block.settings.title }}
+
+              <span class="yt-review-verified"><i class="mdi mdi-check-circle"></i></span>
+
+              {% if block.settings.product_title.size > 0 %}
+              <a class="yt-review-product" href="{{ block.settings.product_link }}">{{ block.settings.product_title }}</a>
+              {% endif %}
+            </div>
+
+            <div class="yt-review-stars">{{ block.settings.review_data }}</div>
+
+            <div class="yt-review-small">{{ block.settings.review_small }}</div>
+
+            <a class="yt-review-popup" href="#">Continue Reading</a>
+          </div>
+        </div>
+        {% endif %}
+        {% endfor %}
+
+        <div class="yt-reviews-item">
+
+          <div class="yt-reviews-buttons">
+
+            <div class="yt-reviews-buttons-inner">
+
+              <a class="btn shadow btn-blue cs-btn-full" href="/collections/mattresses">Shop Mattresses</a>
+              <a class="btn shadow btn-white cs-btn-full" href="/pages/reviews">Read more reviews</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="yt-popup-reviews-overlay"></div>
+
+<div class="yt-popup-reviews-inner">
+
+  <a class="yt-popup-close mdi mdi-close" href="#"></a>
+  
+  <div class="yt-popup-reviews-slider">
+    
+    <button type="button" class="yt-popup-slider-arrow slick-prev slick-arrow" aria-label="Previous" role="button" aria-disabled="true"><i class="mdi mdi-chevron-left"></i></button>
+    <button type="button" class="yt-popup-slider-arrow slick-next slick-arrow" aria-label="Next" role="button" aria-disabled="false"><i class="mdi mdi-chevron-right"></i></button>
+
+    <div class="yt-popup-reviews-slides">
+
+      {% for block in section.blocks %}
+      {% if block.type == "review"%}
+      <div class="yt-reviews-item">
+
+        <div class="yt-review-name">{{ block.settings.title }}
+
+          <span class="yt-review-verified"><i class="mdi mdi-check-circle"></i></span>
+
+          {% if block.settings.product_title.size > 0 %}
+          	<a class="yt-review-product" href="{{ block.settings.product_link }}">{{ block.settings.product_title }}</a>
+          {% endif %}
+        </div>
+
+        <div class="yt-review-stars">{{ block.settings.review_data }}</div>
+
+        <div class="yt-reviews-image">
+          <img class="yt-reviews-feature" src="{{ block.settings.section_image | img_url: '512x' }}" />
+        </div>
+
+        <div class="yt-reviews-content">
+
+          <div class="yt-review-small">{{ block.settings.review_full }}</div>
+        </div>
+      </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Homepage Reviews",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading"
+    },
+    {
+      "type": "text",
+      "id": "description",
+      "label": "Description"
+    },
+    {
+      "type": "color",
+      "id": "background",
+      "label": "Background Color"
+    }
+  ],
+  "blocks" : [{
+      "type": "review",
+      "name": "Review",
+      "settings": [
+      {
+        "type": "image_picker",
+        "id": "section_image",
+        "label": "Section Image"
+      },
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title"
+      },
+      {
+        "type": "text",
+        "id": "product_title",
+        "label": "Product Title"
+      },
+      {
+        "type": "url",
+        "id": "product_link",
+        "label": "Product Link"
+      },
+      {
+        "type": "textarea",
+        "id": "review_data",
+        "label": "Reviews"
+      },
+      {
+        "type": "textarea",
+        "id": "review_small",
+        "label": "Review Small"
+      },
+      {
+        "type": "textarea",
+        "id": "review_full",
+        "label": "Review Full"
+      }
+      ]
+  }],
+  "presets": [
+    {
+      "name": "Homepage Reviews",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

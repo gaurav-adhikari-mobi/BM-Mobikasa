@@ -1,0 +1,25 @@
+{% section 'foundation-dimensions' %}
+{% include 'product-details' %}
+{% section 'pdp-foundation-icon-grid' %}
+{% section 'foundation-video' %}
+{% section 'foundation-add-details' %}
+{% section 'staggered-content--foundation' %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Foundation Reviews</h2>
+   <div class="yotpo-widget-instance" data-yotpo-instance-id="544318" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" | prepend: "https:" | replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-price="{{ product.price | divided_by: 100.00 }}" data-yotpo-currency="{{ shop.currency }}" data-yotpo-description="{{ product.description | escape }}"></div>
+  </div>
+</section>
+{% section 'pdp-accordion-foundation' %}
+{% section 'foundation-faq-component' %}
+
+{% include 'schema' %}
+  <script>
+ $('#cs-option-selection-1, #cs-option-selection-0').on('change', function() { 
+       var target = $('#cs-option-selection-1').val();
+       if(target == "Low"){
+     $(".product-slider__controls .product-slider__controls-thumb:nth-child(3)").click();
+       }
+else{}
+       });
+</script>

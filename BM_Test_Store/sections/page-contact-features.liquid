@@ -1,0 +1,52 @@
+{% include 'sections__pdp-features' %}
+
+{% schema %}
+{
+	"name": "PDP Features",
+	"max_blocks": 4,
+	"settings": [
+		{
+			"type": "header",
+			"content": "Toggle"
+		},
+		{
+			"type": "checkbox",
+			"id": "toggle",
+			"label": "Toggle Section On\/Off",
+			"default": true
+		},
+		{
+			"type": "checkbox",
+			"id": "numbered-list",
+			"label": "Use numbered list?"
+		},
+		{
+			"type": "text",
+			"id": "title",
+			"label": "Title"
+		},
+		{
+			"type": "image_picker",
+			"id": "image",
+			"label": "Feature Image"
+		}
+	],
+	"blocks": [
+		{
+			"type": "text",
+			"name": "Feature Item",
+			"settings": [
+				{
+					"type": "text",
+					"id": "title",
+					"label": "Title"
+				},
+				{
+					"type": "richtext",
+					"id": "description",
+					"label": "Description"
+				}
+			]
+		}
+	]
+}{% endschema %}

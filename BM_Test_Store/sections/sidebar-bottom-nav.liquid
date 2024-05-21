@@ -1,0 +1,92 @@
+<div class="mnav-bottom">
+    <ul class="mnav-bottom-nav">
+          
+        {% for block in section.blocks %}
+
+            {% case block.type %}
+
+                {% when "bmenu" %}
+                <li><a class="mnav-bottom-link" href="{{ block.settings.bitem-link }}">{{ block.settings.title }}</a></li>
+            {% endcase %}
+        {% endfor %}
+      
+      	{% if section.settings.show_currency_switcher == true %}
+
+        <li>
+          <div class="currency-wrapper">
+
+            {% form 'currency' %}
+            <a class="currency-selector" href="#"><img src="" /> <span>USD</span></a>
+
+            <select class="currency-dropdown" id="currency-dropdown" name="currency">
+                {% for block in section.blocks %}
+
+                    {% case block.type %}
+
+                        {% when 'currencyoption' %}
+                        <option data-href="{{block.settings.currency_option_link}}" data-image="{{block.settings.currency_option_image | img_url: 'master' }}" value="{{block.settings.title}}">{{block.settings.title}}</option>
+                    {% endcase %}
+                {% endfor %}
+            </select>
+            {% endform %}
+          </div>
+        </li>
+      
+      	{% endif %}
+    </ul>
+</div>
+
+<div class=mnav-message><p>The Best Sleep for Your Active Lifestyle</p></div>
+
+{% schema %}
+{
+    "name": "Sidebar Bottom Nav",
+    "settings": [        
+    ],
+    "blocks" : [
+		{
+        "type": "bmenu",
+        "name": "Bottom menu",
+          "settings": [
+              {
+                  "type": "text",
+                  "id": "title",
+                  "label": "Item text"
+              },
+              {
+                  "type": "url",
+                  "id": "bitem-link",
+                  "label": "Item link"
+              },
+              {
+                "type": "checkbox",
+                "id": "show_currency_switcher",
+                "label": "Show Currency Switcher",
+                "default": false
+              }
+          ]
+        },
+        {
+            "type": "currencyoption",
+            "name": "Currency Option",
+            "settings": [
+                {
+                    "type": "image_picker",
+                    "id": "currency_option_image",
+                    "label": "Currency Image"
+                },
+                {
+                    "type": "text",
+                    "id": "currency_option_link",
+                    "label": "Currency Link"
+                },
+                {
+                    "type": "text",
+                    "id": "title",
+                    "label": "Currency Name"
+                }
+            ]
+        }
+    ]
+}
+{% endschema %}

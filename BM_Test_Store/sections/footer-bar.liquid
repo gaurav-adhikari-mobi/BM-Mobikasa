@@ -1,0 +1,135 @@
+{% include 'sections__footer' %}
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": [
+        {
+          "type": "header",
+          "content": "Bottom bar"
+        },
+        {
+          "type": "link_list",
+          "id": "footer_secondary_linklist",
+          "label": "Link List"
+        },
+        {
+          "type": "text",
+          "id": "discount_title",
+          "label": "Discount Title"
+        },
+        {
+          "type": "textarea",
+          "id": "discount_description",
+          "label": "Discount Description"
+        },
+        {
+          "type": "checkbox",
+          "id": "footer_newsletter_enable",
+          "label": "Show newsletter form"
+        },
+        {
+          "type": "checkbox",
+          "id": "footer_payment_enable",
+          "label": "Show payment types"
+        },
+        {
+          "type": "checkbox",
+          "id": "footer_social_enable",
+          "label": "Show social icons"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_currency_switcher",
+          "label": "Show Currency Switcher",
+		  "default": false
+        }
+	],
+    "blocks" : [
+        {
+          "type": "menucolumn",
+          "name": "Menu",
+          "settings": [
+            {
+               "type": "text",
+               "id": "title",
+               "label": "Title"
+            },
+            {
+               "type": "url",
+               "id": "title_link",
+               "label": "Title Link"
+            },
+            {
+               "type": "text",
+               "id": "heading_1",
+               "label": "Heading"
+            },
+            {
+               "type": "link_list",
+               "id": "linklist_1",
+               "label": "Link list"
+            },
+            {
+               "type": "text",
+               "id": "heading_2",
+               "label": "Heading"
+            },
+            {
+               "type": "link_list",
+               "id": "linklist_2",
+               "label": "Link list"
+            },
+            {
+               "type": "text",
+               "id": "heading_3",
+               "label": "Heading"
+            },
+            {
+               "type": "link_list",
+               "id": "linklist_3",
+               "label": "Link list"
+            }
+          ]
+        },
+        {
+          "type": "currencyoption",
+          "name": "Currency Option",
+          "settings": [
+            {
+              "type": "image_picker",
+              "id": "currency_option_image",
+              "label": "Currency Image"
+            },
+            {
+               "type": "text",
+               "id": "currency_option_link",
+               "label": "Currency Link"
+            },
+            {
+               "type": "text",
+               "id": "currency_option_name",
+               "label": "Currency Name"
+            }
+          ]
+        },
+        {
+          "type": "newsletter",
+          "name": "Newsletter",
+          "limit": 1,
+          "settings": [
+            {
+              "type": "paragraph",
+              "content": "Subscribers are under 'Accepts Marketing' in your [customer admin](/admin/customers).  Sync to Mailchimp with the official [Mailchimp app](https://apps.shopify.com/mailchimp)."
+            },
+            {
+               "type": "textarea",
+               "id": "text",
+               "label": "Newsletter description",
+               "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
+            }
+          ]
+        }
+	]
+  }
+{% endschema %}

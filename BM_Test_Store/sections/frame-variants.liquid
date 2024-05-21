@@ -1,0 +1,48 @@
+{% include 'sections__mattress-dimensions' %}
+
+{% schema %}
+{
+  "name": "Bed Frame Variants",
+  "max_blocks": 6,
+  "settings": [],
+  "blocks" : [
+    {
+      "type": "text",
+      "name": "Variant",
+      "settings": [
+        {
+          "type": "header",
+          "content": "Variant"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Variant Title"
+        },
+        {
+          "type": "header",
+          "content": "Frame Dimensions"
+        },
+        {
+          "type": "text",
+          "id": "dimensions",
+          "label": "Variant Dimensions"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Frame Dimensions",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

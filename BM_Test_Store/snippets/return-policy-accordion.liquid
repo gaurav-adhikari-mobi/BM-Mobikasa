@@ -1,0 +1,38 @@
+<div class="return-exchange-policy" data-section-id="{{ section.id }}" data-section-type="return-exchange-policy" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+  <div class="return-exchange-policy__inner">
+  	<h2 class="return-exchange-policy__header">{{ section.settings.section_header }}</h2>
+
+    <div class="notification-container">
+      <div class="notification-container__content" style="background-color: {{section.settings.notification_background_color}}; color: {{section.settings.notification_text_color}};">
+        {{ section.settings.notification_content }}
+      </div>
+    </div>
+
+    <div class="return-exchange-policy__wrapper">
+    	<div class="return-exchange-policy__accordion-list">
+          	{% for block in section.blocks %}
+                  {% case block.type %}
+                      {% when "text" %}
+
+          				 <div class="return-exchange-policy__list-item-wrap {% if section.settings.data_view_type == 'list' %}has-type-list-wrapper{% endif %}">
+                            <a class="return-exchange-policy__list-item-title collapse {% if section.settings.data_view_type == 'list' %}has-type-list{% else %}has-type-accordion has-icon-{{section.settings.data_view_icon_position}}{% endif %}" href="#" style="color: {{ block.settings.topic_header_color}};">
+                              <h2>{{ block.settings.topic_header }}</h2>
+                            </a>
+                            <div class="return-exchange-policy__list-item-content-wrap {% if forloop.index == 1 %}in{% endif %}">
+                              	{% if block.settings.sub_topic_toggle_1 %}
+                            		<h3 style="color: {{ block.settings.sub_topic_header_color_1 }};">{{ block.settings.sub_topic_header_1 }}</h3>
+                              		<div class="return-exchange-policy__list-item-content" style="color: {{ block.settings.sub_topic_text_color_1 }};">{{ block.settings.sub_topic_description_1 }}</div>
+                              	{% endif %}
+                              	{% if block.settings.sub_topic_toggle_2 %}
+                              		<h3 style="color: {{ block.settings.sub_topic_header_color_2 }};">{{ block.settings.sub_topic_header_2 }}</h3>
+                              		<div class="return-exchange-policy__list-item-content" style="color: {{ block.settings.sub_topic_text_color_2 }};">{{ block.settings.sub_topic_description_2 }}</div>
+                              	{% endif %}
+                            </div>
+          				  </div>
+                      {% endcase %}
+              {% endfor %}
+    	</div>
+      	<div class="clearfix"></div>
+  	</div>
+  </div>  
+</div>

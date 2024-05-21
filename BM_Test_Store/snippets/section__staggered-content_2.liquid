@@ -1,0 +1,43 @@
+<div class="staggered_section__wrapper" data-section-id="{{ section.id }}" data-section-type="staggered_section__wrapper" style="background-color: {{section.settings.background-color}}; color: {{section.settings.text-color}};">
+
+  {% if section.settings.staggered_heading.size > 0 %}
+  <div class="staggered_heading text-center">
+    <h1 class="product-detail__header">{{section.settings.staggered_heading}}</h1>
+  </div>
+  {% endif %}
+
+  {% for block in section.blocks %}
+  <div class="staggered_block has-alignment-top" style="flex-direction: {{ block.settings.orientation }}">
+    {% if block.settings.media_link.size > 0 %}
+    <div class="staggered_media">
+    {% if block.settings.media == 'image' %}
+      <img class="staggered_media-image lazyload" data-src="{{ block.settings.media_link }}" alt="{{ block.settings.fallbackImageText }}">
+    {% elsif block.settings.media == 'youtube_video' %}
+      <iframe class="staggered-detail__img-image lazyload" src="https://www.youtube.com/embed/{{ block.settings.media_link }}" frameborder="0" allow="accelerometer; encrypted-media; picture-in-picture" allowfullscreen></iframe>
+    {% else %}
+      <span class="staggered_video">
+        <video poster="{{ block.settings.poster_img }}" autoplay loop playsinline muted aria-hidden="true">
+          <source src="{{ block.settings.media_link }}" type='video/mp4'/>
+          <img class="lazyload" src="{{ block.settings.poster_img }}" title="Video not supported by browser." alt="{{ block.settings.fallbackImageText }}">
+        </video>
+      </span>      
+    {% endif %}
+    </div>
+    {% endif %}
+    <div class="staggered_text_content {% if block.settings.orientation == 'row-reverse' %} positionLeft {% else %} positionRight {% endif %}">
+      {% if block.settings.topic_header.size > 0 %}
+      <h2 class="staggered_block_heading" style="color: {{ block.settings.topic_header_color}};">{{ block.settings.topic_header }}</h2>
+      {% endif %}
+      {% if block.settings.detail_description.size > 0 %}
+          <p class="staggered_block_detail_text" style="color: {{ block.settings.detail_description_text_color }};">{{ block.settings.detail_description }}</p>
+      {% endif %}
+      {% if block.settings.detail_misc_text.size > 0 %}
+      	  {{ block.settings.detail_misc_text }}
+      {% endif %}
+      {% if block.settings.primary_button_text.size > 0 %}
+      <div class="staggered_link"><a href="{{block.settings.primary_button_link}}" style="cursor: pointer;">{{block.settings.primary_button_text}}</a></div>
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>

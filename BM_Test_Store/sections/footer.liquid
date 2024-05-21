@@ -1,0 +1,121 @@
+{% include 'sections__footer' %}
+
+{% schema %}
+{
+  "name": "Footer",
+  "max_blocks": 7,
+  "settings": [
+    {
+      "label": "Footer logo",
+      "type": "image_picker",
+      "id": "footer_image",
+      "info": "400 x 200px .png"
+    },
+	{
+      "type": "text",
+      "id": "footer-logo_alt",
+      "label": "Alt text"
+    },
+    {
+      "type": "header",
+      "content": "Bottom bar"
+    },
+    {
+      "type": "link_list",
+      "id": "footer_secondary_linklist",
+      "label": "Link List"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer_payment_enable",
+      "label": "Show payment types"
+    },
+    {
+      "type": "checkbox",
+      "id": "footer_social_enable",
+      "label": "Show social icons"
+    }
+  ],
+  "blocks" : [
+    {
+      "type": "linklist",
+      "name": "Link list",
+      "settings": [
+        {
+           "type": "link_list",
+           "id": "linklist",
+           "label": "Link list",
+           "default": "main-menu"
+        }
+      ]
+    },
+    {
+      "type": "currencyoption",
+      "name": "Currency Option",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "currency_option_image",
+          "label": "Currency Image"
+        },
+        {
+           "type": "text",
+           "id": "currency_option_link",
+           "label": "Currency Link"
+        },
+        {
+           "type": "text",
+           "id": "currency_option_name",
+           "label": "Currency Name"
+        }
+      ]
+    },
+    {
+      "type": "newsletter",
+      "name": "Newsletter",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "Subscribers are under 'Accepts Marketing' in your [customer admin](/admin/customers).  Sync to Mailchimp with the official [Mailchimp app](https://apps.shopify.com/mailchimp)."
+        },
+        {
+           "type": "textarea",
+           "id": "text",
+           "label": "Newsletter description",
+           "default": "Subscribe to get special offers, free giveaways, and once-in-a-lifetime deals."
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Heading",
+          "default": "Text column"
+        },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Text",
+          "default": "<p>Share store details, promotions, or brand content with your customers.</p>"
+        }
+      ]
+    },
+    {
+      "type": "page",
+      "name": "Page",
+      "settings": [
+        {
+          "id": "page",
+          "type": "page",
+          "label": "Page"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

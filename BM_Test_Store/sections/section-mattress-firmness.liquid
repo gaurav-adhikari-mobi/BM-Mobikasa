@@ -1,0 +1,163 @@
+{{ 'mattress-firmness-section.scss.css' | asset_url | stylesheet_tag }}
+
+<div class="firmness-index-section__wrapper">
+  <div id="page-wrap">
+    <div class="flex flex-align-items-center flex-row section-header flex-justify-content-space-evenly">
+      <h2 class="margin-bottom-0">{{ section.settings.header-text }}</h2>
+
+      <div class="select--large">
+        <select name="slct" class="select" id="firmness-scale-dropdown">
+          {% for block in section.blocks %}
+          <option value="{{ block.id }}">{{ block.settings.optionText }}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    
+    <div class="product-firmness-wrap">
+     {% for block in section.blocks %}
+      <div class="content inv" data-block-id="{{ block.id }}">
+        
+        <div class="card_wrapper text-left">
+          <h3 class="simplegrid-item__title padding-x-0">Our Recommendation</h3>
+
+          <div class="card _DsktOnly">
+            {% assign getHandle = block.settings.mattressProductHandle %}
+            {% assign productDetail = all_products[ getHandle ] %}
+            {% assign productTitle = productDetail.title | split: ' ' %}
+            {% if productDetail == blank %}
+            <h1>No product found</h1>
+            {% else %}
+            <h3>
+              <div class="productTitle f1 text-center padding-bottom-sm">
+                <span class="title__firstHalf">{{ productTitle[0] }}</span><span class="title__secondHalf f2">{{ productTitle[1] }}</span>
+              </div>
+            </h3>
+            <div class="padding-bottom-sm"><img class="productImage" src="{{ block.settings.mattressImage | img_url: 'master' }}"></div>
+              <div class="text-center"><a class="btn btn-white shadow cs-btn-large" href="{{ shop.url }}{{ productDetail.url }}">Shop Now</a></div>
+            <!-- <div class="text-center font-small productPricing">${{ productDetail.variants.first.price | divided_by: 100 }}
+<div class="starting">Starting</div>
+</div> -->
+            {% endif %}
+          </div>
+          
+        </div>
+        
+        <div class="product-text-wrapper text-left">
+          <h3 class="simplegrid-item__title padding-x-0">Firmness Guide</h3>
+        
+          <div class="product-text-container">
+
+            <div class="flex flex-center relative firmness-scale">
+              <div class="firmness-scale__rating--{{ block.settings.firmnessLevel | downcase }} text-center">
+                <div class="firmnessRange">
+                  {% assign firmness = block.settings.firmnessLevel | downcase %}
+                  {% if firmness == "hybrid" %}
+                  {{ settings.hybrid_firmness_value }}
+                  {% elsif firmness == "pro" %}
+                  {{ settings.pro_firmness_value }}
+                  {% elsif firmness == "mattress" %}
+                  {{ settings.mattress_firmness_value }}
+                  {% endif %}
+                </div>
+                <div class="firmnessLevel">Bear {{ block.settings.firmnessLevel }}</div>
+                <div class="firmness-scale__rating--point text-center"></div>
+              </div>
+
+              <div class="text-center">
+                <div class="firmness-scale__label text-center">Soft Feel</div>
+              </div>
+
+              <div>
+                <div class="firmness-scale__number">1</div>
+              </div>
+
+              <div class="firmness-scale__scale"></div>
+              <div class="firmness-scale__line"></div>
+              <div class="firmness-scale__scale"></div>
+
+              <div>
+                <div class="firmness-scale__number">10</div>
+              </div>
+
+              <div class="text-center">
+                <div class="firmness-scale__label">Firm Feel</div>
+              </div>
+            </div>
+            
+            <div class="feedbackDisclaimer">*Based on customer feedback.</div>
+            
+            <div class="list">
+            {{ block.settings.mattressDetailsText }}
+          </div>
+          </div>
+          
+          
+        </div>
+
+        
+      </div>
+      <div class="clearfix"></div>
+     {% endfor %}
+    </div> 
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Mattress Firmness Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "header-text",
+      "label": "Header Text"
+    }
+  ],
+  "blocks": [
+  	{
+      "type": "text",
+      "name": "Sleeping Posture",
+      "settings": [
+  		{
+          "type": "text",
+          "id": "optionText",
+          "label": "Posture"
+  		},
+  		{
+          "type": "text",
+          "id": "firmnessLevel",
+          "label": "Firmness Level ( Hybrid / Pro / Mattress )"
+  		},
+  		{
+          "type": "image_picker",
+          "id": "mattressImage",
+          "label": "Mattress Image"
+  		},
+        {
+          "type": "text",
+          "id": "mattressProductHandle",
+          "label": "Product Handle"
+        },
+        {
+          "type": "textarea",
+          "id": "mattressDetailsText",
+          "label": "Mattress Details",
+          "info":"Paste List code here"
+        }
+      ]
+  	}
+  ],
+  "presets": [
+    {
+      "name": "Mattress Firmness Section",
+      "category": "Text"
+    }
+  ]
+}
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

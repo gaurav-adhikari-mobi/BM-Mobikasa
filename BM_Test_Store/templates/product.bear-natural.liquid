@@ -1,0 +1,286 @@
+{% include 'product-details' %}
+{% section 'bear-natural-pdp-icon-grid' %}
+{% section 'staggered-content--sale-page' %}
+{% section 'natural-section-publications-2' %}
+
+{% section 'natural-pdp-imageblockcontent-hybrid' %}
+{% comment %}
+{% section 'simple-grid-natural-hybrid' %}
+{% endcomment %}
+{% section 'natural-staggered-content--hybrid' %}
+{% section 'simple-grid--natural' %}
+{% section 'natural-pdp-accordion-hybrid' %}
+{% section 'life-style-grid' %}
+{% section 'natural-faq-component' %}
+
+
+{% include 'schema' %}
+
+  <script>
+    $(".read-more-star-hybrid").click(function(){
+  $(".cse").show();
+});
+       $(".cse-blue ,.cse-close-icon").click(function(){
+  $(".cse").hide();
+});
+    $(document).mouseup(function(e) 
+{
+    var container = $(".cse-inner");
+
+    // if the target of the click isn't the container nor a descendant of the container
+    if (!container.is(e.target) && container.has(e.target).length === 0) 
+    {
+      $(".cse").hide();
+    }
+});
+  </script>
+<style>
+  .product-splitit-content{
+    display: none!important;
+  }
+  .cse-inner{
+        border-radius: 4px;
+    box-shadow: 0 24px 24px 0 rgb(0 0 0 / 26%), 0 0 24px 0 rgb(0 0 0 / 12%);
+    background-color: #fefefe;
+    margin: auto;
+    border: 1px solid #888;
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+    padding: 24px;
+    background: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: 99999999;
+    transform: translate(-50%, -50%);
+    max-width: 569px!important;
+  }
+  .cse{
+    display: none;
+    position: fixed;
+    z-index: 99999997;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+  .cse .close {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 21px;
+    font-weight: bold;
+}
+  td{
+    width: 50%;
+  }
+  .cs-fcompare-table tr td:nth-child(4n+4) {
+    display: none;
+}
+    .cs-fcompare-table tr td:nth-child(5n+5) {
+    display: none;
+}
+  .cs-fcompare-table tr td:nth-of-type(2) {
+    background-color: #fff;
+}
+  @media only screen and (max-width: 768px) {
+  .cs-info-box {
+   display: flex;
+  }
+    .cs-fcompare-table tr td:nth-of-type(1) {
+    width: 30%;
+}
+    .cs-fcompare-table tr td {
+    width: 35%;
+}
+    .cs-fcompare-table tr{
+      display: flex;
+    }
+    .cs-fcompare-table{
+      min-width: auto;
+    }
+    .cse-inner .mobheight{
+     max-height: 270px;
+    overflow: auto;
+    }
+}
+  .firmness-guide-linkk{
+      color: #2e577c !important;
+    cursor: pointer !important;
+          font-weight: 500;
+    margin-left: 16px;
+    float: right;
+    }
+</style>
+<div class="modali">
+ <div class="cs-modal-overlayi"></div>
+  <div class="modal-contenti">
+   <span class="closei mdi mdi-close" data-uw-cer-popup-close="" tabindex="0" aria-label="Close dialog" role="button"></span>
+     <h3>Better Sleep to Boost Recovery</h3>
+      <div class="modal-description">
+       <img class="desk" style="width: 100%;padding: 0 1px;" src="https://cdn.shopify.com/s/files/1/0661/5815/files/BearOriginal-CelliantCoverPopup.jpg?v=1692821117">
+       <img class="mob" style="width: 100%;padding: 0 1px;margin: auto;" src="https://cdn.shopify.com/s/files/1/0661/5815/files/BearOriginal-CelliantCoverMobilePopup.jpg?v=1692821117">
+  </div>
+  <div class="modal-ctai">
+  <div class="orderi"><a href="javascript:void(0)" data-uw-rm-brl="exc" data-value="Queen-39281250730089" tabindex="0">YES, INCLUDE IT</a></div>
+ <div class="close-modal-ctai"><a href="javascript:void(0)" data-uw-rm-brl="exc" data-value="Queen-39281250730089" tabindex="0">CLOSE</a></div>
+  </div>
+    </div>
+  </div>
+
+
+  <style>
+    .close-modal-ctai a {
+  display: inline-block;
+  background: #989898;
+  text-decoration: none;
+  clear: both;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  padding: 13px;
+  margin: 0 auto;
+  border-radius: 3px;
+  font-weight: bold;
+  width: 100%;
+       cursor: pointer;
+}
+    .orderi a {
+  display: inline-block;
+  background: #1e3d54;
+  text-decoration: none;
+  clear: both;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  padding: 13px;
+  margin: 0 auto;
+  border-radius: 3px;
+  font-weight: bold;
+  width: 100%;
+       cursor: pointer;
+}
+    .close-modal-ctai {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+  text-align: center;
+     
+}
+    .orderi {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+  text-align: center;
+}
+.modal-ctai {
+  clear: both;
+  margin: 30px -10px 0;
+display: flex;
+  justify-content: center;
+}
+    .closei {
+  color: #aaaaaa;
+  float: right;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 21px;
+  font-weight: bold;
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  padding: 0 7px;
+       cursor: pointer;
+}
+    .flexed-pop img{
+      max-width: 200px;
+      width: 90%;
+      margin: auto;
+       margin-right: 30px;
+      margin-left: 0;
+    }
+    .flexed-pop{
+      display: flex;
+      align-items: center;
+    }
+    .modali {
+      display: none;
+  position: fixed;
+  z-index: 99999997;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+    .cs-modal-overlayi{
+      position: fixed;
+  z-index: 99999998;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+    }
+    .modal-contenti{
+      border-radius: 4px;
+  box-shadow: 0 24px 24px 0 rgba(0, 0, 0, 0.26), 0 0 24px 0 rgba(0, 0, 0, 0.12);
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  padding: 24px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 99999999;
+  transform: translate(-50%, -50%);
+    }
+    .desk{
+      display: block!important;
+    }
+    .mob{
+      display: none!important;
+    }
+    @media only screen and (max-width: 600px) {
+.desk{
+display: none!important;
+}
+      .mob{
+        display: block!important;
+      }
+}
+  </style>
+  <script>
+    $(".close-modal-ctai, .closei").click(function(){
+$(".modali").hide();
+});
+     $(".orderi").click(function(){
+    $("#cs-option-selection-1").val("Yes").change();
+              $(".product-slider__controls .product-slider__controls-thumb:nth-child(2)").click();
+       $(".modali").hide();
+});
+     $(".firmness-guide-linkk").click(function(){
+       event.preventDefault()
+$(".modali").show();
+});
+ $('#cs-option-selection-1, #cs-option-selection-0').on('change', function() { 
+       var target = $('#cs-option-selection-1').val();
+       if(target == "Yes"){
+     $(".product-slider__controls .product-slider__controls-thumb:nth-child(2)").click();
+       }
+else{}
+       });
+
+
+  </script>

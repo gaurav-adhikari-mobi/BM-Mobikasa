@@ -1,0 +1,140 @@
+<a class="compare-tag" href="{{section.settings.button_link}}">Our newest</a>
+<span class="fcompare-title">{{section.settings.product_title}}</span>
+<span class="fcompare-button">4 Layers, 12" Height</span>
+
+<a href="{{section.settings.button_link}}">
+	<img class="fcompare-image lazyload" data-src="{{ section.settings.section_image | img_url: 'master' }}"/>
+</a>
+
+{% comment %}
+<ul class="features-list simple-features">
+{% for block in section.blocks %}
+	{% if block.type == 'simplefeature' %}
+  		<li>{{block.settings.simple_feature_text}}</li>
+	{% endif %}
+{% endfor %}
+</ul>
+
+{% if section.settings.show_advance_feature == true %}
+<div class="list-heading">Advanced Features:</div>
+
+<ul class="features-list advance-features">
+{% for block in section.blocks %}
+	{% if block.type == 'advancefeature' %}
+		<li>{{block.settings.advance_feature_text}}</li>
+	{% endif %}
+{% endfor %}
+</ul>
+{% endif %}
+{% endcomment %}
+
+<ul class="compare-list">
+
+	<li>
+		<strong>Average Customer Firmness Rating</strong>
+        <span>5.9 / 10</span>
+  	</li>
+  	<li>
+		<strong>Feel</strong>
+        <span>Contouring and cradling with a touch of softness</span>
+  	</li>
+  	<li>
+		<strong>Best For</strong>
+        <span>Athletes and those who want the best technology</span>
+  	</li>
+ 	 <li>
+		<strong>Notable Quote</strong>
+        <span>“Very comfortable. Soft but firm at the same time. Back pain went away quickly. I don’t feel any movement of my spouse during the night.” - Taylor Z.</span>
+  	</li>
+  <li>
+		<strong>Cooling Technology</strong>
+        <span>Excellent</span>
+  	</li>
+  <li>
+		<strong>Pressure Relief and Spinal Alignment</strong>
+        <span>Copper foam and gel memory foams</span>
+  	</li>
+  <li>
+		<strong>Edge Support</strong>
+        <span>Very Good</span>
+  	</li>
+  <li>
+		<strong>Environmentally Friendly</strong>
+        <span>Copper Certi-PUR US Certified</span>
+  	</li>
+   <li>
+     <strong>Sleep Technology</strong>
+        <span><a href="https://www.bearmattress.com/pages/technology">Celliant Infrared-Yarn</a> Cover</span>
+  	</li>
+   <li>
+		<strong>Made in America</strong>
+        <span>Yes</span>
+  	</li>
+  	<li>
+		<strong>Warranty</strong>
+        <span>10 Years</span>
+  	</li>
+  	<li class="fcompare-bottom">
+		<a href="{{section.settings.button_link}}">Queen - $1090</a> 
+      	<a class="btn btn-blue shadow" href="{{section.settings.button_link}}">{{section.settings.button_text}}</a>
+  	</li>
+</ul>
+
+{% schema %}
+{
+	"name": "Compare feature pro",	
+	"settings": [
+        {
+            "type": "image_picker",
+            "id": "section_image",
+            "label": "Section image"
+        },
+        {
+            "type": "text",
+            "id": "product_title",
+            "label": "Product title"
+        },
+        {
+            "type": "text",
+            "id": "button_text",
+            "label": "Button text"
+        },
+        {
+            "type": "text",
+            "id": "button_link",
+            "label": "Button link"
+        },
+        {
+            "type": "checkbox",
+            "id": "show_advance_feature",
+            "label": "Show advanced feature",
+            "default": false
+        }
+	],
+
+	"blocks": [
+		{
+			"type": "simplefeature",
+			"name": "Standard feature",
+			"settings": [
+				{
+					"type": "text",
+					"id": "simple_feature_text",
+					"label": "Standard feature"
+				}
+			]
+	  	},
+		{
+			"type": "advancefeature",
+			"name": "Advanced feature",
+			"settings": [
+				{
+					"type": "text",
+					"id": "advance_feature_text",
+					"label": "Advanced feature"
+				}
+			]
+	  	}
+	]
+}
+{% endschema %}

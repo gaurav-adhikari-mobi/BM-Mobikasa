@@ -1,0 +1,550 @@
+jQuery(function(){
+
+  $(document).on('click', ".cs-tooltip-box", function(){
+    var _this = $(this);
+    
+    var coupon = _this.data('code');
+
+    const selection = navigator.clipboard;
+
+    selection.writeText(coupon).then(function() {
+      _this.find('.custom-tooltip').text('Code Copied!')
+    });
+
+    return false;
+  });
+
+  $(document).on('mouseleave', ".cs-tooltip-box", function(){
+    var _this = $(this);
+
+    _this.find('.custom-tooltip').text('Click To Copy');
+
+    return false;
+  });
+
+  var next_step = $('input[name="step"]').val();
+
+  if(next_step == 'shipping_method' || next_step == 'contact_information'){
+    $('body').addClass('shipping');
+
+    if(next_step == 'shipping_method'){
+      $('body').addClass('Delivery');
+    } else {
+      $('body').removeClass('Delivery');
+    }
+  } else{
+    $('body').removeClass('shipping');
+    $('body').addClass('payment');
+  }
+
+  jQuery('.__add_info_pop').on('click', function(){
+    jQuery('._additional_info_block').slideToggle();
+    jQuery('body').toggleClass('__checkout_fixed');
+    jQuery(this).toggleClass('show');
+  });
+
+  jQuery('.__add_info_pop_close').on('click', function(){
+    jQuery('._additional_info_block').slideToggle();
+    jQuery('body').toggleClass('__checkout_fixed');
+    jQuery('.__add_info_pop').toggleClass('show');
+  });
+
+  jQuery('.cs-faq-wrapper h3').click(function() {
+    
+    if(jQuery(this).parents('.cs-faq-section').hasClass('active')) {
+      jQuery('.cs-faq-section').removeClass('active');
+      jQuery('.cs-faq-section .cs-faq-body').slideUp(250);
+    } else {
+      jQuery('.cs-faq-section').removeClass('active');
+      jQuery(this).parents('.cs-faq-section').addClass('active');
+
+      jQuery('.cs-faq-section .cs-faq-body').slideUp(250);
+      jQuery(this).parents('.cs-faq-section').find('.cs-faq-body').slideDown(250);
+    }
+
+    return false;
+  })
+
+  if($('#amazon-payments-address-book-widget').length > 0){
+    $('.section__title').hide();
+  }
+  
+  if($('.section.section--shipping-address').is(':visible')) {
+    $('.section.section--shipping-address .section__header .section__text').remove();
+    $('.section.section--shipping-address .section__header').append('<p class="section__text">We are unable to ship to PO Boxes.</p>');;
+  }
+
+  if($('.section.section--payment-method').is(':visible')) {
+    $('.step__footer__continue-btn').addClass('last-section-payment');
+    $(".content-box__row--tight-spacing-vertical .review-block:last-child").css({"display":"block","margin-top": "0.85714em", "padding-top": "0.85714em", "border-top": "1px solid #e6e6e6"});
+  }
+
+  if(window.location.href.indexOf("thank_you") > -1) {
+    $(".breadcrumb").css("visibility","hidden"); 
+    $(".step__footer__info span").find("a").attr("href","https://www.bearmattress.com/pages/contact");
+    $(".step__footer__info span").find("a").attr("target","_blank");
+  }
+  
+  if(window.location.href.indexOf("thank_you") > -1 || window.location.href.indexOf("orders") > -1){
+
+    if(has_shipping_notice_products == true) {
+      var shippingNotice = '<div class="shipping-notice">'+shipping_notice+'</div>';
+	  $('.os-header__heading').append(shippingNotice);
+    }
+  }
+
+  jQuery('input#checkout_reduction_code').attr('placeholder', 'Discount Code');
+  jQuery('label[for="checkout_reduction_code"]').text('Discount Code');
+  
+  if($('body').hasClass('payment')) {
+    $('[data-select-gateway=53528259] .offsite-payment-gateway-logo').attr('src', '//cdn.shopify.com/s/files/1/0661/5815/files/affirm-logo.png');
+	$('[data-select-gateway=53528259] .radio__label__primary').append('<span class="offsite-payment-gateway-text">Monthly payments with as low as 0% APR financing</span>');
+
+    $('[data-select-gateway=63763677289] .offsite-payment-gateway-logo').attr('src', '//cdn.shopify.com/s/files/1/0661/5815/files/splitit-logo.png');
+	$('[data-select-gateway=63763677289] .radio__label__primary').append('<span class="offsite-payment-gateway-text">Monthly payments using your credit card at 0% interest</span>');
+  }
+
+  if($('body').hasClass('shipping')) {
+    $('.main__payment_method .cs-dynamic-checkout').remove();
+    $('.main__payment_method').append('<div class="cs-dynamic-checkout"><h2 class="cs-dynamic-heading-top">Looking to Finance?</h2><div class="cs-dynamic-checkout-finance"><div class="cs-dynamic-checkout-affirm"><img src="//cdn.shopify.com/s/files/1/0661/5815/files/affirm-logo.png?v=5435435435" /></div><div class="cs-dynamic-checkout-splitit"><img src="https://cdn.shopify.com/s/files/1/0661/5815/files/shoppay-svg_2.png?v=1658942032" /></div></div><h2 class="cs-dynamic-heading-bottom">Select one at Payments</h2></div>');
+  }
+
+  //Format property or product
+  var ccIntervalCount = 0;
+
+  var ccInterval = setInterval(function(){
+
+    if($('span[data-checkout-discount-amount-target]').length > 0){
+      
+      if(!$('span[data-checkout-discount-amount-target]').hasClass('mod-finish')){
+        
+        var totalDiscountedPrice = 0;
+        
+        jQuery('tr.product').each(function(){
+
+          var productProperty = jQuery(this).find('.product__description__property');
+          var _this = jQuery(this);
+
+          if(productProperty.length > 0){
+
+            productProperty.each(function(){
+              var thisVariantVal = $(this).text().replace(/--/g, '<br />').split('Variant: ')[1];
+              $(this).html(thisVariantVal);
+
+              if($(this).text().indexOf('FREE') > -1) {
+                $(this).css('display', 'none');
+                $(this).siblings('.product__description__variant').css('display', 'none');
+              } else if($(this).text().indexOf('combo') > -1 || $(this).text().indexOf('celliant') > -1) {
+                $(this).css('display', 'none');
+              } else if($(this).text().indexOf('CELLIANT') > -1) {
+                $(this).css('display', 'none');
+                _this.find(".product__price .order-summary__emphasis").html("$0");
+              } else {
+                $(this).css('opacity', 1);
+              }
+            });
+          }
+
+          var bundleCheck = jQuery(this).find('.product__description__name')
+
+          if(bundleCheck.length > 0) {
+            var isBundle = bundleCheck.text().indexOf('Bundle');
+
+            if(isBundle > 0) {
+              jQuery(this).find('.product__description__variant').hide();
+            }
+          }
+        });
+
+        if(totalDiscountedPrice > 0) {
+          
+          var defaultDiscount = parseInt($('span[data-checkout-discount-amount-target]').attr('data-checkout-discount-amount-target'))/100;
+          var totalDiscount = parseInt(defaultDiscount) + parseInt(totalDiscountedPrice);
+          $('span[data-checkout-discount-amount-target]').html('- $' + totalDiscount);
+          $('span[data-checkout-discount-amount-target]').addClass('mod-finish');
+        }
+
+        jQuery('.product__description__variant').css('opacity', 1);
+      } else {
+        ccIntervalCount++;
+      }
+    } else {
+      
+      if(jQuery('tr[data-product-id="6989665763433"]').length > 0){
+        
+        var totalDiscountedPrice = 0;
+        
+        jQuery('tr.product').each(function(){
+          
+          var productProperty = jQuery(this).find('.product__description__property');
+          var _this = jQuery(this);
+
+          if(productProperty.length > 0){
+
+            productProperty.each(function(){
+              var thisVariantVal = $(this).text().replace(/--/g, '<br />').split('Variant: ')[1];
+              $(this).html(thisVariantVal);
+
+              if($(this).text().indexOf('FREE') > -1) {
+                $(this).css('display', 'none');
+                $(this).siblings('.product__description__variant').css('display', 'none');
+              } else if($(this).text().indexOf('combo') > -1 || $(this).text().indexOf('celliant') > -1) {
+                $(this).css('display', 'none');
+              } else if($(this).text().indexOf('CELLIANT') > -1) {
+                $(this).css('display', 'none');
+                _this.find(".product__price .order-summary__emphasis").html("$0");
+              } else {
+                $(this).css('opacity', 1);
+              }
+            });
+          }
+
+          var bundleCheck = jQuery(this).find('.product__description__name')
+
+          if(bundleCheck.length > 0) {
+            var isBundle = bundleCheck.text().indexOf('Bundle');
+
+            if(isBundle > 0) {
+              jQuery(this).find('.product__description__variant').hide();
+            }
+          }
+        });
+
+        if(totalDiscountedPrice > 0){
+          
+          if($('.hybrid-bonus-info').length<=0){
+            $('.order-summary__section--total-lines tbody.total-line-table__tbody').prepend('<tr class="total-line hybrid-bonus-info"><th class="total-line__name">HYBRID BONUS SAVINGS</th><td class="total-line__price"><span class="order-summary__emphasis">- $' + totalDiscountedPrice + '</span></td></tr>');                    
+          }     
+          ccIntervalCount++;
+        }
+      }
+    }
+
+    if(ccIntervalCount >=5){
+      clearInterval(ccInterval);
+    }
+  },1000);
+
+  jQuery('tr.product').addClass('prd__row');
+  
+  jQuery(document).on('click', '.applied-reduction-code__clear-button', function(){
+
+    var intervalCount = 0;
+    
+    var afterDiscountRemove = setInterval(function(){
+      
+      if(jQuery('.total-line.total-line--reduction').length <= 0){              
+
+        if($('.notice.notice--success').length > 0){
+
+          if(jQuery('tr[data-product-id="6989665763433"]').length > 0){
+
+            var totalDiscountedPrice = 0;
+            
+            jQuery('tr.product').each(function(){
+              
+              var productProperty = jQuery(this).find('.product__description__property');
+              var _this = jQuery(this);
+
+              if(productProperty.length > 0){
+
+                productProperty.each(function(){
+                  var thisVariantVal = $(this).text().replace(/--/g, '<br />').split('Variant: ')[1];
+                  $(this).html(thisVariantVal);
+
+                  if($(this).text().indexOf('FREE') > -1) {
+                    $(this).css('display', 'none');
+                    $(this).siblings('.product__description__variant').css('display', 'none');
+                  } else if($(this).text().indexOf('combo') > -1 || $(this).text().indexOf('celliant') > -1) {
+                    $(this).css('display', 'none');
+                  } else if($(this).text().indexOf('CELLIANT') > -1) {
+                    $(this).css('display', 'none');
+            		_this.find(".product__price .order-summary__emphasis").html("$0");
+                  } else {
+                    $(this).css('opacity', 1);
+                  }
+                });
+              }
+
+              var bundleCheck = jQuery(this).find('.product__description__name')
+
+              if(bundleCheck.length > 0) {
+                var isBundle = bundleCheck.text().indexOf('Bundle');
+
+                if(isBundle > 0) {
+                  jQuery(this).find('.product__description__variant').hide();
+                }
+              }
+            });
+
+            if(totalDiscountedPrice > 0){
+              
+              if($('.hybrid-bonus-info').length<=0){
+                $('.order-summary__section--total-lines tbody.total-line-table__tbody').prepend('<tr class="total-line hybrid-bonus-info"><th class="total-line__name">HYBRID BONUS SAVINGS</th><td class="total-line__price"><span class="order-summary__emphasis">- $' + totalDiscountedPrice + '</span></td></tr>');                    
+              }                  	
+            }
+          }   
+        } else {
+          clearInterval(afterDiscountRemove);                
+        }
+      }
+    }, 100);
+  });
+
+  jQuery(document).on('click', 'button[data-trekkie-id="apply_discount_button"]', function(){
+    
+      var afterDiscountAdd = setInterval(function(){
+      
+      if(jQuery('.total-line.total-line--reduction').length > 0){   
+        
+        var totalDiscountedPrice = 0;
+        
+        afterDiscountAdd++;
+        
+        jQuery('tr.product').each(function(){
+          
+          var productProperty = jQuery(this).find('.product__description__property');
+          var _this = jQuery(this);
+
+          if(productProperty.length > 0){
+
+            productProperty.each(function(){
+              var thisVariantVal = $(this).text().replace(/--/g, '<br />').split('Variant: ')[1];
+              $(this).html(thisVariantVal);
+
+              if($(this).text().indexOf('FREE') > -1) {
+                $(this).css('display', 'none');
+                $(this).siblings('.product__description__variant').css('display', 'none');
+              } else if($(this).text().indexOf('combo') > -1 || $(this).text().indexOf('celliant') > -1) {
+                $(this).css('display', 'none');
+              } else if($(this).text().indexOf('CELLIANT') > -1) {
+                $(this).css('display', 'none');
+                _this.find(".product__price .order-summary__emphasis").html("$0");
+              } else {
+                $(this).css('opacity', 1);
+              }
+            });
+          }
+
+          var bundleCheck = jQuery(this).find('.product__description__name')
+
+          if(bundleCheck.length > 0) {
+            var isBundle = bundleCheck.text().indexOf('Bundle');
+
+            if(isBundle > 0) {
+              jQuery(this).find('.product__description__variant').hide();
+            }
+          }
+        });
+
+        if(totalDiscountedPrice > 0){
+          
+          var defaultDiscount = parseInt($('span[data-checkout-discount-amount-target]').attr('data-checkout-discount-amount-target'))/100;
+          var totalDiscount = parseInt(defaultDiscount) + parseInt(totalDiscountedPrice);
+          $('span[data-checkout-discount-amount-target]').html('- $' + totalDiscount);
+          $('span[data-checkout-discount-amount-target]').addClass('mod-finish');
+        }
+
+        if(afterDiscountAdd == 10){
+          clearInterval(afterDiscountAdd);
+        }             
+      }
+    }, 100);
+  });
+
+  if($('body').hasClass('shipping Delivery')) {
+
+    var taxParent = $(".order-summary__section .total-line--taxes");
+    var taxEl = taxParent.find(".order-summary__emphasis");
+    var taxValue = taxEl.data("checkout-total-taxes-target");
+
+    if(Number(taxValue) == 0) {
+      
+      setInterval(function(){
+        taxParent.removeClass("hidden");
+        taxEl.text("Calculated at next step");
+        console.log(1);
+      }, 400);
+    }
+  }
+
+  jQuery(document).on("mouseenter", ".tooltip-box", function() {
+    var _this = this;
+    var offsetLeft = jQuery(_this).offset().left;
+    var winWidth = jQuery(window).outerWidth();
+    var offsetRight = winWidth - (offsetLeft + 20);
+    var offsetElement = jQuery(_this).find(".custom-tooltip");
+
+    $(".tooltip-box").removeClass("has-tooltip");
+    $(".tooltip-box .has-tooltip").removeClass("point-left point-right");
+
+    if(offsetLeft < 100) {
+      offsetElement.css({left: 0, right: "auto", marginLeft: 0});
+      offsetElement.addClass("point-left");
+    }
+
+    if(offsetRight < 100) {
+      offsetElement.css({left: "auto", right: 0, marginLeft: 0});
+      offsetElement.addClass("point-right");
+    }
+
+    if(offsetLeft > 100 && offsetRight > 100) {
+      offsetElement.css({left: "50%", right: "auto", marginLeft: "-90px"});
+      offsetElement.removeClass("point-left point-right");
+    }
+
+    setTimeout(function(){
+      jQuery(_this).addClass("has-tooltip");
+    }, 250);
+  }).on("mouseleave", ".tooltip-box", function() {
+
+    var _this = this;
+    var offsetElement = jQuery(_this).find(".custom-tooltip");
+
+    jQuery(_this).removeClass("has-tooltip");
+  });
+
+  var contentArray_1 = ['{{settings.shipping_method_value1 | strip_newlines }}', '{{settings.shipping_method_value2 | strip_newlines }}', '{{settings.shipping_method_value3 | strip_newlines }}', '{{settings.shipping_method_value4 | strip_newlines }}'];
+                        var tooltipArray_1 = ['{{settings.tooltip_value1 | strip_newlines }}', '{{settings.tooltip_value2 | strip_newlines }}', '{{settings.tooltip_value3 | strip_newlines }}', '{{settings.tooltip_value4 | strip_newlines }}'];
+                        var disclaimerArray_1 = ['{{settings.disclaimer_value1 | strip_newlines }}', '{{settings.disclaimer_value2 | strip_newlines }}', '{{settings.disclaimer_value3 | strip_newlines }}', '{{settings.disclaimer_value4 | strip_newlines }}'];
+                        var modalTitleArray_1 = ['{{settings.modal_title1 | strip_newlines }}', '{{settings.modal_title2 | strip_newlines }}', '{{settings.modal_title3 | strip_newlines }}', '{{settings.modal_title4 | strip_newlines }}'];
+                        var modalContentArray_1 = ['{{settings.modal_content1 | strip_newlines }}', '{{settings.modal_content2 | strip_newlines }}', '{{settings.modal_content3 | strip_newlines }}', '{{settings.modal_content4 | strip_newlines }}'];
+
+                        if($("body").hasClass("shipping")) {
+
+                        $(document).on("click", "a.has-modal", function() {
+                        var methodNumber = $(".section--shipping-method .input-radio:checked").parents(".content-box__row").index();
+
+                        $('body').css('overflow','hidden');
+
+                        $("#disclaimer-popup h3").text(modalTitleArray_1[methodNumber - 1]);
+  $("#disclaimer-popup .cs-modal-data").html(modalContentArray_1[methodNumber - 1]);
+  $("#disclaimer-popup").show();
+  return false;
+});
+
+$(document).on("click", ".cs-close-target", function() {
+  $('#disclaimer-popup').hide();
+  $('body').css('overflow','auto');
+  return false;
+});
+
+$(".section--shipping-method .content-box__row").each(function(i) {
+
+  if(country_code != 'CA' || province_code != 'AK' || province_code != 'HI') {
+    if(contentArray_1[i]) {
+      $(this).append('<div class="method-content"></div>');
+      $(this).find(".method-content").html(contentArray_1[i]);
+    }
+
+    if(tooltipArray_1[i]) {
+      var dataText = $(this).find(".radio__label__primary").text();
+      $(this).find(".radio__label__primary").html('<span class="radio_label_inner">'+dataText+'</span><span role="tooltip" class="tooltip-box"><span class="tooltip-mark mdi mdi-help-circle"></span><div class="custom-tooltip tooltip-content">'+tooltipArray_1[i]+'</div></span>');
+    }
+  }
+
+  if($(this).find(".input-radio").prop("checked") == true) {
+    $(this).find(".radio__label").css("font-weight", 600);
+    $(this).find(".method-content").show();
+  } else {
+    $(this).find(".radio__label").css("font-weight", "");
+  }
+});
+
+$(".section--shipping-method .input-radio").change(function() {
+
+  $(".section--shipping-method .content-box__row").each(function(i) {
+    if($(this).find(".input-radio").prop("checked") == true) {
+      $(this).find(".radio__label").css("font-weight", 600);
+    } else {
+      $(this).find(".radio__label").css("font-weight", "");
+    }
+  });
+
+  $(".content-box__row").find(".method-content").slideUp(200);
+
+  if($(this).prop("checked") == true) {
+    $(this).parents(".content-box__row").find(".method-content").slideDown(200);
+  }
+
+  var selectedIndex = $(this).parents(".content-box__row").index() - 1;
+  $(".section--shipping-method .section__content .disclaimer-content").remove();
+
+  if(country_code != 'CA' || province_code != 'AK' || province_code != 'HI') {
+    if(disclaimerArray_1[selectedIndex]) {
+      $(".section--shipping-method .section__content").append('<div class="disclaimer-content"></div>');
+      $(".section--shipping-method  .disclaimer-content").html(disclaimerArray_1[selectedIndex]);
+    }
+  }
+});
+}
+
+if(discount_code != '' && (discount_code.indexOf('responder') > -1 || discount_code.indexOf('military') > -1)) {
+  var get_code = localStorage.getItem('has_applied_code');
+
+  if(get_code != discount_code) {
+    localStorage.setItem('has_applied_code', discount_code);
+    $(".order-summary-toggle--show").trigger("click");
+  }
+}
+
+if($(".cs-topbar").length > 0){
+
+  /* $('body').addClass('show-topbar'); */
+
+  var cs_topbar = $('.cs-topbar').outerHeight();
+  $("body").css("padding-top", cs_topbar);
+
+  setInterval(function(){
+    cs_topbar = $('.cs-topbar').outerHeight();
+    $("body").css("padding-top", cs_topbar);
+  },400);
+
+  /* var prevvalue = 0;
+
+          $(window).on('scroll',function(){	
+              var scrolltop = $(this).scrollTop();
+
+              if (scrolltop > prevvalue){
+                  $(".cs-topbar").css("top","-"+cs_topbar+"px");
+              } else {
+                  $(".cs-topbar").css("top", "0");
+              }
+
+              prevvalue = scrolltop;
+          }); */
+}
+
+if($(window).outerWidth() <= 1000) {
+
+  $(".order-summary-toggle__text--show > span:nth-of-type(1)").replaceWith("<span vwo-el-id=\"33207978510\">Have a discount code? <strong>Enter here</strong></span>");
+
+  $(".order-summary-toggle__text--hide > span:nth-of-type(1)").replaceWith("<span vwo-el-id=\"7085207360\">Have a discount code? <strong>Enter here</strong></span>");
+}
+});
+// Get all tr elements with class 'product'
+function removeExtraSpans() {
+    // Get all tr elements with class 'product'
+    var productRows = document.querySelectorAll('.product');
+
+    // Iterate through each tr element
+    productRows.forEach(function (row) {
+        // Find the product__price acc-discount element within the current tr
+        var productPrice = row.querySelector('.product__price.acc-discount');
+
+        // Check if the productPrice element exists
+        if (productPrice) {
+            // Find all spans with class 'mmm compare-price'
+            var comparePriceSpans = productPrice.querySelectorAll('.mmm.compare-price');
+
+            // If there is more than one span, remove the rest
+            if (comparePriceSpans.length > 1) {
+                for (var i = 1; i < comparePriceSpans.length; i++) {
+                    comparePriceSpans[i].remove();  // Remove the span element
+                }
+            }
+        }
+    });
+}
+setInterval(removeExtraSpans, 1);
+

@@ -1,0 +1,12 @@
+<div class="standard-content-equation-wrapper">
+    <h2 class="standard-content-equation-title">{{section.settings.section_title}}</h2>
+
+    <div class="standard-content-equation-image">
+        <img class="image-desktop lazyload" data-src="{{section.settings.section_desktop_image | img_url: 'master'}}" />
+      	<img class="image-mobile lazyload" data-src="{{section.settings.section_mobile_image | img_url: 'master'}}" />
+    </div>
+
+    <div class="cs-text-center">
+        <a class="btn-white btn shadow" href="{{section.settings.section_button_link}}">{{section.settings.section_button_text}}</a>
+    </div>
+</div>

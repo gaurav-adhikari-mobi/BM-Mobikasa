@@ -1,0 +1,31 @@
+{% include 'product-details' %}
+
+{% comment %}
+{% section 'yotpo-pdp-gallery' %}
+{% endcomment %}
+
+{% section 'pdp-mini-pillow-icon-grid' %}
+{% section 'staggered-content--mini-pillow' %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews"> {{ product.title }} Reviews</h2>
+<div class="yotpo-widget-instance" data-yotpo-instance-id="544320" data-yotpo-product-id="{{product.id}}" data-yotpo-name="{{ product.title | escape }}" data-yotpo-url="{{ shop.url }}{{ product.url }}" data-yotpo-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}" data-yotpo-description="{{ product.description | escape }}"></div></section>
+{% section 'pdp-accordion-mini-pillow' %}
+{% section 'mini-pillow-faq-component' %}
+
+{% comment %}
+<section id="review-section" class="ypreviews">
+  <div class="ypreviews-wrap">
+    <h2 class="reviews_heading" id="reviews">Bear Mini Pillow Reviews</h2>
+		<div class="yotpo yotpo-main-widget"
+		    data-product-id="{{ product.id }}"
+		    data-name="{{ product.title | escape }}"
+		    data-url="{{ shop.url }}{{ product.url }}"
+		    data-image-url="{{ product.featured_image | product_img_url: "large" |replace: '?', '%3F' | replace: '&','%26'}}"
+		    data-description="{{ product.description | escape }}">
+		</div>
+	</div>
+</section>
+{% endcomment %}
+
+{% include 'schema' %}

@@ -1,0 +1,50 @@
+<div class="header__wrapper" data-section-id="{{ section.id }}" data-section-type="header">
+
+<div id="pxu_cst"></div>
+  
+  <header class="site-header {{ section.settings.height }}" role="banner">
+    <div class="wrapper">
+      <div class="nav--desktop">
+        {% include 'nav-contents' %}
+      </div>
+      <div class="nav--mobile">
+        {% include 'nav-contents' %}
+      </div>
+    </div>
+  </header>
+  {% if section.settings.header_enable_account or section.settings.header_enable_search or section.settings.header_message != '' %}
+  <div class="info-bar showMobile">
+    <div class="wrapper text-center">
+
+      {% if shop.customer_accounts_enabled and section.settings.header_enable_account %}
+      <div class="header-account-link">
+        <a href="/account"><img data-src="{{ 'account.svg' | asset_url }}" class="lazyload"></a>
+      </div>
+      {% endif %}
+
+      {% if section.settings.header_message != '' %}
+      <div class="header-message uppercase{% if section.settings.header_enable_account or section.settings.header_enable_search %} header-message--crowded{% endif %}">
+        {% if section.settings.header_message_url != blank %}
+        <a href="{{ section.settings.header_message_url }}">{{ section.settings.header_message | escape }}</a>
+        {% else %}
+        {{ section.settings.header_message | escape }}
+        {% endif %}
+      </div>
+      {% endif %}
+
+      {% if section.settings.header_enable_search %}
+      <div class="header-search__wrapper">
+        <div class="header-search">
+          <form action="/search" method="get" class="input-group search" role="search">
+            {% if section.settings.search_only_products %}<input type="hidden" name="type" value="product">{% endif %}
+            <input class="search-bar" type="search" name="q">
+            <button type="submit" class="btn search-btn"></button>
+          </form>
+        </div>
+      </div>
+      {% endif %}
+
+    </div>
+  </div>
+  {% endif %}
+</div>

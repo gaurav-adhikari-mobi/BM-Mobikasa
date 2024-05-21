@@ -1,0 +1,149 @@
+<section class="product">
+  	<section class="product-slider">
+      {% include 'product-grid-item-images' %}
+	</section>
+
+  	<section class="product-box">
+		<div class="product-box__wrap">
+          {% comment %}
+			<div class="product-logo" data-handle="{{ product.handle }}">
+				{% assign product-logo = product.handle | append: '--logo.png' %}
+                
+				<img data-src="{{ product-logo | asset_url }}" class="lazyload">
+			</div>
+          {% endcomment %}
+          <h1 class="f1">Bear <span class="f2">{{ product.title | replace:'Bear ', '' }}</span> </h1>
+			<div class="product-reviews">
+
+              <div class="yotpo bottomLine"
+				data-appkey="yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d"
+				data-domain="{{ shop.permanent_domain | escape }}"
+				data-product-id="{{ product.id }}"
+				data-product-models="{{ product.id }}"
+				data-name="{{ product.title | escape }}"
+				data-url="{{ shop.url }}{{ product.url }}"
+				data-image-url="{{ product.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+				data-description="{{ product.description | escape }}"
+				data-bread-crumbs="{% for tag in product.tags %}{{ tag | escape }};{% endfor %}">
+              </div>
+			</div>
+			<div class="product-description">
+				<div class="product-description__wrap">
+					{{ product.description }}
+				</div>
+			</div>
+          
+            <div class="price-block">
+              {% comment %}
+          	  {% if product.id == 10340464782 or product.id == 381450171 or product.id == 6989665763433 or product.id == 148842217486 or product.id == 10175339022 %}
+	
+              {% assign discountPrice = product.variants[0].price  | money_without_trailing_zeros | remove: "$" | remove: "," | plus: 0 %}
+              {% assign firstProduct = product.variants[0].price  | money_without_trailing_zeros | remove: "$" | remove: "," | plus: 0 %}
+
+              {% if firstProduct  >= 500 and firstProduct < 1200 %}
+              {% assign discountPrice = firstProduct | minus: 100 %}
+              {% elsif firstProduct  >= 1200 %}
+              {% assign discountPrice = firstProduct | minus: 200 %}
+              {% endif %}
+			  {% endif %}
+              {% endcomment %}
+              <div class="price-info">
+                <div class="price-head">Pay Now</div>
+                <div class="title-after-price">
+                  <div class="discount-price"><span class="currency-symbol">$</span><span id="discount-price">{{ product.selected_or_first_available_variant.price | money_without_currency | replace: '.00', '' | plus:0 }}</span><span class="last">USD</span></div>
+                  <div class="total-price"><span>WAS</span> <span class="currency-symbol">$</span><span id="total-price">{{ product.selected_or_first_available_variant.compare_at_price | money_without_currency | replace: '.00', '' | plus:0 }}</span></div>
+                </div>
+              </div>
+              
+
+              <div class="finance-info">
+                <div class="price-head">Financing as low as</div>
+                <div class="affirm-block">
+<!--                   <h3><span class="currency-symbol">$</span><span class="affirm-price">$XXX</span>/MO</h3> -->
+                  <div class="product-finance" style="">
+                    <div
+                         class="affirm-as-low-as"
+                         data-page-type="product"
+                         data-amount="{{ product.selected_or_first_available_variant.price }}"
+                         data-affirm-type="logo"
+                         data-learnmore-show="false"
+                         >
+                      &nbsp;
+                    </div>
+                  </div>
+                </div>
+                
+              </div>
+
+            </div>
+
+            <div class="product-splitit-wrapper">
+              <div class="product-splitit-content"><img class="lazyload" src="//cdn.shopify.com/s/files/1/0661/5815/files/splitit-logo.png" /> <span class="product-splitit-text">Monthly payments using your credit card at 0% interest. <a class="product-splitit-link" href="#">Learn More</a></span></div>
+            </div>
+
+			<div class="product-tiles" data-tiles="{{ product.variants.size }}">
+                <label for="dropdownMattressSize">Choose Pillow Size
+                  <div class="product-tiles__header bear-title_prod">
+					<div class="product-tiles__header-details ">
+	                    <span class="value">W x L x H</span>
+					</div>
+				 </div>
+              	</label>
+              <select id="dropdownMattressSize" class="product-dropdown__list">
+                {% for variant in product.variants %}
+                <option class="product-tiles__item{% if variant.available %} available{% endif %}{% if variant.id == product.selected_or_first_available_variant.id %} selected{% endif %}" 
+                        value="{{ variant.title }}" 
+                        data-variant-id="{{ variant.id }}" 
+                        {% assign comparePrice = variant.compare_at_price | money_without_currency | replace: '.00', '' | plus:0 %}
+
+                        data-price="{{ variant.price | money_without_currency | replace: '.00', '' }}" 
+                        data-old-price="{{ comparePrice }}"
+
+                        data-title="{{ variant.title | escape }}">
+                  <span>{{ variant.title }}</span>
+                </option>
+                {% endfor %}
+
+              </select>           	
+			</div>
+			<hr>
+			<div class="product-buy prd-top-pad">
+				<button type="button" class="product-buy__button">
+					<div class="action"><span>ADD TO CART</span></div>
+                  	{% comment %}
+    				<div class="price"><span class="price-new">{{ discountPrice }}</span><span class="price-old">{{ firstProduct }}</span></div>
+                  	{% endcomment %}
+				</button>
+			</div>
+		</div>
+	</section>
+</section>
+
+<script type="text/javascript">
+
+  {% if has_youtube == true %}
+
+        var tag = document.createElement('script');
+        tag.src = "//www.youtube.com/player_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+        var player = [];
+
+        function onYouTubePlayerAPIReady() {
+
+           if($('.product-slider__slide.video-youtube').length > 0) {
+              $('.product-slider__slide.video-youtube').each(function(i) {
+                  var iframeEl = $(this).find('iframe').attr('id');
+                  player[i] = new YT.Player(iframeEl);
+              });
+           }
+        }
+  {% endif %}
+  
+  $(document).ready(function(){
+	var currencyCode = $("#in-context-paypal-metadata").attr("data-currency");
+    $(".discount-price .last").text(currencyCode);
+  });
+  
+</script>

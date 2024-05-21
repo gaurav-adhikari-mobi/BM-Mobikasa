@@ -1,0 +1,63 @@
+<div class="review-pdp-wrapper">
+
+	{% assign contains_product = request.path | split: 'review-' %}
+  	{% assign contains_product = contains_product[1] | downcase %}
+
+  	{% assign productData = all_products[contains_product] %}
+  	{% assign featureData = productData.images[0] %}
+
+  	{% assign productTitle = productData.title | remove: 'Bear' %}
+
+  	<div class="review-pdp-breadcrum">
+        <a href="/pages/reviews">All Reviews</a> / <span>{{ page.title }}</span>
+    </div>
+
+  	<section class="review-pdp-grid">
+
+      <div class="review-pdp-image">
+        <img data-src="{{ featureData | img_url: '860x' }}" class="lazyload" />
+      </div>
+
+      <div class="review-pdp-content">
+
+        <h1 class="review-pdp-heading">{{ page.title }}</h1>
+
+        <div class="review-pdp-review">
+
+            <div class="yotpo bottomLine"
+                 data-appkey="yjNXdflh4p4OfTj1ZjS9Bv5mc5B5kdK7ca5iEb6d"
+                 data-domain="{{ shop.permanent_domain | escape }}"
+                 data-product-id="{{ productData.id }}"
+                 data-product-models="{{ productData.id }}"
+                 data-name="{{ productData.title | escape }}"
+                 data-url="{{ shop.url }}{{ productData.url }}"
+                 data-image-url="{{ productData.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+                 data-description="{{ productData.description | escape }}"
+                 data-bread-crumbs="{% for tag in productData.tags %}{{ tag | escape }};{% endfor %}">
+            </div>
+        </div>
+
+        <div class="review-pdp-description">{{ productData.metafields.global.description_tag }}</div>
+
+        <a class="btn btn-blue" href="{{ productData.url }}">SEE THE {{ productTitle }}</a>
+      </div>
+  	</section>
+</div>
+
+<section id="review-section" class="ypreviews review-pdp-yotpo">
+
+  <div class="ypreviews-wrap">
+
+    <div class="yotpo yotpo-main-widget"
+         data-product-id="{{ productData.id }}"
+         data-product-id="{{ productData.id }}"
+         data-product-models="{{ productData.id }}"
+         data-name="{{ productData.title | escape }}"
+         data-url="{{ shop.url }}{{ productData.url }}"
+         data-image-url="{{ productData.featured_image | product_img_url: 'large' |replace: '?', '%3F' | replace: '&','%26'}}"
+         data-description="{{ productData.description | escape }}">
+    </div>
+  </div>
+</section>
+
+{% section 'staggered-content--bearmattress-review' %}

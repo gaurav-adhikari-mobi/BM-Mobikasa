@@ -1,0 +1,62 @@
+<nav class="mnav">
+  <div class="mnav-overlay"></div>
+
+  <div class="mnav-wrap">
+    <button type="button" class="mnav-close"><span></span></button>
+
+    <ul class="mnav-list">
+      {% comment %}
+<li class="mnav-item">
+        {% section 'mobile-close-out' %}
+      </li>
+      {% endcomment %}
+      <li class="mnav-item">
+        {% section 'collection-mattress-nav' %}
+      </li>
+
+      <li class="mnav-item">
+        {% section 'collection-bed-bases-nav' %}
+      </li>
+
+      <li class="mnav-item">
+        {% section 'collection-accessories-nav' %}
+      </li>
+
+      <li class="mnav-item">
+        {% section 'why-bear-nav' %}
+      </li>
+
+      <li class="mnav-item">
+        {% section 'mobile-help-center' %}
+      </li>
+      <li class="mnav-item">
+        {% section 'collection-deals-nav-mobile' %}
+      </li>
+      {% comment %}
+      <li class="header-nav__item mobile-close-out">
+        {% section 'collection-closeout-nav-mobile' %}
+      </li>
+      {% endcomment %}
+    </ul>
+
+  	{% section 'sidebar-bottom-nav' %}
+  </div>
+</nav>
+<style>
+  @media only screen and (max-width: 1025px) {
+  .mobile-close-out {
+   width: 100%;
+    max-width: none;
+    display: none;
+  }
+    #shopify-section-collection-closeout-nav-desktop{
+      display: none;
+    }
+    .mobile-close-out a{
+      width: 95%;
+    margin: auto;
+    display: block;
+    margin-top: 5px;
+    }
+}
+</style>

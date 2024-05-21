@@ -1,0 +1,54 @@
+<div class="mobile-wrapper">
+  <div class="header-cart__wrapper">
+    <a href="javascript:void(0);" class="CartToggle header-cart"></a>
+    <span class="header-cart__bubble cartCount{% if cart.item_count < 1 %} hidden-count{% endif %}"></span>
+  </div>
+  <div class="logo-wrapper{% if section.settings.logo %} logo-wrapper--image{% endif %}">
+    {% if template == 'index' %}
+      <h1 class="h4 header-logo" itemscope itemtype="http://schema.org/Organization">
+    {% else %}
+      <div class="h4 header-logo" itemscope itemtype="http://schema.org/Organization">
+    {% endif %}
+        <a href="/" itemprop="url">
+          <img class="lazyload" data-src="{{ 'header-logo.svg' | asset_url }}">
+        </a>
+    {% if template == 'index' %}
+      </h1>
+    {% else %}
+      </div>
+    {% endif %}
+  </div>
+  <a href class="menuToggle header-hamburger"></a>
+</div>
+<div class="header-menu nav-wrapper">
+  {% comment %}
+    List out your main-menu linklist (default)
+
+    More info on linklists:
+      - http://docs.shopify.com/themes/liquid-variables/linklists
+  {% endcomment %}
+  <ul class="main-menu accessibleNav">
+
+    {% if section.settings.main_menu_linklist %}
+      {% assign main_menu_linklist = section.settings.main_menu_linklist %}
+    {% else %}
+      {% assign main_menu_linklist = 'main-menu' %}
+    {% endif %}
+
+    {% for link in linklists[main_menu_linklist].links %}
+      {% include 'nav-item' %}
+    {% endfor %}
+    <li class="cart-text-link">
+      <a href="tel:+18443110035">Call us! (844) 311-0035</a>
+    </li>
+    <li class="cart-text-link">
+      <a href="javascript:void(0);" class="CartToggle">
+        <!--
+        <span class="cartCost {% if cart.item_count < 1 %} hidden-count {% endif %}">(<span class="money">{{ cart.total_price | money }}</span>)</span>
+        -->
+        <span class="cartCount {% if cart.item_count < 1 %} hidden-count {% endif %}">{{ cart.item_count }}</span>
+        <img data-src="{{ 'cart.svg' | asset_url }}" class="cart-icon lazyload">
+      </a>
+    </li>
+  </ul>
+</div>

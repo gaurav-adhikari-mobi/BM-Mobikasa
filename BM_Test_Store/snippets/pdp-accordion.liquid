@@ -1,0 +1,224 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+{% if section.settings.show_accordion %}
+<script>
+  $(document).ready(function(){
+
+    $('.product_specs button').click(function(){
+      $('.product_specs').toggleClass('active');
+      $('.content_toshown').toggleClass('active');
+      $('.pdp-accordion.content').slideToggle();
+    });
+
+ if (window.location.href.indexOf("pro-hybrid-mattress") > -1) {
+     
+    }
+   else if (window.location.href.indexOf("elite-hybrid-mattress") > -1) {
+$(".firmness-guide-link").click(function() {
+
+  if($('img.lazyload').length > 0) {
+              var loader_background = $('<div class="common-loader-background"></div>');
+              var loader_main = $('<div class="common-loader"><i class="mdi mdi-loading mdi-spin"></i></div>');
+
+              $('body').append(loader_background);
+              $('body').append(loader_main);
+
+              loader_background.show();
+              loader_main.show();
+
+              $('img.lazyload').each(function() {
+                  $(this).attr("src", $(this).data("src"));
+                  $('img.lazyload').removeClass('lazyload').addClass('lazyloaded');
+              });
+            
+              setTimeout(function() {
+                  loader_background.remove();
+                  loader_main.remove();
+
+                $('html, body').animate({
+        scrollTop: $("#shopify-section-staggered-firmness-elite-hybrid").offset().top
+    }, 1000); 
+              }, 2000);
+          } else {
+               $('html, body').animate({
+        scrollTop: $("#shopify-section-staggered-firmness-elite-hybrid").offset().top
+    }, 1000); 
+          }
+
+
+
+
+  
+    
+});
+
+}
+    else{
+    
+    $(".firmness-guide-link").click(function() {
+
+      if($(".pdp-firmness,#shopify-section-staggered-firmness-mattress-h").length > 0) {
+
+          if($('img.lazyload').length > 0) {
+              var loader_background = $('<div class="common-loader-background"></div>');
+              var loader_main = $('<div class="common-loader"><i class="mdi mdi-loading mdi-spin"></i></div>');
+
+              $('body').append(loader_background);
+              $('body').append(loader_main);
+
+              loader_background.show();
+              loader_main.show();
+
+              $('img.lazyload').each(function() {
+                  $(this).attr("src", $(this).data("src"));
+                  $('img.lazyload').removeClass('lazyload').addClass('lazyloaded');
+              });
+            
+              setTimeout(function() {
+                  loader_background.remove();
+                  loader_main.remove();
+
+                  var offsetTop = $(".pdp-firmness,#shopify-section-staggered-firmness-mattress-h").offset().top;
+                  $("html, body").stop().animate({scrollTop: offsetTop - 50}, 500, 'swing');
+              }, 2000);
+          } else {
+              var offsetTop = $(".pdp-firmness,#shopify-section-staggered-firmness-mattress-h").offset().top;
+              $("html, body").stop().animate({scrollTop: offsetTop - 50}, 500, 'swing');
+          }
+	  }
+
+      return false;
+    });
+
+  }
+
+  
+    $(".size-guide-link").click(function() {
+
+      if($(".pdp-accordion").length > 0) {
+
+          if(!$('h3.has-type-accordion:first-of-type').hasClass('active')) {
+            $('h3.has-type-accordion:first-of-type').trigger('click');
+          }
+
+          if($('img.lazyload').length > 0) {
+              var loader_background = $('<div class="common-loader-background"></div>');
+              var loader_main = $('<div class="common-loader"><i class="mdi mdi-loading mdi-spin"></i></div>');
+
+              $('body').append(loader_background);
+              $('body').append(loader_main);
+
+              loader_background.show();
+              loader_main.show();
+
+              $('img.lazyload').each(function() {
+                  $(this).attr("src", $(this).data("src"));
+                  $('img.lazyload').removeClass('lazyload').addClass('lazyloaded');
+              });
+            
+              setTimeout(function() {
+                  loader_background.remove();
+                  loader_main.remove();
+
+                  var offsetTop = $(".pdp-accordion").offset().top;
+                  $("html, body").stop().animate({scrollTop: offsetTop - 50}, 500, 'swing');
+              }, 2000);
+          } else {
+              var offsetTop = $(".pdp-accordion").offset().top;
+              $("html, body").stop().animate({scrollTop: offsetTop - 50}, 500, 'swing');
+          }
+	  }
+
+      return false;
+    });
+
+    $(".compare-style-link").click(function() {
+      if($(".pfeatures").length > 0) {
+        if($('img.lazyload').length > 0) {
+              var loader_background = $('<div class="common-loader-background"></div>');
+              var loader_main = $('<div class="common-loader"><i class="mdi mdi-loading mdi-spin"></i></div>');
+
+              $('body').append(loader_background);
+              $('body').append(loader_main);
+
+              loader_background.show();
+              loader_main.show();
+
+              $('img.lazyload').each(function() {
+                  $(this).attr("src", $(this).data("src"));
+                  $('img.lazyload').removeClass('lazyload').addClass('lazyloaded');
+              });
+            
+              setTimeout(function() {
+                  loader_background.remove();
+                  loader_main.remove();
+
+                  var offsetTop = $(".pfeatures").offset().top;
+                  $("html, body").stop().animate({scrollTop: offsetTop - 50}, 500, 'swing');
+              }, 2000);
+          } else {
+              var offsetTop = $(".pfeatures").offset().top;
+              $("html, body").stop().animate({scrollTop: offsetTop - 50}, 500, 'swing');
+          }
+      }
+      return false;
+    });
+  });
+</script>
+
+<div class="product_specs">
+  <span></span>
+    <button class="btn btn shadow" style="color:{{ section.settings.heading-text-color }};">
+      <i class="fa fa-plus fa-lg" aria-hidden="true"></i>
+      <i class="fa fa-close fa-lg" aria-hidden="true"></i>
+      View Product Specs
+  	</button>
+    <span></span>
+</div>  
+<div class="pdp-accordion content" id="product-specs">
+    <div class="row pfeatures-wrap measurement_accordion">
+        <div class="left-portion">
+          	<h2 class="feature-title">Product Specs</h2>
+      	</div>
+
+      	<div class="right-portion clearfix">
+        {% for block in section.blocks %}
+
+            {% if block.type == 'measurementgrid' %}
+
+              <h3 class="accordion-heading {% if section.settings.data_view_type == 'list' %}has-type-list{% else %}has-type-accordion style-icon has-icon-{{section.settings.data_view_icon_position}} {% endif %}" style="color: {{section.settings.accordion_heading_color}}">{{ block.settings.title_heading }}</h3>
+              <div class="accordion-content">
+                {% if block.settings.title_subheading %}
+                <h4 class="accordion-subheading" style="color: {{section.settings.accordion_subheading_color}}">{{block.settings.title_subheading}}</h4>
+                {% endif %}
+                {% for i in (1..8) %}
+                {% assign x = 'size_name_' | append: i %}         
+                {% assign y = 'block_dimension_' | append: i %}
+                {% assign z = 'weight_dimension_' | append: i %}
+                {% if block.settings[x] != blank %}
+                <div class="measure_size">
+                  {% if block.settings[x] != blank %}<h4 style="color:{{ section.settings.text-color }};" class="measure_title">  {{ block.settings[x] }} </h4>{% endif %}
+                  {% if block.settings[y] != blank %}<p style="color:{{ section.settings.text-color }};" class="weight_dimension"> {{ block.settings[y] }}</p>{% endif %}
+                  {% if block.settings[z] != blank %}<p style="color:{{ section.settings.text-color }};" class="weight_dimension"> {{ block.settings[z] }} </p>{% endif %}
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+
+
+            {% elsif block.type == 'detailtopic' %}
+
+              <h3 class="accordion-heading  {% if section.settings.data_view_type == 'list' %}has-type-list{% else %}has-type-accordion style-icon has-icon-{{section.settings.data_view_icon_position}}{% endif %}" style="color: {{section.settings.accordion_heading_color}}">{{block.settings.certification_head}}</h3>
+              <div class="accordion-content">
+                {% if block.settings.certification_subhead %}
+                <h4 class="accordion-subheading" style="color: {{section.settings.accordion_subheading_color}}">{{block.settings.certification_subhead}}</h4>
+                {% endif %}
+
+                {{ block.settings.certification_content}}
+              </div>
+          {% endif %}
+
+        {% endfor %}
+      </div>
+  </div>
+</div>
+{% endif %}
