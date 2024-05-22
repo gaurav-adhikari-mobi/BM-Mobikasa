@@ -3419,6 +3419,8 @@ $(document).ready(function(){
   });
 
   $('.product-description__wrap .link-wrapper').prepend($('#shopify-section-product-discount-code'));
+  $('.product-description__wrap .link-wrapper').prepend($('#bo-product-discount-code'));
+ 
   // wrapping timer element and link
   var prependTimerElement = $('<span class="cs-countdown-progress"></span>');
   $('.product-description__wrap .link-wrapper a').parent().after(prependTimerElement);

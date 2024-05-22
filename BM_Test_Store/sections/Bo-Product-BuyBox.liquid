@@ -105,7 +105,11 @@
 					{% if product.available == true %}
                       {% if product.handle == 'bear-pillow' or product.handle == 'bear-mattress-protector' %}
                         {% else %}
-						{% render 'bo-product-discount-code', section : section , product :product %}
+                        <div id="bo-product-discount-code"> 
+                        {% render 'bo-product-discount-code', section : section , product :product %}
+                        </div>
+
+						     
                         {% endif %}
                   
                         {% if product.metafields.product.sale_text.size > 0 %}
