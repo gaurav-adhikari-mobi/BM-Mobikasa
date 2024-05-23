@@ -294,6 +294,8 @@
       </select>
     {% endfor %}
   {% endif %}
+  <input id="variant-detail-id-title" type="hidden" current-variant-id="{{ product.selected_or_first_available_variant.id }}"  current-variant-name="{{product.selected_or_first_available_variant.title}}"/>
+  
   <label for="dropdownMattressSize" {% if slection_class == true %}style="display: none;"{% endif %}>
                 {% if product.handle contains 'protector' or product.handle contains 'frame' or product.handle contains 'foundation' or product.handle contains 'bedding' or product.handle contains 'adjustable' or product.handle contains 'pillow' or product.handle contains 'bear-encasement' %}
                 <span style="flex:1;">Choose a Size</span>

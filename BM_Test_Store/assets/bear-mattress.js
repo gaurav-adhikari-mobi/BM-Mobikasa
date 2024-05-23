@@ -1604,7 +1604,10 @@ if(location.href.indexOf('/pro-hybrid-mattress') > -1 ){
 
 
 		$('.product-dropdown__list').on('change', function(){
-         
+     var selcted_varinat_name =   $("#dropdownMattressSize option:selected").attr("data-variant");
+     var selcted_varinat_id =   $("#dropdownMattressSize option:selected").attr("value");
+     $("#variant-detail-id-title").attr("current-variant-id", selcted_varinat_id)
+     $("#variant-detail-id-title").attr("current-variant-name", selcted_varinat_name)
            /* loader added from VWO revenue */
           $('.price-block .cs-price-loading').removeClass('cs-price-loading');
           	$('.price-block .cs-price-loader').remove();
