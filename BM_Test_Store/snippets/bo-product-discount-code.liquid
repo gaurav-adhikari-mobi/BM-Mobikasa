@@ -1,0 +1,12 @@
+{% for block in section.blocks %}
+	{% if block.type == 'productloop' %}
+		{% if block.settings.product_handle == product.handle %}
+			{% if block.settings.discount_text.size > 0 %}
+              <div style="{% if section.settings.text_color.size > 0 %}color: {{section.settings.text_color}};{% endif %}
+                   {% if section.settings.background_color.size > 0 %}background-color: {{section.settings.background_color}};{% endif %}
+                   {% if section.settings.gradient_color.size > 0 %}background: linear-gradient(120deg, {{section.settings.background_color}} 0% ,{{section.settings.gradient_color}} 70%);{% endif %}"
+                   class="promo-txt promo-bg using-section-data">{{block.settings.discount_text}}</div>
+			{% endif %}
+		{% endif %}
+	{% endif %}
+{% endfor %}
