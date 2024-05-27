@@ -1066,9 +1066,11 @@ var ajaxifyShopify = (function(module, $) {
           variant = $(this).data('variant').trim();
 
       qtySelector.val(qty).trigger('change');
+      if (typeof gtag !== 'undefined'){
+        gtag('event', 'remove_from_cart', {"items": [{"id": id, "category": type, "name": title, "variant": variant}]});
 
-      gtag('event', 'remove_from_cart', {"items": [{"id": id, "category": type, "name": title, "variant": variant}]});
-
+      }
+     
       e.preventDefault();
     });
 

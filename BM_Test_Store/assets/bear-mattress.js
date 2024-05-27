@@ -3802,8 +3802,14 @@ function getRandom5DigitNumber() {
 
     if(pdp_url.indexOf("/bear-hybrid") > -1 || pdp_url.indexOf("/bear-pro") > -1 || pdp_url.indexOf("/bear-original-mattress") > -1 || pdp_url.indexOf("/elite-hybrid-mattress") > -1 || pdp_url.indexOf("/star-hybrid-mattress") > -1 || pdp_url.indexOf("/pro-hybrid-mattress") > -1 || pdp_url.indexOf("/adjustable-bed-deal") > -1) {
         var winScrolltop = $(window).scrollTop();
-        var elementTop = jQuery('.product-box__wrap .product-buy__button_add_on').offset().top;
-
+        var elementTop;
+        if (pdp_url.indexOf("/bear-original-mattress") > -1){
+          elementTop = jQuery('product-form form .product-form__buttons button').offset().top;
+        }
+        else{
+          elementTop = jQuery('.product-box__wrap .product-buy__button_add_on').offset().top;
+        }
+      
         if(winScrolltop > elementTop && $(window).outerWidth() < 1025) {
           $('body').addClass('pdp-sticky-choose');
         } else {
@@ -3819,8 +3825,13 @@ $(window).on('scroll',function(){
 
     if(pdp_url.indexOf("/bear-hybrid") > -1 || pdp_url.indexOf("/bear-pro") > -1 || pdp_url.indexOf("/bear-original-mattress") > -1 || pdp_url.indexOf("/elite-hybrid-mattress") > -1 || pdp_url.indexOf("/pro-hybrid-mattress") > -1 || pdp_url.indexOf("/adjustable-bed-deal") > -1) {
         var winScrolltop = $(window).scrollTop();
-        var elementTop = jQuery('.product-box__wrap .product-buy__button_add_on').offset().top;
-
+        var elementTop;
+        if (pdp_url.indexOf("/bear-original-mattress") > -1){
+          elementTop = jQuery('product-form form .product-form__buttons button').offset().top;
+        }
+        else{
+          elementTop = jQuery('.product-box__wrap .product-buy__button_add_on').offset().top;
+        }
         if(winScrolltop > elementTop && $(window).outerWidth() < 1025) {
           $('body').addClass('pdp-sticky-choose');
         } else {
@@ -4332,7 +4343,7 @@ if (!customElements.get('product-form')) {
             $('.frequent-products input[type="checkbox"]:checked').prop("checked", false);
             
             RC.cart.get(function(response){
-              console.log(response, "response")
+             // console.log(response, "response")
               ajaxifyShopify.updateCountPrice(response);
               ajaxifyShopify.init({
                 method: 'modal',
