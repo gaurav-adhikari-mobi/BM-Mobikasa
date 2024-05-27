@@ -1614,6 +1614,7 @@ if(location.href.indexOf('/pro-hybrid-mattress') > -1 ){
      var selcted_varinat_id =   $("#dropdownMattressSize option:selected").attr("value");
      $("#variant-detail-id-title").attr("current-variant-id", selcted_varinat_id)
      $("#variant-detail-id-title").attr("current-variant-name", selcted_varinat_name)
+     $("product-form form input.product-variant-id")?.val(selcted_varinat_id)
            /* loader added from VWO revenue */
           $('.price-block .cs-price-loading').removeClass('cs-price-loading');
           	$('.price-block .cs-price-loader').remove();
