@@ -1037,6 +1037,12 @@ function getRandom5DigitNumber() {
           	return false;
           });
 
+// web Component
+
+
+      
+//web component
+          
         $newbuyAddOn.on('click', function(){
           console.log("ddddd oodd");
             var $this = $(this);
@@ -3804,6 +3810,8 @@ function getRandom5DigitNumber() {
           $('body').removeClass('pdp-sticky-choose');
         }
     }
+    
+          
 });
 
 $(window).on('scroll',function(){
@@ -4077,3 +4085,282 @@ $(window).resize(function(){
     $('.cs-fcompare-table tr td:nth-of-type(4)').append('<hr/>');
     $('.cs-fcompare-table tr td:nth-of-type(5)').append('<hr/>');
 });
+
+if (!customElements.get('product-form')) {
+  
+  customElements.define(
+    'product-form',class ProductForm extends HTMLElement {
+      constructor() {
+        super();
+
+        this.form = this.querySelector('form');
+        this.submitButton = this.querySelector('[type="submit"]');
+        this.form.addEventListener('submit', this.onSubmitHandler.bind(this));
+      
+        }
+
+      onSubmitHandler(evt) {
+        evt.preventDefault();
+          // var $this = this.querySelector('[type="submit"]');
+         // console.log(this.querySelector('[type="submit"]'), $this )
+          var $selected = $('.product-dropdown__list option:selected');
+          var attachedProduct, attachedProductID;
+          var itemsData = [];
+          var variantName = $selected.attr('data-title');
+          if(variantName.includes(' / ')) {
+              variantName = variantName.split(' / ')[0];
+          }
+          var selectedVariantID = $('.product-dropdown__list').val();
+          var productItem = {};
+          productItem.quantity = 1;
+          productItem.id = selectedVariantID;
+          productItem.properties = {};
+
+          this.querySelector('[type="submit"]').classList.add('loading');
+
+          if($('.cs-bonus-products .cs-bonus-input:checked').length > 0) {
+
+            attachedProduct = $('.cs-bonus-products .cs-bonus-input:checked').val();
+            attachedProductID = $('.cs-bonus-products .cs-bonus-input:checked').data('product');
+          }
+
+          if($('.frequent-products .product-tiles-check:checked').length > 0) {
+
+              $('.frequent-products .product-tiles-check:checked').each(function() {
+
+                  var frequentID = $(this).val();
+                  var frequentAddon = $(this).data('addon');
+
+                  var frequentItem = {};
+                  frequentItem.quantity = 1;
+                  frequentItem.id = frequentID;
+
+                  if(frequentAddon) {
+
+                    frequentItem.properties = {};
+                    var bonusItem = {};
+                    bonusItem.properties = {};
+
+                    if(frequentID == 2358863167593) {
+                      var bonusPillow = 'Standard Cooling Pillows (2-pack)';
+                      var bonusProtector = variantName + ' Bear Mattress Protector';
+
+                      if(variantName == "Cal King" || variantName == "King") {
+                        bonusPillow = 'King Cooling Pillows (2-pack)';
+                        bonusProtector = variantName + ' Bear Mattress Protector';
+                      }
+
+                      if(variantName == "Split King") {
+                        bonusPillow = 'King Cooling Pillows (2-pack)';
+                        bonusProtector = 'Twin XL Bear Mattress Protector (2x)';
+                      }
+
+                      bonusItem.properties['Variant'] = bonusPillow+", "+variantName+" "+"Sheet Set"+", "+bonusProtector;
+
+                    } else if(attachedProductID == 6768279158889) {
+                      var bonusPillow = 'Standard Bear Pillows (2-pack)';
+                      var bonusProtector = variantName + ' Bear Mattress Protector';
+
+                      if(variantName == "Cal King" || variantName == "King") {
+                        bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                        bonusProtector = variantName + ' Bear Mattress Protector';
+                      }
+
+                      if(variantName == "Split King") {
+                        bonusPillow = 'Includes 2 Pillows, 2 Sheet Set, and 2 Mattress protector';
+                        bonusProtector = 'Twin XL Bear Mattress Protector (2x)';
+                      }
+
+                      bonusItem.properties['Variant'] = bonusPillow+", "+variantName+" "+"Sheet Set"+", "+bonusProtector;
+
+                    } else if(attachedProductID == 6553413451881) {
+                      var bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                      var bonusProtector = variantName + ' Terry Mattress Protector';
+
+                      if(variantName == "Cal King" || variantName == "King") {
+                        bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                        bonusProtector = variantName + ' Terry Mattress Protector';
+                      }
+
+                      if(variantName == "Split King") {
+                        bonusPillow = 'Includes 2 Pillows, 2 Sheet Set, and 2 Mattress protector';
+                        bonusProtector = 'Twin XL Terry Mattress Protector (2x)';
+                      }
+
+                      bonusItem.properties['Variant'] = bonusPillow+", "+variantName+" "+"Sheet Set"+", "+bonusProtector;
+
+                    } else {
+                      var bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                      var bonusProtector = variantName + ' Terry Mattress Protector';
+
+                      if(variantName == "Cal King" || variantName == "King") {
+                        bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                        bonusProtector = variantName + ' Terry Mattress Protector';
+                      }
+                      if(variantName == "Split King") {
+                        bonusPillow = 'Includes 2 Pillows, 2 Sheet Set, and 2 Mattress protector';
+                        bonusProtector = 'Twin XL Terry Mattress Protector (2x)';
+                      }
+
+                      bonusItem.properties['Variant'] = bonusPillow;
+                    }
+
+                    bonusItem.quantity = 1;
+                    bonusItem.id = frequentAddon;
+                    bonusItem.properties['_FREE'] = frequentAddon;
+                    frequentItem.properties['_combo'] = frequentAddon;
+            
+                    itemsData.push(bonusItem);
+                  }
+                
+                  itemsData.push(frequentItem);
+              });
+          }
+        
+          var isBundle = [32063933612137, 39457507534, 39457508238, 32063929352297, 1127306002446, 1127306067982, 32063932498025, 29140262617193, 29140262649961];
+
+    if(isBundle.indexOf(Number(selectedVariantID)) > -1){
+              var varientForCal = variantName;
+      var bonusPillow = 'Standard Bear Pillow (2x)';
+
+              if(variantName == "Cal King" || variantName == "King") {
+                bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+              }
+
+              var productName = "";
+
+              if(location.href.indexOf('/bear-sleep-bundle') > -1) {
+                  productName = "Bear Mattress";
+              } else if(location.href.indexOf('/bear-hybrid-bundle') > -1) {
+                  productName = "Bear Hybrid";
+              } else if(location.href.indexOf('/bear-pro-bundle') > -1) {
+                  productName = "Bear Pro";
+              }
+
+              if(variantName == "Cal King") {
+                  varientForCal = "King"
+              }
+
+              productItem.properties['Variant'] = variantName+' '+productName+'--'+variantName+' '+'Bear Protector--'+bonusPillow;
+          }
+        
+          if(attachedProduct) {
+              var bonusItem = {};
+              bonusItem.properties = {};
+
+              if(attachedProductID == 2358863167593) {
+                var bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                var bonusProtector = variantName + ' Bear Mattress Protector';
+
+                if(variantName == "Cal King" || variantName == "King") {
+                  bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                  bonusProtector = variantName + ' Bear Mattress Protector';
+                }
+
+                if(variantName == "Split King") {
+                  bonusPillow = 'Includes 2 Pillows, 2 Sheet Set, and 2 Mattress protector';
+                  bonusProtector = 'Twin XL Bear Mattress Protector (2x)';
+                }
+
+                bonusItem.properties['Variant'] = bonusPillow+", "+variantName+" "+"Sheet Set"+", "+bonusProtector;
+
+      } else if(attachedProductID == 6768279158889) {
+                var bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                var bonusProtector = variantName + ' Bear Mattress Protector';
+
+                if(variantName == "Cal King" || variantName == "King") {
+                  bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                  bonusProtector = variantName + ' Bear Mattress Protector';
+                }
+
+                if(variantName == "Split King") {
+                  bonusPillow = 'Includes 2 Pillows, 2 Sheet Set, and 2 Mattress protector';
+                  bonusProtector = 'Twin XL Bear Mattress Protector (2x)';
+                }
+
+                bonusItem.properties['Variant'] = bonusPillow+", "+variantName+" "+"Sheet Set"+", "+bonusProtector;
+
+              } else if(attachedProductID == 6553413451881) {
+                var bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                var bonusProtector = variantName + ' Terry Mattress Protector';
+
+                if(variantName == "Cal King" || variantName == "King") {
+                  bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                  bonusProtector = variantName + ' Terry Mattress Protector';
+                }
+
+                if(variantName == "Split King") {
+                  bonusPillow = 'Includes 2 Pillows, 2 Sheet Set, and 2 Mattress protector';
+                  bonusProtector = 'Twin XL Terry Mattress Protector (2x)';
+                }
+
+                bonusItem.properties['Variant'] = bonusPillow+", "+variantName+" "+"Sheet Set"+", "+bonusProtector;
+
+              } else {
+                var bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                var bonusProtector = variantName + ' Terry Mattress Protector';
+
+                if(variantName == "Cal King" || variantName == "King") {
+                  bonusPillow = 'Includes 2 Pillows, 1 Sheet Set, and 1 Mattress protector';
+                  bonusProtector = variantName + ' Terry Mattress Protector';
+                }
+
+                if(variantName == "Split King") {
+                  bonusPillow = 'Includes 2 Pillows, 2 Sheet Set, and 2 Mattress protector';
+                  bonusProtector = 'Twin XL Terry Mattress Protector (2x)';
+                }
+
+                bonusItem.properties['Variant'] = bonusPillow;
+              }
+
+              bonusItem.quantity = 1;
+              bonusItem.id = attachedProduct;
+              bonusItem.properties['_FREE'] = attachedProduct;
+              productItem.properties['_combo'] = attachedProduct;
+             
+              itemsData.push(bonusItem);
+          }
+        
+          itemsData.push(productItem);
+        
+          var finalItem = {};
+          finalItem['items'] = itemsData;
+
+          RC.cart.add(finalItem, function(cart){
+            
+            document.querySelector('product-form form [type="submit"]').classList.remove('loading');
+            $('.frequent-products input[type="checkbox"]:checked').prop("checked", false);
+            
+            RC.cart.get(function(response){
+              console.log(response, "response")
+              ajaxifyShopify.updateCountPrice(response);
+              ajaxifyShopify.init({
+                method: 'modal',
+                wrapperClass: 'wrapper',
+                formSelector: '.product-form',
+                addToCartSelector: '.addToCart',
+                cartCountSelector: '.cartCount',
+                cartCostSelector: '.cartCost',
+                toggleCartButton: '.CartToggle',
+                useCartTemplate: true,
+                btnClass: 'btn',
+                moneyFormat: theme.moneyFormat,
+                disableAjaxCart: false,
+                enableQtySelectors: true,
+                prependDrawerTo: 'body',
+                onToggleCallback: function(){
+                    jQuery('body').trigger('ajaxCart.afterCartLoad')
+                }
+            });
+              ajaxifyShopify.buildCart(response);
+              
+            });
+          });
+
+          return false;
+
+      }
+
+    }
+  );
+}
