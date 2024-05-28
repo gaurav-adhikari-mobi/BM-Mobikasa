@@ -42,8 +42,14 @@
             </div>
 
           {%- endform -%}
+          
       </product-form>
-      	
+      {% for block in section.blocks %}
+              {% case block.type %}
+                {% when '@app' %}
+                  {% render block %}
+              {% endcase %}
+      {% endfor %}	
         <button type="button" class="new-product-buy__button_add_on btn shadow btn-green cs-btn-full">{{ button_text }} <span class="inline-loader"><i class="mdi mdi-loading mdi-spin"></i></span></button>
     </div>
 

@@ -4128,6 +4128,9 @@ if (!customElements.get('product-form')) {
           productItem.id = selectedVariantID;
           productItem.properties = {};
 
+          if (document.querySelector("trynow-cta-button").style.display = "unset"){
+              productItem.selling_plan = 1184727223
+          }
           this.querySelector('[type="submit"]').classList.add('loading');
 
           if($('.cs-bonus-products .cs-bonus-input:checked').length > 0) {
