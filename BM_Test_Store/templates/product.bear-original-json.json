@@ -294,6 +294,57 @@
             "product_handle": "cirrus-cloud-pillows",
             "discount_text": "35% OFF – CODE: MEMORIAL"
           }
+        },
+        "trynow_try_before_you_buy_trynow_cta_button_bzeAqq": {
+          "type": "shopify:\/\/apps\/trynow-try-before-you-buy\/blocks\/trynow-cta-button\/4c8ee11a-0e2d-4d12-800e-b312601aebc7",
+          "settings": {
+            "button_title": "Try Before You Buy",
+            "cta_button_custom_css": "",
+            "button_classes": "",
+            "button_margin": "0px 0px 5px 0px",
+            "description": "Try at home for [trial_period] days",
+            "description_font_size": 12,
+            "view_collection_text": "View TryNow collection",
+            "collection": "",
+            "form_selector": "",
+            "gated_toggle_font_size": 12,
+            "gated_toggle_size": 0.7,
+            "logo_color": "black",
+            "logo_vertical_alignment": 1,
+            "logo_horizontal_alignment": 0,
+            "logo_width": 40,
+            "autoposition": false
+          }
+        },
+        "trynow_try_before_you_buy_product_entrypoint_4d6HCC": {
+          "type": "shopify:\/\/apps\/trynow-try-before-you-buy\/blocks\/product-entrypoint\/4c8ee11a-0e2d-4d12-800e-b312601aebc7",
+          "settings": {
+            "background": "transparent",
+            "border_radius": 6,
+            "margin": "0px",
+            "padding": 10,
+            "border_color": "#000000",
+            "title_text": "Try before you buy",
+            "title_font_size": 20,
+            "title_font_color": "#000000",
+            "description_text": "Try up to [cart_limit_suggested_cart_size] items at home for [trial_period] days. Only pay for what you keep.",
+            "text_font_size": 14,
+            "prevent_description_overflow": false,
+            "text_font_color": "#000000",
+            "button_font_size": 12,
+            "button_text": "ENABLE",
+            "button_font_color": "#000000",
+            "button_background": "#FFFFFF",
+            "button_hover_font_color": "#FFFFFF",
+            "button_hover_background": "#000000",
+            "should_copy_cta_button_styles": false,
+            "additional_button_classes": "",
+            "button_border_radius": 20,
+            "button_padding": 10,
+            "entry_point_custom_css": "",
+            "autoposition": true,
+            "entry_point_position": ""
+          }
         }
       },
       "block_order": [
@@ -329,7 +380,9 @@
         "5de14a04-7725-4efe-85b4-294d2e0e5073",
         "560f83b7-0482-4b54-b6e2-82a1b8cd7635",
         "productloop_Xmmrnw",
-        "productloop_PMQifG"
+        "productloop_PMQifG",
+        "trynow_try_before_you_buy_trynow_cta_button_bzeAqq",
+        "trynow_try_before_you_buy_product_entrypoint_4d6HCC"
       ],
       "custom_css": [],
       "settings": {
