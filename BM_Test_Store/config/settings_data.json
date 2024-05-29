@@ -400,7 +400,6 @@
             "settings": {
               "topic_header": "Best-In-Class Support",
               "topic_header_color": "#000000",
-              "topic_icon": "shopify:\/\/shop_images\/darkblue_1E3D54_a927310f-72ef-4124-a10f-42710e9d716a.png",
               "detail_description": "Engineered with high-quality materials and advanced technology, Bear's <a href=\"\/collections\/mattresses\">mattresses<\/a> provide a luxurious sleep experience like no other.",
               "detail_description_text_color": ""
             }
@@ -410,7 +409,6 @@
             "settings": {
               "topic_header": "Top Tier Clean Materials",
               "topic_header_color": "#000000",
-              "topic_icon": "shopify:\/\/shop_images\/darkblue_1E3D54_a927310f-72ef-4124-a10f-42710e9d716a.png",
               "detail_description": "Certified to meet strict <a href=\"\/pages\/sustainability\">environmental standards<\/a> and are free from fiberglass, formaldehyde, and heavy metals.",
               "detail_description_text_color": ""
             }
@@ -420,7 +418,6 @@
             "settings": {
               "topic_header": "Innovative Sleep Wellness",
               "topic_header_color": "#000000",
-              "topic_icon": "shopify:\/\/shop_images\/darkblue_1E3D54_a927310f-72ef-4124-a10f-42710e9d716a.png",
               "detail_description": "Bear utilizes <a href=\"\/pages\/technology\">Sleep Recovery Technology™<\/a> to promote a refreshingly cool, clean, and naturally-restorative night’s sleep.",
               "detail_description_text_color": ""
             }
@@ -430,7 +427,6 @@
             "settings": {
               "topic_header": "Factory Direct from Arizona",
               "topic_header_color": "",
-              "topic_icon": "shopify:\/\/shop_images\/darkblue_1E3D54_a927310f-72ef-4124-a10f-42710e9d716a.png",
               "detail_description": "Bear mattresses are assembled in our Arizona factory, then shipped directly to your home to ensure premium craftsmanship and they meet the highest quality standards.",
               "detail_description_text_color": ""
             }
@@ -456,7 +452,6 @@
         ],
         "settings": {
           "background-color": "#ffffff",
-          "detail_image": "shopify:\/\/shop_images\/Athlete-Brewer-BearOriginal.jpg",
           "section_header": "How We Meet Hibernation-Caliber Standards",
           "detail_image_alt": "Person in ath-lesuire clothing sitting on Bear mattress next to a bedside table.",
           "orientation": "row-reverse",
@@ -1093,8 +1088,6 @@
         ],
         "settings": {
           "toggle": true,
-          "desktop-image": "shopify:\/\/shop_images\/Home_Pg_Desktop_1920X720_21.jpg",
-          "mobile-image": "shopify:\/\/shop_images\/Home_Mobile_390x550_2ca90e7f-1a6f-4a35-9553-5fb6d14d6917.jpg",
           "flex-align": "fa--left-center",
           "text-align": "ta--left"
         }
@@ -11230,9 +11223,6 @@
             "settings": {
               "grid_title": "",
               "grid_description": "MCKENNA KELLEY<br>Elite Gymnast",
-              "grid_image": "shopify:\/\/shop_images\/Athlete-Kelley.png",
-              "grid_image_ipad": "shopify:\/\/shop_images\/Athlete-Kelley_1400x_d1003d9e-7c07-4a4e-a92a-dc0d9e4c98df.jpg",
-              "grid_image_mobile": "shopify:\/\/shop_images\/Athlete-Kelley_1400x_d1003d9e-7c07-4a4e-a92a-dc0d9e4c98df.jpg",
               "grid_image_alt": "https:\/\/cdn.shopify.com\/s\/files\/1\/0661\/5815\/files\/Athlete-Kelley_1400x.png",
               "grid_video": "https:\/\/www.youtube.com\/watch?v=gXmy-Z5xjtY",
               "grid_button_text": "",
@@ -11244,9 +11234,6 @@
             "settings": {
               "grid_title": "",
               "grid_description": "DARRYL STINGLEY<br>\nProfessional Parkour Athlete",
-              "grid_image": "shopify:\/\/shop_images\/Athlete-Stingley_1400x_dbbdb605-0d78-4d3a-a317-d6e5edfb5af6.jpg",
-              "grid_image_ipad": "shopify:\/\/shop_images\/Athlete-Stingley_1400x_dbbdb605-0d78-4d3a-a317-d6e5edfb5af6.jpg",
-              "grid_image_mobile": "shopify:\/\/shop_images\/Athlete-Stingley_1400x_dbbdb605-0d78-4d3a-a317-d6e5edfb5af6.jpg",
               "grid_image_alt": "",
               "grid_video": "https:\/\/www.youtube.com\/watch?v=Rd1l6BKZvoo",
               "grid_button_text": "",
@@ -11276,9 +11263,6 @@
             "settings": {
               "grid_title": "",
               "grid_description": "Find the mattress that's right for you",
-              "grid_image": "shopify:\/\/shop_images\/CG-1019-Couple-Plant_1267_edited2.jpg",
-              "grid_image_ipad": "shopify:\/\/shop_images\/CG-1119-Couple-bear_1267_edited2-tablet.jpg",
-              "grid_image_mobile": "shopify:\/\/shop_images\/CG-1119-Couple-bear_1267_edited2-mobile.jpg",
               "grid_image_alt": "man and woman couple lying on a bear mattress smiling together",
               "grid_video": "",
               "grid_button_text": "Take SLeep Quiz",
@@ -14492,7 +14476,6 @@
           "f439ce2b-6a57-40af-a823-67a9f16e920a": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/EliteHybrid-FoamLayers-MobileNav-255x156.jpg",
               "title": "Elite Hybrid",
               "product_link": "shopify:\/\/products\/elite-hybrid-mattress",
               "product_quality": "World-Class Luxury"
@@ -14501,7 +14484,6 @@
           "c99a4296-b5e7-4bf7-9aa8-b0ce2ac5f63b": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/StarHybrid-FoamLayers-MobileNav.jpg",
               "title": "Star Hybrid",
               "product_link": "shopify:\/\/products\/star-hybrid-mattress",
               "product_quality": "Premium Pillow Top"
@@ -14511,7 +14493,6 @@
             "type": "product_detail",
             "disabled": true,
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/FoamLayersNav_BearHybrid_340x192_daf26616-0d4a-4cc4-934d-36e232eee669.jpg",
               "title": "Bear Hybrid",
               "product_link": "shopify:\/\/products\/2021-hybrid-mattress",
               "product_quality": "Most Popular"
@@ -14521,7 +14502,6 @@
             "type": "product_detail",
             "disabled": true,
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/Pro-Layers_1247x811_a581001a-0526-4c9c-99bf-608abeb46b57.jpg",
               "title": "Bear Pro <span class=\"nav-badge closeout\">Closeout - 50% OFF<\/span>",
               "product_link": "shopify:\/\/products\/bear-pro",
               "product_quality": "Premium Memory Foam"
@@ -14530,7 +14510,6 @@
           "d86ea714-e443-47f7-b5bf-674cda972e04": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/ProHybrid-FoamLayers-MobileNavImage-609x342.jpg",
               "title": "Pro Hybrid",
               "product_link": "shopify:\/\/products\/pro-hybrid-mattress",
               "product_quality": "Signature Comfort"
@@ -14539,7 +14518,6 @@
           "1593027481369": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/BearOriginal-FoamLayers-MobileMenu-730x411.jpg",
               "title": "Bear Original",
               "product_link": "shopify:\/\/products\/bear-original-mattress",
               "product_quality": "Great Value"
@@ -14548,7 +14526,6 @@
           "product_detail_twWqLr": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/Nautral-FoamLayers-HiResMobileThumb.jpg",
               "title": "Bear Natural",
               "product_link": "shopify:\/\/products\/bear-natural-mattress",
               "product_quality": "Talalay Latex & GOTS Cotton"
@@ -14557,7 +14534,6 @@
           "274027ef-36d8-4ebe-adfe-f3b6628f3fe3": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/BearCubTencel-FoamLayers-MenuImage.jpg",
               "title": "Bear Cub",
               "product_link": "shopify:\/\/products\/bear-cub-kids-mattress",
               "product_quality": "NEW Kids Mattress"
@@ -14566,7 +14542,6 @@
           "3ba87e38-d586-4f60-b6e5-ed236afaa197": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/BearTrundle-FoamLayers-SideCutout-812x456.jpg",
               "title": "Bear Trundle",
               "product_link": "shopify:\/\/products\/bear-trundle-mattress",
               "product_quality": "Low Profile Mattress"
@@ -14576,7 +14551,6 @@
             "type": "product_detail",
             "disabled": true,
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/BearRV-FoamLayers-SideCutoutMobile-864x486.jpg",
               "title": "Bear Trek",
               "product_link": "shopify:\/\/products\/bear-trek-rv-mattress",
               "product_quality": "RV Mattress"
@@ -14671,7 +14645,6 @@
           "e63b9fef-799a-407a-84e1-c2f279aa4c73": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/ChevBedBase-Silho-AngleOnWhite.jpg",
               "title": "Summit Platform Bed",
               "product_link": "https:\/\/www.bearmattress.com\/products\/summit-platform-bed",
               "product_quality": "Platform Bed with Headboard"
@@ -14680,7 +14653,6 @@
           "e5226d88-967f-4165-8344-bac9bd584f39": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/Platform-Base-Walnut-Font_5d90cc21-b27d-49fc-92c4-bb713e580272.jpg",
               "title": "Platform Bed",
               "product_link": "shopify:\/\/products\/bear-platform-bed",
               "product_quality": "All-Natural Wood Frame & Base"
@@ -14689,7 +14661,6 @@
           "1594209480099": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Foundation-Angle.jpg",
               "title": "Foundation",
               "product_link": "shopify:\/\/products\/bear-foundation",
               "product_quality": "Modern Bed Base"
@@ -14698,7 +14669,6 @@
           "1594209417370": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Frame-Angled.jpg",
               "title": "Bed Frame",
               "product_link": "shopify:\/\/products\/bear-bed-frame",
               "product_quality": "Sturdy & Durable Frame"
@@ -14738,7 +14708,6 @@
           "1594209567515": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-BearPillow-Rendered-Angle.jpg",
               "title": "Bear Pillow",
               "product_link": "shopify:\/\/products\/bear-pillow",
               "product_quality": "Supportive Cooling Foam Pillow"
@@ -14757,7 +14726,6 @@
           "46d7e94d-dd83-4985-af38-11506fb5142a": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/Adjustable-Foam-Pillow-Silo-1440x810_02448cbd-9705-436d-be63-513191f4ebd8.jpg",
               "title": "Adjustable Pillow",
               "product_link": "shopify:\/\/products\/adjustable-foam-pillow",
               "product_quality": "Shredded Foam with Cooling"
@@ -14766,7 +14734,6 @@
           "0eacd41b-38c5-45c4-bd1f-3140d7451d56": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-talalay-latex-pillow-1_11f42546-b54d-4e04-ab52-099383e01039.jpg",
               "title": "Talalay Latex Pillow",
               "product_link": "shopify:\/\/products\/talalay-latex-pillow",
               "product_quality": "Eco-Friendly & Natural Cooling"
@@ -14775,7 +14742,6 @@
           "product_detail_mqkDxF": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-promo-pillow-3.jpg",
               "title": "Cirrus Cloud Pillows",
               "product_link": "shopify:\/\/products\/cirrus-cloud-pillows",
               "product_quality": "Fluffy Down Alternative"
@@ -14784,7 +14750,6 @@
           "ad44cbba-c436-43bd-85c9-25695f3b1b9c": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/Contour-Pillow-Nav.jpg",
               "title": "Contour Pillow",
               "product_link": "shopify:\/\/products\/contour-pillow",
               "product_quality": "High-loft for Side Sleepers"
@@ -14793,7 +14758,6 @@
           "8797bda0-b77e-485b-a0cf-7f1cde9dfdb8": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/BearMiniPillow-AngledSilo.jpg",
               "title": "Mini Pillow",
               "product_link": "shopify:\/\/products\/bear-mini-pillow",
               "product_quality": "Miniature Sleep-Anywhere Size"
@@ -14808,7 +14772,6 @@
           "a7af6382-4f47-480b-95db-a736671e477a": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/GlacioTexProtector-PrimaryFoldedSilo-2880x1620.jpg",
               "title": "GlacioTex Protector",
               "product_link": "shopify:\/\/products\/glaciotex-mattress-protector",
               "product_quality": "Advanced Cooling Protection"
@@ -14817,7 +14780,6 @@
           "1594211301446": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Protector-Folded.jpg",
               "title": "Bear Protector",
               "product_link": "shopify:\/\/products\/bear-mattress-protector",
               "product_quality": "Highly Breathable Protection"
@@ -14826,7 +14788,6 @@
           "1a78b3b2-bae1-42f6-a9bc-274ad709eb4d": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/Bitmap_9db1d618-5ab0-4ebf-b7b0-e2fa4be7489f.jpg",
               "title": "Terry Protector",
               "product_link": "https:\/\/www.bearmattress.com\/products\/terry-mattress-protector",
               "product_quality": "Signature Spill Barrier"
@@ -14835,7 +14796,6 @@
           "1594211335233": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Encasement-silo.jpg",
               "title": "Encasement",
               "product_link": "shopify:\/\/products\/bear-encasement",
               "product_quality": "360° Waterproof & Bug-proof"
@@ -14850,7 +14810,6 @@
           "1594212151454": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Topper-Angle.jpg",
               "title": "Mattress Topper",
               "product_link": "shopify:\/\/products\/bear-pro-topper",
               "product_quality": "3” High-Quality Comfort Foam"
@@ -14859,7 +14818,6 @@
           "b4ef6d38-79e5-491c-b09a-71acfe486315": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Microfiber-Sheets-Stacked.jpg",
               "title": "Sheet Set",
               "product_link": "shopify:\/\/products\/bear-sheets",
               "product_quality": "Soft & Silky Microfiber Sheets"
@@ -14868,7 +14826,6 @@
           "532704f8-7a5f-492a-b238-cca03091afda": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Bamboo-Cotton-Stacked_f3b4feb5-75db-411b-80f0-bf0915c5bf85.jpg",
               "title": "Tencel Sheet Set",
               "product_link": "shopify:\/\/products\/tencel-sheets",
               "product_quality": "Highly Breathable & Cool"
@@ -14877,7 +14834,6 @@
           "9f9d99a4-07f0-42f1-83ed-3ecc4030e207": {
             "type": "product_detail",
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Chunky-Knit-Weighted-Blanket-1_2a096f12-e6f6-47e2-a492-328d326cf89f.jpg",
               "title": "Knit Weighted Blanket",
               "product_link": "shopify:\/\/products\/chunky-knit-weighted-blanket",
               "product_quality": "Chunky Knit Soothing Blanket"
@@ -14887,7 +14843,6 @@
             "type": "product_detail",
             "disabled": true,
             "settings": {
-              "product_image": "shopify:\/\/shop_images\/pdp-Weighted-Blanket-Corner.jpg",
               "title": "Weighted Blanket",
               "product_link": "shopify:\/\/products\/weighted-blanket",
               "product_quality": ""
@@ -15069,7 +15024,6 @@
           "1593017680228": {
             "type": "currencyoption",
             "settings": {
-              "currency_option_image": "shopify:\/\/shop_images\/usd-flag.png",
               "currency_option_link": "https:\/\/www.bearmattress.com\/?currency=USD",
               "title": "USD"
             }
@@ -15077,7 +15031,6 @@
           "1593017697793": {
             "type": "currencyoption",
             "settings": {
-              "currency_option_image": "shopify:\/\/shop_images\/cad-flag.png",
               "currency_option_link": "https:\/\/www.bearmattress.com\/?currency=CAD",
               "title": "CAD"
             }
@@ -15111,7 +15064,6 @@
             "settings": {
               "image_block_width": "dropdown__subnav_oh",
               "title": "Experience Sleep Wellness for Modern Life",
-              "image": "shopify:\/\/shop_images\/StarHybrid-Lifestyle-PillowHugHeadon-2111x1187.jpg",
               "bottom_text": "Shop The Mattresses",
               "bottom_link": "shopify:\/\/collections\/mattresses"
             }
@@ -15121,7 +15073,7 @@
             "settings": {
               "menu_block_width": "dropdown__subnav_of",
               "title": "Mattress Help",
-              "select_menu": "mattress-help",
+              "select_menu": "",
               "button_text": "",
               "button_link": ""
             }
@@ -15157,7 +15109,6 @@
             "settings": {
               "image_block_width": "dropdown__subnav_tt",
               "title": "Elite Hybrid Mattress + Adjustable Bed Base",
-              "image": "shopify:\/\/shop_images\/Katherine-Steve-Adjustable-Bed-Smiling__1024x784_2x_4faeb7d8-ac97-4e41-a7bb-03c3e5d01b8e.jpg",
               "bottom_text": "Shop the Adjustable Bed Deal",
               "bottom_link": "shopify:\/\/products\/adjustable-bed-deal"
             }
@@ -15192,7 +15143,7 @@
             "settings": {
               "menu_block_width": "dropdown__subnav_of",
               "title": "Mattress Care",
-              "select_menu": "mattress-care",
+              "select_menu": "",
               "button_text": "",
               "button_link": ""
             }
@@ -15202,7 +15153,7 @@
             "settings": {
               "menu_block_width": "dropdown__subnav_of",
               "title": "Add Comfort",
-              "select_menu": "comfort",
+              "select_menu": "",
               "button_text": "",
               "button_link": ""
             }
@@ -15212,7 +15163,6 @@
             "settings": {
               "image_block_width": "dropdown__subnav_ot",
               "title": "The Always Cool Bear Pillow",
-              "image": "shopify:\/\/shop_images\/Nav-Accessories.jpg",
               "bottom_text": "Shop the Bear Pillow",
               "bottom_link": "shopify:\/\/products\/bear-pillow"
             }
@@ -15250,7 +15200,6 @@
               "image_block_width": "dropdown__subnav_tt",
               "title": "",
               "content": "<h6>Visit A Showroom<\/h6>\n<p>Now Showing at 18 Arizona locations!<\/p> <p>See for yourself why so many<br>people trust Bear to get the rest <br>and recovery they need.<\/p>",
-              "image": "shopify:\/\/shop_images\/showroom.jpg",
               "bottom_text": "Find a Showroom Location",
               "bottom_link": "shopify:\/\/pages\/showroom"
             }
@@ -15285,7 +15234,7 @@
               "title": "Mattresses",
               "title_link": "",
               "heading_1": "",
-              "linklist_1": "footer-mattresses",
+              "linklist_1": "",
               "heading_2": "",
               "linklist_2": "",
               "heading_3": "",
@@ -15300,9 +15249,9 @@
               "heading_1": "Pillows",
               "linklist_1": "pillows",
               "heading_2": "Mattress Care",
-              "linklist_2": "mattress-care",
+              "linklist_2": "",
               "heading_3": "Add Comfort",
-              "linklist_3": "footer-add-comfort"
+              "linklist_3": ""
             }
           },
           "1593717804757": {
@@ -15311,7 +15260,7 @@
               "title": "Bed Bases",
               "title_link": "",
               "heading_1": "",
-              "linklist_1": "footer-bed-bases",
+              "linklist_1": "",
               "heading_2": "",
               "linklist_2": "",
               "heading_3": "",
@@ -15360,7 +15309,6 @@
           "1593784611544": {
             "type": "currencyoption",
             "settings": {
-              "currency_option_image": "shopify:\/\/shop_images\/usd-flag.png",
               "currency_option_link": "https:\/\/www.bearmattress.com\/?currency=USD",
               "currency_option_name": "USD"
             }
@@ -15368,7 +15316,6 @@
           "1593784685120": {
             "type": "currencyoption",
             "settings": {
-              "currency_option_image": "shopify:\/\/shop_images\/cad-flag.png",
               "currency_option_link": "https:\/\/www.bearmattress.com\/?currency=CAD",
               "currency_option_name": "CAD"
             }
@@ -15385,7 +15332,7 @@
           "1593784685120"
         ],
         "settings": {
-          "footer_secondary_linklist": "footer3",
+          "footer_secondary_linklist": "",
           "discount_title": "DISCOUNTS & MORE",
           "discount_description": "<strong>Learn about special deals and future product releases.<\/strong> Members receive promotional discounts, access to exclusive Bear content, early product release notifications, and much more.",
           "footer_newsletter_enable": false,
@@ -15942,7 +15889,6 @@
           "297be24f-c6a3-410b-93df-6354890b61f7": {
             "type": "text",
             "settings": {
-              "image": "shopify:\/\/shop_images\/CNET_BestOf2024.png",
               "title": "Best of 2024",
               "description": "CNET"
             }
@@ -15950,7 +15896,6 @@
           "58e98f7d-7194-42bf-8a0f-c41d04f28c0d": {
             "type": "text",
             "settings": {
-              "image": "shopify:\/\/shop_images\/GoodHousekeeping-PDP.png",
               "title": "Best Bedding Award 2023",
               "description": "Good Housekeeping"
             }
@@ -15958,7 +15903,6 @@
           "01482465-6a3b-48b9-a461-8017b551fe4d": {
             "type": "text",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Strategist_BestInClass2024.png",
               "title": "Best in Class 2024",
               "description": "Strategist"
             }
@@ -15966,7 +15910,6 @@
           "784cdbbc-46b0-496e-ad65-81cd3ea6fab6": {
             "type": "text",
             "settings": {
-              "image": "shopify:\/\/shop_images\/MensHealth-PDP.png",
               "title": "Editor's Choice 2023",
               "description": "Men's Health"
             }
@@ -15974,7 +15917,6 @@
           "1600102983985": {
             "type": "text",
             "settings": {
-              "image": "shopify:\/\/shop_images\/Esquire-PDP.png",
               "title": "2023 Editor's Pick",
               "description": "Esquire"
             }
@@ -15983,7 +15925,6 @@
             "type": "text",
             "disabled": true,
             "settings": {
-              "image": "shopify:\/\/shop_images\/Forbes-PDP.png",
               "title": "Best Mattresses 2023",
               "description": "Forbes"
             }
@@ -16342,7 +16283,6 @@
           "02c9b46b-ecf6-4129-9613-955cd56b964d": {
             "type": "slide",
             "settings": {
-              "icon_image": "shopify:\/\/shop_images\/Icon-Moon-64x64.png",
               "icon_width": "20px",
               "title": "120-Night Mattress Trial",
               "popup_heading": "120-Night Mattress Trial",
@@ -16352,7 +16292,6 @@
           "f394b164-44c3-4056-968d-0684b897cbfe": {
             "type": "slide",
             "settings": {
-              "icon_image": "shopify:\/\/shop_images\/Icon-Ribbon-64x64.png",
               "icon_width": "20px",
               "title": "Lifetime Warranty",
               "popup_heading": "Lifetime Warranty",
@@ -16362,7 +16301,6 @@
           "3e2e4cd5-afc5-4024-a7fe-fa45c82c3f4e": {
             "type": "slide",
             "settings": {
-              "icon_image": "shopify:\/\/shop_images\/Icon-MoneyBag-64x64.png",
               "icon_width": "20",
               "title": "Interest-Free Financing<sup>*<\/sup>",
               "popup_heading": "Financing as Low as 0% APR<sup>*<\/sup>",
@@ -17326,9 +17264,6 @@
             "settings": {
               "grid_title": "Bed Bases",
               "grid_description": "Support Your Better Sleep",
-              "grid_image": "shopify:\/\/shop_images\/Hompage-Categories-Bases-mbile.jpg",
-              "grid_image_ipad": "shopify:\/\/shop_images\/Hompage-Categories-Bases-mbile.jpg",
-              "grid_image_mobile": "shopify:\/\/shop_images\/Hompage-Categories-Bases-mbile.jpg",
               "grid_image_alt": "",
               "grid_button_link": "\/collections\/bed-bases"
             }
@@ -17338,9 +17273,6 @@
             "settings": {
               "grid_title": "Accessories",
               "grid_description": "Quality & Comfort You Deserve",
-              "grid_image": "shopify:\/\/shop_images\/Hompage-Categories-Accessories-mobile.jpg",
-              "grid_image_ipad": "shopify:\/\/shop_images\/Hompage-Categories-Accessories-mobile.jpg",
-              "grid_image_mobile": "shopify:\/\/shop_images\/Hompage-Categories-Accessories-mobile.jpg",
               "grid_image_alt": "",
               "grid_button_link": "\/collections\/accessories"
             }
@@ -17497,7 +17429,6 @@
           "b84b2b4d-8142-4f57-97b9-f9c84726c963": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/original.jpg",
               "title": "Brian T.",
               "product_title": "Elite Hybrid",
               "product_link": "shopify:\/\/products\/elite-hybrid-mattress",
@@ -17509,7 +17440,6 @@
           "17939250-abc6-47b6-9f33-02b10bbb580b": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/fdsa.jpg",
               "title": "Sara N.",
               "product_title": "Elite Hybrid",
               "product_link": "shopify:\/\/products\/elite-hybrid-mattress",
@@ -17521,7 +17451,6 @@
           "1ed20ecb-6099-49b0-96dd-271b05b43db6": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/hybrid-ayanna.jpg",
               "title": "Ayanna O.",
               "product_title": "Bear Hybrid",
               "product_link": "shopify:\/\/products\/2021-hybrid-mattress",
@@ -17533,7 +17462,6 @@
           "ea49f1f8-4e0d-4808-9cee-1198a20582ca": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/hybrid-wendy.jpg",
               "title": "Wendy K.",
               "product_title": "Bear Hybrid",
               "product_link": "shopify:\/\/products\/2021-hybrid-mattress",
@@ -17545,7 +17473,6 @@
           "53158bd8-fa43-42ad-b8e7-2eb622ac29cb": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/pro-kenton.jpg",
               "title": "Kenton B.",
               "product_title": "Bear Pro",
               "product_link": "shopify:\/\/products\/bear-pro",
@@ -17557,7 +17484,6 @@
           "c90c8fa9-04c3-4304-8600-2b5b27c24fe4": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/pro-victoria.jpg",
               "title": "Victoria S.",
               "product_title": "Bear Pro",
               "product_link": "shopify:\/\/products\/bear-pro",
@@ -17569,7 +17495,6 @@
           "4d01a8a1-c4ab-4d45-b0a6-56a77c836d66": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/original-elizabeth.jpg",
               "title": "Elizabeth C.",
               "product_title": "Bear Mattress",
               "product_link": "shopify:\/\/products\/bear-original-mattress",
@@ -17581,7 +17506,6 @@
           "b5c35f2d-352c-4dc0-8076-14f8b1524072": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/original-max.jpg",
               "title": "Max M.",
               "product_title": "Bear Mattress",
               "product_link": "shopify:\/\/products\/bear-original-mattress",
@@ -17593,7 +17517,6 @@
           "6294de31-2a6a-4a81-9a78-e32eb8926362": {
             "type": "review",
             "settings": {
-              "section_image": "shopify:\/\/shop_images\/general-ronald.jpg",
               "title": "Ronald H.",
               "product_title": "",
               "product_link": "",
@@ -19741,7 +19664,6 @@
             "settings": {
               "heading": "Elite Hybrid",
               "title": "World-Class Luxury Hybrid Mattress",
-              "image": "shopify:\/\/shop_images\/EliteHybrid-Silho-FrontAngleGHBadge-2074x1167.jpg",
               "bottom_text": "Shop Our Premium Comfort Hybrid",
               "link": "shopify:\/\/products\/elite-hybrid-mattress"
             }
@@ -19751,7 +19673,6 @@
             "settings": {
               "heading": "Bear Natural",
               "title": "Natural Talalay Latex with Zoned Lumbar Coils",
-              "image": "shopify:\/\/shop_images\/pdp-BearNatural-Silho-FrontAngle-Shadow-badge.jpg",
               "bottom_text": "Shop Our Newest Hybrid Mattress",
               "link": "shopify:\/\/products\/bear-natural-mattress"
             }
@@ -19761,7 +19682,6 @@
             "settings": {
               "heading": "Star Hybrid",
               "title": "Award Winning Luxury Mattress",
-              "image": "shopify:\/\/shop_images\/StarHybrid-Silho-FrontAngle-2052x1154-2024badge.jpg",
               "bottom_text": "Shop Our Best Selling Mattress",
               "link": "shopify:\/\/products\/star-hybrid-mattress"
             }
@@ -19771,7 +19691,6 @@
             "settings": {
               "heading": "Pro Hybrid",
               "title": "Signature Comfort and Support",
-              "image": "shopify:\/\/shop_images\/ProHybrid-Silho-FrontAngleContentBadge-2068x1163.jpg",
               "bottom_text": "Shop Our Newest Hybrid",
               "link": "shopify:\/\/products\/pro-hybrid-mattress"
             }
@@ -19782,7 +19701,6 @@
             "settings": {
               "heading": "Bear Pro",
               "title": "Luxury Feel, Affordable Price",
-              "image": "shopify:\/\/shop_images\/ProHybrid-Lifestyle-NavHover-1887x1061.jpg",
               "bottom_text": "See Our Newest Hybrid",
               "link": "shopify:\/\/products\/bear-pro"
             }
@@ -19792,7 +19710,6 @@
             "settings": {
               "heading": "Bear Original",
               "title": "Cooling Memory Foam",
-              "image": "shopify:\/\/shop_images\/BearOriginalTencel-Silho-FrontAngle-badge.jpg",
               "bottom_text": "Shop The Mattress That Started It All",
               "link": "shopify:\/\/products\/bear-original-mattress"
             }
@@ -19802,7 +19719,6 @@
             "settings": {
               "heading": "Bear Cub",
               "title": "Support for Young Sleepers",
-              "image": "shopify:\/\/shop_images\/BearCubTencel-SilhoArctic-Angle-2016x1134-Badge.png",
               "bottom_text": "The Perfect Mattress to Support Growing Kids",
               "link": "shopify:\/\/products\/bear-cub-kids-mattress"
             }
@@ -19812,7 +19728,6 @@
             "settings": {
               "heading": "Bear Trundle",
               "title": "Comfortable and Low Profile",
-              "image": "shopify:\/\/shop_images\/BearTrundle-Angle-2880x1620_cbe00487-02ef-4d5f-a33a-4d6a09b54687.jpg",
               "bottom_text": "Elevated Comfort in a Trundle Bed Size",
               "link": "shopify:\/\/products\/bear-trundle-mattress"
             }
@@ -19822,7 +19737,6 @@
             "settings": {
               "heading": "Bear Trek",
               "title": "A Perfect Fit for Recreational Vehicles",
-              "image": "shopify:\/\/shop_images\/BearRV-Angle.jpg",
               "bottom_text": "Get Rejuvenating Sleep While Traveling",
               "link": "shopify:\/\/products\/bear-trek-rv-mattress"
             }
@@ -19832,7 +19746,6 @@
             "settings": {
               "heading": "All Mattresses",
               "title": "Try in the Comfort of Your Own Home",
-              "image": "shopify:\/\/shop_images\/StarHybrid-Lifestyle-PillowHugHeadon-2111x1187.jpg",
               "bottom_text": "Shop the Mattresses",
               "link": "shopify:\/\/collections\/mattresses"
             }
@@ -19842,7 +19755,6 @@
             "settings": {
               "heading": "2019 Bear Hybrid",
               "title": "Exclusive Closeout Offer",
-              "image": "shopify:\/\/shop_images\/FullEnviro-2019Hybrid-1512x851.jpg",
               "bottom_text": "Shop 2019 Bear Hybrid",
               "link": "shopify:\/\/products\/2019-hybrid-mattress"
             }
@@ -25859,9 +25771,6 @@
             "settings": {
               "grid_title": "",
               "grid_description": "Get 50% off when you bundle a mattress and an adjustable bed",
-              "grid_image": "shopify:\/\/shop_images\/HomepageCalloutSection-Desktop.jpg",
-              "grid_image_ipad": "shopify:\/\/shop_images\/HomepageCalloutSection-Tablet.jpg",
-              "grid_image_mobile": "shopify:\/\/shop_images\/HomepageCalloutSection-Mobile.jpg",
               "grid_image_alt": "Elite Hybrid and Adjustable bed base",
               "grid_video": "",
               "grid_button_text": "SHOP 50% OFF DEAL",
@@ -26621,7 +26530,6 @@
       "foundation_video_wBN6ee": {
         "type": "foundation-video",
         "settings": {
-          "image": "shopify:\/\/shop_images\/RechargeVideo-Thumbnail-1920x1280.png",
           "video_link": "https:\/\/youtu.be\/LT_mzXEDSU8",
           "height": "use_screen_one_half",
           "overlay": "image-overlay-65",
@@ -27358,7 +27266,16 @@
       "1570481627137",
       "1582121269865",
       "1571258631312"
-    ]
+    ],
+    "blocks": {
+      "15804298063636319733": {
+        "type": "shopify:\/\/apps\/trynow-try-before-you-buy\/blocks\/gated-flow\/4c8ee11a-0e2d-4d12-800e-b312601aebc7",
+        "disabled": false,
+        "settings": {
+          "custom_css": ""
+        }
+      }
+    }
   },
   "presets": {
     "Bright": {
