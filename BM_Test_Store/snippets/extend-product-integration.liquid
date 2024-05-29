@@ -12,7 +12,12 @@
             // No Product Form, variants are determined by a jQuery option selection
             const $productForm = $('.product-dropdown__list'); // Change this to the product form element
             let $selection = $productForm.find('option:selected'); // Current selection
-            const addToCartButton = document.querySelector('section.product .product-buy__button_add_on'); // Change this to the Add-To-Cart element
+            let isFormBtn = window.location.href.indexOf("/bear-original-mattress") > -1 == true;
+            const addToCartButton = isFormBtn ?  
+            document.querySelector('section.product product-form form button')
+            :
+            document.querySelector('section.product .product-buy__button_add_on')
+            // Change this to the Add-To-Cart element
             const productCategory = (meta && meta.product) ? meta.product.type : null;
             const extendOffer = document.createElement('div');
             const extendUtils = window.Extend.integration.utils;

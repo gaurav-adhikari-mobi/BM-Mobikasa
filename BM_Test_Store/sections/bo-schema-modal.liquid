@@ -1,0 +1,222 @@
+{% include 'schema' %}
+<style>
+    td{
+      width: 50%;
+    }
+     .cs-fcompare-table tr td:nth-child(2) {
+      display: none;
+  }
+      .cs-fcompare-table tr td:nth-child(3) {
+      display: none;
+  }
+    .cs-fcompare-table tr td:nth-of-type(3) {
+      background-color: #fff;
+  }
+      @media only screen and (max-width: 768px) {
+    .cs-info-box {
+     display: flex;
+    }
+       .cs-fcompare-table tr td:nth-of-type(1) {
+      width: 30%;
+  }
+      .cs-fcompare-table tr td {
+      width: 35%;
+  }
+      .cs-fcompare-table tr{
+        display: flex;
+      }
+      .cs-fcompare-table{
+        min-width: auto;
+      }
+  }
+  .firmness-guide-linkk{
+      color: #2e577c !important;
+    cursor: pointer !important;
+          font-weight: 500;
+    margin-left: 16px;
+    float: right;
+    }
+</style>
+<div class="modali">
+ <div class="cs-modal-overlayi"></div>
+  <div class="modal-contenti">
+   <span class="closei mdi mdi-close" data-uw-cer-popup-close="" tabindex="0" aria-label="Close dialog" role="button"></span>
+     <h3>Better Sleep to Boost Recovery</h3>
+      <div class="modal-description">
+       <img class="desk" style="width: 100%;padding: 0 1px;" src="https://cdn.shopify.com/s/files/1/0661/5815/files/BearOriginal-CelliantCoverPopup.jpg?v=1692821117">
+       <img class="mob" style="width: 100%;padding: 0 1px;margin: auto;" src="https://cdn.shopify.com/s/files/1/0661/5815/files/BearOriginal-CelliantCoverMobilePopup.jpg?v=1692821117">
+  </div>
+  <div class="modal-ctai">
+  <div class="orderi"><a href="javascript:void(0)" data-uw-rm-brl="exc" data-value="Queen-39281250730089" tabindex="0">YES, INCLUDE IT</a></div>
+ <div class="close-modal-ctai"><a href="javascript:void(0)" data-uw-rm-brl="exc" data-value="Queen-39281250730089" tabindex="0">CLOSE</a></div>
+  </div>
+    </div>
+  </div>
+
+
+  <style>
+    .close-modal-ctai a {
+  display: inline-block;
+  background: #989898;
+  text-decoration: none;
+  clear: both;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  padding: 13px;
+  margin: 0 auto;
+  border-radius: 3px;
+  font-weight: bold;
+  width: 100%;
+       cursor: pointer;
+}
+    .orderi a {
+  display: inline-block;
+  background: #1e3d54;
+  text-decoration: none;
+  clear: both;
+  text-align: center;
+  color: #fff;
+  font-size: 15px;
+  padding: 13px;
+  margin: 0 auto;
+  border-radius: 3px;
+  font-weight: bold;
+  width: 100%;
+       cursor: pointer;
+}
+    .close-modal-ctai {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+  text-align: center;
+     
+}
+    .orderi {
+  float: left;
+  width: 50%;
+  padding: 0 10px;
+  text-align: center;
+}
+.modal-ctai {
+  clear: both;
+  margin: 30px -10px 0;
+display: flex;
+  justify-content: center;
+}
+    .closei {
+  color: #aaaaaa;
+  float: right;
+  color: rgba(0, 0, 0, 0.54);
+  font-size: 21px;
+  font-weight: bold;
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  padding: 0 7px;
+       cursor: pointer;
+}
+    .flexed-pop img{
+      max-width: 200px;
+      width: 90%;
+      margin: auto;
+       margin-right: 30px;
+      margin-left: 0;
+    }
+    .flexed-pop{
+      display: flex;
+      align-items: center;
+    }
+    .modali {
+      display: none;
+  position: fixed;
+  z-index: 99999997;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+    .cs-modal-overlayi{
+      position: fixed;
+  z-index: 99999998;
+  padding-top: 100px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+    }
+    .modal-contenti{
+      border-radius: 4px;
+  box-shadow: 0 24px 24px 0 rgba(0, 0, 0, 0.26), 0 0 24px 0 rgba(0, 0, 0, 0.12);
+  background-color: #fefefe;
+  margin: auto;
+  border: 1px solid #888;
+  width: 100%;
+  max-width: 640px;
+  height: auto;
+  padding: 24px;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: 99999999;
+  transform: translate(-50%, -50%);
+    }
+    .desk{
+      display: block!important;
+    }
+    .mob{
+      display: none!important;
+    }
+    .firmness-guide-linkk{
+      color: #2e577c !important;
+    cursor: pointer !important;
+          font-weight: 500;
+    margin-left: 16px;
+    float: right;
+    }
+    @media only screen and (max-width: 600px) {
+.desk{
+display: none!important;
+}
+      .mob{
+        display: block!important;
+      }
+}
+  </style>
+  <script>
+    $(".close-modal-ctai, .closei").click(function(){
+$(".modali").hide();
+});
+     $(".orderi").click(function(){
+    $("#cs-option-selection-1").val("Yes").change();
+              $(".product-slider__controls .product-slider__controls-thumb:nth-child(2)").click();
+       $(".modali").hide();
+});
+   $(".firmness-guide-linkk").click(function(){
+       event.preventDefault() // This line seems to be missing the 'event' parameter
+$(".modali").show();
+});
+
+ $('#cs-option-selection-1, #cs-option-selection-0').on('change', function() { 
+       var target = $('#cs-option-selection-1').val();
+       if(target == "Yes"){
+     $(".product-slider__controls .product-slider__controls-thumb:nth-child(2)").click();
+       }
+else{}
+       });
+
+
+  </script>
+{% schema %}
+  {
+    "name": "Bo Schema and Modal",
+    "settings": [],
+    "presets": [{
+      "name": "Bo Schema and Modal"
+      }]
+  }
+{% endschema %}

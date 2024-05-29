@@ -1,0 +1,1212 @@
+{
+  "sections": {
+    "main": {
+      "type": "mattress-dimensions",
+      "blocks": {
+        "1486934711933": {
+          "type": "text",
+          "settings": {
+            "title": "Cal King",
+            "dimensions": "72\" x 84\" x 10\""
+          }
+        },
+        "1486934613689": {
+          "type": "text",
+          "settings": {
+            "title": "Twin XL",
+            "dimensions": "39\" x 80\" x 10\""
+          }
+        },
+        "1486934580786": {
+          "type": "text",
+          "settings": {
+            "title": "Twin",
+            "dimensions": "39\" x 75\" x 10\""
+          }
+        },
+        "1486934637052": {
+          "type": "text",
+          "settings": {
+            "title": "Full",
+            "dimensions": "54\" x 75\" x 10\""
+          }
+        },
+        "1486934681543": {
+          "type": "text",
+          "settings": {
+            "title": "Queen",
+            "dimensions": "60\" x 80\" x 10\""
+          }
+        },
+        "1486934696374": {
+          "type": "text",
+          "settings": {
+            "title": "King",
+            "dimensions": "76\" x 80\" x 10\""
+          }
+        }
+      },
+      "block_order": [
+        "1486934711933",
+        "1486934613689",
+        "1486934580786",
+        "1486934637052",
+        "1486934681543",
+        "1486934696374"
+      ],
+      "settings": {}
+    },
+    "bo_product_buy_box_xrWmiW": {
+      "type": "Bo-Product-BuyBox",
+      "blocks": {
+        "e835ce14-0d69-4513-93b8-381ed6927e2a": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "adjustable-flex-bed",
+            "discount_text": "35% OFF SITEWIDE"
+          }
+        },
+        "17461a9d-13e0-4af2-875b-18872e966089": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "adjustable-bed-deal",
+            "discount_text": "Exclusive 50% Off Deal"
+          }
+        },
+        "7a95e745-dfd5-43ba-b707-61e46e6f877e": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "elite-hybrid-mattress",
+            "discount_text": "35% OFF + FREE ACCESSORIES"
+          }
+        },
+        "98f03275-d458-47e5-b5a5-b275d320bc96": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "star-hybrid-mattress",
+            "discount_text": "35% OFF + FREE ACCESSORIES"
+          }
+        },
+        "44b2afe8-f80e-47e9-9ce8-3704d4883bb1": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "pro-hybrid-mattress",
+            "discount_text": "35% OFF + FREE ACCESSORIES"
+          }
+        },
+        "1568657708384": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-original-mattress",
+            "discount_text": "35% OFF + FREE ACCESSORIES"
+          }
+        },
+        "4c41ced8-57a6-4706-ad2e-d77dec0be0f2": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-original-hybrid",
+            "discount_text": "35% OFF + FREE ACCESSORIES"
+          }
+        },
+        "561cf932-f9aa-403f-be26-f2870f005785": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-cub-kids-mattress",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "f267dfca-7227-49b2-9b94-0861c3aeb040": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-trundle-mattress",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "dcd10159-8f4e-4be2-9328-eadcbf0fbd67": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-trek-rv-mattress",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "78c5d25d-c350-454e-a57d-ef94d4c24e54": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-platform-bed",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "1584119083882": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-foundation",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "1584119091290": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-bed-frame",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "4840d1cf-d21e-42bd-9210-66deebf184a2": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "glaciotex-mattress-protector",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "1584119073878": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-mattress-protector",
+            "discount_text": "60% OFF CLOSEOUT"
+          }
+        },
+        "1585236513303": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-encasement",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "4b06b801-9c22-4da3-a084-2f9627f37019": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "terry-mattress-protector",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "1586536813181": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-pro-topper",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "af4ac18a-b5c8-41b8-999e-b8558d7aa8f8": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-pillow",
+            "discount_text": "60% OFF CLOSEOUT"
+          }
+        },
+        "1581005779165": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "cloud-pillows",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "ee76bcbc-cc25-4e83-b693-01abb2a0a34f": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-sheets",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "b1706d68-e45a-429d-a9ad-5e81b1dd18e6": {
+          "type": "productloop",
+          "disabled": true,
+          "settings": {
+            "product_handle": "2019-hybrid-mattress",
+            "discount_text": "Closeout Sale - 50% OFF"
+          }
+        },
+        "1568657678833": {
+          "type": "productloop",
+          "disabled": true,
+          "settings": {
+            "product_handle": "2021-hybrid-mattress",
+            "discount_text": "30% OFF + FREE CLOUD PILLOWS"
+          }
+        },
+        "1896445e-63b9-4e79-84da-f91d114460ee": {
+          "type": "productloop",
+          "disabled": true,
+          "settings": {
+            "product_handle": "contour-pillow",
+            "discount_text": "35% OFF – CODE: PD35"
+          }
+        },
+        "369f8e26-5b55-41e0-90a6-4190f2f17712": {
+          "type": "productloop",
+          "disabled": true,
+          "settings": {
+            "product_handle": "bear-mini-pillow",
+            "discount_text": "35% OFF – CODE: PD35"
+          }
+        },
+        "1584119105399": {
+          "type": "productloop",
+          "disabled": true,
+          "settings": {
+            "product_handle": "weighted-blanket",
+            "discount_text": "35% OFF – CODE: PD35"
+          }
+        },
+        "f1760f7f-df19-4627-bd55-3de1a3f73bee": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "talalay-latex-pillow",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "e00508d9-047f-48ee-9cbb-2884c312250f": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "chunky-knit-weighted-blanket",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "0d3cde4b-ef9f-480b-a4a2-53f6a69e8e93": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "tencel-sheets",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "5de14a04-7725-4efe-85b4-294d2e0e5073": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "adjustable-foam-pillow",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "560f83b7-0482-4b54-b6e2-82a1b8cd7635": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "summit-platform-bed",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "productloop_Xmmrnw": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "bear-natural-mattress",
+            "discount_text": "35% OFF + FREE ACCESSORIES"
+          }
+        },
+        "productloop_PMQifG": {
+          "type": "productloop",
+          "settings": {
+            "product_handle": "cirrus-cloud-pillows",
+            "discount_text": "35% OFF – CODE: MEMORIAL"
+          }
+        },
+        "trynow_try_before_you_buy_trynow_cta_button_bzeAqq": {
+          "type": "shopify:\/\/apps\/trynow-try-before-you-buy\/blocks\/trynow-cta-button\/4c8ee11a-0e2d-4d12-800e-b312601aebc7",
+          "settings": {
+            "button_title": "Try Before You Buy",
+            "cta_button_custom_css": "",
+            "button_classes": "",
+            "button_margin": "0px 0px 5px 0px",
+            "description": "Try at home for [trial_period] days",
+            "description_font_size": 12,
+            "view_collection_text": "View TryNow collection",
+            "collection": "",
+            "form_selector": "",
+            "gated_toggle_font_size": 12,
+            "gated_toggle_size": 0.7,
+            "logo_color": "black",
+            "logo_vertical_alignment": 1,
+            "logo_horizontal_alignment": 0,
+            "logo_width": 40,
+            "autoposition": false
+          }
+        },
+        "trynow_try_before_you_buy_product_entrypoint_4d6HCC": {
+          "type": "shopify:\/\/apps\/trynow-try-before-you-buy\/blocks\/product-entrypoint\/4c8ee11a-0e2d-4d12-800e-b312601aebc7",
+          "settings": {
+            "background": "transparent",
+            "border_radius": 6,
+            "margin": "0px",
+            "padding": 10,
+            "border_color": "#000000",
+            "title_text": "Try before you buy",
+            "title_font_size": 20,
+            "title_font_color": "#000000",
+            "description_text": "Try up to [cart_limit_suggested_cart_size] items at home for [trial_period] days. Only pay for what you keep.",
+            "text_font_size": 14,
+            "prevent_description_overflow": false,
+            "text_font_color": "#000000",
+            "button_font_size": 12,
+            "button_text": "ENABLE",
+            "button_font_color": "#000000",
+            "button_background": "#FFFFFF",
+            "button_hover_font_color": "#FFFFFF",
+            "button_hover_background": "#000000",
+            "should_copy_cta_button_styles": false,
+            "additional_button_classes": "",
+            "button_border_radius": 20,
+            "button_padding": 10,
+            "entry_point_custom_css": "",
+            "autoposition": true,
+            "entry_point_position": ""
+          }
+        }
+      },
+      "block_order": [
+        "e835ce14-0d69-4513-93b8-381ed6927e2a",
+        "17461a9d-13e0-4af2-875b-18872e966089",
+        "7a95e745-dfd5-43ba-b707-61e46e6f877e",
+        "98f03275-d458-47e5-b5a5-b275d320bc96",
+        "44b2afe8-f80e-47e9-9ce8-3704d4883bb1",
+        "1568657708384",
+        "4c41ced8-57a6-4706-ad2e-d77dec0be0f2",
+        "561cf932-f9aa-403f-be26-f2870f005785",
+        "f267dfca-7227-49b2-9b94-0861c3aeb040",
+        "dcd10159-8f4e-4be2-9328-eadcbf0fbd67",
+        "78c5d25d-c350-454e-a57d-ef94d4c24e54",
+        "1584119083882",
+        "1584119091290",
+        "4840d1cf-d21e-42bd-9210-66deebf184a2",
+        "1584119073878",
+        "1585236513303",
+        "4b06b801-9c22-4da3-a084-2f9627f37019",
+        "1586536813181",
+        "af4ac18a-b5c8-41b8-999e-b8558d7aa8f8",
+        "1581005779165",
+        "ee76bcbc-cc25-4e83-b693-01abb2a0a34f",
+        "b1706d68-e45a-429d-a9ad-5e81b1dd18e6",
+        "1568657678833",
+        "1896445e-63b9-4e79-84da-f91d114460ee",
+        "369f8e26-5b55-41e0-90a6-4190f2f17712",
+        "1584119105399",
+        "f1760f7f-df19-4627-bd55-3de1a3f73bee",
+        "e00508d9-047f-48ee-9cbb-2884c312250f",
+        "0d3cde4b-ef9f-480b-a4a2-53f6a69e8e93",
+        "5de14a04-7725-4efe-85b4-294d2e0e5073",
+        "560f83b7-0482-4b54-b6e2-82a1b8cd7635",
+        "productloop_Xmmrnw",
+        "productloop_PMQifG",
+        "trynow_try_before_you_buy_trynow_cta_button_bzeAqq",
+        "trynow_try_before_you_buy_product_entrypoint_4d6HCC"
+      ],
+      "custom_css": [],
+      "settings": {
+        "background_color": "#db4d29",
+        "text_color": "#ffffff",
+        "gradient_color": "#db4d29"
+      }
+    },
+    "bear_original_icon_grid_8GFBcK": {
+      "type": "bear-original-icon-grid",
+      "blocks": {
+        "adf808be-37e0-4913-9946-57c81dc601aa": {
+          "type": "text",
+          "settings": {
+            "icon_alt": "120-Night trial moon icon",
+            "icon-svg": "",
+            "icon-size": "large",
+            "text": "120-Night Sleep Trial"
+          }
+        },
+        "19e34208-adc5-40d3-b179-373693fb7581": {
+          "type": "text",
+          "settings": {
+            "icon_alt": "Warranty Award Ribbon",
+            "icon-svg": "",
+            "icon-size": "large",
+            "text": "Lifetime Warranty"
+          }
+        },
+        "98e3c207-dc02-4ea7-b099-2c7c48550d07": {
+          "type": "text",
+          "settings": {
+            "icon_alt": "Free Shipping Truck Icon",
+            "icon-svg": "",
+            "icon-size": "large",
+            "text": "Free Shipping & Free Returns"
+          }
+        },
+        "ef506e87-e94d-4cdc-852c-01ce44a61ae8": {
+          "type": "text",
+          "settings": {
+            "icon_alt": "Environmentally-friendly Leaves",
+            "icon-svg": "",
+            "icon-size": "large",
+            "text": "GREEENGUARD Gold Certified"
+          }
+        }
+      },
+      "block_order": [
+        "adf808be-37e0-4913-9946-57c81dc601aa",
+        "19e34208-adc5-40d3-b179-373693fb7581",
+        "98e3c207-dc02-4ea7-b099-2c7c48550d07",
+        "ef506e87-e94d-4cdc-852c-01ce44a61ae8"
+      ],
+      "settings": {
+        "toggle": true,
+        "background-color": "",
+        "text-color": "",
+        "highlighted_text": ""
+      }
+    },
+    "section_publications_2_ftDjyx": {
+      "type": "section-publications-2",
+      "blocks": {
+        "170547aa-61fb-4097-a55d-26b183bc8009": {
+          "type": "text",
+          "settings": {
+            "svg_main_image": "Green-Icon-CertiPUR-US.png?v=1619028543",
+            "svg_main_width": "",
+            "svg_main_height": "",
+            "message": "CertiPUR-US Certified Foams",
+            "svg_main_alt": "CertiPUR-US Badge"
+          }
+        },
+        "c5b7999c-5653-4db6-a25d-311f61ab77b2": {
+          "type": "text",
+          "settings": {
+            "svg_main_image": "ArizonaFactoryPadding.png?v=1688760376",
+            "svg_main_width": "",
+            "svg_main_height": "",
+            "message": "Ships Directly<br> from our U.S. Factory",
+            "svg_main_alt": "Ships Directly from our U.S. Factory"
+          }
+        },
+        "d9cc7479-9fe9-438f-9d6e-eb3c9267fbbf": {
+          "type": "text",
+          "settings": {
+            "svg_main_image": "Green-Icon-Greenguard_Gold.png?v=1619028542",
+            "svg_main_width": "",
+            "svg_main_height": "",
+            "message": "GREENGUARD Gold Certified",
+            "svg_main_alt": "GREENGUARD Gold Badge"
+          }
+        },
+        "efe4477d-4ddf-4509-813a-320cc64adc56": {
+          "type": "text",
+          "disabled": true,
+          "settings": {
+            "svg_main_image": "Green-Icon-Minerals.png?v=1619028543",
+            "svg_main_width": "",
+            "svg_main_height": "",
+            "message": "Sleep Recovery Technology™<br>Made from Natural Minerals",
+            "svg_main_alt": "Natural Minerals"
+          }
+        },
+        "b6e85075-41ff-4baf-a872-024c2eba9411": {
+          "type": "text",
+          "settings": {
+            "svg_main_image": "Green-Icon-No-Fiberglass.png?v=1622655880",
+            "svg_main_width": "",
+            "svg_main_height": "",
+            "message": "Fiberglass-Free Fire Barrier",
+            "svg_main_alt": "Fiberglass Free"
+          }
+        }
+      },
+      "block_order": [
+        "170547aa-61fb-4097-a55d-26b183bc8009",
+        "c5b7999c-5653-4db6-a25d-311f61ab77b2",
+        "d9cc7479-9fe9-438f-9d6e-eb3c9267fbbf",
+        "efe4477d-4ddf-4509-813a-320cc64adc56",
+        "b6e85075-41ff-4baf-a872-024c2eba9411"
+      ],
+      "settings": {
+        "toggle": true,
+        "title": "Non-Toxic, Certified Clean and Assembled in America",
+        "text-color": "",
+        "background-color": ""
+      }
+    },
+    "simple_grid_mattress_h_ViPPHJ": {
+      "type": "simple-grid--mattress-h",
+      "blocks": {
+        "2f17fc6d-3720-452b-8d10-9f186c64f869": {
+          "type": "text",
+          "settings": {
+            "title": "Best Mattress for Athletes 2022",
+            "description": "Sports Illustrated"
+          }
+        },
+        "27a18919-7d13-4808-9115-100f9957c31a": {
+          "type": "text",
+          "settings": {
+            "title": "Best Memory Foam Mattress for Back Pain 2023",
+            "description": "SleepFoundation"
+          }
+        },
+        "bb16b06f-bb46-410b-b6df-3b61031a9186": {
+          "type": "text",
+          "settings": {
+            "title": "Best Firm Mattress 2023",
+            "description": "Sleepopolis"
+          }
+        }
+      },
+      "block_order": [
+        "2f17fc6d-3720-452b-8d10-9f186c64f869",
+        "27a18919-7d13-4808-9115-100f9957c31a",
+        "bb16b06f-bb46-410b-b6df-3b61031a9186"
+      ],
+      "settings": {
+        "title": "What The Experts Are Saying",
+        "toggle": false,
+        "background-color": "#ffffff",
+        "text-color": "#2e3438",
+        "padding-top": "pt--small",
+        "padding-bottom": "pb--small"
+      }
+    },
+    "simple_grid_original_hybrid_8qg7xB": {
+      "type": "simple-grid-original-hybrid",
+      "blocks": {
+        "958a996a-1ebd-428f-b68d-d0d0068f5d71": {
+          "type": "text",
+          "settings": {
+            "title": "Best In Class 2024",
+            "description": "The Strategist"
+          }
+        },
+        "3506878f-87e7-43aa-b7bb-7eb7d815f9aa": {
+          "type": "text",
+          "settings": {
+            "title": "Best Mattress in a Box 2024",
+            "description": "CNET"
+          }
+        },
+        "0d534664-4066-47cf-89a1-eaf595d71e8f": {
+          "type": "text",
+          "settings": {
+            "title": "Editor's Choice 2023",
+            "description": "Men's Health"
+          }
+        },
+        "0720a638-6b2e-410c-b955-3eca7b3ec646": {
+          "type": "text",
+          "settings": {
+            "title": "Best Firm Mattress",
+            "description": "Sleepopolis"
+          }
+        },
+        "abeb37e9-21a4-468c-8479-af2bb29a8139": {
+          "type": "text",
+          "settings": {
+            "title": "Best Memory Foam  Mattress Under $1000",
+            "description": "Forbes"
+          }
+        }
+      },
+      "block_order": [
+        "958a996a-1ebd-428f-b68d-d0d0068f5d71",
+        "3506878f-87e7-43aa-b7bb-7eb7d815f9aa",
+        "0d534664-4066-47cf-89a1-eaf595d71e8f",
+        "0720a638-6b2e-410c-b955-3eca7b3ec646",
+        "abeb37e9-21a4-468c-8479-af2bb29a8139"
+      ],
+      "settings": {
+        "toggle": true,
+        "title": "What The Experts Are Saying",
+        "bottom_line": "",
+        "background-color": "#ffffff",
+        "text-color": "#3c3c3f",
+        "padding-top": "pt--small",
+        "padding-bottom": "pb--small"
+      }
+    },
+    "pdp_imageblockcontent_3zi4AL": {
+      "type": "pdp-imageblockcontent",
+      "settings": {
+        "textarea_measurement_bm": "<ol>\n    <li>Breathable Quilted Cover\n        <span class=\"caption\">\n            made to be naturally soft, long-lasting and breathable.\n        <\/span>\n<br>\n        Add Celliant Infused Cover (optional) <span class=\"caption\"> with Sleep Recover Technology™ to regulate body temperature and promote recovery and well-being.<\/span>\n    <\/li>\n    <li>Cooling Gel Memory Foam\n        <span class=\"caption\">\ndraws away unwanted body heat and provides improved spinal alignment for a more comfortable sleep.        <\/span>\n    <\/li>\n    <li>Bear Dynamic Foam\n        <span class=\"caption\">\noffers balanced support and deeper compression for better pressure relief.        <\/span>\n    <\/li>\n    <li>High-Density Support Foam\n        <span class=\"caption\">\n            provides long-lasting durability\n        <\/span>\n    <\/li>\n<\/ol>\n<h5><a class=\"btn btn-white shadow\" href=\"\/pages\/compare\">Compare Features<\/a><\/h5>",
+        "bottom_text": "Looking for a specific firmness? Check out our firmness guide.",
+        "bottom_link": "\/pages\/firmness-guide"
+      }
+    },
+    "pdp_bear_original_hybrid_features_ad4dAm": {
+      "type": "pdp-bear-original-hybrid-features",
+      "blocks": {
+        "2ac9d728-3a6f-4b9c-a784-b75d9edbb258": {
+          "type": "text",
+          "settings": {
+            "title": "All-Foam Mattress Feel",
+            "description": "<p>An all-foam mattress gives your body a unique level of support, aiding in spinal alignment and hugging your body no matter your favorite sleep position. Plus, this is the best option if you or your partner need the best reduced motion transfer.<\/p>"
+          }
+        },
+        "4563ed6a-c31c-4cef-88f5-307e82dc0a9e": {
+          "type": "text",
+          "settings": {
+            "title": "Hybrid Mattress Feel",
+            "description": "<p>A hybrid mattress uses innerspring coils, so you’re getting that tried-and-true support, deeper compression, and classic responsive bounce of a traditional mattress. The foam component offers comfort through a hugging sensation. <\/p>"
+          }
+        },
+        "300b27a5-fa44-4024-a0dd-2e9f6268b927": {
+          "type": "text",
+          "settings": {
+            "title": "Contouring Memory Foam",
+            "description": "<p>Both the all-foam and hybrid mattresses have two top layers of cooling, gel memory foam. These comfort layers help to draw away body heat, relieve pressure on the hips and shoulders while filling in the nooks and crannies of your back and body.<\/p>"
+          }
+        },
+        "e86436fb-fd23-476f-b714-7d64bdaba667": {
+          "type": "text",
+          "settings": {
+            "title": "Sleeping Cool Through The Night",
+            "description": "<p>For sleepers who are prone to getting hot at night, the hybrid model can offer more breathability. Air can more easily flow through the coils of the hybrid mattress, so for some this increased breathability might be important. Plus, both options have heat reducing gel memory foam for added comfort. <\/p>"
+          }
+        }
+      },
+      "block_order": [
+        "2ac9d728-3a6f-4b9c-a784-b75d9edbb258",
+        "4563ed6a-c31c-4cef-88f5-307e82dc0a9e",
+        "300b27a5-fa44-4024-a0dd-2e9f6268b927",
+        "e86436fb-fd23-476f-b714-7d64bdaba667"
+      ],
+      "settings": {
+        "toggle": false,
+        "numbered-list": false,
+        "title": "Comparing All Foam and Hybrid"
+      }
+    },
+    "staggered_content_bear_original_v2_eJW6Qd": {
+      "type": "staggered-content--bear-original-v2",
+      "blocks": {
+        "2c962915-d581-49ac-b7d9-34491a17a758": {
+          "type": "text",
+          "settings": {
+            "media": "image",
+            "media_link": "https:\/\/cdn.shopify.com\/s\/files\/1\/0661\/5815\/files\/BearOriginal-FoamLayers-HeadDispersal-1280x960.jpg?v=1678130182",
+            "fallbackImageText": "",
+            "poster_img": "",
+            "orientation": "row",
+            "topic_header_color": "",
+            "topic_header": "Stay Cool Throughout the Night",
+            "detail_description_text_color": "",
+            "detail_description": "The cooling gel memory foam layer, plus open-cell foams in the Bear Original disperses heat, helping you sleep cooler.",
+            "misc_text_color": "",
+            "detail_misc_text": "Pulls away your extra body heat",
+            "primary_button_text": "",
+            "primary_button_link": "",
+            "secondary_button_text": "",
+            "secondary_button_link": ""
+          }
+        },
+        "137b4699-b62d-48b9-b5b0-aa8c7f4b592e": {
+          "type": "text",
+          "settings": {
+            "media": "image",
+            "media_link": "https:\/\/cdn.shopify.com\/s\/files\/1\/0661\/5815\/files\/BearOriginal-Lifestyle-SpineAlign-1280x960.jpg?v=1678130182",
+            "fallbackImageText": "Adapts to Your Shape and Sleep Position",
+            "poster_img": "",
+            "orientation": "row-reverse",
+            "topic_header_color": "",
+            "topic_header": "Adapts to Your Shape and Sleep Position",
+            "detail_description_text_color": "",
+            "detail_description": "Our responsive and supportive foams contour to your body's shape. Keep the pressure off of your back, hips and shoulder in any sleep position.",
+            "misc_text_color": "",
+            "detail_misc_text": "Feel supported no matter how you sleep",
+            "primary_button_text": "",
+            "primary_button_link": "",
+            "secondary_button_text": "",
+            "secondary_button_link": ""
+          }
+        },
+        "04ed4b56-a186-4006-b7e7-ee42c72e22bf": {
+          "type": "text",
+          "settings": {
+            "media": "image",
+            "media_link": "https:\/\/cdn.shopify.com\/s\/files\/1\/0661\/5815\/files\/BearOriginal-FoamLayers-AirflowCutout-1733x1299.jpg?v=1678135464",
+            "fallbackImageText": "Feel supported no matter how you sleep",
+            "poster_img": "",
+            "orientation": "row",
+            "topic_header_color": "",
+            "topic_header": "Sleep Just Right",
+            "detail_description_text_color": "",
+            "detail_description": "The open-cell construction of our foams allow for better airflow, and prevents overheating while you sleep.",
+            "misc_text_color": "",
+            "detail_misc_text": "Rest comfortably at just the right temperature",
+            "primary_button_text": "",
+            "primary_button_link": "",
+            "secondary_button_text": "",
+            "secondary_button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "2c962915-d581-49ac-b7d9-34491a17a758",
+        "137b4699-b62d-48b9-b5b0-aa8c7f4b592e",
+        "04ed4b56-a186-4006-b7e7-ee42c72e22bf"
+      ],
+      "settings": {
+        "background-color": "",
+        "staggered_heading_bearoriginal": "A Great Mattress for an Active Lifestyle"
+      }
+    },
+    "staggered_content_bear_2_h_ffeDfz": {
+      "type": "staggered-content--bear-2-h",
+      "blocks": {
+        "a0e846d1-8c67-4ec2-8332-687e217a6b58": {
+          "type": "text",
+          "settings": {
+            "media": "image",
+            "media_link": "https:\/\/cdn.shopify.com\/s\/files\/1\/0661\/5815\/files\/GREENGUARD-Mom-Kid-Pro-2.jpg?v=1619102107",
+            "fallbackImageText": "",
+            "poster_img": "",
+            "orientation": "row-reverse",
+            "topic_header_color": "",
+            "topic_header": "GREENGUARD Gold Certified",
+            "detail_description_text_color": "",
+            "detail_description": "The Bear Original mattress is <a href=\"https:\/\/www.bearmattress.com\/blogs\/news\/what-do-greenguard-gold-and-certipur-us-mattress-certifications-mean\" target=\"_blank\" data-uw-rm-brl=\"false\" aria-label=\"GREENGUARD Gold Certified - opens in new tab\" data-uw-rm-ext-link=\"\" uw-rm-external-link-id=\"https:\/\/www.bearmattress.com\/blogs\/news\/what-do-greenguard-gold-and-certipur-us-mattress-certifications-mean$greenguardgoldcertified\">GREENGUARD Gold Certified<\/a> by UL for low emissions. Its scientifically proven to meet some of the world’s most rigorous, third-party emissions standards for chemical exposure and pollutants, such as volatile organic compounds (VOCs), formaldehyde and phthalates.",
+            "misc_text_color": "",
+            "detail_misc_text": "",
+            "primary_button_text": "",
+            "primary_button_link": "",
+            "secondary_button_text": "",
+            "secondary_button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "a0e846d1-8c67-4ec2-8332-687e217a6b58"
+      ],
+      "settings": {
+        "background-color": ""
+      }
+    },
+    "yotpo_pdp_gallery_h_MxrBNc": {
+      "type": "yotpo-pdp-gallery-h",
+      "settings": {
+        "title": "Happy Bear Original Owners",
+        "text_color": "#2e3438",
+        "background_color": "#fafafa",
+        "description": "Checkout some honest customer reviews"
+      }
+    },
+    "review_section_YyAWJX": {
+      "type": "review-section",
+      "settings": {}
+    },
+    "staggered_firmness_mattress_bear_original_UTFzBp": {
+      "type": "staggered-firmness-mattress-bear-original",
+      "blocks": {
+        "2fd1dc9d-658f-454d-9808-f7daf4e22eb4": {
+          "type": "text",
+          "settings": {
+            "media": "image",
+            "media_link": "https:\/\/cdn.shopify.com\/s\/files\/1\/0661\/5815\/files\/OriginalPDP_2x_96c89d80-fdf9-49eb-9599-043f120ac9c0.png?v=1645193601",
+            "fallbackImageText": "",
+            "poster_img": "",
+            "orientation": "row-reverse",
+            "topic_header_color": "",
+            "topic_header": "Bear Original Firmness Rating",
+            "detail_description_text_color": "",
+            "detail_description": "<p>\nWe’ve done our research; over 80% of sleepers prefer a mattress that rates between 5 and 7.5. We rate the Bear Original 7.1 out of 10 (on a scale of 1 to 10, where 10 is the most firm). Most owners of the Bear Original mattress are back sleepers and prefer a firmer mattress.\n<\/p>\n<a href=\"https:\/\/www.bearmattress.com\/pages\/firmness-guide\">\nRead more about mattress firmness in Bear’s firmness guide.\n<\/a>",
+            "misc_text_color": "",
+            "detail_misc_text": "",
+            "primary_button_text": "",
+            "primary_button_link": "",
+            "secondary_button_text": "",
+            "secondary_button_link": ""
+          }
+        },
+        "9d51aca1-50ac-4640-8762-5b3bee8ec070": {
+          "type": "text",
+          "settings": {
+            "media": "image",
+            "media_link": "",
+            "fallbackImageText": "",
+            "poster_img": "",
+            "orientation": "row-reverse",
+            "topic_header_color": "",
+            "topic_header": "",
+            "detail_description_text_color": "",
+            "detail_description": "<p class=\"small-link dark text-center\"><\/p>",
+            "misc_text_color": "",
+            "detail_misc_text": "",
+            "primary_button_text": "",
+            "primary_button_link": "",
+            "secondary_button_text": "",
+            "secondary_button_link": ""
+          }
+        }
+      },
+      "block_order": [
+        "2fd1dc9d-658f-454d-9808-f7daf4e22eb4",
+        "9d51aca1-50ac-4640-8762-5b3bee8ec070"
+      ],
+      "settings": {
+        "background-color": "",
+        "section_heading": "",
+        "section_description": "",
+        "section_heading_color": "",
+        "section_heading_alignment": "cs-text-left"
+      }
+    },
+    "bear_original_slideshow_reviews_G33agV": {
+      "type": "bear-original-slideshow-reviews",
+      "blocks": {
+        "65df7e5e-1d74-4590-bcf2-0f8c69378edd": {
+          "type": "button",
+          "settings": {
+            "heading-text-color": "",
+            "section_rich_text": "<q>After months of doing research on almost every mattress ever made we chose this one and boy are we glad we did!<\/q>",
+            "section_source_text": "Susan G.",
+            "verified_soruce_toggle": true,
+            "section_image": "",
+            "section_star_icon": true,
+            "section_check_icon": false,
+            "section_link": "",
+            "show_cta_toggle": false,
+            "cta_text": "",
+            "button-background-color": "",
+            "button-text-color": "",
+            "button-border-color": "",
+            "use-shadow": false
+          }
+        },
+        "2243445a-873c-4ec3-9cbb-6d20e53a56dd": {
+          "type": "button",
+          "settings": {
+            "heading-text-color": "",
+            "section_rich_text": "<q>Look no further the bear mattress is a must try for anyone with back pain or needing a good nights sleep!<\/q>",
+            "section_source_text": "Kyle R.",
+            "verified_soruce_toggle": true,
+            "section_image": "",
+            "section_star_icon": true,
+            "section_check_icon": false,
+            "section_link": "",
+            "show_cta_toggle": false,
+            "cta_text": "",
+            "button-background-color": "",
+            "button-text-color": "",
+            "button-border-color": "",
+            "use-shadow": false
+          }
+        },
+        "328f9eff-6be3-4815-9873-50a250835a72": {
+          "type": "button",
+          "settings": {
+            "heading-text-color": "",
+            "section_rich_text": "<q>I don't overheat like I did in some other foam mattresses. Delivery and installation was easy.<\/q>",
+            "section_source_text": "Alexandra C.",
+            "verified_soruce_toggle": true,
+            "section_image": "",
+            "section_star_icon": true,
+            "section_check_icon": false,
+            "section_link": "",
+            "show_cta_toggle": false,
+            "cta_text": "",
+            "button-background-color": "",
+            "button-text-color": "",
+            "button-border-color": "",
+            "use-shadow": false
+          }
+        }
+      },
+      "block_order": [
+        "65df7e5e-1d74-4590-bcf2-0f8c69378edd",
+        "2243445a-873c-4ec3-9cbb-6d20e53a56dd",
+        "328f9eff-6be3-4815-9873-50a250835a72"
+      ],
+      "settings": {
+        "toggle": true,
+        "background-color": "#eff7f9",
+        "background-repeat": "no-repeat",
+        "section_header": "See Why These Customers Love Bear"
+      }
+    },
+    "pdp_accordion_h_EQABbc": {
+      "type": "pdp-accordion-h",
+      "blocks": {
+        "08c96a2f-2740-4afd-8be7-e10238a82190": {
+          "type": "measurementgrid",
+          "settings": {
+            "title_heading": "Measurements & Dimensions",
+            "title_subheading": "<span class=\"fine-print dark\">W x L x H<\/span>",
+            "size_name_1": "Queen",
+            "block_dimension_1": "60\" x 80\" x 10\"",
+            "weight_dimension_1": "70 lbs.",
+            "size_name_2": "King",
+            "block_dimension_2": "76\" x 80\" x 10\"",
+            "weight_dimension_2": "90 lbs.",
+            "size_name_3": "Cal King",
+            "block_dimension_3": "72\" x 84\" x 10\"",
+            "weight_dimension_3": "90 lbs.",
+            "size_name_4": "Full",
+            "block_dimension_4": "54\" x 75\" x 10\"",
+            "weight_dimension_4": "60 lbs.",
+            "size_name_5": "Twin",
+            "block_dimension_5": "38\" x 75\" x 10\"",
+            "weight_dimension_5": "50 lbs.",
+            "size_name_6": "Twin XL",
+            "block_dimension_6": "38\" x 80\" x 10\"",
+            "weight_dimension_6": "50 lbs.",
+            "size_name_7": "Split King",
+            "block_dimension_7": "76\" x 80\" x 10\"",
+            "weight_dimension_7": "2 x 50 lbs.",
+            "size_name_8": "",
+            "block_dimension_8": "",
+            "weight_dimension_8": ""
+          }
+        },
+        "3eac7c9c-eaf2-4f94-b8c4-1ec1ade60149": {
+          "type": "detailtopic",
+          "settings": {
+            "certification_head": "Materials & Certifications",
+            "certification_subhead": "",
+            "certification_content": "<p>Made in our Arizona factory, using US and international parts.<\/p>\n\n<p>Our foams are <a href=\"http:\/\/certipur.us\/about-the-seal\/\" target=\"_blank\">CertiPUR-US® certified.<\/a> Meaning, the Bear Original is:<\/p>\n<ul>\n<li>Made without ozone depleters<\/li>\n<li>Made without Polybrominated Diphenyl Ethers (PBDE) flame retardants<\/li>\n<li>Made without mercury lead and other heavy metals<\/li>\n<li>Made without formaldehyde<\/li>\n<li>Made without phthalates regulated by the Consumer Product Safety Commission (CPSC)<\/li> \n<li>Contains low Volatile Organic Compound (VOC) emissions for indoor air quality (less than 0.5 parts per million)<\/li>\n<\/ul>\n\n<p>\n<a href=\"\/pages\/technology\" target=\"_blank\">Celliant® fibers<\/a> have been determined as a medical device and general wellness product by the FDA.* Celliant fibers are only used in the optional Celliant infused cover.\n<\/p>\n<span class=\"fine-print dark\">*The FDA has determined that Celliant products are medical devices as defined in section 201(h) of the Federal Food, Drug and Cosmetic Act and are general wellness products. Celliant is a registered trademark of Hologenix LLC.<\/span>"
+          }
+        },
+        "3a9706cc-4cd7-45bc-89c5-a6d219a92ee4": {
+          "type": "detailtopic",
+          "disabled": true,
+          "settings": {
+            "certification_head": "Warranty",
+            "certification_subhead": "",
+            "certification_content": "lifetime warranty <a href=\"\/pages\/warranty\" target=\"_blank\">Read More<\/a>"
+          }
+        },
+        "d26a9bbd-b71b-4495-8363-db9b659ab385": {
+          "type": "detailtopic",
+          "settings": {
+            "certification_head": "Shipping Info",
+            "certification_subhead": "",
+            "certification_content": "<p>Fast, Free Shipping | Ships within 2-5 Days.<\/p>\n\n<p>Ships FREE via FedEx. Delivery times may vary depending on its final destination. The mattress is compressed, vacuum sealed and rolled into a box that is 42\" x 19\" x 19\".<\/p>\n\n<p class=\"fine-print dark\">NOTE: Additional fees may apply for shipping to Alaska or Hawaii.<\/p>"
+          }
+        },
+        "094a930e-50bf-4421-9b0f-f3a8b26e9a65": {
+          "type": "detailtopic",
+          "settings": {
+            "certification_head": "Return Policy",
+            "certification_subhead": "",
+            "certification_content": "You have 120 nights from the time of delivery to request a return of your mattress. Returns are free of charge."
+          }
+        }
+      },
+      "block_order": [
+        "08c96a2f-2740-4afd-8be7-e10238a82190",
+        "3eac7c9c-eaf2-4f94-b8c4-1ec1ade60149",
+        "3a9706cc-4cd7-45bc-89c5-a6d219a92ee4",
+        "d26a9bbd-b71b-4495-8363-db9b659ab385",
+        "094a930e-50bf-4421-9b0f-f3a8b26e9a65"
+      ],
+      "settings": {
+        "show_accordion": true,
+        "heading-text-color": "",
+        "text-color": "",
+        "accordion_heading_color": "",
+        "accordion_subheading_color": "",
+        "data_view_type": "accordion",
+        "data_view_icon_position": "right"
+      }
+    },
+    "pdp_financing_blocks_bYCPcD": {
+      "type": "pdp-financing-blocks",
+      "blocks": {
+        "1553019049087": {
+          "type": "text",
+          "settings": {
+            "content_background_color": "rgba(0,0,0,0)",
+            "content_mobile_background_color": "",
+            "content_color": "",
+            "content_title": "",
+            "content_caption": "",
+            "content_image": "shopify:\/\/shop_images\/woman-sleeping-on-stomach-iStock-959296204.jpg",
+            "content_image_alt": "Person sleeping on white Bear Hybrid in bedroom next to nightstand with piggy bank",
+            "content_image_link": "shopify:\/\/pages\/financing",
+            "content_desc": "",
+            "content_cta_text": "",
+            "content_cta_link": "",
+            "content_cta_background_color": "",
+            "content_cta_color": "",
+            "content_cta_border_color": "",
+            "content_cta_use_shadow": false,
+            "content_additional": ""
+          }
+        },
+        "1553019131512": {
+          "type": "text",
+          "settings": {
+            "content_background_color": "rgba(0,0,0,0)",
+            "content_mobile_background_color": "",
+            "content_color": "",
+            "content_title": "Rest Easy with Affordable Financing",
+            "content_caption": "",
+            "content_image_alt": "Affirm logo",
+            "content_image_link": "",
+            "content_desc": "Qualify for easy monthly financing, and you can easily rest your head on the Bear mattress of your choice.",
+            "content_cta_text": "Prequalify Now",
+            "content_cta_link": "",
+            "content_cta_background_color": "rgba(0,0,0,0)",
+            "content_cta_color": "#0c324c",
+            "content_cta_border_color": "",
+            "content_cta_use_shadow": false,
+            "content_additional": ""
+          }
+        }
+      },
+      "block_order": [
+        "1553019049087",
+        "1553019131512"
+      ],
+      "settings": {
+        "background_color": "#f4f8ff",
+        "content_main_mobile_background_color": ""
+      }
+    },
+    "pdp_standard_content_iChh6j": {
+      "type": "pdp-standard-content",
+      "blocks": {
+        "1489574640347": {
+          "type": "button",
+          "settings": {
+            "cta_link": "shopify:\/\/pages\/technology",
+            "cta_text": "Learn More",
+            "button-background-color": "#ffffff",
+            "button-text-color": "#2e577c",
+            "button-border-color": "rgba(0,0,0,0)",
+            "use-shadow": true
+          }
+        }
+      },
+      "block_order": [
+        "1489574640347"
+      ],
+      "settings": {
+        "toggle": true,
+        "background-color": "#eaf2f4",
+        "background-repeat": "no-repeat",
+        "heading-text-color": "#000000",
+        "text-color": "#000000",
+        "section_header": "Sleep Better with Bear & Celliant<sup>®<\/sup>",
+        "section_rich_text": "Every Bear Mattress is engineered with Celliant's FDA Determined Infrared Yarn Technology. Celliant is a revolutionary, patented technology that has been clinically proven to enhance tissue oxygen levels and improve athletic performance, sleep quality, health and wellness.",
+        "section_link": "",
+        "image_pos_toggle": false,
+        "padding-top": "pt--medium",
+        "padding-bottom": "pb--medium",
+        "highlighted_text": "*The FDA has determined that Celliant products are medical devices as defined in section 201(h) of the Federal Food, Drug and Cosmetic Act and are general wellness products. Celliant is a registered trademark of Hologenix LLC."
+      }
+    },
+    "life_style_grid_BBfaUj": {
+      "type": "life-style-grid",
+      "blocks": {
+        "1547713163703": {
+          "type": "text",
+          "settings": {
+            "main_image_alt": "Night time",
+            "title": "120-Night Sleep Trial",
+            "text": "Try it for 120 nights in your own home. Not a good fit? We’ll pick it up with no hassle."
+          }
+        },
+        "1547713498976": {
+          "type": "text",
+          "settings": {
+            "main_image_alt": "Warranty ribbon",
+            "title": "Lifetime Warranty",
+            "text": "We believe in our products and we back that up with an industry best, Lifetime Warranty."
+          }
+        },
+        "1547713369454": {
+          "type": "text",
+          "settings": {
+            "main_image": "shopify:\/\/shop_images\/Truck_Light.png",
+            "main_image_alt": "Shipping truck",
+            "title": "Free Shipping & Returns",
+            "text": "Shipping and returns are always free. We always try to donate returned mattresses to charity."
+          }
+        }
+      },
+      "block_order": [
+        "1547713163703",
+        "1547713498976",
+        "1547713369454"
+      ],
+      "settings": {
+        "background-color": "#ffffff",
+        "text-color": "",
+        "header": "Love it or Your Money Back",
+        "desktop_background_image": "shopify:\/\/shop_images\/TLG-0119-Woman-Tablet-desktop.jpg",
+        "mobile_background_image": "shopify:\/\/shop_images\/TLG-0119-Woman-Tablet-mobile.jpg",
+        "highlighted_text": ""
+      }
+    },
+    "bear_original_faq_component_cinqpw": {
+      "type": "bear-original-faq-component",
+      "blocks": {
+        "b1257cf7-5104-416a-b6f1-7b614e9a8d47": {
+          "type": "faqsection",
+          "settings": {
+            "faq_heading": "How would you rate the firmness of the Bear Original?",
+            "faq_content": "We designed the Bear Original to have a solid core support with a responsive comfort layer using gel infused foam for cooling comfort. We would categorize the mattress as a medium-firm. With over 10,000 verified customer reviews, our customers give the Bear Original a firmness rating of 7.1 on a scale of 1 to 10, with 10 being the most firm."
+          }
+        },
+        "c675e8f1-2035-400b-aeac-56073238fd37": {
+          "type": "faqsection",
+          "settings": {
+            "faq_heading": "What sets the Bear Original apart from other mattresses?",
+            "faq_content": "The Bear Original was engineered using multiple layers of cooling, contouring, and comforting memory foam to increase the pressure relieving properties that help you sleep better and recover faster. We also go beyond traditional foams and use cooling-gel memory foam in the comfort layer and our own responsive transition foam to keep your body cool and spine aligned. Choose the Celliant infused cover to get <a href=\"\/pages\/technology\">Celliant® technology<\/a> woven in to promote cooling and recovery. Celliant is a unique fiber that utilizes natural minerals to reflect your body’s natural energy back as light. We worked with experts around the world to design a mattress that is universally comfortable, sleeps cool, helps you recover faster and increases your energy."
+          }
+        },
+        "59330c59-f94b-49b2-befe-f57fde127a18": {
+          "type": "faqsection",
+          "settings": {
+            "faq_heading": "Does the Bear Original have a break-in period?",
+            "faq_content": "No, the mattress is great from the start! It will probably take you some time to adjust to the feel so we ask you to sleep on the Bear Original for at least 30 nights before you decide to keep or return it."
+          }
+        },
+        "2ee06a00-f822-4d6b-8904-67019bb461de": {
+          "type": "faqsection",
+          "settings": {
+            "faq_heading": "Does the Bear Original smell?",
+            "faq_content": "Bear uses foams that have little to no smell. If anything, it would be very slight when you first unpack the mattress, like a new pair of sneakers, and then will dissipate within a couple days."
+          }
+        },
+        "71148711-5d03-4a88-898a-1ab42983a168": {
+          "type": "faqsection",
+          "settings": {
+            "faq_heading": "What type of base do I need for the Bear Original mattress?",
+            "faq_content": "Our bed is designed to lay on any hard, flat surface. We highly recommend the <a href=\"\/products\/bear-foundation\">Bear Foundation<\/a> paired with a <a href=\"\/products\/bear-bed-frame\">bed frame<\/a>. Other options include a platform bed, adjustable base, or the floor. We don't recommend using a traditional coil box spring, because it does not provide an evenly distributed surface area for foam-based mattresses."
+          }
+        },
+        "de764dc5-b110-43ce-a7f3-127575b7b0cc": {
+          "type": "faqsection",
+          "settings": {
+            "faq_heading": "What is the difference between All Foam and Hybrid?",
+            "faq_content": "Memory foam, unlike a traditional spring mattress, offers the sensation of contouring your body — a kind of shock absorption for your back that keeps you comfortable throughout the night. With a hybrid, you’ve still got the feeling of a mattress hugging you to sleep, but you also have a… more romantic innerspring bounce. In general, hybrid mattresses tend to have more options when it comes to firmness than memory foam."
+          }
+        }
+      },
+      "block_order": [
+        "b1257cf7-5104-416a-b6f1-7b614e9a8d47",
+        "c675e8f1-2035-400b-aeac-56073238fd37",
+        "59330c59-f94b-49b2-befe-f57fde127a18",
+        "2ee06a00-f822-4d6b-8904-67019bb461de",
+        "71148711-5d03-4a88-898a-1ab42983a168",
+        "de764dc5-b110-43ce-a7f3-127575b7b0cc"
+      ],
+      "settings": {
+        "accordion_heading_color": "",
+        "data_view_type": "accordion",
+        "data_view_icon_position": "right"
+      }
+    },
+    "bo_schema_modal_GC9pzB": {
+      "type": "bo-schema-modal",
+      "settings": {}
+    }
+  },
+  "order": [
+    "main",
+    "bo_product_buy_box_xrWmiW",
+    "bear_original_icon_grid_8GFBcK",
+    "section_publications_2_ftDjyx",
+    "simple_grid_mattress_h_ViPPHJ",
+    "simple_grid_original_hybrid_8qg7xB",
+    "pdp_imageblockcontent_3zi4AL",
+    "pdp_bear_original_hybrid_features_ad4dAm",
+    "staggered_content_bear_original_v2_eJW6Qd",
+    "staggered_content_bear_2_h_ffeDfz",
+    "yotpo_pdp_gallery_h_MxrBNc",
+    "review_section_YyAWJX",
+    "staggered_firmness_mattress_bear_original_UTFzBp",
+    "bear_original_slideshow_reviews_G33agV",
+    "pdp_accordion_h_EQABbc",
+    "pdp_financing_blocks_bYCPcD",
+    "pdp_standard_content_iChh6j",
+    "life_style_grid_BBfaUj",
+    "bear_original_faq_component_cinqpw",
+    "bo_schema_modal_GC9pzB"
+  ]
+}
